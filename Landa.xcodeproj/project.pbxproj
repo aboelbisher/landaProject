@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F9302FC118EE499B0064E984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC018EE499B0064E984 /* Foundation.framework */; };
+		F9302FC318EE499B0064E984 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC218EE499B0064E984 /* CoreGraphics.framework */; };
+		F9302FC518EE499B0064E984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC418EE499B0064E984 /* UIKit.framework */; };
+		F9302FCB18EE499B0064E984 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9302FC918EE499B0064E984 /* InfoPlist.strings */; };
+		F9302FCD18EE499B0064E984 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9302FCC18EE499B0064E984 /* main.m */; };
+		F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9302FD018EE499B0064E984 /* LandaAppDelegate.m */; };
+		F9302FD418EE499B0064E984 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9302FD218EE499B0064E984 /* Main.storyboard */; };
+		F9302FD718EE499B0064E984 /* LandaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9302FD618EE499B0064E984 /* LandaViewController.m */; };
+		F9302FD918EE499B0064E984 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9302FD818EE499B0064E984 /* Images.xcassets */; };
+		F9302FE018EE499B0064E984 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FDF18EE499B0064E984 /* XCTest.framework */; };
+		F9302FE118EE499B0064E984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC018EE499B0064E984 /* Foundation.framework */; };
+		F9302FE218EE499B0064E984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC418EE499B0064E984 /* UIKit.framework */; };
+		F9302FEA18EE499B0064E984 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9302FE818EE499B0064E984 /* InfoPlist.strings */; };
+		F9302FEC18EE499B0064E984 /* LandaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9302FEB18EE499B0064E984 /* LandaTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F9302FE318EE499B0064E984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9302FB518EE499B0064E984 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9302FBC18EE499B0064E984;
+			remoteInfo = Landa;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F9302FBD18EE499B0064E984 /* Landa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Landa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9302FC018EE499B0064E984 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F9302FC218EE499B0064E984 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F9302FC418EE499B0064E984 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F9302FC818EE499B0064E984 /* Landa-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Landa-Info.plist"; sourceTree = "<group>"; };
+		F9302FCA18EE499B0064E984 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F9302FCC18EE499B0064E984 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F9302FCE18EE499B0064E984 /* Landa-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Landa-Prefix.pch"; sourceTree = "<group>"; };
+		F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandaAppDelegate.h; sourceTree = "<group>"; };
+		F9302FD018EE499B0064E984 /* LandaAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandaAppDelegate.m; sourceTree = "<group>"; };
+		F9302FD318EE499B0064E984 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F9302FD518EE499B0064E984 /* LandaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandaViewController.h; sourceTree = "<group>"; };
+		F9302FD618EE499B0064E984 /* LandaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandaViewController.m; sourceTree = "<group>"; };
+		F9302FD818EE499B0064E984 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F9302FDE18EE499B0064E984 /* LandaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9302FDF18EE499B0064E984 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F9302FE718EE499B0064E984 /* LandaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LandaTests-Info.plist"; sourceTree = "<group>"; };
+		F9302FE918EE499B0064E984 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F9302FEB18EE499B0064E984 /* LandaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandaTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F9302FBA18EE499B0064E984 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9302FC318EE499B0064E984 /* CoreGraphics.framework in Frameworks */,
+				F9302FC518EE499B0064E984 /* UIKit.framework in Frameworks */,
+				F9302FC118EE499B0064E984 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9302FDB18EE499B0064E984 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9302FE018EE499B0064E984 /* XCTest.framework in Frameworks */,
+				F9302FE218EE499B0064E984 /* UIKit.framework in Frameworks */,
+				F9302FE118EE499B0064E984 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F9302FB418EE499B0064E984 = {
+			isa = PBXGroup;
+			children = (
+				F9302FC618EE499B0064E984 /* Landa */,
+				F9302FE518EE499B0064E984 /* LandaTests */,
+				F9302FBF18EE499B0064E984 /* Frameworks */,
+				F9302FBE18EE499B0064E984 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F9302FBE18EE499B0064E984 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9302FBD18EE499B0064E984 /* Landa.app */,
+				F9302FDE18EE499B0064E984 /* LandaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F9302FBF18EE499B0064E984 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9302FC018EE499B0064E984 /* Foundation.framework */,
+				F9302FC218EE499B0064E984 /* CoreGraphics.framework */,
+				F9302FC418EE499B0064E984 /* UIKit.framework */,
+				F9302FDF18EE499B0064E984 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9302FC618EE499B0064E984 /* Landa */ = {
+			isa = PBXGroup;
+			children = (
+				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
+				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
+				F9302FD218EE499B0064E984 /* Main.storyboard */,
+				F9302FD518EE499B0064E984 /* LandaViewController.h */,
+				F9302FD618EE499B0064E984 /* LandaViewController.m */,
+				F9302FD818EE499B0064E984 /* Images.xcassets */,
+				F9302FC718EE499B0064E984 /* Supporting Files */,
+			);
+			path = Landa;
+			sourceTree = "<group>";
+		};
+		F9302FC718EE499B0064E984 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9302FC818EE499B0064E984 /* Landa-Info.plist */,
+				F9302FC918EE499B0064E984 /* InfoPlist.strings */,
+				F9302FCC18EE499B0064E984 /* main.m */,
+				F9302FCE18EE499B0064E984 /* Landa-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F9302FE518EE499B0064E984 /* LandaTests */ = {
+			isa = PBXGroup;
+			children = (
+				F9302FEB18EE499B0064E984 /* LandaTests.m */,
+				F9302FE618EE499B0064E984 /* Supporting Files */,
+			);
+			path = LandaTests;
+			sourceTree = "<group>";
+		};
+		F9302FE618EE499B0064E984 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9302FE718EE499B0064E984 /* LandaTests-Info.plist */,
+				F9302FE818EE499B0064E984 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F9302FBC18EE499B0064E984 /* Landa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9302FEF18EE499B0064E984 /* Build configuration list for PBXNativeTarget "Landa" */;
+			buildPhases = (
+				F9302FB918EE499B0064E984 /* Sources */,
+				F9302FBA18EE499B0064E984 /* Frameworks */,
+				F9302FBB18EE499B0064E984 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Landa;
+			productName = Landa;
+			productReference = F9302FBD18EE499B0064E984 /* Landa.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F9302FDD18EE499B0064E984 /* LandaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9302FF218EE499B0064E984 /* Build configuration list for PBXNativeTarget "LandaTests" */;
+			buildPhases = (
+				F9302FDA18EE499B0064E984 /* Sources */,
+				F9302FDB18EE499B0064E984 /* Frameworks */,
+				F9302FDC18EE499B0064E984 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9302FE418EE499B0064E984 /* PBXTargetDependency */,
+			);
+			name = LandaTests;
+			productName = LandaTests;
+			productReference = F9302FDE18EE499B0064E984 /* LandaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F9302FB518EE499B0064E984 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Landa;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "muhammad abed el razek";
+				TargetAttributes = {
+					F9302FDD18EE499B0064E984 = {
+						TestTargetID = F9302FBC18EE499B0064E984;
+					};
+				};
+			};
+			buildConfigurationList = F9302FB818EE499B0064E984 /* Build configuration list for PBXProject "Landa" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F9302FB418EE499B0064E984;
+			productRefGroup = F9302FBE18EE499B0064E984 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F9302FBC18EE499B0064E984 /* Landa */,
+				F9302FDD18EE499B0064E984 /* LandaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F9302FBB18EE499B0064E984 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9302FD918EE499B0064E984 /* Images.xcassets in Resources */,
+				F9302FCB18EE499B0064E984 /* InfoPlist.strings in Resources */,
+				F9302FD418EE499B0064E984 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9302FDC18EE499B0064E984 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9302FEA18EE499B0064E984 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F9302FB918EE499B0064E984 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9302FCD18EE499B0064E984 /* main.m in Sources */,
+				F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */,
+				F9302FD718EE499B0064E984 /* LandaViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9302FDA18EE499B0064E984 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9302FEC18EE499B0064E984 /* LandaTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F9302FE418EE499B0064E984 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F9302FBC18EE499B0064E984 /* Landa */;
+			targetProxy = F9302FE318EE499B0064E984 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F9302FC918EE499B0064E984 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9302FCA18EE499B0064E984 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F9302FD218EE499B0064E984 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9302FD318EE499B0064E984 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F9302FE818EE499B0064E984 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9302FE918EE499B0064E984 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F9302FED18EE499B0064E984 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F9302FEE18EE499B0064E984 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F9302FF018EE499B0064E984 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Landa/Landa-Prefix.pch";
+				INFOPLIST_FILE = "Landa/Landa-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F9302FF118EE499B0064E984 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Landa/Landa-Prefix.pch";
+				INFOPLIST_FILE = "Landa/Landa-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F9302FF318EE499B0064E984 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Landa.app/Landa";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Landa/Landa-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LandaTests/LandaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F9302FF418EE499B0064E984 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Landa.app/Landa";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Landa/Landa-Prefix.pch";
+				INFOPLIST_FILE = "LandaTests/LandaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F9302FB818EE499B0064E984 /* Build configuration list for PBXProject "Landa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9302FED18EE499B0064E984 /* Debug */,
+				F9302FEE18EE499B0064E984 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9302FEF18EE499B0064E984 /* Build configuration list for PBXNativeTarget "Landa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9302FF018EE499B0064E984 /* Debug */,
+				F9302FF118EE499B0064E984 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F9302FF218EE499B0064E984 /* Build configuration list for PBXNativeTarget "LandaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9302FF318EE499B0064E984 /* Debug */,
+				F9302FF418EE499B0064E984 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F9302FB518EE499B0064E984 /* Project object */;
+}

@@ -50,9 +50,8 @@
     NSError * error;
     
     
-    [context reset];
-    [context save:&error];
-    [self initUpdatesWithContext:context];
+//    [context reset];
+//    [context save:&error];
     
     
     NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
@@ -63,6 +62,12 @@
     NSArray *objects = [context executeFetchRequest:request
                                               error:&error];
     
+    
+    
+    if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
+    {
+        [self initUpdatesWithContext:context];
+    }
     
     
     

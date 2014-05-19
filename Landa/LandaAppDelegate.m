@@ -93,6 +93,8 @@
 }
 
 
+#pragma mark notifications
+
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
@@ -163,12 +165,12 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [comps setMinute:32];
    // [comps setSecond:10];
     
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
-    
-    localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-
+//    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+//    localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
+//    
+//    localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//
 
     
 }

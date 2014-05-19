@@ -40,7 +40,13 @@
 //    [context reset];
 //    [context save:&error];
     
-    [self initCoursesWithContext:context];
+    
+    
+    if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
+    {
+        [self initCoursesWithContext:context];
+    }
+    
     
 
     NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];

@@ -41,11 +41,11 @@
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError * error;
     
-    
-    [context reset];
-    [context save:&error];
-
 //    
+//    [context reset];
+//    [context save:&error];
+//
+//
 //    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
 //    NSFetchRequest *request = [[NSFetchRequest alloc] init];
 //    [request setEntity:teacherEntityDisc];
@@ -55,9 +55,11 @@
 //                                              error:&error];
     
 
-    
-        
-    [self initTeachersWithContext:context];
+    if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
+    {
+        [self initTeachersWithContext:context];
+    }
+
     
     
     NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
@@ -170,6 +172,8 @@
                 TeacherCollectionViewCell* sourceController = (TeacherCollectionViewCell*) sender;
                 
                 TeachersDetailsViewController *tsvc = (TeachersDetailsViewController *)segue.destinationViewController;
+                
+                //NSString* string =  sourceController.teacher.imageName;
                 
                 
                 tsvc.teacherImageName = sourceController.teacher.imageName;

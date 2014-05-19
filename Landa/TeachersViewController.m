@@ -13,14 +13,19 @@
 #import "Teacher+init.h"
 #import "LandaAppDelegate.h"
 
+static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 
-@interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
+@interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate ,NSURLSessionDelegate, NSURLSessionDownloadDelegate>
+{
+    NSURLSession* _session;
+}
 
 //@property(nonatomic , strong) NSArray * teachersPic;
 @property (weak, nonatomic) IBOutlet UICollectionView *teachersCollectionView;
 @property(nonatomic , strong) NSMutableArray * teachers; // of Teacher(s)
 @property (nonatomic , strong) NSMutableArray * searchResults;
 @property (weak, nonatomic) IBOutlet UISearchBar *searcBar;
+@property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
 //@property (strong , nonatomic) NSManagedObjectContext * context;
 
 @end
@@ -79,6 +84,51 @@
     
 
 }
+
+- (NSURLSession *)session
+{
+    if (!_session)
+    {
+        // Create Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+        // Create Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
+    }
+    
+    return _session;
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+    NSLog(@"did finish Writing");
+    NSData *data = [NSData dataWithContentsOfURL:location];
+//    NSLog(@"data = %@" , data);
+    
+    NSString *jsonString =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"%@" , jsonString);
+    
+    dispatch_async(dispatch_get_main_queue(), ^
+                   {
+//                       [self.cancelButton setHidden:YES];
+//                       [self.progressView setHidden:YES];
+//                       [self.imageView setImage:[UIImage imageWithData:data]];
+                   });
+    
+    // Invalidate Session
+    [session finishTasksAndInvalidate];
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    NSLog(@"did resume");
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+}
+
 
 
 //-(NSMutableArray*) searchResults
@@ -185,33 +235,125 @@
     }
 }
 
+
+
 -(void)initTeachersWithContext:(NSManagedObjectContext*)context
 {
-        [Teacher initWithName:@"muhammad" mail:@"aboelbisher.176@gmail.com" imageName:@"muhammad.jpg" inManagedObjectContext:context];
+//    
+//   self.downloadTask = [self.session downloadTaskWithURL:[NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/iosTutors.aspx"]];
+//    
+//     [self.downloadTask resume];
+    
+    NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+    //NSLog(@"%@" , webString);
+    NSString* jsonString = [self makeJsonFromString:webString];
+    
+    NSError * error;
+    
+    NSDictionary *JSON =
+    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                    options: NSJSONReadingMutableContainers
+                                      error: &error];
+    
+    NSArray * array = [JSON objectForKey:@"users"];
     
     
-    [Teacher initWithName:@"hasan" mail:@"hasan@gmail.com" imageName:@"hasan.jpg" inManagedObjectContext:context];
+    for(id tut in array)
+    {
+        NSString * id = [tut objectForKey:@"id"];
+        NSString * faculty = [tut objectForKey:@"faculty"];
+        int x= 0 ;
+
+    }
 
     
-    [Teacher initWithName:@"7amed" mail:@"7amed@gmail.com" imageName:@"7amed.jpg" inManagedObjectContext:context];
+//    NSArray * array = [JSON allValues];
+//    
+//    for(id tutor in array)
+//    {
+//        int x = 0;
+//    }
+    
+    
     
 
-    
-    [Teacher initWithName:@"almothanna" mail:@"almothanna@gmail.com" imageName:@"mothana.jpg" inManagedObjectContext:context];
-    
 
     
-    [Teacher initWithName:@"aiman" mail:@"aiman@gmail.com" imageName:@"aiman.jpg" inManagedObjectContext:context];
-    
-
-    
-    [Teacher initWithName:@"ward" mail:@"ward@gmail.com" imageName:@"ward.jpg" inManagedObjectContext:context];
-    
-
-    
-    [Teacher initWithName:@"thrwat" mail:@"thrwat@gmail.com" imageName:@"thrwat.jpg"inManagedObjectContext:context];
-    
+//        [Teacher initWithName:@"muhammad" mail:@"aboelbisher.176@gmail.com" imageName:@"muhammad.jpg" inManagedObjectContext:context];
+//    
+//    
+//    [Teacher initWithName:@"hasan" mail:@"hasan@gmail.com" imageName:@"hasan.jpg" inManagedObjectContext:context];
+//
+//    
+//    [Teacher initWithName:@"7amed" mail:@"7amed@gmail.com" imageName:@"7amed.jpg" inManagedObjectContext:context];
+//    
+//
+//    
+//    [Teacher initWithName:@"almothanna" mail:@"almothanna@gmail.com" imageName:@"mothana.jpg" inManagedObjectContext:context];
+//    
+//
+//    
+//    [Teacher initWithName:@"aiman" mail:@"aiman@gmail.com" imageName:@"aiman.jpg" inManagedObjectContext:context];
+//    
+//
+//    
+//    [Teacher initWithName:@"ward" mail:@"ward@gmail.com" imageName:@"ward.jpg" inManagedObjectContext:context];
+//    
+//
+//    
+//    [Teacher initWithName:@"thrwat" mail:@"thrwat@gmail.com" imageName:@"thrwat.jpg"inManagedObjectContext:context];
+//    
 
 }
+
+-(NSString*) makeJsonFromString:(NSString*)string
+{
+    int first = 0;
+    int last = 0;
+    int length = 0;
+    int count = 0;
+
+    
+    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
+    {
+        if([string characterAtIndex:charIdx] == '{')
+        {
+            first = charIdx;
+            break;
+        }
+    }
+    
+    
+    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
+    {
+        if([string characterAtIndex:charIdx] == '}')
+        {
+            count-- ;
+            if (count == 0)
+            {
+                last = charIdx;
+                break;
+            }
+        }
+        if([string characterAtIndex:charIdx] == '{')
+        {
+            count++;
+        }
+        
+    }
+    
+   
+    
+    NSRange range = NSMakeRange(first, last - first + 1);
+
+    
+    NSString * newString = [string substringWithRange:range];
+
+    
+    return newString;
+}
+
 
 @end

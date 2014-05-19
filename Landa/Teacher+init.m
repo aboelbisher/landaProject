@@ -14,6 +14,8 @@
 +(Teacher *) initWithName:(NSString*)name
                      mail:(NSString*)mail
                 imageName:(NSString*)imageName
+                       id:(NSString*)id
+                  faculty:(NSString*)faculty
    inManagedObjectContext:(NSManagedObjectContext*)context
 {
     
@@ -23,7 +25,7 @@
         NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:teacherEntityDisc];
-        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(mail = %@)", mail];
+        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", id];
         [request setPredicate:pred];
         NSError *error;
         NSArray *objects = [context executeFetchRequest:request
@@ -35,6 +37,8 @@
         teacher.name = name;
         teacher.mail = mail;
         teacher.imageName = imageName;
+        teacher.id = id;
+        teacher.faculty = faculty;
         [context save:&error];
 
 

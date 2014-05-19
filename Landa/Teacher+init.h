@@ -13,6 +13,10 @@
 +(Teacher *) initWithName:(NSString*)name
                      mail:(NSString*)mail
                 imageName:(NSString*)imageName
-   inManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+                       id:(NSString*)id
+                  faculty:(NSString*)faculty
+   inManagedObjectContext:(NSManagedObjectContext*)context;
+
+
 
 @end

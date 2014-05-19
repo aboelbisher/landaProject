@@ -60,11 +60,11 @@
 		F932381A192909140066328A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9323819192909140066328A /* Security.framework */; };
 		F932381C1929091B0066328A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381B1929091B0066328A /* StoreKit.framework */; };
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
-		F9323821192917DC0066328A /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F9323820192917DC0066328A /* Update.m */; };
-		F9323824192917DD0066328A /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F9323823192917DD0066328A /* Teacher.m */; };
-		F9323827192917DD0066328A /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F9323826192917DD0066328A /* Course.m */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */; };
+		F9C7AD5E192ABFD70086B99D /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD5D192ABFD70086B99D /* Teacher.m */; };
+		F9C7AD61192ABFD70086B99D /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD60192ABFD70086B99D /* Course.m */; };
+		F9C7AD64192ABFD70086B99D /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD63192ABFD70086B99D /* Update.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,16 +147,16 @@
 		F9323819192909140066328A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F932381B1929091B0066328A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F932381D192909230066328A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		F932381F192917DC0066328A /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Update.h; path = ../Update.h; sourceTree = "<group>"; };
-		F9323820192917DC0066328A /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Update.m; path = ../Update.m; sourceTree = "<group>"; };
-		F9323822192917DD0066328A /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Teacher.h; path = ../Teacher.h; sourceTree = "<group>"; };
-		F9323823192917DD0066328A /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Teacher.m; path = ../Teacher.m; sourceTree = "<group>"; };
-		F9323825192917DD0066328A /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Course.h; path = ../Course.h; sourceTree = "<group>"; };
-		F9323826192917DD0066328A /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Course.m; path = ../Course.m; sourceTree = "<group>"; };
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesContentViewController.h; sourceTree = "<group>"; };
 		F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesContentViewController.m; sourceTree = "<group>"; };
+		F9C7AD5C192ABFD70086B99D /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
+		F9C7AD5D192ABFD70086B99D /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
+		F9C7AD5F192ABFD70086B99D /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		F9C7AD60192ABFD70086B99D /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		F9C7AD62192ABFD70086B99D /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
+		F9C7AD63192ABFD70086B99D /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,8 +209,8 @@
 		F91FBA3D18F4772D00B7F8D7 /* Teachers */ = {
 			isa = PBXGroup;
 			children = (
-				F9323822192917DD0066328A /* Teacher.h */,
-				F9323823192917DD0066328A /* Teacher.m */,
+				F9C7AD5C192ABFD70086B99D /* Teacher.h */,
+				F9C7AD5D192ABFD70086B99D /* Teacher.m */,
 				F91FBA6018FDAB6900B7F8D7 /* Teacher+init.h */,
 				F91FBA6118FDAB6900B7F8D7 /* Teacher+init.m */,
 				F91FB9EE18F4254F00B7F8D7 /* TeachersDetailsViewController.h */,
@@ -226,8 +226,8 @@
 		F91FBA3E18F4774200B7F8D7 /* Update */ = {
 			isa = PBXGroup;
 			children = (
-				F932381F192917DC0066328A /* Update.h */,
-				F9323820192917DC0066328A /* Update.m */,
+				F9C7AD62192ABFD70086B99D /* Update.h */,
+				F9C7AD63192ABFD70086B99D /* Update.m */,
 				F96916B319292E3E00A569FA /* Update+init.h */,
 				F96916B419292E3E00A569FA /* Update+init.m */,
 				F923C37718F0BCD80065C5EB /* UpdatesViewController.h */,
@@ -243,8 +243,8 @@
 		F91FBA3F18F4774F00B7F8D7 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				F9323825192917DD0066328A /* Course.h */,
-				F9323826192917DD0066328A /* Course.m */,
+				F9C7AD5F192ABFD70086B99D /* Course.h */,
+				F9C7AD60192ABFD70086B99D /* Course.m */,
 				F91FBA6318FDAE9F00B7F8D7 /* Course+init.h */,
 				F91FBA6418FDAE9F00B7F8D7 /* Course+init.m */,
 				F91FBA4618F6011000B7F8D7 /* CoursesDetailsCollectionView.h */,
@@ -487,18 +487,18 @@
 				F91FBA5318FDA7BE00B7F8D7 /* Model.xcdatamodeld in Sources */,
 				F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */,
 				F91FB99B18F33B9700B7F8D7 /* TeachersNavigationController.m in Sources */,
-				F9323827192917DD0066328A /* Course.m in Sources */,
 				F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */,
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
 				F923C36B18F0B1A60065C5EB /* CoursesCollectionViewCell.m in Sources */,
+				F9C7AD5E192ABFD70086B99D /* Teacher.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
-				F9323821192917DC0066328A /* Update.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
-				F9323824192917DD0066328A /* Teacher.m in Sources */,
+				F9C7AD64192ABFD70086B99D /* Update.m in Sources */,
 				F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */,
 				F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */,
 				F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */,
+				F9C7AD61192ABFD70086B99D /* Course.m in Sources */,
 				F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */,
 				F923C37F18F0BD3E0065C5EB /* UpdatesTableViewCell.m in Sources */,
 				F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */,

@@ -58,7 +58,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 //    [request setPredicate:pred];
 //    NSArray *objects = [context executeFetchRequest:request
 //                                              error:&error];
-    
+        
 
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
@@ -244,6 +244,10 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 //    
 //     [self.downloadTask resume];
     
+//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//
+    
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
@@ -264,7 +268,17 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     {
         NSString * id = [tut objectForKey:@"id"];
         NSString * faculty = [tut objectForKey:@"faculty"];
-        int x= 0 ;
+        NSString * firstName = [tut objectForKey:@"fname"];
+        NSString * lastName = [tut objectForKey:@"lname"];
+        NSString * email = [tut objectForKey:@"email"];
+        
+        firstName = [firstName stringByReplacingOccurrencesOfString:@" " withString:@""];
+        lastName = [lastName stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString * name = [firstName stringByAppendingString:@" "];
+        name = [name stringByAppendingString:lastName];
+        
+        [Teacher initWithName:name mail:email imageName:@"" id:id faculty:faculty inManagedObjectContext:context];
+        int x = 0;
 
     }
 

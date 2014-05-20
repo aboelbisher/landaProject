@@ -119,7 +119,7 @@
                 TeacherCollectionViewCell* sourceController = (TeacherCollectionViewCell*) sender;
                 
                 TeachersDetailsViewController *tsvc = (TeachersDetailsViewController *)segue.destinationViewController;
-                tsvc.teacherImageName = sourceController.teacher.imageName;
+                tsvc.localFilePath = sourceController.teacher.localImageFilePath;
                 tsvc.teacher = sourceController.teacher;
             }
             

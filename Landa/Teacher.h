@@ -13,11 +13,12 @@
 
 @interface Teacher : NSManagedObject
 
+@property (nonatomic, retain) NSString * faculty;
+@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * imageName;
 @property (nonatomic, retain) NSString * mail;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * faculty;
-@property (nonatomic, retain) NSString * id;
+@property (nonatomic, retain) NSString * localImageFilePath;
 @property (nonatomic, retain) NSSet *courses;
 @end
 

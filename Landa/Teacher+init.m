@@ -16,7 +16,8 @@
                 imageName:(NSString*)imageName
                        id:(NSString*)id
                   faculty:(NSString*)faculty
-   inManagedObjectContext:(NSManagedObjectContext*)context
+       localImageFilePath:(NSString*)localImageFilePath
+   inManagedObjectContext:(NSManagedObjectContext*)context;
 {
     
     Teacher* teacher = nil;
@@ -39,6 +40,7 @@
         teacher.imageName = imageName;
         teacher.id = id;
         teacher.faculty = faculty;
+        teacher.localImageFilePath = localImageFilePath;
         [context save:&error];
 
 

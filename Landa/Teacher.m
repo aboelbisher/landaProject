@@ -12,11 +12,12 @@
 
 @implementation Teacher
 
+@dynamic faculty;
+@dynamic id;
 @dynamic imageName;
 @dynamic mail;
 @dynamic name;
-@dynamic faculty;
-@dynamic id;
+@dynamic localImageFilePath;
 @dynamic courses;
 
 @end

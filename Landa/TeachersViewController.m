@@ -194,10 +194,13 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     {
         
         TeacherCollectionViewCell* teacher = (TeacherCollectionViewCell*) cell;
-        
         Teacher* tmpTeacher = [self.searchResults objectAtIndex:indexPath.item];
-        teacher.teacherImage.image = [UIImage imageNamed:tmpTeacher.imageName];
         
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",tmpTeacher.id]];
+        UIImage* image = [UIImage imageWithContentsOfFile:path];
+        teacher.teacherImage.image = image;
         teacher.teacherNameLabel.text = tmpTeacher.name;
         teacher.teacher = [self.searchResults objectAtIndex:indexPath.item];
         
@@ -226,7 +229,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
                 //NSString* string =  sourceController.teacher.imageName;
                 
                 
-                tsvc.teacherImageName = sourceController.teacher.imageName;
+                tsvc.localFilePath = sourceController.teacher.localImageFilePath;
                 tsvc.teacher = sourceController.teacher;
             }
             
@@ -251,7 +254,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-    //NSLog(@"%@" , webString);
+    NSLog(@"new string ==    %@" , webString);
     NSString* jsonString = [self makeJsonFromString:webString];
     
     NSError * error;
@@ -277,56 +280,41 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         NSString * name = [firstName stringByAppendingString:@" "];
         name = [name stringByAppendingString:lastName];
         
-        [Teacher initWithName:name mail:email imageName:@"" id:id faculty:faculty inManagedObjectContext:context];
-        int x = 0;
+        NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
+        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.jpg" , id]];
+
+        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",id]];
+        
+        [data writeToFile:localFilePath atomically:YES];
+        
+        [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.jpg" , id] id:id faculty:faculty localImageFilePath:localFilePath inManagedObjectContext:context];
 
     }
-
-    
-//    NSArray * array = [JSON allValues];
-//    
-//    for(id tutor in array)
-//    {
-//        int x = 0;
-//    }
-    
-    
-    
-
-
-    
-//        [Teacher initWithName:@"muhammad" mail:@"aboelbisher.176@gmail.com" imageName:@"muhammad.jpg" inManagedObjectContext:context];
-//    
-//    
-//    [Teacher initWithName:@"hasan" mail:@"hasan@gmail.com" imageName:@"hasan.jpg" inManagedObjectContext:context];
-//
-//    
-//    [Teacher initWithName:@"7amed" mail:@"7amed@gmail.com" imageName:@"7amed.jpg" inManagedObjectContext:context];
-//    
-//
-//    
-//    [Teacher initWithName:@"almothanna" mail:@"almothanna@gmail.com" imageName:@"mothana.jpg" inManagedObjectContext:context];
-//    
-//
-//    
-//    [Teacher initWithName:@"aiman" mail:@"aiman@gmail.com" imageName:@"aiman.jpg" inManagedObjectContext:context];
-//    
-//
-//    
-//    [Teacher initWithName:@"ward" mail:@"ward@gmail.com" imageName:@"ward.jpg" inManagedObjectContext:context];
-//    
-//
-//    
-//    [Teacher initWithName:@"thrwat" mail:@"thrwat@gmail.com" imageName:@"thrwat.jpg"inManagedObjectContext:context];
-//    
-
 }
+
+//- (void)saveLocally:(NSData *)imgData
+//{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSDate *aDate = [NSDate date];
+//    NSTimeInterval interval = [aDate timeIntervalSince1970];
+//    NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.jpeg",(int)interval]];
+//    [imgData writeToFile:localFilePath atomically:YES];
+//    
+//    NSData * data = nil;
+//    
+//}
 
 -(NSString*) makeJsonFromString:(NSString*)string
 {
     int first = 0;
     int last = 0;
-    int length = 0;
+   // int length = 0;
     int count = 0;
 
     
@@ -357,12 +345,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         }
         
     }
-    
-   
-    
     NSRange range = NSMakeRange(first, last - first + 1);
-
-    
     NSString * newString = [string substringWithRange:range];
 
     

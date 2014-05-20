@@ -18,7 +18,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.teacherImage.image = [UIImage imageNamed:self.teacher.imageName];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",self.teacher.id]];
+    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    
+    self.teacherImage.image = image;
     
     self.nameLabel.text = self.teacher.name;
     self.mailLabel.text = self.teacher.mail;

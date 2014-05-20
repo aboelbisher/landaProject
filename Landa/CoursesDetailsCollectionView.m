@@ -35,12 +35,7 @@
 {
     [super viewDidLoad];
     
-    //self.context = [self managedObjectContext];
-    
-    
-    
     self.teachersCollectionView.backgroundColor = [UIColor clearColor];
-
     self.courseImage.image = [UIImage imageNamed:self.course.imageName];
     self.courseName.text = self.course.name;
 
@@ -56,12 +51,10 @@
     NSArray *objects = [context executeFetchRequest:request
                                               error:&error];
     
-    
     for(Teacher* teacher in objects)
     {
         [self.course addTeachersObject:teacher];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,21 +81,18 @@
     if([cell isKindOfClass:[TeacherCollectionViewCell class]])
     {
         TeacherCollectionViewCell* teacher = (TeacherCollectionViewCell*) cell;
-        
-        
-        
         Teacher* tmpTeacher = [[self.course.teachers allObjects] objectAtIndex:indexPath.item];
         
-        NSString* teacherName = tmpTeacher.imageName;
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",tmpTeacher.id]];
+        UIImage* image = [UIImage imageWithContentsOfFile:path];
         
-        teacher.teacherImage.image = [UIImage imageNamed:teacherName];
+        teacher.teacherImage.image = image;
         teacher.teacherNameLabel.text = tmpTeacher.name;
-        
-         teacher.teacherNameLabel.backgroundColor = [UIColor colorWithRed:236/255.0f green:153/255.0f blue:0/255.0f alpha:0.3f];
-        
+        teacher.teacherNameLabel.backgroundColor = [UIColor colorWithRed:236/255.0f green:153/255.0f blue:0/255.0f alpha:0.3f];
         teacher.teacher = tmpTeacher;
     }
-    
     return cell;
 }
 
@@ -112,18 +102,14 @@
     {
         if ([segue.destinationViewController isKindOfClass:[TeachersDetailsViewController class]])
         {
-            
             if([sender isKindOfClass:[TeacherCollectionViewCell class]])
             {
-                
                 TeacherCollectionViewCell* sourceController = (TeacherCollectionViewCell*) sender;
                 
                 TeachersDetailsViewController *tsvc = (TeachersDetailsViewController *)segue.destinationViewController;
                 tsvc.localFilePath = sourceController.teacher.localImageFilePath;
                 tsvc.teacher = sourceController.teacher;
             }
-            
-            
         }
     }
 }

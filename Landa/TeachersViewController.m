@@ -218,22 +218,14 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     {
         if ([segue.destinationViewController isKindOfClass:[TeachersDetailsViewController class]])
         {
-            
             if([sender isKindOfClass:[TeacherCollectionViewCell class]])
             {
-                
                 TeacherCollectionViewCell* sourceController = (TeacherCollectionViewCell*) sender;
-                
                 TeachersDetailsViewController *tsvc = (TeachersDetailsViewController *)segue.destinationViewController;
-                
-                //NSString* string =  sourceController.teacher.imageName;
-                
                 
                 tsvc.localFilePath = sourceController.teacher.localImageFilePath;
                 tsvc.teacher = sourceController.teacher;
             }
-            
-            
         }
     }
 }
@@ -242,15 +234,6 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 
 -(void)initTeachersWithContext:(NSManagedObjectContext*)context
 {
-//    
-//   self.downloadTask = [self.session downloadTaskWithURL:[NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/iosTutors.aspx"]];
-//    
-//     [self.downloadTask resume];
-    
-//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-//
-    
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
@@ -284,31 +267,15 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.jpg" , id]];
 
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-        
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        
         NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",id]];
-        
         [data writeToFile:localFilePath atomically:YES];
         
         [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.jpg" , id] id:id faculty:faculty localImageFilePath:localFilePath inManagedObjectContext:context];
 
     }
 }
-
-//- (void)saveLocally:(NSData *)imgData
-//{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSDate *aDate = [NSDate date];
-//    NSTimeInterval interval = [aDate timeIntervalSince1970];
-//    NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%d.jpeg",(int)interval]];
-//    [imgData writeToFile:localFilePath atomically:YES];
-//    
-//    NSData * data = nil;
-//    
-//}
 
 -(NSString*) makeJsonFromString:(NSString*)string
 {

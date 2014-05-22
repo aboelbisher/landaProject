@@ -62,9 +62,10 @@
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */; };
-		F9C7AD70192BAEBD0086B99D /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD6F192BAEBD0086B99D /* Update.m */; };
-		F9C7AD73192BAEBD0086B99D /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD72192BAEBD0086B99D /* Course.m */; };
-		F9C7AD76192BAEBD0086B99D /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD75192BAEBD0086B99D /* Teacher.m */; };
+		F9C7AD82192D4DA50086B99D /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD81192D4DA50086B99D /* Course.m */; };
+		F9C7AD85192D4DA60086B99D /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD84192D4DA60086B99D /* Teacher.m */; };
+		F9C7AD88192D4DA60086B99D /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C7AD87192D4DA60086B99D /* Update.m */; };
+		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,12 +152,13 @@
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesContentViewController.h; sourceTree = "<group>"; };
 		F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesContentViewController.m; sourceTree = "<group>"; };
-		F9C7AD6E192BAEBD0086B99D /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
-		F9C7AD6F192BAEBD0086B99D /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
-		F9C7AD71192BAEBD0086B99D /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
-		F9C7AD72192BAEBD0086B99D /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
-		F9C7AD74192BAEBD0086B99D /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
-		F9C7AD75192BAEBD0086B99D /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
+		F9C7AD80192D4DA50086B99D /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		F9C7AD81192D4DA50086B99D /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		F9C7AD83192D4DA60086B99D /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
+		F9C7AD84192D4DA60086B99D /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
+		F9C7AD86192D4DA60086B99D /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
+		F9C7AD87192D4DA60086B99D /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
+		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,12 +300,12 @@
 			isa = PBXGroup;
 			children = (
 				F91FBA5118FDA7BE00B7F8D7 /* Model.xcdatamodeld */,
-				F9C7AD74192BAEBD0086B99D /* Teacher.h */,
-				F9C7AD75192BAEBD0086B99D /* Teacher.m */,
-				F9C7AD71192BAEBD0086B99D /* Course.h */,
-				F9C7AD72192BAEBD0086B99D /* Course.m */,
-				F9C7AD6E192BAEBD0086B99D /* Update.h */,
-				F9C7AD6F192BAEBD0086B99D /* Update.m */,
+				F9C7AD86192D4DA60086B99D /* Update.h */,
+				F9C7AD87192D4DA60086B99D /* Update.m */,
+				F9C7AD83192D4DA60086B99D /* Teacher.h */,
+				F9C7AD84192D4DA60086B99D /* Teacher.m */,
+				F9C7AD80192D4DA50086B99D /* Course.h */,
+				F9C7AD81192D4DA50086B99D /* Course.m */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
@@ -349,6 +351,7 @@
 		F930300118EE49CC0064E984 /* pic */ = {
 			isa = PBXGroup;
 			children = (
+				F9C7AD89192D52000086B99D /* technion.jpg */,
 				F923C36F18F0B59D0065C5EB /* algebra.jpg */,
 				F923C37018F0B59D0065C5EB /* c.png */,
 				F91FB99718F3237C00B7F8D7 /* expandR.png */,
@@ -455,6 +458,7 @@
 				F9302FFB18EE49C00064E984 /* 7amed.jpg in Resources */,
 				F923C38118F0C0690065C5EB /* updates.png in Resources */,
 				F923C38318F0DF320065C5EB /* expand.png in Resources */,
+				F9C7AD8A192D52000086B99D /* technion.jpg in Resources */,
 				F930300018EE49C00064E984 /* ward.jpg in Resources */,
 				F9302FFE18EE49C00064E984 /* mothana.jpg in Resources */,
 				F90F06EA18FF398500D7C5E8 /* Images.xcassets in Resources */,
@@ -488,14 +492,14 @@
 				F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */,
 				F91FB99B18F33B9700B7F8D7 /* TeachersNavigationController.m in Sources */,
 				F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */,
-				F9C7AD73192BAEBD0086B99D /* Course.m in Sources */,
+				F9C7AD82192D4DA50086B99D /* Course.m in Sources */,
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
 				F923C36B18F0B1A60065C5EB /* CoursesCollectionViewCell.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
-				F9C7AD76192BAEBD0086B99D /* Teacher.m in Sources */,
+				F9C7AD85192D4DA60086B99D /* Teacher.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
+				F9C7AD88192D4DA60086B99D /* Update.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
-				F9C7AD70192BAEBD0086B99D /* Update.m in Sources */,
 				F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */,
 				F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */,
 				F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */,

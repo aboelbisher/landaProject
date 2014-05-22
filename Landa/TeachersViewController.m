@@ -241,14 +241,12 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     NSString* jsonString = [self makeJsonFromString:webString];
     
     NSError * error;
-    
     NSDictionary *JSON =
     [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
                                     options: NSJSONReadingMutableContainers
                                       error: &error];
     
     NSArray * array = [JSON objectForKey:@"users"];
-    
     
     for(id tut in array)
     {
@@ -257,7 +255,6 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         NSString * firstName = [tut objectForKey:@"fname"];
         NSString * lastName = [tut objectForKey:@"lname"];
         NSString * email = [tut objectForKey:@"email"];
-        
         firstName = [firstName stringByReplacingOccurrencesOfString:@" " withString:@""];
         lastName = [lastName stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSString * name = [firstName stringByAppendingString:@" "];
@@ -279,8 +276,8 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 
 -(NSString*) makeJsonFromString:(NSString*)string
 {
-    int first = 0;
-    int last = 0;
+    NSInteger first = 0;
+    NSInteger last = 0;
    // int length = 0;
     int count = 0;
 
@@ -314,8 +311,6 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     }
     NSRange range = NSMakeRange(first, last - first + 1);
     NSString * newString = [string substringWithRange:range];
-
-    
     return newString;
 }
 

@@ -10,5 +10,11 @@
 
 @interface Course (init)
 
-+(Course*) initWithName:(NSString*)name imageName:(NSString*)imageName date:(NSDate*)date inManagedObjectContext:context;
++(Course*) initWithName:(NSString*)name
+              imageName:(NSString*)imageName
+                   date:(NSDate*)date
+                  place:(NSString*)place
+              beginTime:(NSString*)beginTime
+                endTime:(NSString*) endTime
+ inManagedObjectContext:context;
 @end

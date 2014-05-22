@@ -131,6 +131,8 @@
         
         Course * tmpCourse = [self.searchResults objectAtIndex:indexPath.item];
         
+        NSString * stam = tmpCourse.imageName;
+        
         
         course.courseImage.image = [UIImage imageNamed:tmpCourse.imageName];
         course.courseName.text = [NSString stringWithFormat:@"%@" , tmpCourse.name];
@@ -188,14 +190,98 @@
 
     NSDate* date = [[NSCalendar currentCalendar] dateFromComponents:comps];
     
+    NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/courses.aspx"];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+    NSLog(@"new string ==    %@" , webString);
+    NSString* jsonString = [self makeJsonFromString:webString];
     
-    [Course initWithName:@"algebra" imageName:@"algebra.jpg" date:date inManagedObjectContext:context];
-    [Course initWithName:@"chimestry" imageName:@"chimestry.jpg" date:date  inManagedObjectContext:context];
+    NSError * error;
+    NSDictionary *JSON =
+    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                    options: NSJSONReadingMutableContainers
+                                      error: &error];
     
-    [Course initWithName:@"calculus" imageName:@"calculus.jpg" date:date inManagedObjectContext:context];
-    [Course initWithName:@"c" imageName:@"c.png" date:date inManagedObjectContext:context];
+    NSArray * array = [JSON objectForKey:@"courses"];
+    
+    for(id course in array)
+    {
+        NSString * place = [course objectForKey:@"place"];
+        NSString * tutorId = [course objectForKey:@"tutor_id"];
+        NSString * beginTime = [course objectForKey:@"time_from"];
+        NSString * endTime = [course objectForKey:@"time_to"];
+        NSString * day = [course objectForKey:@"day"];
+        NSString * name = [course objectForKey:@"subject_name"];
+        
+//        NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
+//        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.jpg" , name]];
+//        
+//        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        NSString *documentsDirectory = [paths objectAtIndex:0];
+//        NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",id]];
+//        [data writeToFile:localFilePath atomically:YES];
+//
+        [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+        
+        
+    }
+    
+    
+    
+//    
+//    [Course initWithName:@"algebra" imageName:@"algebra.jpg" date:date inManagedObjectContext:context];
+//    [Course initWithName:@"chimestry" imageName:@"chimestry.jpg" date:date  inManagedObjectContext:context];
+//    
+//    [Course initWithName:@"calculus" imageName:@"calculus.jpg" date:date inManagedObjectContext:context];
+//    [Course initWithName:@"c" imageName:@"c.png" date:date inManagedObjectContext:context];
 
 }
+
+
+
+-(NSString*) makeJsonFromString:(NSString*)string
+{
+    NSInteger first = 0;
+    NSInteger last = 0;
+    // int length = 0;
+    int count = 0;
+    
+    
+    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
+    {
+        if([string characterAtIndex:charIdx] == '{')
+        {
+            first = charIdx;
+            break;
+        }
+    }
+    
+    
+    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
+    {
+        if([string characterAtIndex:charIdx] == '}')
+        {
+            count-- ;
+            if (count == 0)
+            {
+                last = charIdx;
+                break;
+            }
+        }
+        if([string characterAtIndex:charIdx] == '{')
+        {
+            count++;
+        }
+        
+    }
+    NSRange range = NSMakeRange(first, last - first + 1);
+    NSString * newString = [string substringWithRange:range];
+    return newString;
+}
+
+    
+    
 
 
 

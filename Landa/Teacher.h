@@ -2,7 +2,7 @@
 //  Teacher.h
 //  Landa
 //
-//  Created by muhammad abed el razek on 5/20/14.
+//  Created by muhammad abed el razek on 5/22/14.
 //  Copyright (c) 2014 muhammad abed el razek. All rights reserved.
 //
 
@@ -16,9 +16,9 @@
 @property (nonatomic, retain) NSString * faculty;
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * imageName;
+@property (nonatomic, retain) NSString * localImageFilePath;
 @property (nonatomic, retain) NSString * mail;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * localImageFilePath;
 @property (nonatomic, retain) NSSet *courses;
 @end
 

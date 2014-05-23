@@ -21,16 +21,16 @@ inManagedObjectContext:(NSManagedObjectContext*)context
 
     
     
-    NSEntityDescription *teacherIdEntityDisc = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:teacherIdEntityDisc];
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@ AND beginTime = %@ AND day = %@)", id , beginTime , day];
-    [request setPredicate:pred];
+//    NSEntityDescription *teacherIdEntityDisc = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:teacherIdEntityDisc];
+//    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@ AND beginTime = %@ AND day = %@)", id , beginTime , day];
+//    [request setPredicate:pred];
     NSError *error;
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    
-    if([objects count] == 0)
-    {
+//    NSArray *objects = [context executeFetchRequest:request error:&error];
+//    
+//    if([objects count] == 0)
+//    {
         teacher = [NSEntityDescription insertNewObjectForEntityForName:@"TeacherId" inManagedObjectContext:context];
         teacher.id = id;
         teacher.beginTime = beginTime;
@@ -39,7 +39,7 @@ inManagedObjectContext:(NSManagedObjectContext*)context
         
         [context save:&error];
 
-    }
+    //}
     return teacher;
 }
 

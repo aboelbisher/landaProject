@@ -102,6 +102,8 @@
         
         Teacher * tmpTeacher = [teachers firstObject];
         
+        NSString * name = tmpTeacher.name;
+        
         
         
         teacher.teacherImage.image = image;

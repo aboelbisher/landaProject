@@ -40,14 +40,17 @@
     NSError * error;
 //    
 //    [context reset];
-//    [context save:&error];
+    [context save:&error];
     
     
     
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
         [self initCoursesWithContext:context];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
+
     
     
 
@@ -60,6 +63,17 @@
     
     
     self.courses = [NSMutableArray arrayWithArray:objects];
+    
+//    for(Course * course in self.courses)
+//    {
+//        NSString * courseName = course.name;
+//        
+//        
+//        for(TeacherId * teacher in course.teachers)
+//        {
+//            NSString* teacherId = teacher.id;
+//        }
+//    }
     
     self.searchResults = [NSMutableArray arrayWithArray:self.courses];
     
@@ -172,6 +186,8 @@
                 destinationViewController.course = sourceController.course;
                 
                 
+                
+                
             }
             
             
@@ -220,6 +236,9 @@
         
         TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day inManagedObjectContext:context];
         
+        [context save:&error];
+
+        
         
         if(!course)
         {
@@ -236,6 +255,8 @@
         if(teacherId)
         {
             [course addTeachersObject:teacherId];
+            [context save:&error];
+
         }
         
         

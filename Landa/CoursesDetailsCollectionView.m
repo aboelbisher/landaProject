@@ -39,22 +39,22 @@
     self.courseImage.image = [UIImage imageNamed:self.course.imageName];
     self.courseName.text = self.course.name;
 
-    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError * error;
-    
-    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:teacherEntityDisc];
-    NSPredicate *pred =nil;
-    [request setPredicate:pred];
-    NSArray *objects = [context executeFetchRequest:request
-                                              error:&error];
-    
-    for(Teacher* teacher in objects)
-    {
-        [self.course addTeachersObject:teacher];
-    }
+//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//    NSError * error;
+//    
+//    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:teacherEntityDisc];
+//    NSPredicate *pred =nil;
+//    [request setPredicate:pred];
+//    NSArray *objects = [context executeFetchRequest:request
+//                                              error:&error];
+//    
+//    for(Teacher* teacher in objects)
+//    {
+//        [self.course addTeachersObject:teacher];
+//    }
 }
 
 - (void)didReceiveMemoryWarning

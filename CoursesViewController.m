@@ -222,7 +222,22 @@
 //        NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",id]];
 //        [data writeToFile:localFilePath atomically:YES];
 //
-        [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+        
+        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:teacherEntityDisc];
+        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", tutorId];
+        [request setPredicate:pred];
+        NSError *error;
+        NSArray *teachers = [context executeFetchRequest:request
+                                                  error:&error];
+        
+        Teacher * teacher = [teachers firstObject];
+        
+        
+        Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+        
+        [course addTeachersObject:teacher];
         
         
     }

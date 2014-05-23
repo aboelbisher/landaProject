@@ -12,6 +12,8 @@
 #import "CoursesDetailsCollectionView.h"
 #import "Course+init.h"
 #import "LandaAppDelegate.h"
+#import "TeacherId+init.h"
+#import "TeacherId.h"
 
 @interface CoursesViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
 
@@ -213,43 +215,57 @@
         NSString * day = [course objectForKey:@"day"];
         NSString * name = [course objectForKey:@"subject_name"];
         
-//        NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
-//        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.jpg" , name]];
-//        
-//        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *documentsDirectory = [paths objectAtIndex:0];
-//        NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",id]];
-//        [data writeToFile:localFilePath atomically:YES];
-//
-        
-        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:teacherEntityDisc];
-        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", tutorId];
-        [request setPredicate:pred];
-        NSError *error;
-        NSArray *teachers = [context executeFetchRequest:request
-                                                  error:&error];
-        
-        Teacher * teacher = [teachers firstObject];
-        
+
         
         Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
         
-        [course addTeachersObject:teacher];
+        TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+        
+        
+        if(!course)
+        {
+            NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:courseEntityDisc];
+            NSPredicate *pred =[NSPredicate predicateWithFormat:@"(name = %@)", name];
+            [request setPredicate:pred];
+            NSError *error;
+            NSArray *courses = [context executeFetchRequest:request error:&error];
+            course = [courses firstObject];
+        }
+        
+        
+        [course addTeachersObject:teacherId];
+        
+//        for(TeacherId * tut in course.teachers)
+//        {
+//            NSString * tutName = tut.id;
+//            NSString * beginTime = tut.beginTime;
+//            int x = 0;
+//        }
+        
+        
+
+//
+//        
+//        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+//        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//        [request setEntity:teacherEntityDisc];
+//        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", tutorId];
+//        [request setPredicate:pred];
+//        NSError *error;
+//        NSArray *teachers = [context executeFetchRequest:request
+//                                                  error:&error];
+//
+//        Teacher * teacher = [teachers firstObject];
+//        
+//        
+//        Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+//        
+//        [course addTeachersObject:teacher];
         
         
     }
-    
-    
-    
-//    
-//    [Course initWithName:@"algebra" imageName:@"algebra.jpg" date:date inManagedObjectContext:context];
-//    [Course initWithName:@"chimestry" imageName:@"chimestry.jpg" date:date  inManagedObjectContext:context];
-//    
-//    [Course initWithName:@"calculus" imageName:@"calculus.jpg" date:date inManagedObjectContext:context];
-//    [Course initWithName:@"c" imageName:@"c.png" date:date inManagedObjectContext:context];
 
 }
 

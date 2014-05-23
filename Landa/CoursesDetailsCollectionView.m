@@ -11,6 +11,7 @@
 #import "TeachersDetailsViewController.h"
 #import "Teacher+init.h"
 #import "LandaAppDelegate.h"
+#import "TeacherId.h"
 
 @interface CoursesDetailsCollectionView () <UICollectionViewDelegate , UICollectionViewDataSource>
 
@@ -42,7 +43,7 @@
 //    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 //    NSManagedObjectContext *context = [appDelegate managedObjectContext];
 //    NSError * error;
-//    
+//
 //    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
 //    NSFetchRequest *request = [[NSFetchRequest alloc] init];
 //    [request setEntity:teacherEntityDisc];
@@ -81,12 +82,27 @@
     if([cell isKindOfClass:[TeacherCollectionViewCell class]])
     {
         TeacherCollectionViewCell* teacher = (TeacherCollectionViewCell*) cell;
-        Teacher* tmpTeacher = [[self.course.teachers allObjects] objectAtIndex:indexPath.item];
+        TeacherId* teacherId = [[self.course.teachers allObjects] objectAtIndex:indexPath.item];
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",tmpTeacher.id]];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",teacherId.id]];
         UIImage* image = [UIImage imageWithContentsOfFile:path];
+        
+        
+        LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        NSError * error;
+        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:teacherEntityDisc];
+        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", teacherId.id];
+        [request setPredicate:pred];
+        NSArray *teachers = [context executeFetchRequest:request error:&error];
+        
+        Teacher * tmpTeacher = [teachers firstObject];
+        
+        
         
         teacher.teacherImage.image = image;
         teacher.teacherNameLabel.text = tmpTeacher.name;

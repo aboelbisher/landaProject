@@ -29,8 +29,7 @@
         NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", id];
         [request setPredicate:pred];
         NSError *error;
-        NSArray *objects = [context executeFetchRequest:request
-                                                 error:&error];
+        NSArray *objects = [context executeFetchRequest:request error:&error];
     
     if([objects count] == 0) // if theres no teacher match
     {

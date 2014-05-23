@@ -237,7 +237,6 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-    NSLog(@"new string ==    %@" , webString);
     NSString* jsonString = [self makeJsonFromString:webString];
     
     NSError * error;

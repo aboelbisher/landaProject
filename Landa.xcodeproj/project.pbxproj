@@ -18,7 +18,6 @@
 		F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FBA6118FDAB6900B7F8D7 /* Teacher+init.m */; };
 		F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FBA6418FDAE9F00B7F8D7 /* Course+init.m */; };
 		F91FBA7618FDD10000B7F8D7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91FBA7518FDD10000B7F8D7 /* CoreData.framework */; };
-		F923C36B18F0B1A60065C5EB /* CoursesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F923C36A18F0B1A60065C5EB /* CoursesCollectionViewCell.m */; };
 		F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923C36D18F0B2D80065C5EB /* CoursesViewController.m */; };
 		F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F923C36F18F0B59D0065C5EB /* algebra.jpg */; };
 		F923C37418F0B59D0065C5EB /* c.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C37018F0B59D0065C5EB /* c.png */; };
@@ -66,6 +65,8 @@
 		F99B00CC192EFB40006000AA /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00CB192EFB40006000AA /* Teacher.m */; };
 		F99B00CF192EFB40006000AA /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00CE192EFB40006000AA /* TeacherId.m */; };
 		F99B00D2192EFB40006000AA /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00D1192EFB40006000AA /* Update.m */; };
+		F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */; };
+		F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00EC192FDEC1006000AA /* CoursesCollectionViewCell.m */; };
 		F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */; };
 		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
 /* End PBXBuildFile section */
@@ -97,8 +98,6 @@
 		F91FBA6318FDAE9F00B7F8D7 /* Course+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Course+init.h"; sourceTree = "<group>"; };
 		F91FBA6418FDAE9F00B7F8D7 /* Course+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Course+init.m"; sourceTree = "<group>"; };
 		F91FBA7518FDD10000B7F8D7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		F923C36918F0B1A60065C5EB /* CoursesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesCollectionViewCell.h; sourceTree = "<group>"; };
-		F923C36A18F0B1A60065C5EB /* CoursesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesCollectionViewCell.m; sourceTree = "<group>"; };
 		F923C36C18F0B2D80065C5EB /* CoursesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoursesViewController.h; path = ../CoursesViewController.h; sourceTree = "<group>"; };
 		F923C36D18F0B2D80065C5EB /* CoursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoursesViewController.m; path = ../CoursesViewController.m; sourceTree = "<group>"; };
 		F923C36F18F0B59D0065C5EB /* algebra.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = algebra.jpg; sourceTree = "<group>"; };
@@ -162,6 +161,10 @@
 		F99B00CE192EFB40006000AA /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherId.m; sourceTree = "<group>"; };
 		F99B00D0192EFB40006000AA /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
 		F99B00D1192EFB40006000AA /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
+		F99B00E8192FD9D0006000AA /* CoursesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoursesTableViewCell.h; path = ../CoursesTableViewCell.h; sourceTree = "<group>"; };
+		F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoursesTableViewCell.m; path = ../CoursesTableViewCell.m; sourceTree = "<group>"; };
+		F99B00EB192FDEC1006000AA /* CoursesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesCollectionViewCell.h; sourceTree = "<group>"; };
+		F99B00EC192FDEC1006000AA /* CoursesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesCollectionViewCell.m; sourceTree = "<group>"; };
 		F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesContentViewController.h; sourceTree = "<group>"; };
 		F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesContentViewController.m; sourceTree = "<group>"; };
 		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
@@ -247,14 +250,16 @@
 		F91FBA3F18F4774F00B7F8D7 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				F99B00EB192FDEC1006000AA /* CoursesCollectionViewCell.h */,
+				F99B00EC192FDEC1006000AA /* CoursesCollectionViewCell.m */,
 				F91FBA6318FDAE9F00B7F8D7 /* Course+init.h */,
 				F91FBA6418FDAE9F00B7F8D7 /* Course+init.m */,
 				F91FBA4618F6011000B7F8D7 /* CoursesDetailsCollectionView.h */,
 				F91FBA4718F6011000B7F8D7 /* CoursesDetailsCollectionView.m */,
+				F99B00E8192FD9D0006000AA /* CoursesTableViewCell.h */,
+				F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */,
 				F923C36C18F0B2D80065C5EB /* CoursesViewController.h */,
 				F923C36D18F0B2D80065C5EB /* CoursesViewController.m */,
-				F923C36918F0B1A60065C5EB /* CoursesCollectionViewCell.h */,
-				F923C36A18F0B1A60065C5EB /* CoursesCollectionViewCell.m */,
 			);
 			name = Courses;
 			sourceTree = "<group>";
@@ -501,15 +506,16 @@
 				F91FBA5318FDA7BE00B7F8D7 /* Model.xcdatamodeld in Sources */,
 				F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */,
 				F91FB99B18F33B9700B7F8D7 /* TeachersNavigationController.m in Sources */,
+				F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */,
 				F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */,
 				F99B00CC192EFB40006000AA /* Teacher.m in Sources */,
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
-				F923C36B18F0B1A60065C5EB /* CoursesCollectionViewCell.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
 				F99B00D2192EFB40006000AA /* Update.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
+				F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */,
 				F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */,
 				F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */,
 				F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */,

@@ -133,6 +133,12 @@
 
 
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
+}
+
+
 
 
 -(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -146,9 +152,6 @@
         cell.backgroundColor = [UIColor clearColor];
         
         Course * tmpCourse = [self.searchResults objectAtIndex:indexPath.item];
-        
-        NSString * stam = tmpCourse.imageName;
-        
         
         course.courseImage.image = [UIImage imageNamed:tmpCourse.imageName];
         course.courseName.text = [NSString stringWithFormat:@"%@" , tmpCourse.name];
@@ -229,17 +232,12 @@
         NSString * endTime = [course objectForKey:@"time_to"];
         NSString * day = [course objectForKey:@"day"];
         NSString * name = [course objectForKey:@"subject_name"];
-        
-
-        
+ 
         Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
-        
-        TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day inManagedObjectContext:context];
-        
         [context save:&error];
-
-        
-        
+        TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day inManagedObjectContext:context];
+        [context save:&error];
+ 
         if(!course)
         {
             NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
@@ -256,40 +254,8 @@
         {
             [course addTeachersObject:teacherId];
             [context save:&error];
-
         }
-        
-        
-//        for(TeacherId * tut in course.teachers)
-//        {
-//            NSString * tutName = tut.id;
-//            NSString * beginTime = tut.beginTime;
-//            int x = 0;
-//        }
-        
-        
-
-//
-//        
-//        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-//        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//        [request setEntity:teacherEntityDisc];
-//        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", tutorId];
-//        [request setPredicate:pred];
-//        NSError *error;
-//        NSArray *teachers = [context executeFetchRequest:request
-//                                                  error:&error];
-//
-//        Teacher * teacher = [teachers firstObject];
-//        
-//        
-//        Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
-//        
-//        [course addTeachersObject:teacher];
-        
-        
     }
-
 }
 
 
@@ -300,7 +266,6 @@
     NSInteger last = 0;
     // int length = 0;
     int count = 0;
-    
     
     for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
     {

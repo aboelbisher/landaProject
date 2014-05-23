@@ -12,12 +12,15 @@
 #import "Teacher+init.h"
 #import "LandaAppDelegate.h"
 #import "TeacherId.h"
+#import "CoursesTableViewCell.h"
 
-@interface CoursesDetailsCollectionView () <UICollectionViewDelegate , UICollectionViewDataSource>
+@interface CoursesDetailsCollectionView () <UITableViewDataSource , UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *teachersCollectionView;
+//@property (weak, nonatomic) IBOutlet UICollectionView *teachersCollectionView;
 //@property (strong , nonatomic) NSManagedObjectContext * context;
-@property (weak , nonatomic) NSArray * teachers;
+@property (strong , nonatomic) NSMutableArray * teachers;
+@property (strong , nonatomic) NSMutableArray * teacherIdArray;
+@property (weak, nonatomic) IBOutlet UITableView *teachersTableView;
 
 @end
 
@@ -36,22 +39,34 @@
 {
     [super viewDidLoad];
     
-    self.teachersCollectionView.backgroundColor = [UIColor clearColor];
+    self.teachersTableView.backgroundColor = [UIColor clearColor];
     self.courseImage.image = [UIImage imageNamed:self.course.imageName];
     self.courseName.text = self.course.name;
+    self.teachers = [[NSMutableArray alloc] init];
+    self.teacherIdArray = [[NSMutableArray alloc] init];
+    
+    for(TeacherId * teacherId in self.course.teachers)
+    {
+        LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        NSError * error;
+        
+        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:teacherEntityDisc];
+        NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@" , teacherId.id];
+        [request setPredicate:pred];
+        NSArray *teachersArray = [context executeFetchRequest:request error:&error];
+        Teacher * teacher = [teachersArray firstObject];
+        if(teacher)
+        {
+            [self.teachers addObject:teacher];
+            [self.teacherIdArray addObject:teacherId];
+        }
 
-//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-//    NSError * error;
+    }
+
 //
-//    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    [request setEntity:teacherEntityDisc];
-//    NSPredicate *pred =nil;
-//    [request setPredicate:pred];
-//    NSArray *objects = [context executeFetchRequest:request
-//                                              error:&error];
-//    
 //    for(Teacher* teacher in objects)
 //    {
 //        [self.course addTeachersObject:teacher];
@@ -65,54 +80,52 @@
 }
 
 
--(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.course.teachers count];
+    return [self.teachers count];
 }
 
-
-
-
-
-
--(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell* cell = [self.teachersCollectionView dequeueReusableCellWithReuseIdentifier:@"Teacher Pic" forIndexPath:indexPath];
+        
+    UITableViewCell * cell = [self.teachersTableView dequeueReusableCellWithIdentifier:@"teacher details"];
     
-    if([cell isKindOfClass:[TeacherCollectionViewCell class]])
+    if([cell isKindOfClass:[CoursesTableViewCell class]])
     {
-        TeacherCollectionViewCell* teacher = (TeacherCollectionViewCell*) cell;
-        TeacherId* teacherId = [[self.course.teachers allObjects] objectAtIndex:indexPath.item];
+        
+        cell.backgroundColor = [UIColor clearColor];
+        
+        Teacher * teacher = [self.teachers objectAtIndex:indexPath.item];
+        TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
+                        
+        
+        CoursesTableViewCell * course = (CoursesTableViewCell*) cell;
+        
+        NSString * teacherName = teacher.name;
+        NSString * day = teacherId.day;
+        NSString * time = @"start : ";
+        time = [time stringByAppendingString:teacherId.beginTime];
+        time = [time stringByAppendingString:[NSString stringWithFormat:@" end: %@", teacherId.endTime ] ];
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",teacherId.id]];
         UIImage* image = [UIImage imageWithContentsOfFile:path];
+       
         
+        //course.teacherName = [NSString stringWithString:teacherName];
+        course.nameLabel.text = teacherName;
+        course.dayLabel.text = day;
+        course.timeLabel.text = time;
+        course.image.image = image;
         
-        LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        NSError * error;
-        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:teacherEntityDisc];
-        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", teacherId.id];
-        [request setPredicate:pred];
-        NSArray *teachers = [context executeFetchRequest:request error:&error];
-        
-        Teacher * tmpTeacher = [teachers firstObject];
-        
-        NSString * name = tmpTeacher.name;
-        
-        
-        
-        teacher.teacherImage.image = image;
-        teacher.teacherNameLabel.text = tmpTeacher.name;
-        teacher.teacherNameLabel.backgroundColor = [UIColor colorWithRed:236/255.0f green:153/255.0f blue:0/255.0f alpha:0.3f];
-        teacher.teacher = tmpTeacher;
     }
     return cell;
 }
+
+
+
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

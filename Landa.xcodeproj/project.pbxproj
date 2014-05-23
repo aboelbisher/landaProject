@@ -61,11 +61,11 @@
 		F932381C1929091B0066328A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381B1929091B0066328A /* StoreKit.framework */; };
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
-		F99B00B7192EF166006000AA /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00B6192EF166006000AA /* TeacherId.m */; };
-		F99B00BA192EF166006000AA /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00B9192EF166006000AA /* Course.m */; };
-		F99B00BD192EF166006000AA /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00BC192EF166006000AA /* Teacher.m */; };
-		F99B00C0192EF167006000AA /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00BF192EF167006000AA /* Update.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
+		F99B00C9192EFB3F006000AA /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C8192EFB3F006000AA /* Course.m */; };
+		F99B00CC192EFB40006000AA /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00CB192EFB40006000AA /* Teacher.m */; };
+		F99B00CF192EFB40006000AA /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00CE192EFB40006000AA /* TeacherId.m */; };
+		F99B00D2192EFB40006000AA /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00D1192EFB40006000AA /* Update.m */; };
 		F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */; };
 		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
 /* End PBXBuildFile section */
@@ -152,16 +152,16 @@
 		F932381D192909230066328A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
-		F99B00B5192EF166006000AA /* TeacherId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherId.h; sourceTree = "<group>"; };
-		F99B00B6192EF166006000AA /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherId.m; sourceTree = "<group>"; };
-		F99B00B8192EF166006000AA /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
-		F99B00B9192EF166006000AA /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
-		F99B00BB192EF166006000AA /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
-		F99B00BC192EF166006000AA /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
-		F99B00BE192EF167006000AA /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
-		F99B00BF192EF167006000AA /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		F99B00C4192EF24F006000AA /* TeacherId+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TeacherId+init.h"; sourceTree = "<group>"; };
 		F99B00C5192EF24F006000AA /* TeacherId+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TeacherId+init.m"; sourceTree = "<group>"; };
+		F99B00C7192EFB3F006000AA /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		F99B00C8192EFB3F006000AA /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		F99B00CA192EFB40006000AA /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Teacher.h; sourceTree = "<group>"; };
+		F99B00CB192EFB40006000AA /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
+		F99B00CD192EFB40006000AA /* TeacherId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherId.h; sourceTree = "<group>"; };
+		F99B00CE192EFB40006000AA /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherId.m; sourceTree = "<group>"; };
+		F99B00D0192EFB40006000AA /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
+		F99B00D1192EFB40006000AA /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesContentViewController.h; sourceTree = "<group>"; };
 		F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesContentViewController.m; sourceTree = "<group>"; };
 		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
@@ -305,17 +305,17 @@
 		F9302FC618EE499B0064E984 /* Landa */ = {
 			isa = PBXGroup;
 			children = (
-				F99B00B5192EF166006000AA /* TeacherId.h */,
-				F99B00BE192EF167006000AA /* Update.h */,
-				F99B00BF192EF167006000AA /* Update.m */,
-				F99B00BB192EF166006000AA /* Teacher.h */,
-				F99B00BC192EF166006000AA /* Teacher.m */,
-				F99B00B8192EF166006000AA /* Course.h */,
+				F91FBA5118FDA7BE00B7F8D7 /* Model.xcdatamodeld */,
 				F99B00C4192EF24F006000AA /* TeacherId+init.h */,
 				F99B00C5192EF24F006000AA /* TeacherId+init.m */,
-				F99B00B9192EF166006000AA /* Course.m */,
-				F99B00B6192EF166006000AA /* TeacherId.m */,
-				F91FBA5118FDA7BE00B7F8D7 /* Model.xcdatamodeld */,
+				F99B00C7192EFB3F006000AA /* Course.h */,
+				F99B00C8192EFB3F006000AA /* Course.m */,
+				F99B00CA192EFB40006000AA /* Teacher.h */,
+				F99B00CB192EFB40006000AA /* Teacher.m */,
+				F99B00CD192EFB40006000AA /* TeacherId.h */,
+				F99B00CE192EFB40006000AA /* TeacherId.m */,
+				F99B00D0192EFB40006000AA /* Update.h */,
+				F99B00D1192EFB40006000AA /* Update.m */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
@@ -502,10 +502,11 @@
 				F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */,
 				F91FB99B18F33B9700B7F8D7 /* TeachersNavigationController.m in Sources */,
 				F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */,
+				F99B00CC192EFB40006000AA /* Teacher.m in Sources */,
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
 				F923C36B18F0B1A60065C5EB /* CoursesCollectionViewCell.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
-				F99B00BA192EF166006000AA /* Course.m in Sources */,
+				F99B00D2192EFB40006000AA /* Update.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
@@ -513,10 +514,9 @@
 				F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */,
 				F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */,
 				F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */,
-				F99B00C0192EF167006000AA /* Update.m in Sources */,
-				F99B00BD192EF166006000AA /* Teacher.m in Sources */,
+				F99B00CF192EFB40006000AA /* TeacherId.m in Sources */,
+				F99B00C9192EFB3F006000AA /* Course.m in Sources */,
 				F923C37F18F0BD3E0065C5EB /* UpdatesTableViewCell.m in Sources */,
-				F99B00B7192EF166006000AA /* TeacherId.m in Sources */,
 				F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */,
 				F96916B519292E3E00A569FA /* Update+init.m in Sources */,
 				F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */,

@@ -218,7 +218,7 @@
         
         Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
         
-        TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+        TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day inManagedObjectContext:context];
         
         
         if(!course)
@@ -233,8 +233,11 @@
             course = [courses firstObject];
         }
         
+        if(teacherId)
+        {
+            [course addTeachersObject:teacherId];
+        }
         
-        [course addTeachersObject:teacherId];
         
 //        for(TeacherId * tut in course.teachers)
 //        {

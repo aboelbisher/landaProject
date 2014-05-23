@@ -19,6 +19,7 @@
     </entity>
     <entity name="TeacherId" representedClassName="TeacherId" syncable="YES">
         <attribute name="beginTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="teachers" inverseEntity="Course" syncable="YES"/>
@@ -31,6 +32,6 @@
         <element name="Course" positionX="-470" positionY="-1570" width="128" height="148"/>
         <element name="Teacher" positionX="-117" positionY="-1566" width="128" height="133"/>
         <element name="Update" positionX="-254" positionY="-1404" width="128" height="73"/>
-        <element name="TeacherId" positionX="-288" positionY="-1557" width="128" height="103"/>
+        <element name="TeacherId" positionX="-288" positionY="-1557" width="128" height="118"/>
     </elements>
 </model>

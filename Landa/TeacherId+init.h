@@ -13,6 +13,7 @@
 +(TeacherId *) initWithId:(NSString*)id
 beginTime:(NSString*)beginTime
 endTime:(NSString*)endTime
+day:(NSString*)day
 inManagedObjectContext:(NSManagedObjectContext*)context;
 
 @end

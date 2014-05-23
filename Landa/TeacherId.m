@@ -15,6 +15,7 @@
 @dynamic id;
 @dynamic beginTime;
 @dynamic endTime;
+@dynamic day;
 @dynamic course;
 
 @end

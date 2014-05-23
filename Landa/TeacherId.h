@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * beginTime;
 @property (nonatomic, retain) NSString * endTime;
+@property (nonatomic, retain) NSString * day;
 @property (nonatomic, retain) Course *course;
 
 @end

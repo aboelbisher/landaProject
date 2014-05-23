@@ -13,18 +13,33 @@
 +(TeacherId *) initWithId:(NSString*)id
                      beginTime:(NSString*)beginTime
 endTime:(NSString*)endTime
+day:(NSString*)day
 inManagedObjectContext:(NSManagedObjectContext*)context
 {
-    NSError * error = nil;
     
     TeacherId* teacher = nil;
-    teacher = [NSEntityDescription insertNewObjectForEntityForName:@"TeacherId" inManagedObjectContext:context];
-    teacher.id = id;
-    teacher.beginTime = beginTime;
-    teacher.endTime = endTime;
+
     
-    [context save:&error];
     
+    NSEntityDescription *teacherIdEntityDisc = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:teacherIdEntityDisc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@ AND beginTime = %@ AND day = %@)", id , beginTime , day];
+    [request setPredicate:pred];
+    NSError *error;
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    
+    if([objects count] == 0)
+    {
+        teacher = [NSEntityDescription insertNewObjectForEntityForName:@"TeacherId" inManagedObjectContext:context];
+        teacher.id = id;
+        teacher.beginTime = beginTime;
+        teacher.endTime = endTime;
+        teacher.day = day;
+        
+        [context save:&error];
+
+    }
     return teacher;
 }
 

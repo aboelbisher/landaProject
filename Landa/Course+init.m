@@ -27,8 +27,7 @@
     NSPredicate *pred =[NSPredicate predicateWithFormat:@"(name = %@)", name];
     [request setPredicate:pred];
     NSError *error;
-    NSArray *objects = [context executeFetchRequest:request
-                                              error:&error];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
 
     if([objects count] == 0)
     {

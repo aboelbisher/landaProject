@@ -64,10 +64,10 @@
     
     
     
-    if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
-    {
-        [self initUpdatesWithContext:context];
-    }
+//    if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
+//    {
+        //[self initUpdatesWithContext:context];
+ //   }
     
     
     
@@ -77,7 +77,23 @@
     [self fireAlarms];
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError * error;
+    
+    NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:updateEntityDisc];
+    NSPredicate *pred =nil;
+    [request setPredicate:pred];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    
+    self.updates = [NSMutableArray arrayWithArray:objects];
+    [self.tableView reloadData];
 
+}
 
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,7 +113,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        int index = indexPath.item;
+        NSInteger index = indexPath.item;
         Update * update = [self.updates objectAtIndex:index];
         LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -184,21 +200,21 @@
     }
 }
 
--(void) initUpdatesWithContext:(NSManagedObjectContext*)context
-{
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:8];
-    [comps setMonth:5];
-    [comps setYear:2014];
-    
-    // [comps setSecond:10];
-    
-    NSDate* date = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    
-    [Update initWithContent:@"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" date:date inManagedObjectContext:context];
-    [Update initWithContent:@"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" date:date inManagedObjectContext:context];
-    [Update initWithContent:@"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" date:date inManagedObjectContext:context];
-}
+//-(void) initUpdatesWithContext:(NSManagedObjectContext*)context
+//{
+//    NSDateComponents *comps = [[NSDateComponents alloc] init];
+//    [comps setDay:8];
+//    [comps setMonth:5];
+//    [comps setYear:2014];
+//    
+//    // [comps setSecond:10];
+//    
+//    NSDate* date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+//    
+//    [Update initWithContent:@"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" date:date inManagedObjectContext:context];
+//    [Update initWithContent:@"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" date:date inManagedObjectContext:context];
+//    [Update initWithContent:@"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" date:date inManagedObjectContext:context];
+//}
 
 -(void) fireAlarms
 {

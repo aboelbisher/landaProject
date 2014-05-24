@@ -11,9 +11,10 @@
 @implementation TeacherId (init)
 
 +(TeacherId *) initWithId:(NSString*)id
-                     beginTime:(NSString*)beginTime
+beginTime:(NSString*)beginTime
 endTime:(NSString*)endTime
 day:(NSString*)day
+notify:(NSString*)notify
 inManagedObjectContext:(NSManagedObjectContext*)context
 {
     
@@ -36,12 +37,14 @@ inManagedObjectContext:(NSManagedObjectContext*)context
         teacher.beginTime = beginTime;
         teacher.endTime = endTime;
         teacher.day = day;
-        
+        teacher.notify = notify;
         [context save:&error];
 
     //}
     return teacher;
 }
+
+
 
 
 @end

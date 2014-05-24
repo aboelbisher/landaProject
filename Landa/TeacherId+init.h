@@ -14,6 +14,7 @@
 beginTime:(NSString*)beginTime
 endTime:(NSString*)endTime
 day:(NSString*)day
+notify:(NSString*)notify
 inManagedObjectContext:(NSManagedObjectContext*)context;
 
 @end

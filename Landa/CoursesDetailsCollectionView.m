@@ -15,12 +15,16 @@
 #import "CoursesTableViewCell.h"
 
 @interface CoursesDetailsCollectionView () <UITableViewDataSource , UITableViewDelegate>
+{
+    BOOL _makeCheckMark;
+}
 
 //@property (weak, nonatomic) IBOutlet UICollectionView *teachersCollectionView;
 //@property (strong , nonatomic) NSManagedObjectContext * context;
-@property (strong , nonatomic) NSMutableArray * teachers;
-@property (strong , nonatomic) NSMutableArray * teacherIdArray;
+@property (strong , nonatomic) NSMutableArray * teachers; // of Teacher
+@property (strong , nonatomic) NSMutableArray * teacherIdArray; // of TeacherId
 @property (weak, nonatomic) IBOutlet UITableView *teachersTableView;
+
 
 @end
 
@@ -39,32 +43,23 @@
 {
     [super viewDidLoad];
     
+    
+    _makeCheckMark = NO;
+    
     self.teachersTableView.backgroundColor = [UIColor clearColor];
     self.courseImage.image = [UIImage imageNamed:self.course.imageName];
     self.courseName.text = self.course.name;
     self.teachers = [[NSMutableArray alloc] init];
     self.teacherIdArray = [[NSMutableArray alloc] init];
     
-    for(TeacherId * teacherId in self.course.teachers)
-    {
-        LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        NSError * error;
-        
-        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:teacherEntityDisc];
-        NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@" , teacherId.id];
-        [request setPredicate:pred];
-        NSArray *teachersArray = [context executeFetchRequest:request error:&error];
-        Teacher * teacher = [teachersArray firstObject];
-        if(teacher)
-        {
-            [self.teachers addObject:teacher];
-            [self.teacherIdArray addObject:teacherId];
-        }
 
-    }
+    
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+    [self initCoursesDEtailsWithManagedObjectContext:context];
+    
+
 
 //
 //    for(Teacher* teacher in objects)
@@ -92,11 +87,22 @@
     
     if([cell isKindOfClass:[CoursesTableViewCell class]])
     {
-        
+
         cell.backgroundColor = [UIColor clearColor];
         
         Teacher * teacher = [self.teachers objectAtIndex:indexPath.item];
         TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
+        
+        if([teacherId.notify isEqualToString:@"YES"])
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        
                         
         
         CoursesTableViewCell * course = (CoursesTableViewCell*) cell;
@@ -124,6 +130,51 @@
 }
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
+
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError * error;
+    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:teacherEntityDisc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@ AND beginTime = %@ AND endTime = %@" , teacherId.id , teacherId.beginTime , teacherId.endTime];
+    [request setPredicate:pred];
+    NSArray *teachersArray = [context executeFetchRequest:request error:&error];
+    TeacherId * teacherIdCoreData = [teachersArray firstObject];
+    
+    if([teacherIdCoreData.notify isEqualToString:@"YES"])
+    {
+        teacherId.notify = @"NO";
+        teacherIdCoreData.notify = @"NO";
+    }
+    else
+    {
+        teacherId.notify = @"YES";
+        teacherIdCoreData.notify = @"YES";
+    }
+    
+    [context save:&error];
+
+    
+    teacherEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
+    request = [[NSFetchRequest alloc] init];
+    [request setEntity:teacherEntityDisc];
+    pred = [NSPredicate predicateWithFormat:@"name = %@" , self.course.name];
+    [request setPredicate:pred];
+    NSArray * courses = [context executeFetchRequest:request error:&error];
+    
+    self.course = [courses firstObject];
+    [self.teacherIdArray removeAllObjects];
+    [self.teachers removeAllObjects];
+    [self initCoursesDEtailsWithManagedObjectContext:context];
+      NSMutableArray * paths = [[NSMutableArray alloc] init];
+    [paths addObject:indexPath];
+    [tableView reloadData];
+}
 
 
 
@@ -142,6 +193,27 @@
                 tsvc.teacher = sourceController.teacher;
             }
         }
+    }
+}
+
+-(void)initCoursesDEtailsWithManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSError * error = nil;
+    for(TeacherId * teacherId in self.course.teachers)
+    {
+        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:teacherEntityDisc];
+        NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@" , teacherId.id];
+        [request setPredicate:pred];
+        NSArray *teachersArray = [context executeFetchRequest:request error:&error];
+        Teacher * teacher = [teachersArray firstObject];
+        if(teacher)
+        {
+            [self.teachers addObject:teacher];
+            [self.teacherIdArray addObject:teacherId];
+        }
+        
     }
 }
 

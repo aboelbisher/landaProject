@@ -15,6 +15,9 @@
 #import "TeacherId+init.h"
 #import "TeacherId.h"
 
+static NSString* notifyMe = @"YES";
+static NSString* dontNotifyMe = @"NO";
+
 @interface CoursesViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *coursesCollectionView;
@@ -235,7 +238,7 @@
  
         Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
         [context save:&error];
-        TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day inManagedObjectContext:context];
+        TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day notify:dontNotifyMe inManagedObjectContext:context];
         [context save:&error];
  
         if(!course)

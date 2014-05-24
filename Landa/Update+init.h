@@ -13,6 +13,7 @@
 
 +(Update *) initWithContent:(NSString*)content
                        date:(NSDate*)date
+                     postId:(NSString *)postId
      inManagedObjectContext:(NSManagedObjectContext*)context;
 
 @end

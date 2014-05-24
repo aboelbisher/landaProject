@@ -12,6 +12,7 @@
 
 +(Update *) initWithContent:(NSString*)content
                      date:(NSDate*)date
+                     postId:(NSString *)postId
    inManagedObjectContext:(NSManagedObjectContext*)context
 {
     
@@ -32,6 +33,7 @@
         update = [NSEntityDescription insertNewObjectForEntityForName:@"Update" inManagedObjectContext:context];
         update.content = content;
         update.date = date;
+        update.postId = postId;
         [context save:&error];
         
         

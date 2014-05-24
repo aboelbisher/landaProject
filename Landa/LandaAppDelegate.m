@@ -7,7 +7,13 @@
 //
 
 #import "LandaAppDelegate.h"
+#import "Update.h"
+#import "Update+init.h"
 #import <Parse/Parse.h>
+
+
+static NSString* notifactionsWebStart = @"http://wabbass.byethost9.com/wordpress/?p=";
+static NSString* notifcationsWebEnd = @"&json=1";
 
 @interface LandaAppDelegate()
 
@@ -21,6 +27,51 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+
+
+-(NSString*) makeJsonFromString:(NSString*)string
+{
+    NSInteger first = 0;
+    NSInteger last = 0;
+    // int length = 0;
+    int count = 0;
+    
+    
+    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
+    {
+        if([string characterAtIndex:charIdx] == '{')
+        {
+            first = charIdx;
+            break;
+        }
+    }
+    
+    
+    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
+    {
+        if([string characterAtIndex:charIdx] == '}')
+        {
+            count-- ;
+            if (count == 0)
+            {
+                last = charIdx;
+                break;
+            }
+        }
+        if([string characterAtIndex:charIdx] == '{')
+        {
+            count++;
+        }
+        
+    }
+    NSRange range = NSMakeRange(first, last - first + 1);
+    NSString * newString = [string substringWithRange:range];
+    return newString;
+}
+
+
+
 
 
 - (void)saveContext
@@ -107,6 +158,43 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    NSString * urlString = notifactionsWebStart;
+    NSString*  postId = [[userInfo valueForKey:@"post_id"] stringValue];
+    if(!postId) // got notification from the wrong place :D
+    {
+        return;
+    }
+    
+    urlString = [urlString stringByAppendingString:postId];
+    urlString = [urlString stringByAppendingString:notifcationsWebEnd];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if(!urlData)
+    {
+        return;
+    }
+    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+    NSString* jsonString = [self makeJsonFromString:webString];
+    
+    NSError * error;
+    NSDictionary *JSON =
+    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                    options: NSJSONReadingMutableContainers
+                                      error: &error];
+    
+    NSDictionary * post = [JSON objectForKey:@"post"];
+    NSString * dateString = [post valueForKey:@"date"];
+    NSString * content = [post valueForKey:@"content"];
+    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [formatter dateFromString:dateString];
+    
+    [Update initWithContent:content date:date postId:postId inManagedObjectContext:self.managedObjectContext];
+    [self.managedObjectContext save:&error];
+
     [PFPush handlePush:userInfo];
 }
 
@@ -119,8 +207,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(remoteNotificationReceived:) name:@"PushNotificationMessageReceivedNotification"
+//                                               object:nil];
     // Override point for customization after application launch.
     
     [Parse setApplicationId:@"QvTjoTQQlUogaFSd0OlbuRwQyPlmTO3khZpgPsm5"
@@ -135,6 +229,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -159,18 +254,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     
 //
     NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:11];
+    [comps setDay:25];
     [comps setMonth:5];
     [comps setYear:2014];
-    [comps setHour:23];
-    [comps setMinute:32];
+    [comps setHour:2];
+    [comps setMinute:17];
    // [comps setSecond:10];
     
-//    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-//    localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
-//    
-//    localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
-//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
+    
+    localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 //
 
     

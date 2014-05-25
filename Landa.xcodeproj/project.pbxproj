@@ -64,6 +64,7 @@
 		F97775F91930FBAA00B15754 /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F97775F81930FBAA00B15754 /* Teacher.m */; };
 		F97775FC1930FBAA00B15754 /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F97775FB1930FBAA00B15754 /* TeacherId.m */; };
 		F97775FF1930FBAA00B15754 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F97775FE1930FBAA00B15754 /* Update.m */; };
+		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
 		F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */; };
 		F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00EC192FDEC1006000AA /* CoursesCollectionViewCell.m */; };
@@ -159,6 +160,8 @@
 		F97775FB1930FBAA00B15754 /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherId.m; sourceTree = "<group>"; };
 		F97775FD1930FBAA00B15754 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
 		F97775FE1930FBAA00B15754 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
+		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		F97777411931A06400B15754 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F99B00C4192EF24F006000AA /* TeacherId+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TeacherId+init.h"; sourceTree = "<group>"; };
 		F99B00C5192EF24F006000AA /* TeacherId+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TeacherId+init.m"; sourceTree = "<group>"; };
 		F99B00E8192FD9D0006000AA /* CoursesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoursesTableViewCell.h; path = ../CoursesTableViewCell.h; sourceTree = "<group>"; };
@@ -321,6 +324,7 @@
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
 				F90F06E918FF398500D7C5E8 /* Images.xcassets */,
+				F977773F1931A04A00B15754 /* Reachability */,
 				F97776001931604800B15754 /* teacherId */,
 				F91FBA3D18F4772D00B7F8D7 /* Teachers */,
 				F91FBA3E18F4774200B7F8D7 /* Update */,
@@ -392,6 +396,15 @@
 				F99B00C5192EF24F006000AA /* TeacherId+init.m */,
 			);
 			name = teacherId;
+			sourceTree = "<group>";
+		};
+		F977773F1931A04A00B15754 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				F97777401931A06400B15754 /* Reachability.h */,
+				F97777411931A06400B15754 /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -521,6 +534,7 @@
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
+				F97777421931A06400B15754 /* Reachability.m in Sources */,
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
 				F97775F91930FBAA00B15754 /* Teacher.m in Sources */,

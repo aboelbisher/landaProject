@@ -14,6 +14,7 @@
 #import "LandaAppDelegate.h"
 #import "TeacherId+init.h"
 #import "TeacherId.h"
+#import "Reachability.h"
 
 static NSString* notifyMe = @"YES";
 static NSString* dontNotifyMe = @"NO";
@@ -27,6 +28,7 @@ static NSString* dontNotifyMe = @"NO";
 @property (nonatomic , strong) NSMutableArray * courses; // of Course(s)
 @property (nonatomic , strong) NSMutableArray * searchResults; // of Course(s)
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 @end
 
@@ -37,6 +39,8 @@ static NSString* dontNotifyMe = @"NO";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.coursesCollectionView.backgroundColor = [UIColor colorWithRed:252/255.0f green:254/255.0f blue:212/255.0f alpha:1.0f];
+    self.spinner.color = [UIColor blackColor];
+    self.spinner.hidden = YES;
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -49,38 +53,42 @@ static NSString* dontNotifyMe = @"NO";
     
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
+        Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+        NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+        if (networkStatus == NotReachable)
+        {
+            NSLog(@"There IS NO internet connection");
+        }
+        else
+        {
+            NSLog(@"There IS internet connection");
+            return;
+        }
+
         [self initCoursesWithContext:context];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    else
+    {
+        NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:courseEntityDisc];
+        NSPredicate *pred =nil;
+        [request setPredicate:pred];
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+        
+        self.courses = [NSMutableArray arrayWithArray:objects];
+        self.searchResults = [NSMutableArray arrayWithArray:self.courses];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //            [self.spinner stopAnimating];
+            // self.spinner.hidden = YES;
+            [self.coursesCollectionView reloadData];});
+    }
 
-    
-    
-
-    NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:courseEntityDisc];
-    NSPredicate *pred =nil;
-    [request setPredicate:pred];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    
-    
-    self.courses = [NSMutableArray arrayWithArray:objects];
-    
-//    for(Course * course in self.courses)
-//    {
-//        NSString * courseName = course.name;
-//        
-//        
-//        for(TeacherId * teacher in course.teachers)
-//        {
-//            NSString* teacherId = teacher.id;
-//        }
-//    }
-    
-    self.searchResults = [NSMutableArray arrayWithArray:self.courses];
-    
-       
+ 
     
 }
 
@@ -203,62 +211,96 @@ static NSString* dontNotifyMe = @"NO";
 
 -(void) initCoursesWithContext:(NSManagedObjectContext*)context
 {
-    
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:8];
-    [comps setMonth:5];
-    [comps setYear:2014];
-    [comps setHour:18];
-    [comps setMinute:22];
-    // [comps setSecond:10];
-
-    NSDate* date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    self.spinner.hidden = NO;
+    [self.spinner startAnimating];
     
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/courses.aspx"];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-    NSString* jsonString = [self makeJsonFromString:webString];
-    
-    NSError * error;
-    NSDictionary *JSON =
-    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                    options: NSJSONReadingMutableContainers
-                                      error: &error];
-    
-    NSArray * array = [JSON objectForKey:@"courses"];
-    
-    for(id course in array)
+
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
     {
-        NSString * place = [course objectForKey:@"place"];
-        NSString * tutorId = [course objectForKey:@"tutor_id"];
-        NSString * beginTime = [course objectForKey:@"time_from"];
-        NSString * endTime = [course objectForKey:@"time_to"];
-        NSString * day = [course objectForKey:@"day"];
-        NSString * name = [course objectForKey:@"subject_name"];
- 
-        Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
-        [context save:&error];
-        TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day notify:dontNotifyMe inManagedObjectContext:context];
-        [context save:&error];
- 
-        if(!course)
+        if(!error)
         {
-            NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:courseEntityDisc];
-            NSPredicate *pred =[NSPredicate predicateWithFormat:@"(name = %@)", name];
-            [request setPredicate:pred];
-            NSError *error;
-            NSArray *courses = [context executeFetchRequest:request error:&error];
-            course = [courses firstObject];
+            NSDateComponents *comps = [[NSDateComponents alloc] init];
+            [comps setDay:8];
+            [comps setMonth:5];
+            [comps setYear:2014];
+            [comps setHour:18];
+            [comps setMinute:22];
+            // [comps setSecond:10];
+            
+            NSDate* date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+            
+            NSData *urlData = [NSData dataWithContentsOfURL:url];
+            NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+            NSString* jsonString = [self makeJsonFromString:webString];
+            
+            NSError * error;
+            NSDictionary *JSON =
+            [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                            options: NSJSONReadingMutableContainers
+                                              error: &error];
+            
+            NSArray * array = [JSON objectForKey:@"courses"];
+            
+            for(id course in array)
+            {
+                NSString * place = [course objectForKey:@"place"];
+                NSString * tutorId = [course objectForKey:@"tutor_id"];
+                NSString * beginTime = [course objectForKey:@"time_from"];
+                NSString * endTime = [course objectForKey:@"time_to"];
+                NSString * day = [course objectForKey:@"day"];
+                NSString * name = [course objectForKey:@"subject_name"];
+                
+                Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+                [context save:&error];
+                TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day notify:dontNotifyMe inManagedObjectContext:context];
+                [context save:&error];
+                
+                if(!course)
+                {
+                    NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
+                    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+                    [request setEntity:courseEntityDisc];
+                    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(name = %@)", name];
+                    [request setPredicate:pred];
+                    NSError *error;
+                    NSArray *courses = [context executeFetchRequest:request error:&error];
+                    course = [courses firstObject];
+                }
+                
+                if(teacherId)
+                {
+                    [course addTeachersObject:teacherId];
+                    [context save:&error];
+                }
+            }
+
         }
         
-        if(teacherId)
-        {
-            [course addTeachersObject:teacherId];
-            [context save:&error];
-        }
-    }
+        
+        NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:courseEntityDisc];
+        NSPredicate *pred =nil;
+        [request setPredicate:pred];
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+        
+        self.courses = [NSMutableArray arrayWithArray:objects];
+        self.searchResults = [NSMutableArray arrayWithArray:self.courses];
+
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.spinner stopAnimating];
+             self.spinner.hidden = YES;
+            [self.coursesCollectionView reloadData];});
+
+    }];
+    [task resume];
+    
+    
 }
 
 

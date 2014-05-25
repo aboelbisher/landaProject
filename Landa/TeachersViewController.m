@@ -12,6 +12,7 @@
 #import "Teacher.h"
 #import "Teacher+init.h"
 #import "LandaAppDelegate.h"
+#import "Reachability.h"
 
 static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 
@@ -40,8 +41,8 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     [self.teachersCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
     
     self.spinner.color = [UIColor blackColor];
+    self.spinner.hidden = YES;
     
-    [self.spinner startAnimating];
     
     self.teachers = [[NSMutableArray alloc] init];
     self.searchResults = [[NSMutableArray alloc] init];
@@ -50,9 +51,35 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
 
+    
+
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
+        Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+        NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+        if (networkStatus == NotReachable)
+        {
+            NSLog(@"There IS NO internet connection");
+        }
+        else
+        {
+            NSLog(@"There IS internet connection");
+            return;
+        }
         [self initTeachersWithContext:context];
+    }
+    else
+    {
+        NSError * error = nil;
+        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:teacherEntityDisc];
+        NSPredicate *pred =nil;
+        [request setPredicate:pred];
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+        
+        self.teachers = [NSMutableArray arrayWithArray:objects];
+        self.searchResults = [NSMutableArray arrayWithArray:self.teachers];
     }
 }
 
@@ -151,6 +178,10 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 
 -(void)initTeachersWithContext:(NSManagedObjectContext*)context
 {
+    self.spinner.hidden = NO;
+    [self.spinner startAnimating];
+    
+
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
    
     NSURLRequest * request = [NSURLRequest requestWithURL:url];

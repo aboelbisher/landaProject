@@ -354,6 +354,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="AIy-tl-QDo">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="412"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="Course Picture" reuseIdentifier="Course Picture" id="NhG-3C-R3Q" customClass="CoursesCollectionViewCell">
                                         <rect key="frame" x="0.0" y="64" width="154" height="139"/>
@@ -425,6 +429,7 @@
                     <connections>
                         <outlet property="coursesCollectionView" destination="fJ7-XX-iM7" id="zDR-Bh-29f"/>
                         <outlet property="searchBar" destination="cMU-rh-boo" id="4Ho-29-ir9"/>
+                        <outlet property="spinner" destination="AIy-tl-QDo" id="26X-dV-kqL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4B2-Bl-EIU" userLabel="First Responder" sceneMemberID="firstResponder"/>

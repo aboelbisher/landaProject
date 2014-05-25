@@ -141,7 +141,7 @@
     NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:teacherEntityDisc];
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@ AND beginTime = %@ AND endTime = %@" , teacherId.id , teacherId.beginTime , teacherId.endTime];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@ AND beginTime = %@ AND day = %@" , teacherId.id , teacherId.beginTime , teacherId.day];
     [request setPredicate:pred];
     NSArray *teachersArray = [context executeFetchRequest:request error:&error];
     TeacherId * teacherIdCoreData = [teachersArray firstObject];
@@ -150,11 +150,65 @@
     {
         teacherId.notify = @"NO";
         teacherIdCoreData.notify = @"NO";
+        
+        UIApplication *app = [UIApplication sharedApplication];
+        NSArray *eventArray = [app scheduledLocalNotifications];
+        for (int i=0; i<[eventArray count]; i++)
+        {
+            UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+            NSDictionary *userInfoCurrent = oneEvent.userInfo;
+            NSString* id = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"teacherId"]];
+            NSString* day = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"day"]];
+            NSString* beginTime = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"beginTime"]];
+
+            
+            if ([id isEqualToString:teacherId.id] && [day isEqualToString:teacherId.day] && [beginTime isEqualToString:teacherId.beginTime])
+            {
+                //Cancelling local notification
+                [app cancelLocalNotification:oneEvent];
+                break;
+            }
+        }
+        
     }
     else
     {
         teacherId.notify = @"YES";
         teacherIdCoreData.notify = @"YES";
+        
+        NSDate *now = [NSDate date];
+//        // Specify which units we would like to use
+//        unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+//        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//        NSDateComponents *components = [calendar components:units fromDate:now];
+        int day = [self getIntWeekDayFromStringDay:teacherId.day];
+        int hour = [self getHourFromString:teacherId.beginTime];
+        int minute = [self getMinuteFromString:teacherId.endTime];
+        
+        NSString * message = [NSString stringWithFormat:@"you have %@ course" , self.course.name];
+        
+        [self weekEndNotificationOnWeekday:day hour:hour minute:minute message:message teacherId:teacherId startDate:now];
+        
+//        NSInteger year = [components year];
+//        NSInteger month = [components month];
+//        NSInteger day = [components day];
+//        
+//        NSDateComponents *comps = [[NSDateComponents alloc] init];
+//        [comps setDay:25];
+//        [comps setMonth:5];
+//        [comps setYear:2014];
+//        [comps setHour:2];
+//        [comps setMinute:17];
+//        // [comps setSecond:10];
+//        
+//        
+        //UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+//        localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
+//        
+//        localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+//        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//        
+        
     }
     
     [context save:&error];
@@ -174,6 +228,77 @@
       NSMutableArray * paths = [[NSMutableArray alloc] init];
     [paths addObject:indexPath];
     [tableView reloadData];
+}
+
+-(void) weekEndNotificationOnWeekday:(int)weekday hour:(int)hour minute:(int)minute message:(NSString*)message teacherId:(TeacherId*)teacherId  startDate:(NSDate*) alramDate
+{
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: alramDate];
+    [componentsForFireDate setWeekday: weekday]; //for fixing Sunday
+    [componentsForFireDate setHour:hour];
+    [componentsForFireDate setMinute:minute];
+    notification.repeatInterval = NSWeekCalendarUnit;
+    notification.fireDate=[calendar dateFromComponents:componentsForFireDate];
+    notification.alertBody = message;
+    
+    
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:teacherId.id, @"teacherId", teacherId.day , @"day", teacherId.beginTime ,@"beginTime" , nil];
+    
+    notification.userInfo = dict;
+
+    
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+}
+
+-(int)getIntWeekDayFromStringDay:(NSString*)day
+{
+    day = [day stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    if([day isEqualToString:@"ראשון"])
+    {
+        return 1;
+    }
+    if([day isEqualToString:@"שני"])
+    {
+        return 2;
+    }
+    if([day isEqualToString:@"שלישי"])
+    {
+        return 3;
+    }
+    if([day isEqualToString:@"רביעי"])
+    {
+        return 4;
+    }
+    if([day isEqualToString:@"חמישי"])
+    {
+        return 5;
+    }
+    
+    NSLog(@"invalid day!!!");
+    return -1;
+}
+
+-(int)getHourFromString:(NSString*)string
+{
+    NSArray * array = [string componentsSeparatedByString:@":"];
+    
+    NSString * hour = [array firstObject];
+    
+    return [hour intValue];
+}
+
+-(int)getMinuteFromString:(NSString*)string
+{
+    NSArray * array = [string componentsSeparatedByString:@":"];
+    
+    NSString * minute = [array lastObject];
+    
+    return [minute intValue];
 }
 
 

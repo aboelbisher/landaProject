@@ -253,19 +253,19 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
 //
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:25];
-    [comps setMonth:5];
-    [comps setYear:2014];
-    [comps setHour:2];
-    [comps setMinute:17];
-   // [comps setSecond:10];
-    
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
-    
-    localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//    NSDateComponents *comps = [[NSDateComponents alloc] init];
+//    [comps setDay:25];
+//    [comps setMonth:5];
+//    [comps setYear:2014];
+//    [comps setHour:2];
+//    [comps setMinute:17];
+//   // [comps setSecond:10];
+//    
+//    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+//    localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
+//    
+//    localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 //
 
     

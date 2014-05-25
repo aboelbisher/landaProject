@@ -142,7 +142,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",tmpTeacher.id]];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",tmpTeacher.id]];
         UIImage* image = [UIImage imageWithContentsOfFile:path];
         teacher.teacherImage.image = image;
         teacher.teacherNameLabel.text = tmpTeacher.name;
@@ -216,15 +216,16 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
                 name = [name stringByAppendingString:lastName];
                 
                 NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
-                urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.jpg" , id]];
+                urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.png" , id]];
                 
                 NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+                                
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                 NSString *documentsDirectory = [paths objectAtIndex:0];
-                NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",id]];
+                NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",id]];
                 [data writeToFile:localFilePath atomically:YES];
                 
-                [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.jpg" , id] id:id faculty:faculty localImageFilePath:localFilePath inManagedObjectContext:context];
+                [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.png" , id] id:id faculty:faculty localImageFilePath:localFilePath inManagedObjectContext:context];
                 
             }
         }

@@ -38,7 +38,7 @@ static NSString* dontNotifyMe = @"NO";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.coursesCollectionView.backgroundColor = [UIColor colorWithRed:252/255.0f green:254/255.0f blue:212/255.0f alpha:1.0f];
+    self.coursesCollectionView.backgroundColor = [UIColor clearColor];
     self.spinner.color = [UIColor blackColor];
     self.spinner.hidden = YES;
     
@@ -59,7 +59,6 @@ static NSString* dontNotifyMe = @"NO";
         {
             NSLog(@"There IS NO internet connection");
             return;
-
         }
         else
         {

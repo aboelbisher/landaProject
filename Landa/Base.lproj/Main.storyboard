@@ -45,6 +45,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="8MA-vD-Tdv">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="408"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Teacher Pic" id="6Ad-Hg-Oa5" customClass="TeacherCollectionViewCell">
                                         <rect key="frame" x="0.0" y="64" width="150" height="150"/>
@@ -117,6 +121,7 @@
                     <connections>
                         <outlet property="searcBar" destination="R8V-RZ-zI6" id="O1U-zr-sbk"/>
                         <outlet property="searchDisplayController" destination="EeL-pd-WgM" id="GfJ-kK-duh"/>
+                        <outlet property="spinner" destination="8MA-vD-Tdv" id="2B7-vY-mYl"/>
                         <outlet property="teachersCollectionView" destination="bVs-PK-Ry5" id="zlA-xX-Jfv"/>
                     </connections>
                 </viewController>

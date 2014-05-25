@@ -15,7 +15,7 @@
 
 static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 
-@interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate ,NSURLSessionDelegate, NSURLSessionDownloadDelegate>
+@interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
 {
     NSURLSession* _session;
 }
@@ -27,6 +27,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 @property (weak, nonatomic) IBOutlet UISearchBar *searcBar;
 @property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
 //@property (strong , nonatomic) NSManagedObjectContext * context;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 @end
 
@@ -38,107 +39,23 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     self.teachersCollectionView.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f];
     [self.teachersCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
     
+    self.spinner.color = [UIColor blackColor];
+    
+    [self.spinner startAnimating];
     
     self.teachers = [[NSMutableArray alloc] init];
     self.searchResults = [[NSMutableArray alloc] init];
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError * error;
     
-//    
-//    [context reset];
-//    [context save:&error];
-//
-//
-//    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    [request setEntity:teacherEntityDisc];
-//    NSPredicate *pred =nil;
-//    [request setPredicate:pred];
-//    NSArray *objects = [context executeFetchRequest:request
-//                                              error:&error];
-        
 
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
         [self initTeachersWithContext:context];
     }
-
-    
-    
-    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:teacherEntityDisc];
-    NSPredicate *pred =nil;
-    [request setPredicate:pred];
-    NSArray *objects = [context executeFetchRequest:request
-                                              error:&error];
-    
-    
-    
-    
-    self.teachers = [NSMutableArray arrayWithArray:objects];
-    self.searchResults = [NSMutableArray arrayWithArray:self.teachers];
-    
-    
-
 }
 
-- (NSURLSession *)session
-{
-    if (!_session)
-    {
-        // Create Session Configuration
-        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        
-        // Create Session
-        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
-    }
-    
-    return _session;
-}
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
-{
-    NSLog(@"did finish Writing");
-    NSData *data = [NSData dataWithContentsOfURL:location];
-//    NSLog(@"data = %@" , data);
-    
-    NSString *jsonString =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"%@" , jsonString);
-    
-    dispatch_async(dispatch_get_main_queue(), ^
-                   {
-//                       [self.cancelButton setHidden:YES];
-//                       [self.progressView setHidden:YES];
-//                       [self.imageView setImage:[UIImage imageWithData:data]];
-                   });
-    
-    // Invalidate Session
-    [session finishTasksAndInvalidate];
-}
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
-{
-    NSLog(@"did resume");
-}
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
-{
-}
-
-
-
-//-(NSMutableArray*) searchResults
-//{
-//    if(!_searchResults)
-//    {
-//        _searchResults = [[NSMutableArray alloc] init];
-//    }
-//    return _searchResults;
-//}
 
 
 - (void)filterContentForSearchText:(NSString*)searchText
@@ -235,42 +152,72 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 -(void)initTeachersWithContext:(NSManagedObjectContext*)context
 {
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-    NSString* jsonString = [self makeJsonFromString:webString];
-    
-    NSError * error;
-    NSDictionary *JSON =
-    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                    options: NSJSONReadingMutableContainers
-                                      error: &error];
-    
-    NSArray * array = [JSON objectForKey:@"users"];
-    
-    for(id tut in array)
+   
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
     {
-        NSString * id = [tut objectForKey:@"id"];
-        NSString * faculty = [tut objectForKey:@"faculty"];
-        NSString * firstName = [tut objectForKey:@"fname"];
-        NSString * lastName = [tut objectForKey:@"lname"];
-        NSString * email = [tut objectForKey:@"email"];
-        firstName = [firstName stringByReplacingOccurrencesOfString:@" " withString:@""];
-        lastName = [lastName stringByReplacingOccurrencesOfString:@" " withString:@""];
-        NSString * name = [firstName stringByAppendingString:@" "];
-        name = [name stringByAppendingString:lastName];
+        if(!error)
+        {
+            NSData *urlData = [NSData dataWithContentsOfURL:url];
+            NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+            NSString* jsonString = [self makeJsonFromString:webString];
+            
+            NSError * error;
+            NSDictionary *JSON =
+            [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                            options: NSJSONReadingMutableContainers
+                                              error: &error];
+            
+            NSArray * array = [JSON objectForKey:@"users"];
+            
+            for(id tut in array)
+            {
+                NSString * id = [tut objectForKey:@"id"];
+                NSString * faculty = [tut objectForKey:@"faculty"];
+                NSString * firstName = [tut objectForKey:@"fname"];
+                NSString * lastName = [tut objectForKey:@"lname"];
+                NSString * email = [tut objectForKey:@"email"];
+                firstName = [firstName stringByReplacingOccurrencesOfString:@" " withString:@""];
+                lastName = [lastName stringByReplacingOccurrencesOfString:@" " withString:@""];
+                NSString * name = [firstName stringByAppendingString:@" "];
+                name = [name stringByAppendingString:lastName];
+                
+                NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
+                urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.jpg" , id]];
+                
+                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",id]];
+                [data writeToFile:localFilePath atomically:YES];
+                
+                [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.jpg" , id] id:id faculty:faculty localImageFilePath:localFilePath inManagedObjectContext:context];
+                
+            }
+        }
         
-        NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
-        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.jpg" , id]];
-
-        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg",id]];
-        [data writeToFile:localFilePath atomically:YES];
+        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:teacherEntityDisc];
+        NSPredicate *pred =nil;
+        [request setPredicate:pred];
+        NSArray *objects = [context executeFetchRequest:request error:&error];
         
-        [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.jpg" , id] id:id faculty:faculty localImageFilePath:localFilePath inManagedObjectContext:context];
+        self.teachers = [NSMutableArray arrayWithArray:objects];
+        self.searchResults = [NSMutableArray arrayWithArray:self.teachers];
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.spinner stopAnimating];
+            self.spinner.hidden = YES;
+            [self.teachersCollectionView reloadData];});
+    }];
+    [task resume];
+    
 
-    }
 }
 
 -(NSString*) makeJsonFromString:(NSString*)string

@@ -51,6 +51,8 @@
     self.courseName.text = self.course.name;
     self.teachers = [[NSMutableArray alloc] init];
     self.teacherIdArray = [[NSMutableArray alloc] init];
+    [self.teachersTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
     
 
     
@@ -161,7 +163,6 @@
             NSString* day = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"day"]];
             NSString* beginTime = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"beginTime"]];
 
-            
             if ([id isEqualToString:teacherId.id] && [day isEqualToString:teacherId.day] && [beginTime isEqualToString:teacherId.beginTime])
             {
                 //Cancelling local notification
@@ -177,38 +178,12 @@
         teacherIdCoreData.notify = @"YES";
         
         NSDate *now = [NSDate date];
-//        // Specify which units we would like to use
-//        unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-//        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//        NSDateComponents *components = [calendar components:units fromDate:now];
         int day = [self getIntWeekDayFromStringDay:teacherId.day];
         int hour = [self getHourFromString:teacherId.beginTime];
         int minute = [self getMinuteFromString:teacherId.endTime];
-        
         NSString * message = [NSString stringWithFormat:@"you have %@ course" , self.course.name];
         
         [self weekEndNotificationOnWeekday:day hour:hour minute:minute message:message teacherId:teacherId startDate:now];
-        
-//        NSInteger year = [components year];
-//        NSInteger month = [components month];
-//        NSInteger day = [components day];
-//        
-//        NSDateComponents *comps = [[NSDateComponents alloc] init];
-//        [comps setDay:25];
-//        [comps setMonth:5];
-//        [comps setYear:2014];
-//        [comps setHour:2];
-//        [comps setMinute:17];
-//        // [comps setSecond:10];
-//        
-//        
-        //UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-//        localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
-//        
-//        localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
-//        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-//        
-        
     }
     
     [context save:&error];

@@ -60,11 +60,11 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         if (networkStatus == NotReachable)
         {
             NSLog(@"There IS NO internet connection");
+            return;
         }
         else
         {
             NSLog(@"There IS internet connection");
-            return;
         }
         [self initTeachersWithContext:context];
     }

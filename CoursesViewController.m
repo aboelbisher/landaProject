@@ -58,11 +58,12 @@ static NSString* dontNotifyMe = @"NO";
         if (networkStatus == NotReachable)
         {
             NSLog(@"There IS NO internet connection");
+            return;
+
         }
         else
         {
             NSLog(@"There IS internet connection");
-            return;
         }
 
         [self initCoursesWithContext:context];

@@ -15,9 +15,10 @@
                      mail:(NSString*)mail
                 imageName:(NSString*)imageName
                        id:(NSString*)id
-                  faculty:(NSString*)faculty
-       localImageFilePath:(NSString*)localImageFilePath
-   inManagedObjectContext:(NSManagedObjectContext*)context;
+faculty:(NSString*)faculty
+localImageFilePath:(NSString*)localImageFilePath
+position:(NSString*)position
+inManagedObjectContext:(NSManagedObjectContext*)context
 {
     
     Teacher* teacher = nil;
@@ -40,6 +41,7 @@
         teacher.id = id;
         teacher.faculty = faculty;
         teacher.localImageFilePath = localImageFilePath;
+        teacher.position = position;
         [context save:&error];
 
 

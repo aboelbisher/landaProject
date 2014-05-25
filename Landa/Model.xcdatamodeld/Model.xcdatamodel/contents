@@ -16,6 +16,7 @@
         <attribute name="localImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="TeacherId" representedClassName="TeacherId" syncable="YES">
         <attribute name="beginTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,7 +33,7 @@
     </entity>
     <elements>
         <element name="Course" positionX="-470" positionY="-1570" width="128" height="148"/>
-        <element name="Teacher" positionX="-117" positionY="-1566" width="128" height="133"/>
+        <element name="Teacher" positionX="-117" positionY="-1566" width="128" height="148"/>
         <element name="TeacherId" positionX="-288" positionY="-1557" width="128" height="133"/>
         <element name="Update" positionX="-254" positionY="-1404" width="128" height="88"/>
     </elements>

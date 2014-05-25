@@ -16,6 +16,7 @@
                        id:(NSString*)id
                   faculty:(NSString*)faculty
        localImageFilePath:(NSString*)localImageFilePath
+position:(NSString*)position
    inManagedObjectContext:(NSManagedObjectContext*)context;
 
 

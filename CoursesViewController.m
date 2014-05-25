@@ -58,6 +58,7 @@ static NSString* dontNotifyMe = @"NO";
         if (networkStatus == NotReachable)
         {
             NSLog(@"There IS NO internet connection");
+            [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"there's no internet connection!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             return;
         }
         else

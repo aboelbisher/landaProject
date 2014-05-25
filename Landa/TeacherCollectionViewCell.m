@@ -16,7 +16,7 @@
     if (self) {
         // Initialization code
 //        self.teacherImage.image = [UIImage imageNamed:self.teacher.imageName];
-       // self.teacherNameLabel.backgroundColor = [UIColor colorWithRed:236/255.0f green:153/255.0f blue:0/255.0f alpha:0.4f];
+        self.teacherNameLabel.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

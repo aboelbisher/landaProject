@@ -28,6 +28,8 @@
     
     self.nameLabel.text = self.teacher.name;
     self.mailLabel.text = self.teacher.mail;
+    self.facultyLabel.text = self.teacher.faculty;
+    self.roleLabel.text = self.teacher.position;
     
 }
 

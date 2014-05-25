@@ -60,6 +60,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         if (networkStatus == NotReachable)
         {
             NSLog(@"There IS NO internet connection");
+            [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"there's no internet connection!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             return;
         }
         else
@@ -148,7 +149,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         teacher.teacherNameLabel.text = tmpTeacher.name;
         teacher.teacher = [self.searchResults objectAtIndex:indexPath.item];
         
-        teacher.teacherNameLabel.backgroundColor = [UIColor colorWithRed:236/255.0f green:153/255.0f blue:0/255.0f alpha:0.3f];
+        teacher.teacherNameLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3f];
     }
     
     return cell;
@@ -210,6 +211,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
                 NSString * firstName = [tut objectForKey:@"fname"];
                 NSString * lastName = [tut objectForKey:@"lname"];
                 NSString * email = [tut objectForKey:@"email"];
+                NSString * postion = @"חונך אכדמי";
                 firstName = [firstName stringByReplacingOccurrencesOfString:@" " withString:@""];
                 lastName = [lastName stringByReplacingOccurrencesOfString:@" " withString:@""];
                 NSString * name = [firstName stringByAppendingString:@" "];
@@ -225,7 +227,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
                 NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",id]];
                 [data writeToFile:localFilePath atomically:YES];
                 
-                [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.png" , id] id:id faculty:faculty localImageFilePath:localFilePath inManagedObjectContext:context];
+                [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.png" , id] id:id faculty:faculty localImageFilePath:localFilePath position:postion inManagedObjectContext:context];
                 
             }
         }

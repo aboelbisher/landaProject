@@ -17,5 +17,7 @@
 @property (weak , nonatomic) Teacher * teacher;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *facultyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *roleLabel;
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Teacher.h"
+#import <MessageUI/MessageUI.h>
+
 
 @interface TeachersDetailsViewController : UIViewController
 

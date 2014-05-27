@@ -7,12 +7,7 @@
 //
 
 #import "TeachersViewController.h"
-#import "TeacherCollectionViewCell.h"
-#import "TeachersDetailsViewController.h"
-#import "Teacher.h"
-#import "Teacher+init.h"
-#import "LandaAppDelegate.h"
-#import "Reachability.h"
+
 
 static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 

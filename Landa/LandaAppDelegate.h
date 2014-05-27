@@ -6,7 +6,14 @@
 //  Copyright (c) 2014 muhammad abed el razek. All rights reserved.
 //
 
+
+
+
 #import <UIKit/UIKit.h>
+#import "Update.h"
+#import "Update+init.h"
+#import "UpdatesViewController.h"
+
 
 @interface LandaAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -20,3 +27,7 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 @end
+
+
+
+

@@ -7,8 +7,11 @@
 //
 
 #import "LandaAppDelegate.h"
-#import "Update.h"
-#import "Update+init.h"
+
+@class UpdatesViewController;
+
+
+
 #import <Parse/Parse.h>
 
 
@@ -71,8 +74,24 @@ static NSString* notifcationsWebEnd = @"&json=1";
 }
 
 
-
-
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    
+    NSDate *fetchStart = [NSDate date];
+    
+    //UpdatesViewController *viewController = (UpdatesViewController *)self.window.rootViewController;
+    UpdatesViewController * viewController = [[UpdatesViewController alloc] init];
+    
+    [viewController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result)
+    {
+         completionHandler(result);
+         
+         NSDate *fetchEnd = [NSDate date];
+         NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
+         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
+         
+     }];
+}
 
 - (void)saveContext
 {
@@ -156,6 +175,59 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 - (void)application:(UIApplication *)application
+  didReceiveRemoteNotification:(NSDictionary *)userInfo
+        fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+   // NSLog(@"Remote Notification userInfo is %@", userInfo);
+    
+   // NSNumber *contentID = userInfo[@"content-id"];
+    // Do something with the content ID
+    
+    
+    
+    NSString * urlString = notifactionsWebStart;
+    NSString*  postId = [[userInfo valueForKey:@"post_id"] stringValue];
+    if(!postId) // got notification from the wrong place :D
+    {
+        return;
+    }
+    
+    urlString = [urlString stringByAppendingString:postId];
+    urlString = [urlString stringByAppendingString:notifcationsWebEnd];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if(!urlData)
+    {
+        return;
+    }
+    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+    NSString* jsonString = [self makeJsonFromString:webString];
+    
+    NSError * error;
+    NSDictionary *JSON =
+    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                    options: NSJSONReadingMutableContainers
+                                      error: &error];
+    
+    NSDictionary * post = [JSON objectForKey:@"post"];
+    NSString * dateString = [post valueForKey:@"date"];
+    NSString * content = [post valueForKey:@"content"];
+    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [formatter dateFromString:dateString];
+    
+    [Update initWithContent:content date:date postId:postId inManagedObjectContext:self.managedObjectContext];
+    [self.managedObjectContext save:&error];
+    
+    [PFPush handlePush:userInfo];
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSString * urlString = notifactionsWebStart;
@@ -211,18 +283,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(remoteNotificationReceived:) name:@"PushNotificationMessageReceivedNotification"
-//                                               object:nil];
-    // Override point for customization after application launch.
-    
     [Parse setApplicationId:@"QvTjoTQQlUogaFSd0OlbuRwQyPlmTO3khZpgPsm5"
                   clientKey:@"cGJsdBYRRCy9GVxS9rvyyQVNyYf2h4pUI86D9iUb"];
     
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
      UIRemoteNotificationTypeAlert|
      UIRemoteNotificationTypeSound];
+    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+
 
 
     

@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UpdatesTableViewCell.h"
+#import "TeachersDetailsViewController.h"
+#import "UpdatesContentViewController.h"
+#import "Update.h"
+#import "Update+init.h"
+#import "LandaAppDelegate.h"
 
 @interface UpdatesViewController : UIViewController
 
+-(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+
+
 @end
+
+
+

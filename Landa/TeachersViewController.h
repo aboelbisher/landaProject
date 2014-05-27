@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TeacherCollectionViewCell.h"
+#import "TeachersDetailsViewController.h"
+#import "Teacher.h"
+#import "Teacher+init.h"
+#import "LandaAppDelegate.h"
+#import "Reachability.h"
 
 @interface TeachersViewController : UIViewController
 

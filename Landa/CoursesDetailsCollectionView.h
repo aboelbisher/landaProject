@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Course.h"
+#import "TeacherCollectionViewCell.h"
+#import "TeachersDetailsViewController.h"
+#import "Teacher+init.h"
+#import "LandaAppDelegate.h"
+#import "TeacherId.h"
+#import "CoursesTableViewCell.h"
 
 @interface CoursesDetailsCollectionView : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *courseImage;

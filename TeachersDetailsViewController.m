@@ -7,7 +7,6 @@
 //
 
 #import "TeachersDetailsViewController.h"
-#import <MessageUI/MessageUI.h>
 
 @interface TeachersDetailsViewController ()<MFMailComposeViewControllerDelegate>
 

@@ -7,6 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoursesCollectionViewCell.h"
+#import "Course.h"
+#import "CoursesDetailsCollectionView.h"
+#import "Course+init.h"
+#import "LandaAppDelegate.h"
+#import "TeacherId+init.h"
+#import "TeacherId.h"
+#import "Reachability.h"
 
 @interface CoursesViewController : UIViewController
 

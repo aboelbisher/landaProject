@@ -181,8 +181,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
     
-    
-    
     NSURL *url = [NSURL URLWithString:urlDownload];
     NSData * data = [NSData dataWithContentsOfURL:url];
     NSString *jsonString =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -216,25 +214,66 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 
 -(void) refreshTableView
 {
-    [self refreshData];
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError * error;
     
-    NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:updateEntityDisc];
-    NSPredicate *pred =nil;
-    [request setPredicate:pred];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
+    NSURL *url = [NSURL URLWithString:urlDownload];
     
-    self.updates = nil;
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
+   {
+       if(!error)
+       {
+           NSData *urlData = [NSData dataWithContentsOfURL:url];
+           NSString *jsonString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+           
+           NSError * error;
+           NSDictionary *JSON =
+           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                           options: NSJSONReadingMutableContainers
+                                             error: &error];
+           
+           NSArray * posts = [JSON objectForKey:@"posts"];
+           
+           //    NSMutableArray * updates = [[NSMutableArray alloc] init];
+           
+           for(id post in posts)
+           {
+               NSString * content = [post objectForKey:@"content"];
+               NSString * postDate = [post objectForKey:@"date"];
+               NSString * postId = [[post objectForKey:@"id"] stringValue];
+               
+               NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+               [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+               NSDate *date = [formatter dateFromString:postDate];
+               
+               [Update initWithContent:content date:date postId:postId inManagedObjectContext:context];
+           }
+       }
+       
+       NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
+       NSFetchRequest *request = [[NSFetchRequest alloc] init];
+       [request setEntity:updateEntityDisc];
+       NSPredicate *pred =nil;
+       [request setPredicate:pred];
+       NSArray *objects = [context executeFetchRequest:request error:&error];
+       
+       self.updates = nil;
+       
+       self.updates = [NSMutableArray arrayWithArray:objects];
+       
+       dispatch_async(dispatch_get_main_queue(), ^
+       {
+           [self.refreshControl endRefreshing];           
+           [self.tableView reloadData];
+       });
+   }];
+    [task resume];
     
-    self.updates = [NSMutableArray arrayWithArray:objects];
+
     
-    
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
 }
 
 @end

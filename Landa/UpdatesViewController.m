@@ -9,12 +9,6 @@
 #import "UpdatesViewController.h"
 
 
-
-//static CGFloat expandedHeight = 200;
-//static CGFloat contractedHeight = 74.0;
-//static CGRect extendedRect = { 82 , 0 , 184 , 200};
-//static CGRect normalRect = { 82 , 0 , 184 , 74 };
-
 static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=get_recent_posts";
 
 
@@ -24,11 +18,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
-//@property (nonatomic) int currentSelectedRow;
-//@property (nonatomic) int previousSelectedRow;
-//@property (nonatomic) int howManyTaps;
-//@property (nonatomic) BOOL thereIsAnOpenedCell;
-
 @end
 
 @implementation UpdatesViewController
@@ -37,7 +26,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 {
     [super viewDidLoad];
     
-    self.tableView.backgroundColor = [UIColor colorWithRed:226/255.0f green:254/255.0f blue:255/255.0f alpha:1.0f];
+   // self.tableView.backgroundColor = [UIColor colorWithRed:226/255.0f green:254/255.0f blue:255/255.0f alpha:1.0f];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -81,11 +70,13 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     [self.tableView reloadData];
 
 }
-//
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 //{
-//    return 4;
+//    return (CGFloat)150;
 //}
+
+
 
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -95,12 +86,9 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return YES if you want the specified item to be editable.
-
     return YES;
 }
 
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -199,6 +187,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     for(id post in posts)
     {
         NSString * content = [post objectForKey:@"content"];
+        content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+        content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
         NSString * postDate = [post objectForKey:@"date"];
         NSString * postId = [[post objectForKey:@"id"] stringValue];
         
@@ -242,6 +232,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
            for(id post in posts)
            {
                NSString * content = [post objectForKey:@"content"];
+               content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+               content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
                NSString * postDate = [post objectForKey:@"date"];
                NSString * postId = [[post objectForKey:@"id"] stringValue];
                
@@ -266,7 +258,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
        
        dispatch_async(dispatch_get_main_queue(), ^
        {
-           [self.refreshControl endRefreshing];           
+           [self.refreshControl endRefreshing];
            [self.tableView reloadData];
        });
    }];

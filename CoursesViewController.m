@@ -32,6 +32,8 @@ static NSString* dontNotifyMe = @"NO";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.coursesCollectionView.backgroundColor = [UIColor clearColor];
+    [self.coursesCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
+
     self.spinner.color = [UIColor blackColor];
     self.spinner.hidden = YES;
     

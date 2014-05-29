@@ -11,9 +11,10 @@
 @implementation Update (init)
 
 +(Update *) initWithContent:(NSString*)content
-                     date:(NSDate*)date
+                      title:(NSString*)title
+                       date:(NSDate*)date
                      postId:(NSString *)postId
-   inManagedObjectContext:(NSManagedObjectContext*)context
+     inManagedObjectContext:(NSManagedObjectContext*)context
 {
     
     Update* update = nil;
@@ -34,6 +35,7 @@
         update.content = content;
         update.date = date;
         update.postId = postId;
+        update.title = title;
         [context save:&error];
         
         

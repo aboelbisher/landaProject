@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *text;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak , nonatomic) Update* update;
+@property (weak, nonatomic) IBOutlet UILabel *title;
 
 //@property (weak, nonatomic) IBOutlet UIImageView *expandImage;
 //@property (weak, nonatomic) IBOutlet UITextView *textView;

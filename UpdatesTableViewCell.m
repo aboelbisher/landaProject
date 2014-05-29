@@ -23,6 +23,7 @@
 {
     // Initialization code
     self.image.image = [UIImage imageNamed:@"updates.png"];
+  //  self.title.text = self.update.title;
     //self.expandImage.image = [UIImage imageNamed:@"expand.png"];
     //self.textView.backgroundColor = [UIColor clearColor];
 

@@ -27,6 +27,7 @@
 		F923C37F18F0BD3E0065C5EB /* UpdatesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F923C37E18F0BD3E0065C5EB /* UpdatesTableViewCell.m */; };
 		F923C38118F0C0690065C5EB /* updates.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C38018F0C0690065C5EB /* updates.png */; };
 		F923C38318F0DF320065C5EB /* expand.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C38218F0DF320065C5EB /* expand.png */; };
+		F928E04D1936B18A00A2449E /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F928E04C1936B18A00A2449E /* Update.m */; };
 		F9302FC118EE499B0064E984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC018EE499B0064E984 /* Foundation.framework */; };
 		F9302FC318EE499B0064E984 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC218EE499B0064E984 /* CoreGraphics.framework */; };
 		F9302FC518EE499B0064E984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC418EE499B0064E984 /* UIKit.framework */; };
@@ -61,7 +62,6 @@
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
-		F9777745193288F600B15754 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F9777744193288F600B15754 /* Update.m */; };
 		F9777748193288F700B15754 /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F9777747193288F700B15754 /* TeacherId.m */; };
 		F977774B193288F700B15754 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F977774A193288F700B15754 /* Course.m */; };
 		F977774E193288F700B15754 /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F977774D193288F700B15754 /* Teacher.m */; };
@@ -111,6 +111,8 @@
 		F923C37E18F0BD3E0065C5EB /* UpdatesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdatesTableViewCell.m; path = ../UpdatesTableViewCell.m; sourceTree = "<group>"; };
 		F923C38018F0C0690065C5EB /* updates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updates.png; sourceTree = "<group>"; };
 		F923C38218F0DF320065C5EB /* expand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expand.png; sourceTree = "<group>"; };
+		F928E04B1936B18A00A2449E /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Update.h; path = ../Update.h; sourceTree = "<group>"; };
+		F928E04C1936B18A00A2449E /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Update.m; path = ../Update.m; sourceTree = "<group>"; };
 		F9302FBD18EE499B0064E984 /* Landa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Landa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9302FC018EE499B0064E984 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F9302FC218EE499B0064E984 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -154,8 +156,6 @@
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F97777411931A06400B15754 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		F9777743193288F600B15754 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Update.h; path = ../Update.h; sourceTree = "<group>"; };
-		F9777744193288F600B15754 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Update.m; path = ../Update.m; sourceTree = "<group>"; };
 		F9777746193288F700B15754 /* TeacherId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeacherId.h; path = ../TeacherId.h; sourceTree = "<group>"; };
 		F9777747193288F700B15754 /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeacherId.m; path = ../TeacherId.m; sourceTree = "<group>"; };
 		F9777749193288F700B15754 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Course.h; path = ../Course.h; sourceTree = "<group>"; };
@@ -240,8 +240,8 @@
 		F91FBA3E18F4774200B7F8D7 /* Update */ = {
 			isa = PBXGroup;
 			children = (
-				F9777743193288F600B15754 /* Update.h */,
-				F9777744193288F600B15754 /* Update.m */,
+				F928E04B1936B18A00A2449E /* Update.h */,
+				F928E04C1936B18A00A2449E /* Update.m */,
 				F96916B319292E3E00A569FA /* Update+init.h */,
 				F96916B419292E3E00A569FA /* Update+init.m */,
 				F923C37718F0BCD80065C5EB /* UpdatesViewController.h */,
@@ -543,9 +543,9 @@
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
 				F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */,
+				F928E04D1936B18A00A2449E /* Update.m in Sources */,
 				F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */,
 				F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */,
-				F9777745193288F600B15754 /* Update.m in Sources */,
 				F9777748193288F700B15754 /* TeacherId.m in Sources */,
 				F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */,
 				F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */,

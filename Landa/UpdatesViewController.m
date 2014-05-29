@@ -107,8 +107,16 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         [context deleteObject:object];
         [context save:&error];
         
+        NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
+        [indexPaths addObject:indexPath];
+        
+
+        
         [self.updates removeObjectAtIndex:index];
-        [self.tableView reloadData];
+        
+        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+
+     //   [self.tableView reloadData];
 
     }
 }
@@ -128,6 +136,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         UpdatesTableViewCell * update = (UpdatesTableViewCell*) cell;
         update.text.text = [NSString stringWithFormat:@"%@" , tmpUpdate.content];
         update.update = tmpUpdate;
+        update.title.text = [NSString stringWithFormat:@"%@" , tmpUpdate.title];
     }
     return cell;
 }
@@ -186,17 +195,19 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     
     for(id post in posts)
     {
+        NSString * title = [post objectForKey:@"title"];
         NSString * content = [post objectForKey:@"content"];
         content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
         content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
         NSString * postDate = [post objectForKey:@"date"];
         NSString * postId = [[post objectForKey:@"id"] stringValue];
         
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSDate *date = [formatter dateFromString:postDate];
         
-        [Update initWithContent:content date:date postId:postId inManagedObjectContext:context];
+        [Update initWithContent:content title:title date:date postId:postId inManagedObjectContext:context];
     }
 
 
@@ -231,6 +242,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
            
            for(id post in posts)
            {
+               NSString * title = [post objectForKey:@"title"];
                NSString * content = [post objectForKey:@"content"];
                content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
                content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
@@ -241,7 +253,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
                NSDate *date = [formatter dateFromString:postDate];
                
-               [Update initWithContent:content date:date postId:postId inManagedObjectContext:context];
+               [Update initWithContent:content title:title date:date postId:postId inManagedObjectContext:context];
            }
        }
        

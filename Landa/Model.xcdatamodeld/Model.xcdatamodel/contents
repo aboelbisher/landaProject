@@ -30,11 +30,12 @@
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="postId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Course" positionX="-470" positionY="-1570" width="128" height="148"/>
         <element name="Teacher" positionX="-117" positionY="-1566" width="128" height="148"/>
         <element name="TeacherId" positionX="-288" positionY="-1557" width="128" height="133"/>
-        <element name="Update" positionX="-254" positionY="-1404" width="128" height="88"/>
+        <element name="Update" positionX="-254" positionY="-1404" width="128" height="105"/>
     </elements>
 </model>

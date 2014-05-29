@@ -116,7 +116,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         
         [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
 
-     //   [self.tableView reloadData];
 
     }
 }

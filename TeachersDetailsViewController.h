@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "Teacher.h"
 #import <MessageUI/MessageUI.h>
 

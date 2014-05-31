@@ -31,9 +31,13 @@ static NSString* dontNotifyMe = @"NO";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.coursesCollectionView.backgroundColor = [UIColor clearColor];
-    [self.coursesCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
-
+    self.coursesCollectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    self.searchBar.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    [self.searchBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    
+    
     self.spinner.color = [UIColor blackColor];
     self.spinner.hidden = YES;
     
@@ -73,6 +77,11 @@ static NSString* dontNotifyMe = @"NO";
         NSPredicate *pred =nil;
         [request setPredicate:pred];
         NSArray *objects = [context executeFetchRequest:request error:&error];
+        
+        if ([objects count] == 0)
+        {
+            [self initCoursesWithContext:context];
+        }
         
         self.courses = [NSMutableArray arrayWithArray:objects];
         self.searchResults = [NSMutableArray arrayWithArray:self.courses];
@@ -162,7 +171,7 @@ static NSString* dontNotifyMe = @"NO";
         
         course.courseImage.image = [UIImage imageNamed:tmpCourse.imageName];
         course.courseName.text = [NSString stringWithFormat:@"%@" , tmpCourse.name];
-        course.courseName.textColor = [UIColor blueColor];
+        course.courseName.textColor = [UIColor whiteColor];
         course.course = tmpCourse;
         
         
@@ -250,7 +259,11 @@ static NSString* dontNotifyMe = @"NO";
                 NSString * day = [course objectForKey:@"day"];
                 NSString * name = [course objectForKey:@"subject_name"];
                 
-                Course * course = [Course initWithName:name imageName:@"technion.jpg" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+                
+            
+                
+                
+                Course * course = [Course initWithName:name imageName:@"landaIcon.png" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
                 [context save:&error];
                 TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day notify:dontNotifyMe inManagedObjectContext:context];
                 [context save:&error];

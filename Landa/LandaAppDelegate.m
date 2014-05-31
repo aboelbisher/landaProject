@@ -291,6 +291,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     
     UIImage* tabBarBackground = [UIImage imageNamed:@"tabbar.png"];
     [[UITabBar appearance] setBackgroundImage:tabBarBackground];
+  //  [[UITabBar appearance] setBackgroundColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
 
     
     

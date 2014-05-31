@@ -14,7 +14,6 @@
 		F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FB9EF18F4254F00B7F8D7 /* TeachersDetailsViewController.m */; };
 		F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FBA4718F6011000B7F8D7 /* CoursesDetailsCollectionView.m */; };
 		F91FBA5018F622D300B7F8D7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91FBA4F18F622D300B7F8D7 /* MessageUI.framework */; };
-		F91FBA5318FDA7BE00B7F8D7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F91FBA5118FDA7BE00B7F8D7 /* Model.xcdatamodeld */; };
 		F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FBA6118FDAB6900B7F8D7 /* Teacher+init.m */; };
 		F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FBA6418FDAE9F00B7F8D7 /* Course+init.m */; };
 		F91FBA7618FDD10000B7F8D7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91FBA7518FDD10000B7F8D7 /* CoreData.framework */; };
@@ -60,12 +59,14 @@
 		F932381A192909140066328A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9323819192909140066328A /* Security.framework */; };
 		F932381C1929091B0066328A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381B1929091B0066328A /* StoreKit.framework */; };
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
-		F95ACAAC19394EEE00E546FB /* prof.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAAB19394EEE00E546FB /* prof.png */; };
 		F95ACAAE19394FC100E546FB /* courses.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAAD19394FC100E546FB /* courses.png */; };
-		F95ACAB01939503B00E546FB /* updatesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAAF1939503B00E546FB /* updatesIcon.png */; };
 		F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB1193951E600E546FB /* grayColor.jpg */; };
 		F95ACAB5193952BF00E546FB /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB3193952BF00E546FB /* tabbar.png */; };
 		F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB4193952BF00E546FB /* tabbar@2x.png */; };
+		F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB7193A13A500E546FB /* mailIcon.png */; };
+		F95ACABA193A1AAE00E546FB /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB9193A1AAE00E546FB /* landaIcon.png */; };
+		F95ACAC4193A235800E546FB /* updatesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAC3193A235800E546FB /* updatesIcon.png */; };
+		F95ACAC6193A25A500E546FB /* teachersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAC5193A25A500E546FB /* teachersIcon.png */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F9777748193288F700B15754 /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F9777747193288F700B15754 /* TeacherId.m */; };
@@ -99,7 +100,6 @@
 		F91FBA4618F6011000B7F8D7 /* CoursesDetailsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesDetailsCollectionView.h; sourceTree = "<group>"; };
 		F91FBA4718F6011000B7F8D7 /* CoursesDetailsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesDetailsCollectionView.m; sourceTree = "<group>"; };
 		F91FBA4F18F622D300B7F8D7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		F91FBA5218FDA7BE00B7F8D7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F91FBA6018FDAB6900B7F8D7 /* Teacher+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Teacher+init.h"; sourceTree = "<group>"; };
 		F91FBA6118FDAB6900B7F8D7 /* Teacher+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Teacher+init.m"; sourceTree = "<group>"; };
 		F91FBA6318FDAE9F00B7F8D7 /* Course+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Course+init.h"; sourceTree = "<group>"; };
@@ -158,12 +158,14 @@
 		F9323819192909140066328A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F932381B1929091B0066328A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F932381D192909230066328A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		F95ACAAB19394EEE00E546FB /* prof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prof.png; sourceTree = "<group>"; };
 		F95ACAAD19394FC100E546FB /* courses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = courses.png; sourceTree = "<group>"; };
-		F95ACAAF1939503B00E546FB /* updatesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIcon.png; sourceTree = "<group>"; };
 		F95ACAB1193951E600E546FB /* grayColor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grayColor.jpg; sourceTree = "<group>"; };
 		F95ACAB3193952BF00E546FB /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		F95ACAB4193952BF00E546FB /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
+		F95ACAB7193A13A500E546FB /* mailIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailIcon.png; sourceTree = "<group>"; };
+		F95ACAB9193A1AAE00E546FB /* landaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaIcon.png; sourceTree = "<group>"; };
+		F95ACAC3193A235800E546FB /* updatesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIcon.png; sourceTree = "<group>"; };
+		F95ACAC5193A25A500E546FB /* teachersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teachersIcon.png; sourceTree = "<group>"; };
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -331,7 +333,6 @@
 		F9302FC618EE499B0064E984 /* Landa */ = {
 			isa = PBXGroup;
 			children = (
-				F91FBA5118FDA7BE00B7F8D7 /* Model.xcdatamodeld */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
@@ -379,14 +380,16 @@
 		F930300118EE49CC0064E984 /* pic */ = {
 			isa = PBXGroup;
 			children = (
+				F95ACAB9193A1AAE00E546FB /* landaIcon.png */,
+				F95ACAB7193A13A500E546FB /* mailIcon.png */,
+				F95ACAC3193A235800E546FB /* updatesIcon.png */,
 				F9C7AD89192D52000086B99D /* technion.jpg */,
-				F95ACAAB19394EEE00E546FB /* prof.png */,
 				F95ACAB3193952BF00E546FB /* tabbar.png */,
 				F95ACAB4193952BF00E546FB /* tabbar@2x.png */,
 				F95ACAAD19394FC100E546FB /* courses.png */,
 				F95ACAB1193951E600E546FB /* grayColor.jpg */,
+				F95ACAC5193A25A500E546FB /* teachersIcon.png */,
 				F923C36F18F0B59D0065C5EB /* algebra.jpg */,
-				F95ACAAF1939503B00E546FB /* updatesIcon.png */,
 				F923C37018F0B59D0065C5EB /* c.png */,
 				F91FB99718F3237C00B7F8D7 /* expandR.png */,
 				F923C38218F0DF320065C5EB /* expand.png */,
@@ -520,18 +523,20 @@
 				F9302FFB18EE49C00064E984 /* 7amed.jpg in Resources */,
 				F923C38118F0C0690065C5EB /* updates.png in Resources */,
 				F923C38318F0DF320065C5EB /* expand.png in Resources */,
-				F95ACAB01939503B00E546FB /* updatesIcon.png in Resources */,
 				F9C7AD8A192D52000086B99D /* technion.jpg in Resources */,
-				F95ACAAC19394EEE00E546FB /* prof.png in Resources */,
+				F95ACAC4193A235800E546FB /* updatesIcon.png in Resources */,
+				F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */,
 				F930300018EE49C00064E984 /* ward.jpg in Resources */,
 				F9302FFE18EE49C00064E984 /* mothana.jpg in Resources */,
 				F90F06EA18FF398500D7C5E8 /* Images.xcassets in Resources */,
 				F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */,
 				F9302FFF18EE49C00064E984 /* muhammad.jpg in Resources */,
 				F9302FD418EE499B0064E984 /* Main.storyboard in Resources */,
+				F95ACABA193A1AAE00E546FB /* landaIcon.png in Resources */,
 				F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */,
 				F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */,
 				F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */,
+				F95ACAC6193A25A500E546FB /* teachersIcon.png in Resources */,
 				F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */,
 				F9302FFD18EE49C00064E984 /* hasan.jpg in Resources */,
 				F930300918EE4E880064E984 /* thrwat.jpg in Resources */,
@@ -555,7 +560,6 @@
 			files = (
 				F977774E193288F700B15754 /* Teacher.m in Sources */,
 				F977774B193288F700B15754 /* Course.m in Sources */,
-				F91FBA5318FDA7BE00B7F8D7 /* Model.xcdatamodeld in Sources */,
 				F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */,
 				F91FB99B18F33B9700B7F8D7 /* TeachersNavigationController.m in Sources */,
 				F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */,
@@ -805,19 +809,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		F91FBA5118FDA7BE00B7F8D7 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				F91FBA5218FDA7BE00B7F8D7 /* Model.xcdatamodel */,
-			);
-			currentVersion = F91FBA5218FDA7BE00B7F8D7 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = F9302FB518EE499B0064E984 /* Project object */;
 }

@@ -23,7 +23,17 @@
     NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",self.teacher.id]];
     UIImage* image = [UIImage imageWithContentsOfFile:path];
     
+    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    
     self.teacherImage.image = image;
+    
+//    self.teacherImage.layer.shadowColor = [UIColor blackColor].CGColor;
+//    self.teacherImage.layer.shadowOffset = CGSizeMake(0, 10);
+//    self.teacherImage.layer.shadowOpacity = 1;
+//    self.teacherImage.layer.shadowRadius = 5.0;
+    
+    self.teacherImage.layer.cornerRadius = self.teacherImage.frame.size.width / 2;
+    self.teacherImage.clipsToBounds = YES;
     
     self.nameLabel.text = self.teacher.name;
     self.mailLabel.text = self.teacher.mail;

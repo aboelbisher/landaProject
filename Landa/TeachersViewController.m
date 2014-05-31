@@ -52,11 +52,14 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
+    
+
 
     
 
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
+        
         Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
         NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
         if (networkStatus == NotReachable)
@@ -80,6 +83,11 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         NSPredicate *pred =nil;
         [request setPredicate:pred];
         NSArray *objects = [context executeFetchRequest:request error:&error];
+        
+        if ([objects count] == 0)
+        {
+            [self initTeachersWithContext:context];
+        }
         
         self.teachers = [NSMutableArray arrayWithArray:objects];
         self.searchResults = [NSMutableArray arrayWithArray:self.teachers];
@@ -164,19 +172,17 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
             rotate += -30;
         }
         
-        
-       teacher.teacherImage.image = image;
-        
+        teacher.teacherImage.image = image;
         teacher.teacherImage.layer.shadowColor = [UIColor blackColor].CGColor;
         teacher.teacherImage.layer.shadowOffset = CGSizeMake(0, 5);
         teacher.teacherImage.layer.shadowOpacity = 1;
         teacher.teacherImage.layer.shadowRadius = 5.0;
 
-        
         teacher.teacherImage.transform = CGAffineTransformMakeRotation(M_PI/rotate);
         [teacher.teacherImage.layer setBounds:CGRectMake(15, 0, 100, 100)];
         [teacher.teacherImage.layer setBorderColor:[[UIColor groupTableViewBackgroundColor] CGColor]];
         [teacher.teacherImage.layer setBorderWidth:2.0];
+    
         
         teacher.teacherNameLabel.text = tmpTeacher.name;
         teacher.teacher = [self.searchResults objectAtIndex:indexPath.item];
@@ -273,6 +279,9 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         
         self.teachers = [NSMutableArray arrayWithArray:objects];
         self.searchResults = [NSMutableArray arrayWithArray:self.teachers];
+        
+        
+        
         
         
         

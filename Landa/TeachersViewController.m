@@ -32,7 +32,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     
     self.teachersCollectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
 
-    [self.teachersCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
+    //[self.teachersCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
     
     self.spinner.color = [UIColor blackColor];
     self.spinner.hidden = YES;

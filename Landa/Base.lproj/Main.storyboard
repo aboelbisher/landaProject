@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" indicatorStyle="black" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-PK-Ry5">
-                                <rect key="frame" x="0.0" y="102" width="320" height="417"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="456"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rcn-o2-PKS">
                                     <size key="itemSize" width="150" height="150"/>
@@ -46,7 +46,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="8MA-vD-Tdv">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="417"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                                 <cells>
@@ -350,8 +350,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fJ7-XX-iM7">
-                                <rect key="frame" x="0.0" y="107" width="320" height="411"/>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fJ7-XX-iM7">
+                                <rect key="frame" x="0.0" y="107" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="34z-7S-jOB">
@@ -361,7 +361,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="AIy-tl-QDo">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                                 <cells>
@@ -422,13 +422,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Njq-NT-ClE" firstAttribute="top" secondItem="fJ7-XX-iM7" secondAttribute="bottom" id="6I5-fk-Vmc"/>
-                            <constraint firstItem="fJ7-XX-iM7" firstAttribute="trailing" secondItem="cMU-rh-boo" secondAttribute="trailing" id="GxQ-iu-hwy"/>
-                            <constraint firstAttribute="trailing" secondItem="cMU-rh-boo" secondAttribute="trailing" id="HV0-Or-KwR"/>
-                            <constraint firstItem="fJ7-XX-iM7" firstAttribute="leading" secondItem="FP0-le-Jhi" secondAttribute="leading" id="NMw-Hp-5UG"/>
-                            <constraint firstItem="fJ7-XX-iM7" firstAttribute="leading" secondItem="cMU-rh-boo" secondAttribute="leading" id="npb-p1-i2z"/>
-                            <constraint firstItem="cMU-rh-boo" firstAttribute="top" secondItem="FP0-le-Jhi" secondAttribute="top" constant="63" id="qup-WJ-ryY"/>
-                            <constraint firstItem="fJ7-XX-iM7" firstAttribute="top" secondItem="cMU-rh-boo" secondAttribute="bottom" id="sxi-u1-3Fz"/>
+                            <constraint firstItem="fJ7-XX-iM7" firstAttribute="trailing" secondItem="cMU-rh-boo" secondAttribute="trailing" id="0BK-Wb-Dm2"/>
+                            <constraint firstAttribute="trailing" secondItem="fJ7-XX-iM7" secondAttribute="trailing" id="IL1-Ip-vA7"/>
+                            <constraint firstItem="cMU-rh-boo" firstAttribute="top" secondItem="FP0-le-Jhi" secondAttribute="top" constant="63" id="PES-Ls-0k4"/>
+                            <constraint firstItem="fJ7-XX-iM7" firstAttribute="leading" secondItem="cMU-rh-boo" secondAttribute="leading" id="UAS-n5-9SM"/>
+                            <constraint firstItem="fJ7-XX-iM7" firstAttribute="top" secondItem="cMU-rh-boo" secondAttribute="bottom" id="chj-FH-pdV"/>
+                            <constraint firstItem="Njq-NT-ClE" firstAttribute="top" secondItem="fJ7-XX-iM7" secondAttribute="bottom" constant="2" id="rC1-YP-Z3T"/>
+                            <constraint firstItem="fJ7-XX-iM7" firstAttribute="leading" secondItem="FP0-le-Jhi" secondAttribute="leading" id="yuc-dH-Q1p"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kLb-7p-QiG"/>

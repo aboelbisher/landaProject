@@ -20,6 +20,7 @@
     // Do any additional setup after loading the view.
     self.textView.contentInset = UIEdgeInsetsMake(-50,0.0,0,0.0);
     self.textView.text = self.updateContentText;
+    self.titleLabel.text = self.update.title;
 //    self.dateText.text = [NSString stringWithFormat:@"%@" , self.date];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

@@ -12,17 +12,13 @@
 static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 
 @interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
-{
-    NSURLSession* _session;
-}
 
-//@property(nonatomic , strong) NSArray * teachersPic;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *teachersCollectionView;
 @property(nonatomic , strong) NSMutableArray * teachers; // of Teacher(s)
 @property (nonatomic , strong) NSMutableArray * searchResults;
 @property (weak, nonatomic) IBOutlet UISearchBar *searcBar;
 @property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
-//@property (strong , nonatomic) NSManagedObjectContext * context;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 @end
@@ -32,11 +28,22 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.teachersCollectionView.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f];
+    //self.teachersCollectionView.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f];
+    
+    self.teachersCollectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+
     [self.teachersCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
     
     self.spinner.color = [UIColor blackColor];
     self.spinner.hidden = YES;
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    [self.searcBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+
+    
+    //[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
+
     
     
     self.teachers = [[NSMutableArray alloc] init];
@@ -132,6 +139,8 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     
     if([cell isKindOfClass:[TeacherCollectionViewCell class]])
     {
+
+
         
         TeacherCollectionViewCell* teacher = (TeacherCollectionViewCell*) cell;
         Teacher* tmpTeacher = [self.searchResults objectAtIndex:indexPath.item];
@@ -140,11 +149,39 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",tmpTeacher.id]];
         UIImage* image = [UIImage imageWithContentsOfFile:path];
-        teacher.teacherImage.image = image;
+        
+        
+        // rand for rotating pics
+        int rotate = arc4random() % 5;
+        int RightOrLeft = arc4random()% 2;
+        if(RightOrLeft == 1)
+        {
+            rotate += 30;
+        }
+        else
+        {
+            rotate = -rotate;
+            rotate += -30;
+        }
+        
+        
+       teacher.teacherImage.image = image;
+        
+        teacher.teacherImage.layer.shadowColor = [UIColor blackColor].CGColor;
+        teacher.teacherImage.layer.shadowOffset = CGSizeMake(0, 5);
+        teacher.teacherImage.layer.shadowOpacity = 1;
+        teacher.teacherImage.layer.shadowRadius = 5.0;
+
+        
+        teacher.teacherImage.transform = CGAffineTransformMakeRotation(M_PI/rotate);
+        [teacher.teacherImage.layer setBounds:CGRectMake(15, 0, 100, 100)];
+        [teacher.teacherImage.layer setBorderColor:[[UIColor groupTableViewBackgroundColor] CGColor]];
+        [teacher.teacherImage.layer setBorderWidth:2.0];
+        
         teacher.teacherNameLabel.text = tmpTeacher.name;
         teacher.teacher = [self.searchResults objectAtIndex:indexPath.item];
         
-        teacher.teacherNameLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3f];
+        //teacher.teacherNameLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3f];
     }
     
     return cell;

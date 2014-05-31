@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *dateText;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak , nonatomic) Update * update;
 @property(strong , nonatomic) NSString* updateContentText;
 @end

@@ -34,7 +34,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 
     //[self.teachersCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
     
-    self.spinner.color = [UIColor blackColor];
+    self.spinner.color = [UIColor whiteColor];
     self.spinner.hidden = YES;
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -60,6 +60,8 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
         
+        [LastRefresh initWithDate:[NSDate date] id:@"12345" inManagedObjectContext:context];
+        
         Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
         NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
         if (networkStatus == NotReachable)
@@ -73,7 +75,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
             NSLog(@"There IS internet connection");
         }
         [self initTeachersWithContext:context];
-        [Update initWithContent:@"swipe down to get the latest updates" title:@"info!" date:nil postId:0 inManagedObjectContext:context];
+//        [Update initWithContent:@"swipe down to get the latest updates" title:@"info!" date:nil postId:0 hasBeenRead:<#(NSNumber *)#> inManagedObjectContext:<#(NSManagedObjectContext *)#> ];
     }
     else
     {

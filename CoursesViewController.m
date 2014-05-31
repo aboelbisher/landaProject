@@ -38,7 +38,7 @@ static NSString* dontNotifyMe = @"NO";
     [self.searchBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
     
     
-    self.spinner.color = [UIColor blackColor];
+    self.spinner.color = [UIColor whiteColor];
     self.spinner.hidden = YES;
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -268,12 +268,13 @@ static NSString* dontNotifyMe = @"NO";
                 NSString * endTime = [course objectForKey:@"time_to"];
                 NSString * day = [course objectForKey:@"day"];
                 NSString * name = [course objectForKey:@"subject_name"];
+                NSString * id = [course objectForKey:@"id"];
                 
                 
             
                 
                 
-                Course * course = [Course initWithName:name imageName:@"landaIcon.png" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+                Course * course = [Course initWithName:name id:id imageName:@"landaIcon.png" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
                 [context save:&error];
                 TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day notify:dontNotifyMe inManagedObjectContext:context];
                 [context save:&error];

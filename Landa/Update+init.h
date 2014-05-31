@@ -15,6 +15,7 @@
                       title:(NSString*)title
                        date:(NSDate*)date
                      postId:(NSString *)postId
+                hasBeenRead:(NSString *)hasBeenRead
      inManagedObjectContext:(NSManagedObjectContext*)context;
 
 @end

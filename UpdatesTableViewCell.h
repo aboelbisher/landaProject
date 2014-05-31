@@ -11,10 +11,11 @@
 
 @interface UpdatesTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UITextField *text;
-@property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak , nonatomic) Update* update;
 @property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *hasBeenReadImage;
 
 //@property (weak, nonatomic) IBOutlet UIImageView *expandImage;
 //@property (weak, nonatomic) IBOutlet UITextView *textView;

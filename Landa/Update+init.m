@@ -14,6 +14,7 @@
                       title:(NSString*)title
                        date:(NSDate*)date
                      postId:(NSString *)postId
+                hasBeenRead:(NSString *)hasBeenRead
      inManagedObjectContext:(NSManagedObjectContext*)context
 {
     
@@ -36,6 +37,7 @@
         update.date = date;
         update.postId = postId;
         update.title = title;
+        update.hasBeenRead = hasBeenRead;
         [context save:&error];
         
         

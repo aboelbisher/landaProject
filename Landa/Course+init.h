@@ -11,6 +11,7 @@
 @interface Course (init)
 
 +(Course*) initWithName:(NSString*)name
+                     id:(NSString*) id
               imageName:(NSString*)imageName
                    date:(NSDate*)date
                   place:(NSString*)place

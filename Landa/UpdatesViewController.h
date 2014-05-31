@@ -13,6 +13,7 @@
 #import "Update.h"
 #import "Update+init.h"
 #import "LandaAppDelegate.h"
+#import "LastRefresh+init.h"
 
 @interface UpdatesViewController : UIViewController
 

@@ -2,7 +2,7 @@
 //  Course.h
 //  Landa
 //
-//  Created by muhammad abed el razek on 5/25/14.
+//  Created by muhammad abed el razek on 5/31/14.
 //  Copyright (c) 2014 muhammad abed el razek. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString * imageName;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * place;
+@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSSet *teachers;
 @end
 

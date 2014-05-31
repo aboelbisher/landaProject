@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Update.h"
+#import "LandaAppDelegate.h"
 
 @interface UpdatesContentViewController : UIViewController
 

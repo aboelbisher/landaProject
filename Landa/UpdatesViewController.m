@@ -28,6 +28,10 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     
    // self.tableView.backgroundColor = [UIColor colorWithRed:226/255.0f green:254/255.0f blue:255/255.0f alpha:1.0f];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -130,12 +134,44 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         
         cell.backgroundColor = [UIColor clearColor];
         
+        int cellHeigh = cell.bounds.size.height;
+        UIView* separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, cellHeigh, 320, 1)];
+        separatorLineView.backgroundColor = [UIColor colorWithWhite:0.4f alpha:1.0f];// you can also put image here !!!!!
+        [cell.contentView addSubview:separatorLineView];
+
+        
         Update * tmpUpdate = [self.updates objectAtIndex:indexPath.item];
         
         UpdatesTableViewCell * update = (UpdatesTableViewCell*) cell;
-        update.text.text = [NSString stringWithFormat:@"%@" , tmpUpdate.content];
+        //update.text.text = [NSString stringWithFormat:@"%@" , tmpUpdate.content];
         update.update = tmpUpdate;
         update.title.text = [NSString stringWithFormat:@"%@" , tmpUpdate.title];
+        NSDate * date = tmpUpdate.date;
+        //update.dateLabel.text = [[NSString stringWithFormat:@"%@" , [tmpUpdate.date ]
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *stringFromDate = [formatter stringFromDate:date];
+        
+   
+        update.dateLabel.text = stringFromDate;
+        
+//        NSNumber * stam = tmpUpdate.hasBeenRead;
+//        NSNumber * stam1 = [NSNumber numberWithBool:NO];
+        
+        if([tmpUpdate.hasBeenRead isEqualToString:@"NO"])
+        {
+            update.hasBeenReadImage.hidden = NO;
+        }
+        else
+        {
+            update.hasBeenReadImage.hidden = YES;
+        }
+        
+        
+        [formatter setDateFormat:@"HH:mm"];
+        NSString* stringFromTime = [formatter stringFromDate:date];
+        update.timeLabel.text = stringFromTime;
     }
     return cell;
 }
@@ -152,7 +188,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                 
                 UpdatesContentViewController *tsvc = (UpdatesContentViewController *)segue.destinationViewController;
                 
-                NSString* updateContentText = sourceController.text.text;
+                NSString* updateContentText = sourceController.update.content;
 
                 
                 tsvc.updateContentText = updateContentText;
@@ -175,6 +211,17 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError * error = nil;
+    
+    NSEntityDescription *lastRefreshEntity = [NSEntityDescription entityForName:@"LastRefresh" inManagedObjectContext:context];
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:lastRefreshEntity];
+    NSPredicate* pred =[NSPredicate predicateWithFormat:@"(id = %@)", @"12345"];
+    [request setPredicate:pred];
+    NSArray *lastRefreshArray = [context executeFetchRequest:request
+                                                       error:&error];
+    
+    LastRefresh * lastRefresh = [lastRefreshArray firstObject];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
@@ -187,7 +234,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     
     NSString *jsonString =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    NSError * error;
     NSDictionary *JSON =
     [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
                                     options: NSJSONReadingMutableContainers
@@ -212,7 +258,17 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSDate *date = [formatter dateFromString:postDate];
         
-        [Update initWithContent:content title:title date:date postId:postId inManagedObjectContext:context];
+        if ([date compare:lastRefresh.lastRefresh] == NSOrderedDescending)
+        {
+            NSLog(@"date is later than lastRefresh.lastRefresh");
+            [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
+            
+        }
+        
+        //[context save:&error];
+
+        
+        //[Update initWithContent:content title:title date:date postId:postId inManagedObjectContext:context];
     }
 
 
@@ -222,16 +278,29 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 {
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError * error = nil;
+    
+    NSEntityDescription *lastRefreshEntity = [NSEntityDescription entityForName:@"LastRefresh" inManagedObjectContext:context];
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:lastRefreshEntity];
+    NSPredicate* pred =[NSPredicate predicateWithFormat:@"(id = %@)", @"12345"];
+    [request setPredicate:pred];
+    NSArray *lastRefreshArray = [context executeFetchRequest:request
+                                                       error:&error];
+    
+    LastRefresh * lastRefresh = [lastRefreshArray firstObject];
+    
+
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     
     NSURL *url = [NSURL URLWithString:urlDownload];
     
-    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLRequest * downloadRequest = [NSURLRequest requestWithURL:url];
     NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
     NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
+    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:downloadRequest completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
    {
        dispatch_async(dispatch_get_main_queue(), ^
       {
@@ -266,9 +335,19 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
                NSDate *date = [formatter dateFromString:postDate];
                
-               [Update initWithContent:content title:title date:date postId:postId inManagedObjectContext:context];
+               if ([date compare:lastRefresh.lastRefresh] == NSOrderedDescending)
+               {
+                   NSLog(@"date is later than lastRefresh.lastRefresh");
+                   [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
+               }
+
+               //debuigging !!!!!!!!!!!!!!!!!!!!!!!!!!
+//               [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
+
+               
            }
        }
+       //[context save:&error];
        
        NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
        NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -286,8 +365,17 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
            [self.refreshControl endRefreshing];
            [self.tableView reloadData];
        });
+       
+       
+
+       
+       lastRefresh.lastRefresh = [NSDate date];
+       
    }];
     [task resume];
+    
+    
+    
     
 
     

@@ -98,9 +98,9 @@
         
         NSString * teacherName = teacher.name;
         NSString * day = teacherId.day;
-        NSString * time = @"start : ";
+        NSString * time = @" מ: ";
         time = [time stringByAppendingString:teacherId.beginTime];
-        time = [time stringByAppendingString:[NSString stringWithFormat:@" end: %@", teacherId.endTime ] ];
+        time = [time stringByAppendingString:[NSString stringWithFormat:@" עד: %@", teacherId.endTime ] ];
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];

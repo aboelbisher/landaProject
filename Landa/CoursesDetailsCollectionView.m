@@ -95,19 +95,26 @@
         Teacher * teacher = [self.teachers objectAtIndex:indexPath.item];
         TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
         
-        if([teacherId.notify isEqualToString:@"YES"])
-        {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-        else
-        {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        
+
         
         
                         
         
         CoursesTableViewCell * course = (CoursesTableViewCell*) cell;
+        
+        if([teacherId.notify isEqualToString:@"YES"])
+        {
+            course.switcherOutlet.on = YES;
+        }
+        else
+        {
+            course.switcherOutlet.on = NO;
+        }
+        
+        course.teacherId = teacherId;
         
         NSString * teacherName = teacher.name;
         NSString * day = teacherId.day;
@@ -121,160 +128,91 @@
         UIImage* image = [UIImage imageWithContentsOfFile:path];
        
         
-        //course.teacherName = [NSString stringWithString:teacherName];
+        course.teacherName = [NSString stringWithString:teacherName];
         course.nameLabel.text = teacherName;
         course.dayLabel.text = day;
         course.timeLabel.text = time;
         course.image.image = image;
+        course.courseName = self.course.name;
         
     }
     return cell;
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
+//
+//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//    NSError * error;
+//    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:teacherEntityDisc];
+//    NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@ AND beginTime = %@ AND day = %@" , teacherId.id , teacherId.beginTime , teacherId.day];
+//    [request setPredicate:pred];
+//    NSArray *teachersArray = [context executeFetchRequest:request error:&error];
+//    TeacherId * teacherIdCoreData = [teachersArray firstObject];
+//    
+//    if([teacherIdCoreData.notify isEqualToString:@"YES"])
+//    {
+//        teacherId.notify = @"NO";
+//        teacherIdCoreData.notify = @"NO";
+//        
+//        UIApplication *app = [UIApplication sharedApplication];
+//        NSArray *eventArray = [app scheduledLocalNotifications];
+//        for (int i=0; i<[eventArray count]; i++)
+//        {
+//            UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+//            NSDictionary *userInfoCurrent = oneEvent.userInfo;
+//            NSString* id = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"teacherId"]];
+//            NSString* day = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"day"]];
+//            NSString* beginTime = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"beginTime"]];
+//
+//            if ([id isEqualToString:teacherId.id] && [day isEqualToString:teacherId.day] && [beginTime isEqualToString:teacherId.beginTime])
+//            {
+//                //Cancelling local notification
+//                [app cancelLocalNotification:oneEvent];
+//                break;
+//            }
+//        }
+//        
+//    }
+//    else
+//    {
+//        teacherId.notify = @"YES";
+//        teacherIdCoreData.notify = @"YES";
+//        
+//        NSDate *now = [NSDate date];
+//        int day = [self getIntWeekDayFromStringDay:teacherId.day];
+//        int hour = [self getHourFromString:teacherId.beginTime];
+//        int minute = [self getMinuteFromString:teacherId.endTime];
+//        NSString * message = [NSString stringWithFormat:@"you have %@ course" , self.course.name];
+//        
+//        [self weekEndNotificationOnWeekday:day hour:hour minute:minute message:message teacherId:teacherId startDate:now];
+//    }
+//    
+//    [context save:&error];
+//
+//    
+//    teacherEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
+//    request = [[NSFetchRequest alloc] init];
+//    [request setEntity:teacherEntityDisc];
+//    pred = [NSPredicate predicateWithFormat:@"name = %@" , self.course.name];
+//    [request setPredicate:pred];
+//    NSArray * courses = [context executeFetchRequest:request error:&error];
+//    
+//    self.course = [courses firstObject];
+//    [self.teacherIdArray removeAllObjects];
+//    [self.teachers removeAllObjects];
+//    [self initCoursesDEtailsWithManagedObjectContext:context];
+//      NSMutableArray * paths = [[NSMutableArray alloc] init];
+//    [paths addObject:indexPath];
+//    [tableView reloadData];
+//}
 
-    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError * error;
-    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:teacherEntityDisc];
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@ AND beginTime = %@ AND day = %@" , teacherId.id , teacherId.beginTime , teacherId.day];
-    [request setPredicate:pred];
-    NSArray *teachersArray = [context executeFetchRequest:request error:&error];
-    TeacherId * teacherIdCoreData = [teachersArray firstObject];
-    
-    if([teacherIdCoreData.notify isEqualToString:@"YES"])
-    {
-        teacherId.notify = @"NO";
-        teacherIdCoreData.notify = @"NO";
-        
-        UIApplication *app = [UIApplication sharedApplication];
-        NSArray *eventArray = [app scheduledLocalNotifications];
-        for (int i=0; i<[eventArray count]; i++)
-        {
-            UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-            NSDictionary *userInfoCurrent = oneEvent.userInfo;
-            NSString* id = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"teacherId"]];
-            NSString* day = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"day"]];
-            NSString* beginTime = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"beginTime"]];
-
-            if ([id isEqualToString:teacherId.id] && [day isEqualToString:teacherId.day] && [beginTime isEqualToString:teacherId.beginTime])
-            {
-                //Cancelling local notification
-                [app cancelLocalNotification:oneEvent];
-                break;
-            }
-        }
-        
-    }
-    else
-    {
-        teacherId.notify = @"YES";
-        teacherIdCoreData.notify = @"YES";
-        
-        NSDate *now = [NSDate date];
-        int day = [self getIntWeekDayFromStringDay:teacherId.day];
-        int hour = [self getHourFromString:teacherId.beginTime];
-        int minute = [self getMinuteFromString:teacherId.endTime];
-        NSString * message = [NSString stringWithFormat:@"you have %@ course" , self.course.name];
-        
-        [self weekEndNotificationOnWeekday:day hour:hour minute:minute message:message teacherId:teacherId startDate:now];
-    }
-    
-    [context save:&error];
-
-    
-    teacherEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
-    request = [[NSFetchRequest alloc] init];
-    [request setEntity:teacherEntityDisc];
-    pred = [NSPredicate predicateWithFormat:@"name = %@" , self.course.name];
-    [request setPredicate:pred];
-    NSArray * courses = [context executeFetchRequest:request error:&error];
-    
-    self.course = [courses firstObject];
-    [self.teacherIdArray removeAllObjects];
-    [self.teachers removeAllObjects];
-    [self initCoursesDEtailsWithManagedObjectContext:context];
-      NSMutableArray * paths = [[NSMutableArray alloc] init];
-    [paths addObject:indexPath];
-    [tableView reloadData];
-}
-
--(void) weekEndNotificationOnWeekday:(int)weekday hour:(int)hour minute:(int)minute message:(NSString*)message teacherId:(TeacherId*)teacherId  startDate:(NSDate*) alramDate
-{
-    UILocalNotification* notification = [[UILocalNotification alloc] init];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    
-    NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: alramDate];
-    [componentsForFireDate setWeekday: weekday]; //for fixing Sunday
-    [componentsForFireDate setHour:hour];
-    [componentsForFireDate setMinute:minute];
-    notification.repeatInterval = NSWeekCalendarUnit;
-    notification.fireDate=[calendar dateFromComponents:componentsForFireDate];
-    notification.alertBody = message;
-    
-    
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:teacherId.id, @"teacherId", teacherId.day , @"day", teacherId.beginTime ,@"beginTime" , nil];
-    
-    notification.userInfo = dict;
-
-    
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    
-}
-
--(int)getIntWeekDayFromStringDay:(NSString*)day
-{
-    day = [day stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
-    if([day isEqualToString:@"ראשון"])
-    {
-        return 1;
-    }
-    if([day isEqualToString:@"שני"])
-    {
-        return 2;
-    }
-    if([day isEqualToString:@"שלישי"])
-    {
-        return 3;
-    }
-    if([day isEqualToString:@"רביעי"])
-    {
-        return 4;
-    }
-    if([day isEqualToString:@"חמישי"])
-    {
-        return 5;
-    }
-    
-    NSLog(@"invalid day!!!");
-    return -1;
-}
-
--(int)getHourFromString:(NSString*)string
-{
-    NSArray * array = [string componentsSeparatedByString:@":"];
-    
-    NSString * hour = [array firstObject];
-    
-    return [hour intValue];
-}
-
--(int)getMinuteFromString:(NSString*)string
-{
-    NSArray * array = [string componentsSeparatedByString:@":"];
-    
-    NSString * minute = [array lastObject];
-    
-    return [minute intValue];
-}
 
 
 

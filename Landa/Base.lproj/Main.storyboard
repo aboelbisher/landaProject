@@ -473,12 +473,20 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WM6-7F-VBh">
+                                                    <rect key="frame" x="251" y="38" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="switcher:" destination="HVE-38-O1I" eventType="valueChanged" id="YTG-8d-0cq"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dayLabel" destination="3OP-gR-wSg" id="GNU-8F-Dm6"/>
                                             <outlet property="image" destination="pgp-gd-ubu" id="Eow-Um-F68"/>
                                             <outlet property="nameLabel" destination="adS-NU-321" id="6cm-fS-dmy"/>
+                                            <outlet property="switcherOutlet" destination="WM6-7F-VBh" id="Afw-r1-fAy"/>
                                             <outlet property="timeLabel" destination="g9R-0x-jdL" id="POg-WR-fga"/>
                                         </connections>
                                     </tableViewCell>

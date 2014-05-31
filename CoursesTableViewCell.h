@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TeacherId.h"
+#import "LandaAppDelegate.h"
 
 @interface CoursesTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *image;
@@ -14,6 +16,11 @@
 @property (weak , nonatomic) NSString* teacherName;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak ,nonatomic) TeacherId * teacherId;
+@property (weak , nonatomic) NSString * courseName;
+@property (weak, nonatomic) IBOutlet UISwitch *switcherOutlet;
+
+- (IBAction)switcher:(id)sender;
 
 
 @end

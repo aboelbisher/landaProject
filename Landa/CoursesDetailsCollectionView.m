@@ -15,12 +15,7 @@
 #import "CoursesTableViewCell.h"
 
 @interface CoursesDetailsCollectionView () <UITableViewDataSource , UITableViewDelegate>
-{
-    BOOL _makeCheckMark;
-}
 
-//@property (weak, nonatomic) IBOutlet UICollectionView *teachersCollectionView;
-//@property (strong , nonatomic) NSManagedObjectContext * context;
 @property (strong , nonatomic) NSMutableArray * teachers; // of Teacher
 @property (strong , nonatomic) NSMutableArray * teacherIdArray; // of TeacherId
 @property (weak, nonatomic) IBOutlet UITableView *teachersTableView;
@@ -30,21 +25,18 @@
 
 @implementation CoursesDetailsCollectionView
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-    }
-    return self;
-}
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self)
+//    {
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    _makeCheckMark = NO;
     
     self.teachersTableView.backgroundColor = [UIColor clearColor];
     self.courseImage.image = [UIImage imageNamed:self.course.imageName];
@@ -52,22 +44,12 @@
     self.teachers = [[NSMutableArray alloc] init];
     self.teacherIdArray = [[NSMutableArray alloc] init];
     [self.teachersTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
-    
-
+    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
     [self initCoursesDEtailsWithManagedObjectContext:context];
-    
-
-
-//
-//    for(Teacher* teacher in objects)
-//    {
-//        [self.course addTeachersObject:teacher];
-//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,17 +73,15 @@
     {
 
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //add seperator line to the cell
+        int cellHeigh = cell.bounds.size.height;
+        UIView* separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, cellHeigh, 320, 1)];
+        separatorLineView.backgroundColor = [UIColor colorWithWhite:0.4f alpha:1.0f];// you can also put image here !!!!!
+        [cell.contentView addSubview:separatorLineView];
         
         Teacher * teacher = [self.teachers objectAtIndex:indexPath.item];
         TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        
-
-        
-        
-                        
         
         CoursesTableViewCell * course = (CoursesTableViewCell*) cell;
         
@@ -127,14 +107,12 @@
         NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",teacherId.id]];
         UIImage* image = [UIImage imageWithContentsOfFile:path];
        
-        
         course.teacherName = [NSString stringWithString:teacherName];
         course.nameLabel.text = teacherName;
         course.dayLabel.text = day;
         course.timeLabel.text = time;
         course.image.image = image;
         course.courseName = self.course.name;
-        
     }
     return cell;
 }

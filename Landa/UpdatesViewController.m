@@ -176,9 +176,15 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
     
     NSURL *url = [NSURL URLWithString:urlDownload];
     NSData * data = [NSData dataWithContentsOfURL:url];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
+    
     NSString *jsonString =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     NSError * error;
@@ -217,6 +223,9 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
+    
     NSURL *url = [NSURL URLWithString:urlDownload];
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
@@ -224,6 +233,11 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
     NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
    {
+       dispatch_async(dispatch_get_main_queue(), ^
+      {
+          [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+          
+      });
        if(!error)
        {
            NSData *urlData = [NSData dataWithContentsOfURL:url];

@@ -220,6 +220,9 @@ static NSString* dontNotifyMe = @"NO";
     [self.spinner startAnimating];
     
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/courses.aspx"];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
 
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
@@ -228,6 +231,13 @@ static NSString* dontNotifyMe = @"NO";
     {
         if(!error)
         {
+            
+            dispatch_async(dispatch_get_main_queue(), ^
+           {
+               [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+               
+           });
+            
             NSDateComponents *comps = [[NSDateComponents alloc] init];
             [comps setDay:8];
             [comps setMonth:5];

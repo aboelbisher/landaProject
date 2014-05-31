@@ -47,6 +47,8 @@
     
     if([teacherIdCoreData.notify isEqualToString:@"YES"])
     {
+        self.backgroundColor = [UIColor clearColor];
+
         self.teacherId.notify = @"NO";
         teacherIdCoreData.notify = @"NO";
         
@@ -71,6 +73,8 @@
     }
     else
     {
+        self.backgroundColor = [UIColor colorWithWhite:0.18f alpha:1.0f];
+
         self.teacherId.notify = @"YES";
         teacherIdCoreData.notify = @"YES";
         

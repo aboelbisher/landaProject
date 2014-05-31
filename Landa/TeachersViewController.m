@@ -73,6 +73,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
             NSLog(@"There IS internet connection");
         }
         [self initTeachersWithContext:context];
+        [Update initWithContent:@"swipe down to get the latest updates" title:@"info!" date:nil postId:0 inManagedObjectContext:context];
     }
     else
     {
@@ -220,6 +221,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     self.spinner.hidden = NO;
     [self.spinner startAnimating];
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
    
@@ -230,6 +232,13 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     {
         if(!error)
         {
+            dispatch_async(dispatch_get_main_queue(), ^
+           {
+               [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+               
+           });
+
+            
             NSData *urlData = [NSData dataWithContentsOfURL:url];
             NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
             NSString* jsonString = [self makeJsonFromString:webString];
@@ -269,6 +278,8 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
                 
             }
         }
+        
+        
         
         NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];

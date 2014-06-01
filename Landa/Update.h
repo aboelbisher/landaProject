@@ -18,4 +18,6 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * hasBeenRead;
 
+- (NSComparisonResult)compare:(Update *)update;
+
 @end

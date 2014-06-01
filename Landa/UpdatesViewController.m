@@ -66,11 +66,44 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:updateEntityDisc];
-    NSPredicate *pred =nil;
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
+    [request setPredicate:pred];
+    NSArray * unreadUpdates = [context executeFetchRequest:request
+                                                                error:&error];
+  //  UITabBarItem *tabBarItem3 = [self.tabBarController.tabBar.items objectAtIndex:2];
+
+    if([unreadUpdates count] > 0)
+    {
+        [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+    }
+    else
+    {
+        [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+    }
+    
+
+    
+    updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
+    request = [[NSFetchRequest alloc] init];
+    [request setEntity:updateEntityDisc];
+    pred =nil;
     [request setPredicate:pred];
     NSArray *objects = [context executeFetchRequest:request error:&error];
     
     self.updates = [NSMutableArray arrayWithArray:objects];
+    
+    NSArray *sortedArray;
+    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+    {
+        NSDate *first = [(Update*)a date];
+        NSDate *second = [(Update*)b date];
+        return [second compare:first];
+    }];
+    
+    self.updates = nil;
+    self.updates = [NSMutableArray arrayWithArray:sortedArray];
+    
+    
     [self.tableView reloadData];
 
 }
@@ -342,7 +375,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                }
 
                //debuigging !!!!!!!!!!!!!!!!!!!!!!!!!!
-//               [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
+               [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
 
                
            }
@@ -362,7 +395,38 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
        
        dispatch_async(dispatch_get_main_queue(), ^
        {
+           NSError * error = nil;
+           NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
+           NSFetchRequest *request = [[NSFetchRequest alloc] init];
+           [request setEntity:updateEntityDisc];
+           NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
+           [request setPredicate:pred];
+           NSArray * unreadUpdates = [context executeFetchRequest:request
+                                                            error:&error];
+           //  UITabBarItem *tabBarItem3 = [self.tabBarController.tabBar.items objectAtIndex:2];
+           
+           if([unreadUpdates count] > 0)
+           {
+               [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+           }
+           else
+           {
+               [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+           }
            [self.refreshControl endRefreshing];
+           
+           
+
+           NSArray *sortedArray;
+           sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+               NSDate *first = [(Update*)a date];
+               NSDate *second = [(Update*)b date];
+               return [second compare:first];
+           }];
+           
+           self.updates = nil;
+           self.updates = [NSMutableArray arrayWithArray:sortedArray];
+           
            [self.tableView reloadData];
        });
        
@@ -374,11 +438,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
    }];
     [task resume];
     
-    
-    
-    
-
-    
 }
+
+
 
 @end

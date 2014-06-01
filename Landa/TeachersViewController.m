@@ -43,6 +43,12 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 
     
     //[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
+    
+//    CGRect frame = CGRectMake(0.0, 0.0, self.view.bounds.size.width, 50);
+//    UIView *v = [[UIView alloc] initWithFrame:frame];
+//    [v setBackgroundColor:[UIColor blackColor]];
+//    [v setAlpha:0.5];
+//    [self.tabBarController.tabBar addSubview:v];
 
     
     

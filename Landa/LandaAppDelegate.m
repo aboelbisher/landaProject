@@ -283,15 +283,44 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+//    UITabBar *tabBar = tabBarController.tabBar;
+
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
     
-    //customize tabBar
     
-    //UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-    //UITabBar *tabBar = tabBarController.tabBar;
+    NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:updateEntityDisc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
+    [request setPredicate:pred];
+    NSError *error;
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:request
+                                              error:&error];
     
-    UIImage* tabBarBackground = [UIImage imageNamed:@"tabbar.png"];
-    [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-  //  [[UITabBar appearance] setBackgroundColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    if([objects count] > 0)
+    {
+//        UIView* circleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,20,20)];
+//        circleView.alpha = 0.5;
+//        circleView.layer.cornerRadius = 50;
+//        circleView.backgroundColor = [UIColor redColor];
+//        
+//        
+//        
+//        UIImage * image = [UIImage imageNamed:@"updatesIcon.png"];
+//        
+//        UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
+//        
+//        [imageView addSubview:circleView];
+        
+//        UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:2];
+//
+//        [tabBarItem3 setImage:[UIImage imageNamed:@"updatesIconNewUpdates.png"]];
+        
+        [[UITabBar appearance] setTintColor:[UIColor redColor]];
+
+    }
 
     
     

@@ -17,4 +17,10 @@
 @dynamic title;
 @dynamic hasBeenRead;
 
+
+- (NSComparisonResult)compare:(Update *)update
+{
+    return [self.date compare:update.date];
+}
+
 @end

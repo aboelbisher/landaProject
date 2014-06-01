@@ -74,6 +74,7 @@
 		F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF4193A99FD00E546FB /* LastRefresh.m */; };
 		F95ACAF8193A9A2F00E546FB /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF7193A9A2F00E546FB /* Update.m */; };
 		F95ACAFC193A9CFA00E546FB /* unreadMessge.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAFB193A9CFA00E546FB /* unreadMessge.png */; };
+		F95ACAFE193AA52600E546FB /* updatesIconNewUpdates.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAFD193AA52600E546FB /* updatesIconNewUpdates.png */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
@@ -182,6 +183,7 @@
 		F95ACAF6193A9A2F00E546FB /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
 		F95ACAF7193A9A2F00E546FB /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		F95ACAFB193A9CFA00E546FB /* unreadMessge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadMessge.png; sourceTree = "<group>"; };
+		F95ACAFD193AA52600E546FB /* updatesIconNewUpdates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIconNewUpdates.png; sourceTree = "<group>"; };
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		F930300118EE49CC0064E984 /* pic */ = {
 			isa = PBXGroup;
 			children = (
+				F95ACAFD193AA52600E546FB /* updatesIconNewUpdates.png */,
 				F95ACAFB193A9CFA00E546FB /* unreadMessge.png */,
 				F95ACAB9193A1AAE00E546FB /* landaIcon.png */,
 				F95ACAB7193A13A500E546FB /* mailIcon.png */,
@@ -549,6 +552,7 @@
 				F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */,
 				F9302FFF18EE49C00064E984 /* muhammad.jpg in Resources */,
 				F9302FD418EE499B0064E984 /* Main.storyboard in Resources */,
+				F95ACAFE193AA52600E546FB /* updatesIconNewUpdates.png in Resources */,
 				F95ACABA193A1AAE00E546FB /* landaIcon.png in Resources */,
 				F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */,
 				F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */,

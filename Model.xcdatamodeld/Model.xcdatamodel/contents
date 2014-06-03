@@ -8,6 +8,7 @@
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="place" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subjectId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="teachers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeacherId" inverseName="course" inverseEntity="TeacherId" syncable="YES"/>
     </entity>
     <entity name="LastRefresh" representedClassName="LastRefresh" syncable="YES">
@@ -39,10 +40,10 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Course" positionX="-234" positionY="90" width="128" height="163"/>
+        <element name="Course" positionX="-234" positionY="90" width="128" height="180"/>
+        <element name="LastRefresh" positionX="-180" positionY="72" width="128" height="75"/>
         <element name="Teacher" positionX="-117" positionY="-135" width="128" height="148"/>
         <element name="TeacherId" positionX="-396" positionY="-108" width="128" height="133"/>
         <element name="Update" positionX="-74" positionY="36" width="128" height="120"/>
-        <element name="LastRefresh" positionX="-180" positionY="72" width="128" height="75"/>
     </elements>
 </model>

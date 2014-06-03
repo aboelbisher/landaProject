@@ -190,10 +190,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     
-    [Update initWithContent:@"pushNOt" title:@"push" date:[NSDate date] postId:@"1" hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
-    
-    return;
-    
+//    [Update initWithContent:@"pushNOt" title:@"push" date:[NSDate date] postId:@"1" hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
+//    
+//    return;
+//    
     
     
     int badgeNum = (int)[[UIApplication sharedApplication] applicationIconBadgeNumber];

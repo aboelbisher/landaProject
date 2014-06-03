@@ -12,12 +12,13 @@
 
 +(Course*) initWithName:(NSString*)name
                      id:(NSString*) id
-                    imageName:(NSString*)imageName
-                    date:(NSDate*)date
-                    place:(NSString*)place
-                    beginTime:(NSString*)beginTime
-                    endTime:(NSString*) endTime
-                    inManagedObjectContext:context
+subjectId:(NSString*)subjectId
+imageName:(NSString*)imageName
+date:(NSDate*)date
+place:(NSString*)place
+beginTime:(NSString*)beginTime
+endTime:(NSString*) endTime
+inManagedObjectContext:context
 {
     Course* course = nil;
     
@@ -41,6 +42,7 @@
         course.beginTime = beginTime;
         course.endTime = endTime;
         course.id = id;
+        course.subjectId = subjectId;
         [context save:&error];
     }
     return course;

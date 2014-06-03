@@ -38,8 +38,23 @@
 {
     [super viewDidLoad];
     
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",self.course.subjectId]];
+    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    
+    if(!image)
+    {
+        self.courseImage.image = [UIImage imageNamed:@"landaIcon.png"];
+    }
+    else
+    {
+        self.courseImage.image = image;
+    }
+    
+    
     self.teachersTableView.backgroundColor = [UIColor clearColor];
-    self.courseImage.image = [UIImage imageNamed:self.course.imageName];
     self.courseName.text = self.course.name;
     self.teachers = [[NSMutableArray alloc] init];
     self.teacherIdArray = [[NSMutableArray alloc] init];

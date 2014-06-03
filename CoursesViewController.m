@@ -173,7 +173,21 @@ static NSString* dontNotifyMe = @"NO";
         
         Course * tmpCourse = [self.searchResults objectAtIndex:indexPath.item];
         
-        course.courseImage.image = [UIImage imageNamed:tmpCourse.imageName];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",tmpCourse.subjectId]];
+        UIImage* image = [UIImage imageWithContentsOfFile:path];
+        
+        if(!image)
+        {
+            course.courseImage.image = [UIImage imageNamed:@"landaIcon.png"];
+        }
+        else
+        {
+            course.courseImage.image = image;
+        }
+        
         course.courseName.text = [NSString stringWithFormat:@"%@" , tmpCourse.name];
         course.courseName.textColor = [UIColor whiteColor];
         course.course = tmpCourse;
@@ -273,12 +287,25 @@ static NSString* dontNotifyMe = @"NO";
                 NSString * day = [course objectForKey:@"day"];
                 NSString * name = [course objectForKey:@"subject_name"];
                 NSString * id = [course objectForKey:@"id"];
+                NSString * subjectid = [course objectForKey:@"subject_id"];
                 
                 
-            
+                NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
+                urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.png" , subjectid]];
+                
+                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",subjectid]];
+                [data writeToFile:localFilePath atomically:YES];
                 
                 
-                Course * course = [Course initWithName:name id:id imageName:@"landaIcon.png" date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+                
+                
+                
+                
+                Course * course = [Course initWithName:name id:id subjectId:subjectid imageName:[NSString stringWithFormat:@"%@.png" , subjectid] date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
                 [context save:&error];
                 TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day notify:dontNotifyMe inManagedObjectContext:context];
                 [context save:&error];

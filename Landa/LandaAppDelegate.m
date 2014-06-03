@@ -33,6 +33,17 @@ static NSString* notifcationsWebEnd = @"&json=1";
 
 
 
+-(NSString *)decodeString:(NSString*)string
+{
+    NSString * newString = [string stringByReplacingOccurrencesOfString:@"&#8216;" withString:@"'"];
+    newString = [newString stringByReplacingOccurrencesOfString:@"&#8221;" withString:@"\""];
+    //newString = [newString stringByReplacingOccurrencesOfString:@"&#038;" withString:@"\%"];
+    newString = [newString stringByReplacingOccurrencesOfString:@"&#8211;" withString:@"-"];
+    newString = [newString stringByReplacingOccurrencesOfString:@"&#038;" withString:@"&"];
+    
+    return newString;
+}
+
 -(NSString*) makeJsonFromString:(NSString*)string
 {
     NSInteger first = 0;
@@ -178,97 +189,105 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
   didReceiveRemoteNotification:(NSDictionary *)userInfo
         fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-   // NSLog(@"Remote Notification userInfo is %@", userInfo);
     
-   // NSNumber *contentID = userInfo[@"content-id"];
-    // Do something with the content ID
+    [Update initWithContent:@"pushNOt" title:@"push" date:[NSDate date] postId:@"1" hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
+    
+    return;
     
     
     
-//    NSString * urlString = notifactionsWebStart;
-//    NSString*  postId = [[userInfo valueForKey:@"post_id"] stringValue];
-//    if(!postId) // got notification from the wrong place :D
-//    {
-//        return;
-//    }
-//    
-//    urlString = [urlString stringByAppendingString:postId];
-//    urlString = [urlString stringByAppendingString:notifcationsWebEnd];
-//    NSURL *url = [NSURL URLWithString:urlString];
-//    NSData *urlData = [NSData dataWithContentsOfURL:url];
-//    if(!urlData)
-//    {
-//        return;
-//    }
-//    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-//    NSString* jsonString = [self makeJsonFromString:webString];
-//    
-//    NSError * error;
-//    NSDictionary *JSON =
-//    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-//                                    options: NSJSONReadingMutableContainers
-//                                      error: &error];
-//    
-//    NSDictionary * post = [JSON objectForKey:@"post"];
-//    NSString * dateString = [post valueForKey:@"date"];
-//    NSString * content = [post valueForKey:@"content"];
-//    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-//    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-//    
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSDate *date = [formatter dateFromString:dateString];
-//    
-//    [Update initWithContent:content date:date postId:postId inManagedObjectContext:self.managedObjectContext];
-//    [self.managedObjectContext save:&error];
-//    
-//    [PFPush handlePush:userInfo];
+    int badgeNum = (int)[[UIApplication sharedApplication] applicationIconBadgeNumber];
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeNum + 1];
+        
+    NSString * urlString = notifactionsWebStart;
+    NSString*  postId = [[userInfo valueForKey:@"post_id"] stringValue];
+    if(!postId) // got notification from the wrong place :D
+    {
+        return;
+    }
+    
+    urlString = [urlString stringByAppendingString:postId];
+    urlString = [urlString stringByAppendingString:notifcationsWebEnd];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if(!urlData)
+    {
+        return;
+    }
+    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+    NSString* jsonString = [self makeJsonFromString:webString];
+    
+    NSError * error;
+    NSDictionary *JSON =
+    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                    options: NSJSONReadingMutableContainers
+                                      error: &error];
+
+    NSDictionary * post = [JSON objectForKey:@"post"];
+    
+    NSString * dateString = [post valueForKey:@"date"];
+    NSString * content = [post valueForKey:@"content"];
+    NSString * title = [post objectForKey:@"title"];
+    
+    title = [self decodeString:title];
+
+    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [formatter dateFromString:dateString];
+    
+    [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
+    [self.managedObjectContext save:&error];
+   // [PFPush handlePush:userInfo];
     
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-//    NSString * urlString = notifactionsWebStart;
-//    NSString*  postId = [[userInfo valueForKey:@"post_id"] stringValue];
-//    if(!postId) // got notification from the wrong place :D
-//    {
-//        return;
-//    }
-//    
-//    urlString = [urlString stringByAppendingString:postId];
-//    urlString = [urlString stringByAppendingString:notifcationsWebEnd];
-//    NSURL *url = [NSURL URLWithString:urlString];
-//    NSData *urlData = [NSData dataWithContentsOfURL:url];
-//    if(!urlData)
-//    {
-//        return;
-//    }
-//    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-//    NSString* jsonString = [self makeJsonFromString:webString];
-//    
-//    NSError * error;
-//    NSDictionary *JSON =
-//    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-//                                    options: NSJSONReadingMutableContainers
-//                                      error: &error];
-//    
-//    NSDictionary * post = [JSON objectForKey:@"post"];
-//    NSString * dateString = [post valueForKey:@"date"];
-//    NSString * content = [post valueForKey:@"content"];
-//    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-//    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-//    
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSDate *date = [formatter dateFromString:dateString];
-//    
-//    [Update initWithContent:content date:date postId:postId inManagedObjectContext:self.managedObjectContext];
-//    [self.managedObjectContext save:&error];
-
-    [PFPush handlePush:userInfo];
-}
+//- (void)application:(UIApplication *)application
+//didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+////    NSString * urlString = notifactionsWebStart;
+////    NSString*  postId = [[userInfo valueForKey:@"post_id"] stringValue];
+////    if(!postId) // got notification from the wrong place :D
+////    {
+////        return;
+////    }
+////    
+////    urlString = [urlString stringByAppendingString:postId];
+////    urlString = [urlString stringByAppendingString:notifcationsWebEnd];
+////    NSURL *url = [NSURL URLWithString:urlString];
+////    NSData *urlData = [NSData dataWithContentsOfURL:url];
+////    if(!urlData)
+////    {
+////        return;
+////    }
+////    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+////    NSString* jsonString = [self makeJsonFromString:webString];
+////    
+////    NSError * error;
+////    NSDictionary *JSON =
+////    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+////                                    options: NSJSONReadingMutableContainers
+////                                      error: &error];
+////    
+////    NSDictionary * post = [JSON objectForKey:@"post"];
+////    NSString * dateString = [post valueForKey:@"date"];
+////    NSString * content = [post valueForKey:@"content"];
+////    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+////    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+////    
+////    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+////    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+////    NSDate *date = [formatter dateFromString:dateString];
+////    
+////    [Update initWithContent:content date:date postId:postId inManagedObjectContext:self.managedObjectContext];
+////    [self.managedObjectContext save:&error];
+//
+//    [PFPush handlePush:userInfo];
+//}
 
 
 #pragma mark - Application's Documents directory
@@ -283,11 +302,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-//    UITabBar *tabBar = tabBarController.tabBar;
 
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
     [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
+    
+
     
     
     NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:self.managedObjectContext];
@@ -301,30 +320,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     
     if([objects count] > 0)
     {
-//        UIView* circleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,20,20)];
-//        circleView.alpha = 0.5;
-//        circleView.layer.cornerRadius = 50;
-//        circleView.backgroundColor = [UIColor redColor];
-//        
-//        
-//        
-//        UIImage * image = [UIImage imageNamed:@"updatesIcon.png"];
-//        
-//        UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
-//        
-//        [imageView addSubview:circleView];
-        
-//        UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:2];
-//
-//        [tabBarItem3 setImage:[UIImage imageNamed:@"updatesIconNewUpdates.png"]];
-        
         [[UITabBar appearance] setTintColor:[UIColor redColor]];
-
     }
-
-    
-    
-    
     
     [Parse setApplicationId:@"QvTjoTQQlUogaFSd0OlbuRwQyPlmTO3khZpgPsm5"
                   clientKey:@"cGJsdBYRRCy9GVxS9rvyyQVNyYf2h4pUI86D9iUb"];
@@ -334,10 +331,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
      UIRemoteNotificationTypeSound];
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 
-
-
-    
-    
     return YES;
 }
 
@@ -362,24 +355,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
-//
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    [comps setDay:25];
-//    [comps setMonth:5];
-//    [comps setYear:2014];
-//    [comps setHour:2];
-//    [comps setMinute:17];
-//   // [comps setSecond:10];
-//    
-//    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-//    localNotification.alertBody = @"Reminddddddddddddddd!!!!!!!!!!";
-//    
-//    localNotification.fireDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
-//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-//
-
-    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

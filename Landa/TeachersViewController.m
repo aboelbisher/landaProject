@@ -11,6 +11,7 @@
 
 static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 
+
 @interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
 
 
@@ -28,29 +29,15 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.teachersCollectionView.backgroundColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f];
     
     self.teachersCollectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
 
-    //[self.teachersCollectionView setContentOffset:CGPointMake(0, 44) animated:YES];
-    
     self.spinner.color = [UIColor whiteColor];
     self.spinner.hidden = YES;
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
     [self.searcBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
-
-    
-    //[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
-    
-//    CGRect frame = CGRectMake(0.0, 0.0, self.view.bounds.size.width, 50);
-//    UIView *v = [[UIView alloc] initWithFrame:frame];
-//    [v setBackgroundColor:[UIColor blackColor]];
-//    [v setAlpha:0.5];
-//    [self.tabBarController.tabBar addSubview:v];
-
-    
     
     self.teachers = [[NSMutableArray alloc] init];
     self.searchResults = [[NSMutableArray alloc] init];
@@ -58,14 +45,12 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
-    
-
-
-    
 
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
-        
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+
         [LastRefresh initWithDate:[NSDate date] id:@"12345" inManagedObjectContext:context];
         
         Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
@@ -81,7 +66,6 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
             NSLog(@"There IS internet connection");
         }
         [self initTeachersWithContext:context];
-//        [Update initWithContent:@"swipe down to get the latest updates" title:@"info!" date:nil postId:0 hasBeenRead:<#(NSNumber *)#> inManagedObjectContext:<#(NSManagedObjectContext *)#> ];
     }
     else
     {
@@ -166,6 +150,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",tmpTeacher.id]];
         UIImage* image = [UIImage imageWithContentsOfFile:path];
+
         
         
         // rand for rotating pics
@@ -181,7 +166,15 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
             rotate += -30;
         }
         
-        teacher.teacherImage.image = image;
+        if(!image)
+        {
+            teacher.teacherImage.image = [UIImage imageNamed:@"noContact.png"];
+        }
+        else
+        {
+            teacher.teacherImage.image = image;
+        }
+        
         teacher.teacherImage.layer.shadowColor = [UIColor blackColor].CGColor;
         teacher.teacherImage.layer.shadowOffset = CGSizeMake(0, 5);
         teacher.teacherImage.layer.shadowOpacity = 1;
@@ -231,7 +224,7 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
-    NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx"];
+    NSURL *url = [NSURL URLWithString:TEACHERS_URL];
    
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];

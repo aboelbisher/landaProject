@@ -8,6 +8,8 @@
 
 #import "CoursesViewController.h"
 
+static NSString* COURSES_URL = @"http://nlanda.technion.ac.il/LandaSystem/courses.aspx";
+
 
 static NSString* notifyMe = @"YES";
 static NSString* dontNotifyMe = @"NO";
@@ -52,6 +54,8 @@ static NSString* dontNotifyMe = @"NO";
     
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
+        [LastRefresh initWithDate:[NSDate date] id:@"12345" inManagedObjectContext:context];
+
         Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
         NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
         if (networkStatus == NotReachable)
@@ -219,7 +223,7 @@ static NSString* dontNotifyMe = @"NO";
     self.spinner.hidden = NO;
     [self.spinner startAnimating];
     
-    NSURL *url = [NSURL URLWithString:@"http://nlanda.technion.ac.il/LandaSystem/courses.aspx"];
+    NSURL *url = [NSURL URLWithString:COURSES_URL];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 

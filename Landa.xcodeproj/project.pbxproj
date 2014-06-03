@@ -63,9 +63,6 @@
 		F95ACAB5193952BF00E546FB /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB3193952BF00E546FB /* tabbar.png */; };
 		F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB4193952BF00E546FB /* tabbar@2x.png */; };
 		F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB7193A13A500E546FB /* mailIcon.png */; };
-		F95ACABA193A1AAE00E546FB /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB9193A1AAE00E546FB /* landaIcon.png */; };
-		F95ACAC4193A235800E546FB /* updatesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAC3193A235800E546FB /* updatesIcon.png */; };
-		F95ACAC6193A25A500E546FB /* teachersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAC5193A25A500E546FB /* teachersIcon.png */; };
 		F95ACACC193A6E8100E546FB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */; };
 		F95ACADE193A714100E546FB /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACADD193A714100E546FB /* TeacherId.m */; };
 		F95ACAE1193A714100E546FB /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAE0193A714100E546FB /* Teacher.m */; };
@@ -73,8 +70,8 @@
 		F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAEC193A8F2100E546FB /* LastRefresh+init.m */; };
 		F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF4193A99FD00E546FB /* LastRefresh.m */; };
 		F95ACAF8193A9A2F00E546FB /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF7193A9A2F00E546FB /* Update.m */; };
-		F95ACAFC193A9CFA00E546FB /* unreadMessge.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAFB193A9CFA00E546FB /* unreadMessge.png */; };
-		F95ACAFE193AA52600E546FB /* updatesIconNewUpdates.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAFD193AA52600E546FB /* updatesIconNewUpdates.png */; };
+		F95ACB10193BA6DC00E546FB /* unreadMessge.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACB0F193BA6DC00E546FB /* unreadMessge.png */; };
+		F95ACB12193BAAE600E546FB /* noContact.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACB11193BAAE600E546FB /* noContact.png */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
@@ -82,6 +79,13 @@
 		F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00EC192FDEC1006000AA /* CoursesCollectionViewCell.m */; };
 		F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */; };
 		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
+		F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655A193BE70300104DE2 /* landaIcon.png */; };
+		F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655E193BECC900104DE2 /* teachersIcon.png */; };
+		F9CA6561193BECFF00104DE2 /* updatesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6560193BECFF00104DE2 /* updatesIcon.png */; };
+		F9CA6565193BED4D00104DE2 /* coursesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6564193BED4D00104DE2 /* coursesIcon.png */; };
+		F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6566193BEE3400104DE2 /* coursesTabBar.png */; };
+		F9CA6569193BEE6500104DE2 /* contactsTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6568193BEE6500104DE2 /* contactsTabBar.png */; };
+		F9CA656B193BEE8200104DE2 /* updatesTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA656A193BEE8200104DE2 /* updatesTabBar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,9 +170,6 @@
 		F95ACAB3193952BF00E546FB /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		F95ACAB4193952BF00E546FB /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
 		F95ACAB7193A13A500E546FB /* mailIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailIcon.png; sourceTree = "<group>"; };
-		F95ACAB9193A1AAE00E546FB /* landaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaIcon.png; sourceTree = "<group>"; };
-		F95ACAC3193A235800E546FB /* updatesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIcon.png; sourceTree = "<group>"; };
-		F95ACAC5193A25A500E546FB /* teachersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teachersIcon.png; sourceTree = "<group>"; };
 		F95ACACB193A6E8100E546FB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F95ACADC193A714100E546FB /* TeacherId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeacherId.h; path = ../TeacherId.h; sourceTree = "<group>"; };
 		F95ACADD193A714100E546FB /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeacherId.m; path = ../TeacherId.m; sourceTree = "<group>"; };
@@ -182,8 +183,8 @@
 		F95ACAF4193A99FD00E546FB /* LastRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastRefresh.m; sourceTree = "<group>"; };
 		F95ACAF6193A9A2F00E546FB /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
 		F95ACAF7193A9A2F00E546FB /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
-		F95ACAFB193A9CFA00E546FB /* unreadMessge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadMessge.png; sourceTree = "<group>"; };
-		F95ACAFD193AA52600E546FB /* updatesIconNewUpdates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIconNewUpdates.png; sourceTree = "<group>"; };
+		F95ACB0F193BA6DC00E546FB /* unreadMessge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadMessge.png; sourceTree = "<group>"; };
+		F95ACB11193BAAE600E546FB /* noContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noContact.png; sourceTree = "<group>"; };
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -197,6 +198,13 @@
 		F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesContentViewController.h; sourceTree = "<group>"; };
 		F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesContentViewController.m; sourceTree = "<group>"; };
 		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
+		F9CA655A193BE70300104DE2 /* landaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaIcon.png; sourceTree = "<group>"; };
+		F9CA655E193BECC900104DE2 /* teachersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teachersIcon.png; sourceTree = "<group>"; };
+		F9CA6560193BECFF00104DE2 /* updatesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIcon.png; sourceTree = "<group>"; };
+		F9CA6564193BED4D00104DE2 /* coursesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursesIcon.png; sourceTree = "<group>"; };
+		F9CA6566193BEE3400104DE2 /* coursesTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursesTabBar.png; sourceTree = "<group>"; };
+		F9CA6568193BEE6500104DE2 /* contactsTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contactsTabBar.png; sourceTree = "<group>"; };
+		F9CA656A193BEE8200104DE2 /* updatesTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesTabBar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +257,10 @@
 		F91FBA3D18F4772D00B7F8D7 /* Teachers */ = {
 			isa = PBXGroup;
 			children = (
+				F95ACAF3193A99FD00E546FB /* LastRefresh.h */,
+				F95ACAF4193A99FD00E546FB /* LastRefresh.m */,
+				F95ACAEB193A8F2100E546FB /* LastRefresh+init.h */,
+				F95ACAEC193A8F2100E546FB /* LastRefresh+init.m */,
 				F95ACADF193A714100E546FB /* Teacher.h */,
 				F95ACAE0193A714100E546FB /* Teacher.m */,
 				F91FBA6018FDAB6900B7F8D7 /* Teacher+init.h */,
@@ -346,10 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */,
-				F95ACAF3193A99FD00E546FB /* LastRefresh.h */,
-				F95ACAF4193A99FD00E546FB /* LastRefresh.m */,
-				F95ACAEB193A8F2100E546FB /* LastRefresh+init.h */,
-				F95ACAEC193A8F2100E546FB /* LastRefresh+init.m */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
@@ -397,17 +405,21 @@
 		F930300118EE49CC0064E984 /* pic */ = {
 			isa = PBXGroup;
 			children = (
-				F95ACAFD193AA52600E546FB /* updatesIconNewUpdates.png */,
-				F95ACAFB193A9CFA00E546FB /* unreadMessge.png */,
-				F95ACAB9193A1AAE00E546FB /* landaIcon.png */,
+				F95ACB11193BAAE600E546FB /* noContact.png */,
+				F9CA6566193BEE3400104DE2 /* coursesTabBar.png */,
+				F9CA6568193BEE6500104DE2 /* contactsTabBar.png */,
+				F9CA655E193BECC900104DE2 /* teachersIcon.png */,
+				F9CA6564193BED4D00104DE2 /* coursesIcon.png */,
+				F95ACB0F193BA6DC00E546FB /* unreadMessge.png */,
+				F9CA656A193BEE8200104DE2 /* updatesTabBar.png */,
 				F95ACAB7193A13A500E546FB /* mailIcon.png */,
-				F95ACAC3193A235800E546FB /* updatesIcon.png */,
+				F9CA6560193BECFF00104DE2 /* updatesIcon.png */,
+				F9CA655A193BE70300104DE2 /* landaIcon.png */,
 				F9C7AD89192D52000086B99D /* technion.jpg */,
 				F95ACAB3193952BF00E546FB /* tabbar.png */,
 				F95ACAB4193952BF00E546FB /* tabbar@2x.png */,
 				F95ACAAD19394FC100E546FB /* courses.png */,
 				F95ACAB1193951E600E546FB /* grayColor.jpg */,
-				F95ACAC5193A25A500E546FB /* teachersIcon.png */,
 				F923C36F18F0B59D0065C5EB /* algebra.jpg */,
 				F923C37018F0B59D0065C5EB /* c.png */,
 				F91FB99718F3237C00B7F8D7 /* expandR.png */,
@@ -532,10 +544,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F95ACB10193BA6DC00E546FB /* unreadMessge.png in Resources */,
 				F91FB99818F3237C00B7F8D7 /* expandR.png in Resources */,
+				F9CA6561193BECFF00104DE2 /* updatesIcon.png in Resources */,
 				F95ACAB5193952BF00E546FB /* tabbar.png in Resources */,
+				F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */,
 				F9302FCB18EE499B0064E984 /* InfoPlist.strings in Resources */,
 				F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */,
+				F9CA6569193BEE6500104DE2 /* contactsTabBar.png in Resources */,
 				F95ACAAE19394FC100E546FB /* courses.png in Resources */,
 				F9302FFC18EE49C00064E984 /* aiman.jpg in Resources */,
 				F923C37418F0B59D0065C5EB /* c.png in Resources */,
@@ -543,21 +559,21 @@
 				F923C38118F0C0690065C5EB /* updates.png in Resources */,
 				F923C38318F0DF320065C5EB /* expand.png in Resources */,
 				F9C7AD8A192D52000086B99D /* technion.jpg in Resources */,
-				F95ACAC4193A235800E546FB /* updatesIcon.png in Resources */,
 				F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */,
 				F930300018EE49C00064E984 /* ward.jpg in Resources */,
-				F95ACAFC193A9CFA00E546FB /* unreadMessge.png in Resources */,
 				F9302FFE18EE49C00064E984 /* mothana.jpg in Resources */,
 				F90F06EA18FF398500D7C5E8 /* Images.xcassets in Resources */,
+				F9CA656B193BEE8200104DE2 /* updatesTabBar.png in Resources */,
+				F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */,
+				F9CA6565193BED4D00104DE2 /* coursesIcon.png in Resources */,
 				F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */,
 				F9302FFF18EE49C00064E984 /* muhammad.jpg in Resources */,
+				F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */,
 				F9302FD418EE499B0064E984 /* Main.storyboard in Resources */,
-				F95ACAFE193AA52600E546FB /* updatesIconNewUpdates.png in Resources */,
-				F95ACABA193A1AAE00E546FB /* landaIcon.png in Resources */,
 				F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */,
 				F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */,
+				F95ACB12193BAAE600E546FB /* noContact.png in Resources */,
 				F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */,
-				F95ACAC6193A25A500E546FB /* teachersIcon.png in Resources */,
 				F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */,
 				F9302FFD18EE49C00064E984 /* hasan.jpg in Resources */,
 				F930300918EE4E880064E984 /* thrwat.jpg in Resources */,

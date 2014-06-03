@@ -9,7 +9,7 @@
 #import "UpdatesViewController.h"
 
 
-static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=get_recent_posts";
+static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=10";
 
 
 @interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate>
@@ -26,6 +26,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 {
     [super viewDidLoad];
     
+
+    
    // self.tableView.backgroundColor = [UIColor colorWithRed:226/255.0f green:254/255.0f blue:255/255.0f alpha:1.0f];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
@@ -36,6 +38,10 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError * error;
+    
+    
+    [LastRefresh initWithDate:[NSDate date] id:@"12345" inManagedObjectContext:context];
+
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     
@@ -54,6 +60,33 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                                               error:&error];
 
     self.updates = [NSMutableArray arrayWithArray:objects];
+    NSArray *sortedArray;
+    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSDate *first = [(Update*)a date];
+        NSDate *second = [(Update*)b date];
+        return [second compare:first];
+    }];
+    
+    self.updates = nil;
+    self.updates = [NSMutableArray arrayWithArray:sortedArray];    
+    
+    // for application badge and UITabBar Red colors
+    updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
+    request = [[NSFetchRequest alloc] init];
+    [request setEntity:updateEntityDisc];
+    pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
+    [request setPredicate:pred];
+    NSArray * unreadUpdates = [context executeFetchRequest:request
+                                                     error:&error];
+    if([unreadUpdates count] > 0)
+    {
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+        [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+    }
+    else
+    {
+        [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+    }
 
 }
 
@@ -108,13 +141,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return (CGFloat)150;
-//}
-
-
-
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -135,10 +161,13 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
         
+
+        NSError * error = nil;
+        
+        
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         [fetchRequest setEntity:[NSEntityDescription entityForName:@"Update" inManagedObjectContext:context]];
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"content == %@" , update.content]];
-        NSError* error = nil;
         NSArray* results = [context executeFetchRequest:fetchRequest error:&error];
         NSManagedObject* object = [results firstObject];
         [context deleteObject:object];
@@ -152,10 +181,33 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         [self.updates removeObjectAtIndex:index];
         
         [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:updateEntityDisc];
+        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
+        [request setPredicate:pred];
+        NSArray * unreadUpdates = [context executeFetchRequest:request
+                                                         error:&error];
+        //  UITabBarItem *tabBarItem3 = [self.tabBarController.tabBar.items objectAtIndex:2];
+        
+        if([unreadUpdates count] > 0)
+        {
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+            [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 
+            [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+        }
 
     }
 }
+
+
+
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -219,6 +271,13 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
             {
                 UpdatesTableViewCell* sourceController = (UpdatesTableViewCell*) sender;
                 
+                if([sourceController.update.hasBeenRead isEqualToString:@"NO"])
+                {
+                    int badgeNum = (int)[[UIApplication sharedApplication] applicationIconBadgeNumber];
+                    
+                    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeNum - 1];
+                }
+                
                 UpdatesContentViewController *tsvc = (UpdatesContentViewController *)segue.destinationViewController;
                 
                 NSString* updateContentText = sourceController.update.content;
@@ -231,6 +290,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         }
     }
 }
+
+
 
 -(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
@@ -283,6 +344,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         NSString * content = [post objectForKey:@"content"];
         content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
         content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+        content = [self decodeString:content];
+        title = [self decodeString:title];
         NSString * postDate = [post objectForKey:@"date"];
         NSString * postId = [[post objectForKey:@"id"] stringValue];
         
@@ -361,6 +424,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                NSString * content = [post objectForKey:@"content"];
                content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
                content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+               content = [self decodeString:content];
+               title = [self decodeString:title];
                NSString * postDate = [post objectForKey:@"date"];
                NSString * postId = [[post objectForKey:@"id"] stringValue];
                
@@ -373,11 +438,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                    NSLog(@"date is later than lastRefresh.lastRefresh");
                    [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
                }
-
-               //debuigging !!!!!!!!!!!!!!!!!!!!!!!!!!
-               [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
-
-               
            }
        }
        //[context save:&error];
@@ -407,18 +467,20 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
            
            if([unreadUpdates count] > 0)
            {
+               [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
                [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
            }
            else
            {
                [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+               [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+               
            }
            [self.refreshControl endRefreshing];
-           
-           
 
            NSArray *sortedArray;
-           sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+           sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+           {
                NSDate *first = [(Update*)a date];
                NSDate *second = [(Update*)b date];
                return [second compare:first];
@@ -429,17 +491,23 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
            
            [self.tableView reloadData];
        });
-       
-       
-
-       
+ 
        lastRefresh.lastRefresh = [NSDate date];
-       
    }];
     [task resume];
     
 }
 
+
+-(NSString *)decodeString:(NSString*)string
+{
+    NSString * newString = [string stringByReplacingOccurrencesOfString:@"&#8216;" withString:@"'"];
+    newString = [newString stringByReplacingOccurrencesOfString:@"&#8221;" withString:@"\""];
+    newString = [newString stringByReplacingOccurrencesOfString:@"&#038;" withString:@"&"];
+    newString = [newString stringByReplacingOccurrencesOfString:@"&#8211;" withString:@"-"];
+    
+    return newString;
+}
 
 
 @end

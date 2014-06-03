@@ -16,9 +16,9 @@
 {
     LastRefresh * lastReftesh = nil;
     
-    NSEntityDescription *lastRefresh = [NSEntityDescription entityForName:@"LastRefresh" inManagedObjectContext:context];
+    NSEntityDescription *lastRefreshEntity = [NSEntityDescription entityForName:@"LastRefresh" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:lastRefresh];
+    [request setEntity:lastRefreshEntity];
     NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", id];
     [request setPredicate:pred];
     NSError *error;
@@ -30,6 +30,8 @@
         lastReftesh = [NSEntityDescription insertNewObjectForEntityForName:@"LastRefresh" inManagedObjectContext:context];
         NSDate * now = [NSDate date];
         lastReftesh.lastRefresh = now;
+        lastReftesh.id = id;
+        [context save:&error];
     }
     return lastReftesh;
 }

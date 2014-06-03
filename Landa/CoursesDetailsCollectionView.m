@@ -88,6 +88,7 @@
         if([teacherId.notify isEqualToString:@"YES"])
         {
             course.switcherOutlet.on = YES;
+            cell.backgroundColor = [UIColor colorWithWhite:0.18f alpha:1.0f];
         }
         else
         {

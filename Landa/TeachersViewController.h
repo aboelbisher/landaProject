@@ -15,6 +15,7 @@
 #import "LandaAppDelegate.h"
 #import "Reachability.h"
 #import "Update+init.h"
+#import "LastRefresh.h"
 #import "LastRefresh+init.h"
 
 @interface TeachersViewController : UIViewController

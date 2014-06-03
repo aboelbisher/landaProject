@@ -260,7 +260,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unreadMessge.png" translatesAutoresizingMaskIntoConstraints="NO" id="NF4-66-vdd">
-                                                    <rect key="frame" x="11" y="43" width="20" height="20"/>
+                                                    <rect key="frame" x="11" y="43" width="12" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -528,8 +528,8 @@
         <scene sceneID="VtO-kz-mP7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RWY-zL-PK6" customClass="TeachersNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="teachers" image="teachersIcon.png" id="D36-Oe-S37">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-4"/>
+                    <tabBarItem key="tabBarItem" title="teachers" image="contactsTabBar.png" id="D36-Oe-S37">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vLI-5Z-pau">
@@ -549,7 +549,9 @@
         <scene sceneID="n8k-ib-Oha">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IIS-tK-1q3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="courses.png" id="Oyr-Yt-AF6"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="coursesTabBar.png" id="Oyr-Yt-AF6">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rEy-kL-Ldt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -568,8 +570,8 @@
         <scene sceneID="zm0-wA-Pam">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LZy-sf-e0t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Updates" image="updatesIcon.png" id="X5V-c3-6l2">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-4"/>
+                    <tabBarItem key="tabBarItem" title="Updates" image="updatesTabBar.png" id="X5V-c3-6l2">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xcX-m2-pC4">
@@ -587,11 +589,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="courses.png" width="40" height="40"/>
+        <image name="contactsTabBar.png" width="32" height="32"/>
+        <image name="coursesTabBar.png" width="50" height="50"/>
         <image name="mailIcon.png" width="65" height="56"/>
-        <image name="teachersIcon.png" width="50" height="50"/>
-        <image name="unreadMessge.png" width="60" height="60"/>
-        <image name="updatesIcon.png" width="35" height="35"/>
+        <image name="unreadMessge.png" width="850" height="850"/>
+        <image name="updatesTabBar.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

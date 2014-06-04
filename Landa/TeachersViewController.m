@@ -88,7 +88,6 @@ static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutor
 }
 
 
-
 - (void)filterContentForSearchText:(NSString*)searchText
 {
     [self.searchResults removeAllObjects];

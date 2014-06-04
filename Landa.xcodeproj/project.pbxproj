@@ -70,13 +70,19 @@
 		F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF4193A99FD00E546FB /* LastRefresh.m */; };
 		F95ACAF8193A9A2F00E546FB /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF7193A9A2F00E546FB /* Update.m */; };
 		F95ACB10193BA6DC00E546FB /* unreadMessge.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACB0F193BA6DC00E546FB /* unreadMessge.png */; };
-		F95ACB12193BAAE600E546FB /* noContact.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACB11193BAAE600E546FB /* noContact.png */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
 		F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */; };
 		F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00EC192FDEC1006000AA /* CoursesCollectionViewCell.m */; };
 		F99B83B1193E91420028653D /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83B0193E91420028653D /* Course.m */; };
+		F99B83B3193E96C90028653D /* noContact.png in Resources */ = {isa = PBXBuildFile; fileRef = F99B83B2193E96C90028653D /* noContact.png */; };
+		F99B83C8193EB2F80028653D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83C3193EB2F80028653D /* TFHpple.m */; };
+		F99B83C9193EB2F80028653D /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83C5193EB2F80028653D /* TFHppleElement.m */; };
+		F99B83CA193EB2F80028653D /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83C7193EB2F80028653D /* XPathQuery.m */; };
+		F99B83CB193EB36A0028653D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F99B83BD193EB1690028653D /* libxml2.dylib */; };
+		F99B83D0193EB3DE0028653D /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83CD193EB3DE0028653D /* HTMLNode.m */; };
+		F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83CF193EB3DE0028653D /* HTMLParser.m */; };
 		F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */; };
 		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
 		F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655A193BE70300104DE2 /* landaIcon.png */; };
@@ -182,7 +188,6 @@
 		F95ACAF6193A9A2F00E546FB /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
 		F95ACAF7193A9A2F00E546FB /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		F95ACB0F193BA6DC00E546FB /* unreadMessge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadMessge.png; sourceTree = "<group>"; };
-		F95ACB11193BAAE600E546FB /* noContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noContact.png; sourceTree = "<group>"; };
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -195,6 +200,19 @@
 		F99B00EC192FDEC1006000AA /* CoursesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesCollectionViewCell.m; sourceTree = "<group>"; };
 		F99B83AF193E91420028653D /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		F99B83B0193E91420028653D /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		F99B83B2193E96C90028653D /* noContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noContact.png; sourceTree = "<group>"; };
+		F99B83BD193EB1690028653D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		F99B83BF193EB17E0028653D /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		F99B83C2193EB2F80028653D /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHpple.h; path = "../../../../Downloads/hpple-master/TFHpple.h"; sourceTree = "<group>"; };
+		F99B83C3193EB2F80028653D /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHpple.m; path = "../../../../Downloads/hpple-master/TFHpple.m"; sourceTree = "<group>"; };
+		F99B83C4193EB2F80028653D /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHppleElement.h; path = "../../../../Downloads/hpple-master/TFHppleElement.h"; sourceTree = "<group>"; };
+		F99B83C5193EB2F80028653D /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = "../../../../Downloads/hpple-master/TFHppleElement.m"; sourceTree = "<group>"; };
+		F99B83C6193EB2F80028653D /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = "../../../../Downloads/hpple-master/XPathQuery.h"; sourceTree = "<group>"; };
+		F99B83C7193EB2F80028653D /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = "../../../../Downloads/hpple-master/XPathQuery.m"; sourceTree = "<group>"; };
+		F99B83CC193EB3DE0028653D /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		F99B83CD193EB3DE0028653D /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		F99B83CE193EB3DE0028653D /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		F99B83CF193EB3DE0028653D /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesContentViewController.h; sourceTree = "<group>"; };
 		F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesContentViewController.m; sourceTree = "<group>"; };
 		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
@@ -212,6 +230,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99B83CB193EB36A0028653D /* libxml2.dylib in Frameworks */,
 				F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */,
 				F932381C1929091B0066328A /* StoreKit.framework in Frameworks */,
 				F932381A192909140066328A /* Security.framework in Frameworks */,
@@ -334,6 +353,8 @@
 		F9302FBF18EE499B0064E984 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F99B83BF193EB17E0028653D /* libxml2.2.dylib */,
+				F99B83BD193EB1690028653D /* libxml2.dylib */,
 				F932381D192909230066328A /* SystemConfiguration.framework */,
 				F932381B1929091B0066328A /* StoreKit.framework */,
 				F9323819192909140066328A /* Security.framework */,
@@ -362,6 +383,7 @@
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
 				F90F06E918FF398500D7C5E8 /* Images.xcassets */,
+				F99B83C1193EB2310028653D /* HTMLParsing */,
 				F977773F1931A04A00B15754 /* Reachability */,
 				F97776001931604800B15754 /* teacherId */,
 				F91FBA3D18F4772D00B7F8D7 /* Teachers */,
@@ -405,7 +427,7 @@
 		F930300118EE49CC0064E984 /* pic */ = {
 			isa = PBXGroup;
 			children = (
-				F95ACB11193BAAE600E546FB /* noContact.png */,
+				F99B83B2193E96C90028653D /* noContact.png */,
 				F9CA6566193BEE3400104DE2 /* coursesTabBar.png */,
 				F9CA6568193BEE6500104DE2 /* contactsTabBar.png */,
 				F9CA655E193BECC900104DE2 /* teachersIcon.png */,
@@ -457,6 +479,23 @@
 				F97777411931A06400B15754 /* Reachability.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		F99B83C1193EB2310028653D /* HTMLParsing */ = {
+			isa = PBXGroup;
+			children = (
+				F99B83CC193EB3DE0028653D /* HTMLNode.h */,
+				F99B83CD193EB3DE0028653D /* HTMLNode.m */,
+				F99B83CE193EB3DE0028653D /* HTMLParser.h */,
+				F99B83CF193EB3DE0028653D /* HTMLParser.m */,
+				F99B83C2193EB2F80028653D /* TFHpple.h */,
+				F99B83C3193EB2F80028653D /* TFHpple.m */,
+				F99B83C4193EB2F80028653D /* TFHppleElement.h */,
+				F99B83C5193EB2F80028653D /* TFHppleElement.m */,
+				F99B83C6193EB2F80028653D /* XPathQuery.h */,
+				F99B83C7193EB2F80028653D /* XPathQuery.m */,
+			);
+			name = HTMLParsing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,6 +596,7 @@
 				F923C37418F0B59D0065C5EB /* c.png in Resources */,
 				F9302FFB18EE49C00064E984 /* 7amed.jpg in Resources */,
 				F923C38118F0C0690065C5EB /* updates.png in Resources */,
+				F99B83B3193E96C90028653D /* noContact.png in Resources */,
 				F923C38318F0DF320065C5EB /* expand.png in Resources */,
 				F9C7AD8A192D52000086B99D /* technion.jpg in Resources */,
 				F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */,
@@ -572,7 +612,6 @@
 				F9302FD418EE499B0064E984 /* Main.storyboard in Resources */,
 				F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */,
 				F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */,
-				F95ACB12193BAAE600E546FB /* noContact.png in Resources */,
 				F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */,
 				F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */,
 				F9302FFD18EE49C00064E984 /* hasan.jpg in Resources */,
@@ -603,20 +642,25 @@
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
+				F99B83C9193EB2F80028653D /* TFHppleElement.m in Sources */,
 				F97777421931A06400B15754 /* Reachability.m in Sources */,
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */,
 				F95ACAF8193A9A2F00E546FB /* Update.m in Sources */,
 				F95ACACC193A6E8100E546FB /* Model.xcdatamodeld in Sources */,
+				F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
 				F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */,
+				F99B83CA193EB2F80028653D /* XPathQuery.m in Sources */,
 				F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */,
 				F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */,
 				F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */,
+				F99B83D0193EB3DE0028653D /* HTMLNode.m in Sources */,
 				F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */,
 				F923C37F18F0BD3E0065C5EB /* UpdatesTableViewCell.m in Sources */,
 				F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */,
 				F99B83B1193E91420028653D /* Course.m in Sources */,
+				F99B83C8193EB2F80028653D /* TFHpple.m in Sources */,
 				F96916B519292E3E00A569FA /* Update+init.m in Sources */,
 				F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */,
 				F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */,
@@ -752,6 +796,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Landa/Landa-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Landa/Landa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -771,6 +820,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Landa/Landa-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Landa/Landa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";

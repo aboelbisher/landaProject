@@ -41,6 +41,32 @@ static NSString* notifcationsWebEnd = @"&json=1";
     newString = [newString stringByReplacingOccurrencesOfString:@"&#8211;" withString:@"-"];
     newString = [newString stringByReplacingOccurrencesOfString:@"&#038;" withString:@"&"];
     
+//    NSString* smile = nil;
+//    
+//    if (!([newString rangeOfString:@"<img src=\""].location == NSNotFound))
+//    {
+//        // newString contains a smile
+//        
+//        NSRange range = [newString rangeOfString:@"alt="];
+//        if (!(range.location == NSNotFound))
+//        {
+//                //string alt= found
+//            NSUInteger location =range.location + 5;
+//            NSInteger length = (NSInteger)2;
+//            
+//            NSRange newRange = NSMakeRange(location, length);
+//            
+//            smile = [newString substringWithRange:newRange];
+//        }
+//
+//        NSCharacterSet * charSet = [NSCharacterSet characterSetWithCharactersInString:@"<>"];
+//        
+//        NSArray * arrayString = [newString componentsSeparatedByCharactersInSet:charSet];
+//        
+//    }
+
+    
+    
     return newString;
 }
 
@@ -228,6 +254,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     NSString * dateString = [post valueForKey:@"date"];
     NSString * content = [post valueForKey:@"content"];
+    
+    HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
+    HTMLNode * node = parser.body;
+    NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
+    
+
+    
+    
     NSString * title = [post objectForKey:@"title"];
     
     title = [self decodeString:title];
@@ -239,55 +273,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [formatter dateFromString:dateString];
     
-    [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
+    [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
     [self.managedObjectContext save:&error];
    // [PFPush handlePush:userInfo];
     
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
-//- (void)application:(UIApplication *)application
-//didReceiveRemoteNotification:(NSDictionary *)userInfo
-//{
-////    NSString * urlString = notifactionsWebStart;
-////    NSString*  postId = [[userInfo valueForKey:@"post_id"] stringValue];
-////    if(!postId) // got notification from the wrong place :D
-////    {
-////        return;
-////    }
-////    
-////    urlString = [urlString stringByAppendingString:postId];
-////    urlString = [urlString stringByAppendingString:notifcationsWebEnd];
-////    NSURL *url = [NSURL URLWithString:urlString];
-////    NSData *urlData = [NSData dataWithContentsOfURL:url];
-////    if(!urlData)
-////    {
-////        return;
-////    }
-////    NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-////    NSString* jsonString = [self makeJsonFromString:webString];
-////    
-////    NSError * error;
-////    NSDictionary *JSON =
-////    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-////                                    options: NSJSONReadingMutableContainers
-////                                      error: &error];
-////    
-////    NSDictionary * post = [JSON objectForKey:@"post"];
-////    NSString * dateString = [post valueForKey:@"date"];
-////    NSString * content = [post valueForKey:@"content"];
-////    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-////    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-////    
-////    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-////    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-////    NSDate *date = [formatter dateFromString:dateString];
-////    
-////    [Update initWithContent:content date:date postId:postId inManagedObjectContext:self.managedObjectContext];
-////    [self.managedObjectContext save:&error];
-//
-//    [PFPush handlePush:userInfo];
-//}
 
 
 #pragma mark - Application's Documents directory

@@ -13,6 +13,8 @@
 #import "Update.h"
 #import "Update+init.h"
 #import "UpdatesViewController.h"
+#import "HTMLNode.h"
+#import "HTMLParser.h"
 
 
 @interface LandaAppDelegate : UIResponder <UIApplicationDelegate>

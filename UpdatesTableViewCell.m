@@ -21,11 +21,6 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
-//    self.image.image = [UIImage imageNamed:@"updates.png"];
-  //  self.title.text = self.update.title;
-    //self.expandImage.image = [UIImage imageNamed:@"expand.png"];
-    //self.textView.backgroundColor = [UIColor clearColor];
 
 }
 
@@ -33,7 +28,6 @@
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

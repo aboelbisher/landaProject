@@ -29,6 +29,8 @@ static NSString* dontNotifyMe = @"NO";
 
 @implementation CoursesViewController
 
+#pragma mark init
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,8 +48,7 @@ static NSString* dontNotifyMe = @"NO";
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError * error;
-//    
-//    [context reset];
+
     [context save:&error];
     
     
@@ -75,32 +76,21 @@ static NSString* dontNotifyMe = @"NO";
     }
     else
     {
-        NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:courseEntityDisc];
-        NSPredicate *pred =nil;
-        [request setPredicate:pred];
-        NSArray *objects = [context executeFetchRequest:request error:&error];
-        
+        NSArray* objects = [Course getAllCoursesInManagedObjectContext:context];
         if ([objects count] == 0)
         {
             [self initCoursesWithContext:context];
         }
-        
         self.courses = [NSMutableArray arrayWithArray:objects];
         self.searchResults = [NSMutableArray arrayWithArray:self.courses];
         
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //            [self.spinner stopAnimating];
-            // self.spinner.hidden = YES;
-            [self.coursesCollectionView reloadData];});
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            [self.coursesCollectionView reloadData];
+        });
     }
-
- 
-    
 }
-
 
 -(NSMutableArray*) searchResults
 {
@@ -111,6 +101,8 @@ static NSString* dontNotifyMe = @"NO";
     return _searchResults;
 }
 
+
+#pragma mark UISearchBar
 
 - (void)filterContentForSearchText:(NSString*)searchText
 {
@@ -160,6 +152,8 @@ static NSString* dontNotifyMe = @"NO";
 
 
 
+#pragma mark UICollectionView functions
+
 
 -(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -173,12 +167,7 @@ static NSString* dontNotifyMe = @"NO";
         
         Course * tmpCourse = [self.searchResults objectAtIndex:indexPath.item];
         
-        
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",tmpCourse.subjectId]];
-        UIImage* image = [UIImage imageWithContentsOfFile:path];
-        
+        UIImage* image = [HelpFunc getImageFromFileWithId:tmpCourse.subjectId];
         if(!image)
         {
             course.courseImage.image = [UIImage imageNamed:@"landaIcon.png"];
@@ -192,13 +181,11 @@ static NSString* dontNotifyMe = @"NO";
         course.courseName.textColor = [UIColor whiteColor];
         course.course = tmpCourse;
         
-        
-         course.courseImage.layer.shadowColor = [UIColor blackColor].CGColor;
-         course.courseImage.layer.shadowOffset = CGSizeMake(0, 1);
-         course.courseImage.layer.shadowOpacity = 1;
-         course.courseImage.layer.shadowRadius = 1.0;
-         course.courseImage.clipsToBounds = NO;
-
+        course.courseImage.layer.shadowColor = [UIColor blackColor].CGColor;
+        course.courseImage.layer.shadowOffset = CGSizeMake(0, 1);
+        course.courseImage.layer.shadowOpacity = 1;
+        course.courseImage.layer.shadowRadius = 1.0;
+        course.courseImage.clipsToBounds = NO;
     }
     
     return cell;
@@ -215,19 +202,10 @@ static NSString* dontNotifyMe = @"NO";
             
             if([sender isKindOfClass:[CoursesCollectionViewCell class]])
             {
-                
                 CoursesCollectionViewCell* sourceController = (CoursesCollectionViewCell*) sender;
-                
                 CoursesDetailsCollectionView *destinationViewController = (CoursesDetailsCollectionView *)segue.destinationViewController;
-                
                 destinationViewController.course = sourceController.course;
-                
-                
-                
-                
             }
-            
-            
         }
     }
 }
@@ -240,7 +218,6 @@ static NSString* dontNotifyMe = @"NO";
     NSURL *url = [NSURL URLWithString:COURSES_URL];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-
 
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
@@ -256,19 +233,9 @@ static NSString* dontNotifyMe = @"NO";
                
            });
             
-            NSDateComponents *comps = [[NSDateComponents alloc] init];
-            [comps setDay:8];
-            [comps setMonth:5];
-            [comps setYear:2014];
-            [comps setHour:18];
-            [comps setMinute:22];
-            // [comps setSecond:10];
-            
-            NSDate* date = [[NSCalendar currentCalendar] dateFromComponents:comps];
-            
             NSData *urlData = [NSData dataWithContentsOfURL:url];
             NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-            NSString* jsonString = [self makeJsonFromString:webString];
+            NSString* jsonString = [HelpFunc makeJsonFromString:webString];
             
             NSError * error;
             NSDictionary *JSON =
@@ -294,31 +261,16 @@ static NSString* dontNotifyMe = @"NO";
                 urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.png" , subjectid]];
                 
                 NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-                
-                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                NSString *documentsDirectory = [paths objectAtIndex:0];
-                NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",subjectid]];
-                [data writeToFile:localFilePath atomically:YES];
-                
-                
-                
-                
-                
-                
-                Course * course = [Course initWithName:name id:id subjectId:subjectid imageName:[NSString stringWithFormat:@"%@.png" , subjectid] date:date place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
+                [HelpFunc writeImageToFileWithId:subjectid data:data];
+
+                Course * course = [Course initWithName:name id:id subjectId:subjectid imageName:[NSString stringWithFormat:@"%@.png" , subjectid] place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
                 [context save:&error];
                 TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day notify:dontNotifyMe inManagedObjectContext:context];
                 [context save:&error];
                 
                 if(!course)
                 {
-                    NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
-                    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-                    [request setEntity:courseEntityDisc];
-                    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(name = %@)", name];
-                    [request setPredicate:pred];
-                    NSError *error;
-                    NSArray *courses = [context executeFetchRequest:request error:&error];
+                    NSArray* courses = [Course getCoursesWithName:name inManagedObjectContext:context];
                     course = [courses firstObject];
                 }
                 
@@ -330,19 +282,11 @@ static NSString* dontNotifyMe = @"NO";
             }
 
         }
-        
-        
-        NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:courseEntityDisc];
-        NSPredicate *pred =nil;
-        [request setPredicate:pred];
-        NSArray *objects = [context executeFetchRequest:request error:&error];
+        NSArray* objects = [Course getAllCoursesInManagedObjectContext:context];
         
         self.courses = [NSMutableArray arrayWithArray:objects];
         self.searchResults = [NSMutableArray arrayWithArray:self.courses];
 
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.spinner stopAnimating];
              self.spinner.hidden = YES;
@@ -350,50 +294,8 @@ static NSString* dontNotifyMe = @"NO";
 
     }];
     [task resume];
-    
-    
 }
 
-
-
--(NSString*) makeJsonFromString:(NSString*)string
-{
-    NSInteger first = 0;
-    NSInteger last = 0;
-    // int length = 0;
-    int count = 0;
-    
-    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
-    {
-        if([string characterAtIndex:charIdx] == '{')
-        {
-            first = charIdx;
-            break;
-        }
-    }
-    
-    
-    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
-    {
-        if([string characterAtIndex:charIdx] == '}')
-        {
-            count-- ;
-            if (count == 0)
-            {
-                last = charIdx;
-                break;
-            }
-        }
-        if([string characterAtIndex:charIdx] == '{')
-        {
-            count++;
-        }
-        
-    }
-    NSRange range = NSMakeRange(first, last - first + 1);
-    NSString * newString = [string substringWithRange:range];
-    return newString;
-}
 
     
     

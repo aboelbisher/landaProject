@@ -14,19 +14,17 @@
 
 @implementation TeachersDetailsViewController
 
+#pragma mark init
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",self.teacher.id]];
-    UIImage* image = [UIImage imageWithContentsOfFile:path];
+    UIImage * image = [HelpFunc getImageFromFileWithId:self.teacher.id];
     
+    //customize
     self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    
     self.teacherImage.image = image;
-    
     self.teacherImage.layer.cornerRadius = self.teacherImage.frame.size.width / 2;
     self.teacherImage.clipsToBounds = YES;
     
@@ -47,7 +45,8 @@
     NSArray *toRecipents = [NSArray arrayWithObject:self.teacher.mail];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-    if ([MFMailComposeViewController canSendMail]){
+    if ([MFMailComposeViewController canSendMail])
+    {
         // Create and show composer
         mc.mailComposeDelegate = self;
         [mc setSubject:emailTitle];
@@ -56,10 +55,8 @@
         
         // Present mail view controller on screen
         [self presentViewController:mc animated:YES completion:NULL];
-        
-
     }
-   }
+}
 
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
@@ -68,8 +65,6 @@
     {
         case MFMailComposeResultCancelled:
             NSLog(@"Mail cancelled");
-//            [[[UIAlertView alloc] initWithTitle:@"Mail" message:@"your mail has been canceled!"
-//                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             break;
         case MFMailComposeResultSaved:
             NSLog(@"Mail saved");

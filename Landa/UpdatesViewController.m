@@ -22,13 +22,12 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
 
 @implementation UpdatesViewController
 
+#pragma mark init
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-
-    
-   // self.tableView.backgroundColor = [UIColor colorWithRed:226/255.0f green:254/255.0f blue:255/255.0f alpha:1.0f];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
@@ -37,31 +36,23 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError * error;
     
     
     [LastRefresh initWithDate:[NSDate date] id:@"12345" inManagedObjectContext:context];
 
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    
     [self.refreshControl addTarget:self
                             action:@selector(refreshTableView)
                   forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     
-    
-    NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:updateEntityDisc];
-    NSPredicate *pred =nil;
-    [request setPredicate:pred];
-    NSArray *objects = [context executeFetchRequest:request
-                                              error:&error];
+    NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
 
     self.updates = [NSMutableArray arrayWithArray:objects];
     NSArray *sortedArray;
-    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+    {
         NSDate *first = [(Update*)a date];
         NSDate *second = [(Update*)b date];
         return [second compare:first];
@@ -71,13 +62,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     self.updates = [NSMutableArray arrayWithArray:sortedArray];    
     
     // for application badge and UITabBar Red colors
-    updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
-    request = [[NSFetchRequest alloc] init];
-    [request setEntity:updateEntityDisc];
-    pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
-    [request setPredicate:pred];
-    NSArray * unreadUpdates = [context executeFetchRequest:request
-                                                     error:&error];
+    NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
     if([unreadUpdates count] > 0)
     {
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
@@ -94,16 +79,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
 {
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError * error;
     
-    NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:updateEntityDisc];
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
-    [request setPredicate:pred];
-    NSArray * unreadUpdates = [context executeFetchRequest:request
-                                                                error:&error];
-  //  UITabBarItem *tabBarItem3 = [self.tabBarController.tabBar.items objectAtIndex:2];
+    NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
 
     if([unreadUpdates count] > 0)
     {
@@ -114,15 +91,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
         [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
     }
     
-
-    
-    updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
-    request = [[NSFetchRequest alloc] init];
-    [request setEntity:updateEntityDisc];
-    pred =nil;
-    [request setPredicate:pred];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    
+    NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
     self.updates = [NSMutableArray arrayWithArray:objects];
     
     NSArray *sortedArray;
@@ -135,11 +104,13 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     
     self.updates = nil;
     self.updates = [NSMutableArray arrayWithArray:sortedArray];
-    
-    
-    [self.tableView reloadData];
 
+    [self.tableView reloadData];
 }
+
+
+
+#pragma mark UItableView
 
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -160,15 +131,9 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
         Update * update = [self.updates objectAtIndex:index];
         LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        
-
         NSError * error = nil;
-        
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Update" inManagedObjectContext:context]];
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"content == %@" , update.content]];
-        NSArray* results = [context executeFetchRequest:fetchRequest error:&error];
+    
+        NSArray* results = [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
         NSManagedObject* object = [results firstObject];
         [context deleteObject:object];
         [context save:&error];
@@ -176,20 +141,10 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
         NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
         [indexPaths addObject:indexPath];
         
-
-        
         [self.updates removeObjectAtIndex:index];
-        
         [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         
-        NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:updateEntityDisc];
-        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
-        [request setPredicate:pred];
-        NSArray * unreadUpdates = [context executeFetchRequest:request
-                                                         error:&error];
-        //  UITabBarItem *tabBarItem3 = [self.tabBarController.tabBar.items objectAtIndex:2];
+        NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
         
         if([unreadUpdates count] > 0)
         {
@@ -216,7 +171,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     
     if([cell isKindOfClass:[UpdatesTableViewCell class]])
     {
-        
         cell.backgroundColor = [UIColor clearColor];
         
         int cellHeigh = cell.bounds.size.height;
@@ -224,25 +178,18 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
         separatorLineView.backgroundColor = [UIColor colorWithWhite:0.4f alpha:1.0f];// you can also put image here !!!!!
         [cell.contentView addSubview:separatorLineView];
 
-        
         Update * tmpUpdate = [self.updates objectAtIndex:indexPath.item];
         
         UpdatesTableViewCell * update = (UpdatesTableViewCell*) cell;
-        //update.text.text = [NSString stringWithFormat:@"%@" , tmpUpdate.content];
         update.update = tmpUpdate;
         update.title.text = [NSString stringWithFormat:@"%@" , tmpUpdate.title];
         NSDate * date = tmpUpdate.date;
-        //update.dateLabel.text = [[NSString stringWithFormat:@"%@" , [tmpUpdate.date ]
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
         NSString *stringFromDate = [formatter stringFromDate:date];
         
-   
         update.dateLabel.text = stringFromDate;
-        
-//        NSNumber * stam = tmpUpdate.hasBeenRead;
-//        NSNumber * stam1 = [NSNumber numberWithBool:NO];
         
         if([tmpUpdate.hasBeenRead isEqualToString:@"NO"])
         {
@@ -252,7 +199,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
         {
             update.hasBeenReadImage.hidden = YES;
         }
-        
         
         [formatter setDateFormat:@"HH:mm"];
         NSString* stringFromTime = [formatter stringFromDate:date];
@@ -277,12 +223,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
                     
                     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeNum - 1];
                 }
-                
                 UpdatesContentViewController *tsvc = (UpdatesContentViewController *)segue.destinationViewController;
-                
                 NSString* updateContentText = sourceController.update.content;
-
-                
                 tsvc.updateContentText = updateContentText;
                 tsvc.update = sourceController.update;
             }
@@ -291,6 +233,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     }
 }
 
+#pragma mark background fetch and refresh
 
 
 -(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -307,45 +250,32 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError * error = nil;
     
-    NSEntityDescription *lastRefreshEntity = [NSEntityDescription entityForName:@"LastRefresh" inManagedObjectContext:context];
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:lastRefreshEntity];
-    NSPredicate* pred =[NSPredicate predicateWithFormat:@"(id = %@)", @"12345"];
-    [request setPredicate:pred];
-    NSArray *lastRefreshArray = [context executeFetchRequest:request
-                                                       error:&error];
-    
+    NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
     LastRefresh * lastRefresh = [lastRefreshArray firstObject];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
-    
     NSURL *url = [NSURL URLWithString:urlDownload];
     NSData * data = [NSData dataWithContentsOfURL:url];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
-    
     NSString *jsonString =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     NSDictionary *JSON =
     [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
                                     options: NSJSONReadingMutableContainers
                                       error: &error];
-    
-    
     NSArray * posts = [JSON objectForKey:@"posts"];
-    
-    //    NSMutableArray * updates = [[NSMutableArray alloc] init];
     
     for(id post in posts)
     {
         NSString * title = [post objectForKey:@"title"];
         NSString * content = [post objectForKey:@"content"];
-        content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-        content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-        content = [self decodeString:content];
-        title = [self decodeString:title];
+        HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
+        HTMLNode * node = parser.body;
+        NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
+        
         NSString * postDate = [post objectForKey:@"date"];
         NSString * postId = [[post objectForKey:@"id"] stringValue];
         
@@ -357,14 +287,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
         if ([date compare:lastRefresh.lastRefresh] == NSOrderedDescending)
         {
             NSLog(@"date is later than lastRefresh.lastRefresh");
-            [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
-            
+            [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
         }
-        
-        //[context save:&error];
-
-        
-        //[Update initWithContent:content title:title date:date postId:postId inManagedObjectContext:context];
     }
 
 
@@ -374,23 +298,13 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
 {
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError * error = nil;
     
-    NSEntityDescription *lastRefreshEntity = [NSEntityDescription entityForName:@"LastRefresh" inManagedObjectContext:context];
-    NSFetchRequest * request = [[NSFetchRequest alloc] init];
-    [request setEntity:lastRefreshEntity];
-    NSPredicate* pred =[NSPredicate predicateWithFormat:@"(id = %@)", @"12345"];
-    [request setPredicate:pred];
-    NSArray *lastRefreshArray = [context executeFetchRequest:request
-                                                       error:&error];
+    NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
     
     LastRefresh * lastRefresh = [lastRefreshArray firstObject];
-    
-
-    
+ 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-
-    
+ 
     NSURL *url = [NSURL URLWithString:urlDownload];
     
     NSURLRequest * downloadRequest = [NSURLRequest requestWithURL:url];
@@ -416,16 +330,15 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
            
            NSArray * posts = [JSON objectForKey:@"posts"];
            
-           //    NSMutableArray * updates = [[NSMutableArray alloc] init];
-           
            for(id post in posts)
            {
                NSString * title = [post objectForKey:@"title"];
                NSString * content = [post objectForKey:@"content"];
-               content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-               content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-               content = [self decodeString:content];
-               title = [self decodeString:title];
+               
+               HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
+               HTMLNode * node = parser.body;
+               NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
+               
                NSString * postDate = [post objectForKey:@"date"];
                NSString * postId = [[post objectForKey:@"id"] stringValue];
                
@@ -436,35 +349,19 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
                if ([date compare:lastRefresh.lastRefresh] == NSOrderedDescending)
                {
                    NSLog(@"date is later than lastRefresh.lastRefresh");
-                   [Update initWithContent:content title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
+                   [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
                }
            }
        }
-       //[context save:&error];
-       
-       NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
-       NSFetchRequest *request = [[NSFetchRequest alloc] init];
-       [request setEntity:updateEntityDisc];
-       NSPredicate *pred =nil;
-       [request setPredicate:pred];
-       NSArray *objects = [context executeFetchRequest:request error:&error];
+       NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
        
        self.updates = nil;
-       
        self.updates = [NSMutableArray arrayWithArray:objects];
        
        dispatch_async(dispatch_get_main_queue(), ^
        {
-           NSError * error = nil;
-           NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
-           NSFetchRequest *request = [[NSFetchRequest alloc] init];
-           [request setEntity:updateEntityDisc];
-           NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
-           [request setPredicate:pred];
-           NSArray * unreadUpdates = [context executeFetchRequest:request
-                                                            error:&error];
-           //  UITabBarItem *tabBarItem3 = [self.tabBarController.tabBar.items objectAtIndex:2];
-           
+           NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
+
            if([unreadUpdates count] > 0)
            {
                [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
@@ -499,15 +396,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
 }
 
 
--(NSString *)decodeString:(NSString*)string
-{
-    NSString * newString = [string stringByReplacingOccurrencesOfString:@"&#8216;" withString:@"'"];
-    newString = [newString stringByReplacingOccurrencesOfString:@"&#8221;" withString:@"\""];
-    newString = [newString stringByReplacingOccurrencesOfString:@"&#038;" withString:@"&"];
-    newString = [newString stringByReplacingOccurrencesOfString:@"&#8211;" withString:@"-"];
-    
-    return newString;
-}
 
 
 @end

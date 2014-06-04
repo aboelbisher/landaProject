@@ -25,13 +25,6 @@
 }
 
 
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-//{
-//    [super setSelected:selected animated:animated];
-//
-//    // Configure the view for the selected state
-//}
-
 - (IBAction)switcher:(id)sender
 {
     
@@ -95,27 +88,6 @@
 
 -(void) weekEndNotificationOnWeekday:(int)weekday hour:(int)hour minute:(int)minute message:(NSString*)message teacherId:(TeacherId*)teacherId  startDate:(NSDate*) alramDate
 {
-    
-//    UIApplication *app = [UIApplication sharedApplication];
-//    NSArray *eventArray = [app scheduledLocalNotifications];
-//    for (int i=0; i<[eventArray count]; i++)
-//    {
-//        UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-//        NSDictionary *userInfoCurrent = oneEvent.userInfo;
-//        NSString* id = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"teacherId"]];
-//        NSString* day = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"day"]];
-//        NSString* beginTime = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"beginTime"]];
-//        
-//        if ([id isEqualToString:self.teacherId.id] && [day isEqualToString:self.teacherId.day] && [beginTime isEqualToString:self.teacherId.beginTime])
-//        {
-//            //Cancelling local notification
-//            [app cancelLocalNotification:oneEvent];
-//            break;
-//        }
-//    }
-    
-    
-    
     UILocalNotification* notification = [[UILocalNotification alloc] init];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     

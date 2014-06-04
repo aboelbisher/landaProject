@@ -14,7 +14,6 @@
                      id:(NSString*) id
 subjectId:(NSString*)subjectId
 imageName:(NSString*)imageName
-date:(NSDate*)date
 place:(NSString*)place
 beginTime:(NSString*)beginTime
 endTime:(NSString*) endTime
@@ -30,14 +29,13 @@ inManagedObjectContext:context
     [request setPredicate:pred];
     NSError *error;
     NSArray *objects = [context executeFetchRequest:request error:&error];
-
+    
     if([objects count] == 0)
     {
         course = [NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:context];
         
         course.name = name;
         course.imageName = imageName;
-        course.date = date;
         course.place = place;
         course.beginTime = beginTime;
         course.endTime = endTime;
@@ -46,6 +44,32 @@ inManagedObjectContext:context
         [context save:&error];
     }
     return course;
+}
+
++(NSArray*)getAllCoursesInManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSError * error = nil;
+    NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:courseEntityDisc];
+    NSPredicate *pred =nil;
+    [request setPredicate:pred];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    
+    return objects;
+}
+
++(NSArray*)getCoursesWithName:(NSString*)name inManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSEntityDescription *courseEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:courseEntityDisc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(name = %@)", name];
+    [request setPredicate:pred];
+    NSError *error;
+    NSArray *courses = [context executeFetchRequest:request error:&error];
+    
+    return courses;
 }
 
 @end

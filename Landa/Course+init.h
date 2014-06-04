@@ -12,11 +12,16 @@
 
 +(Course*) initWithName:(NSString*)name
                      id:(NSString*) id
-              subjectId:(NSString*)subjectId
-              imageName:(NSString*)imageName
-                   date:(NSDate*)date
-                  place:(NSString*)place
-              beginTime:(NSString*)beginTime
-                endTime:(NSString*) endTime
- inManagedObjectContext:context;
+subjectId:(NSString*)subjectId
+imageName:(NSString*)imageName
+place:(NSString*)place
+beginTime:(NSString*)beginTime
+endTime:(NSString*) endTime
+inManagedObjectContext:context;
+
+
++(NSArray*)getAllCoursesInManagedObjectContext:(NSManagedObjectContext*)context;
+
++(NSArray*)getCoursesWithName:(NSString*)name inManagedObjectContext:(NSManagedObjectContext*)context;
+
 @end

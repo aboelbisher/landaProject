@@ -17,4 +17,6 @@ day:(NSString*)day
 notify:(NSString*)notify
 inManagedObjectContext:(NSManagedObjectContext*)context;
 
++(NSArray *)getTeacherIdWithId:(NSString*)id beginTime:(NSString*)beginTime day:(NSString*)day inManagedObjecContext:(NSManagedObjectContext*)context;
+
 @end

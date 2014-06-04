@@ -23,18 +23,15 @@
 
 @end
 
+#pragma mark init
+
 @implementation CoursesDetailsCollectionView
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",self.course.subjectId]];
-    UIImage* image = [UIImage imageWithContentsOfFile:path];
-    
+
+    UIImage* image = [HelpFunc getImageFromFileWithId:self.course.subjectId];
     if(!image)
     {
         self.courseImage.image = [UIImage imageNamed:@"landaIcon.png"];
@@ -64,6 +61,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)initCoursesDEtailsWithManagedObjectContext:(NSManagedObjectContext*)context
+{
+    for(TeacherId * teacherId in self.course.teachers)
+    {
+        NSArray *teachersArray = [Teacher getTeacherWithId:teacherId.id inManagedObjectContext:context];
+        
+        Teacher * teacher = [teachersArray firstObject];
+        if(teacher)
+        {
+            [self.teachers addObject:teacher];
+            [self.teacherIdArray addObject:teacherId];
+        }
+        
+    }
+}
+
+
+#pragma mark UITableView functions
+
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -77,9 +93,9 @@
     
     if([cell isKindOfClass:[CoursesTableViewCell class]])
     {
-
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         //add seperator line to the cell
         int cellHeigh = cell.bounds.size.height;
         UIView* separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(0, cellHeigh, 320, 1)];
@@ -109,10 +125,7 @@
         time = [time stringByAppendingString:teacherId.beginTime];
         time = [time stringByAppendingString:[NSString stringWithFormat:@" עד: %@", teacherId.endTime ] ];
         
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",teacherId.id]];
-        UIImage* image = [UIImage imageWithContentsOfFile:path];
+        UIImage* image = [HelpFunc getImageFromFileWithId:teacherId.id];
        
         course.teacherName = [NSString stringWithString:teacherName];
         course.nameLabel.text = teacherName;
@@ -123,82 +136,6 @@
     }
     return cell;
 }
-
-
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
-//
-//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-//    NSError * error;
-//    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    [request setEntity:teacherEntityDisc];
-//    NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@ AND beginTime = %@ AND day = %@" , teacherId.id , teacherId.beginTime , teacherId.day];
-//    [request setPredicate:pred];
-//    NSArray *teachersArray = [context executeFetchRequest:request error:&error];
-//    TeacherId * teacherIdCoreData = [teachersArray firstObject];
-//    
-//    if([teacherIdCoreData.notify isEqualToString:@"YES"])
-//    {
-//        teacherId.notify = @"NO";
-//        teacherIdCoreData.notify = @"NO";
-//        
-//        UIApplication *app = [UIApplication sharedApplication];
-//        NSArray *eventArray = [app scheduledLocalNotifications];
-//        for (int i=0; i<[eventArray count]; i++)
-//        {
-//            UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-//            NSDictionary *userInfoCurrent = oneEvent.userInfo;
-//            NSString* id = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"teacherId"]];
-//            NSString* day = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"day"]];
-//            NSString* beginTime = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"beginTime"]];
-//
-//            if ([id isEqualToString:teacherId.id] && [day isEqualToString:teacherId.day] && [beginTime isEqualToString:teacherId.beginTime])
-//            {
-//                //Cancelling local notification
-//                [app cancelLocalNotification:oneEvent];
-//                break;
-//            }
-//        }
-//        
-//    }
-//    else
-//    {
-//        teacherId.notify = @"YES";
-//        teacherIdCoreData.notify = @"YES";
-//        
-//        NSDate *now = [NSDate date];
-//        int day = [self getIntWeekDayFromStringDay:teacherId.day];
-//        int hour = [self getHourFromString:teacherId.beginTime];
-//        int minute = [self getMinuteFromString:teacherId.endTime];
-//        NSString * message = [NSString stringWithFormat:@"you have %@ course" , self.course.name];
-//        
-//        [self weekEndNotificationOnWeekday:day hour:hour minute:minute message:message teacherId:teacherId startDate:now];
-//    }
-//    
-//    [context save:&error];
-//
-//    
-//    teacherEntityDisc = [NSEntityDescription entityForName:@"Course" inManagedObjectContext:context];
-//    request = [[NSFetchRequest alloc] init];
-//    [request setEntity:teacherEntityDisc];
-//    pred = [NSPredicate predicateWithFormat:@"name = %@" , self.course.name];
-//    [request setPredicate:pred];
-//    NSArray * courses = [context executeFetchRequest:request error:&error];
-//    
-//    self.course = [courses firstObject];
-//    [self.teacherIdArray removeAllObjects];
-//    [self.teachers removeAllObjects];
-//    [self initCoursesDEtailsWithManagedObjectContext:context];
-//      NSMutableArray * paths = [[NSMutableArray alloc] init];
-//    [paths addObject:indexPath];
-//    [tableView reloadData];
-//}
-
-
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -219,26 +156,10 @@
     }
 }
 
--(void)initCoursesDEtailsWithManagedObjectContext:(NSManagedObjectContext*)context
-{
-    NSError * error = nil;
-    for(TeacherId * teacherId in self.course.teachers)
-    {
-        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:teacherEntityDisc];
-        NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@" , teacherId.id];
-        [request setPredicate:pred];
-        NSArray *teachersArray = [context executeFetchRequest:request error:&error];
-        Teacher * teacher = [teachersArray firstObject];
-        if(teacher)
-        {
-            [self.teachers addObject:teacher];
-            [self.teacherIdArray addObject:teacherId];
-        }
-        
-    }
-}
+
+
+
+
 
 
 

@@ -14,6 +14,7 @@
 #import "LandaAppDelegate.h"
 #import "TeacherId.h"
 #import "CoursesTableViewCell.h"
+#import "HelpFunc.h"
 
 @interface CoursesDetailsCollectionView : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *courseImage;

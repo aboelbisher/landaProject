@@ -58,6 +58,7 @@
 		F932381A192909140066328A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9323819192909140066328A /* Security.framework */; };
 		F932381C1929091B0066328A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381B1929091B0066328A /* StoreKit.framework */; };
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
+		F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E6A6193FAFF0004F0C00 /* HelpFunc.m */; };
 		F95ACAAE19394FC100E546FB /* courses.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAAD19394FC100E546FB /* courses.png */; };
 		F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB1193951E600E546FB /* grayColor.jpg */; };
 		F95ACAB5193952BF00E546FB /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB3193952BF00E546FB /* tabbar.png */; };
@@ -171,6 +172,8 @@
 		F9323819192909140066328A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F932381B1929091B0066328A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F932381D192909230066328A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F954E6A5193FAFF0004F0C00 /* HelpFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFunc.h; sourceTree = "<group>"; };
+		F954E6A6193FAFF0004F0C00 /* HelpFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFunc.m; sourceTree = "<group>"; };
 		F95ACAAD19394FC100E546FB /* courses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = courses.png; sourceTree = "<group>"; };
 		F95ACAB1193951E600E546FB /* grayColor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grayColor.jpg; sourceTree = "<group>"; };
 		F95ACAB3193952BF00E546FB /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 			isa = PBXGroup;
 			children = (
 				F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */,
+				F954E6A5193FAFF0004F0C00 /* HelpFunc.h */,
+				F954E6A6193FAFF0004F0C00 /* HelpFunc.m */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
@@ -660,6 +665,7 @@
 				F923C37F18F0BD3E0065C5EB /* UpdatesTableViewCell.m in Sources */,
 				F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */,
 				F99B83B1193E91420028653D /* Course.m in Sources */,
+				F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */,
 				F99B83C8193EB2F80028653D /* TFHpple.m in Sources */,
 				F96916B519292E3E00A569FA /* Update+init.m in Sources */,
 				F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */,

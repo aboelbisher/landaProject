@@ -18,4 +18,11 @@
                 hasBeenRead:(NSString *)hasBeenRead
      inManagedObjectContext:(NSManagedObjectContext*)context;
 
+
++(NSArray *) getHasntBeenReadUpdatesInManagedObjectContext:(NSManagedObjectContext*)context;
+
++(NSArray *) getAllUpdatesInManagedObjectContext:(NSManagedObjectContext*)context;
+
++(NSArray *)getUpdatesWithContent:(NSString*)content inManagedObjecContext:(NSManagedObjectContext*)context;
+
 @end

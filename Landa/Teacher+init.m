@@ -24,13 +24,13 @@ inManagedObjectContext:(NSManagedObjectContext*)context
     Teacher* teacher = nil;
     
     
-        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:teacherEntityDisc];
-        NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", id];
-        [request setPredicate:pred];
-        NSError *error;
-        NSArray *objects = [context executeFetchRequest:request error:&error];
+    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:teacherEntityDisc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(id = %@)", id];
+    [request setPredicate:pred];
+    NSError *error;
+    NSArray *objects = [context executeFetchRequest:request error:&error];
     
     if([objects count] == 0) // if theres no teacher match
     {
@@ -43,13 +43,38 @@ inManagedObjectContext:(NSManagedObjectContext*)context
         teacher.localImageFilePath = localImageFilePath;
         teacher.position = position;
         [context save:&error];
-
-
+        
+        
     }
-
+    
     return teacher;
+}
 
- 
+
++(NSArray*)getAllTeachersInManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSError * error = nil;
+    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:teacherEntityDisc];
+    NSPredicate *pred =nil;
+    [request setPredicate:pred];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    
+    return objects;
+}
+
++(NSArray*)getTeacherWithId:(NSString*)id inManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSError * error;
+    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:teacherEntityDisc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"id = %@" , id];
+    [request setPredicate:pred];
+    NSArray *teachersArray = [context executeFetchRequest:request error:&error];
+    
+    return teachersArray;
 }
 
 

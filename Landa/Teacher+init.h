@@ -14,11 +14,15 @@
                      mail:(NSString*)mail
                 imageName:(NSString*)imageName
                        id:(NSString*)id
-                  faculty:(NSString*)faculty
-       localImageFilePath:(NSString*)localImageFilePath
+faculty:(NSString*)faculty
+localImageFilePath:(NSString*)localImageFilePath
 position:(NSString*)position
-   inManagedObjectContext:(NSManagedObjectContext*)context;
+inManagedObjectContext:(NSManagedObjectContext*)context;
 
+
++(NSArray*)getAllTeachersInManagedObjectContext:(NSManagedObjectContext*)context;
+
++(NSArray*)getTeacherWithId:(NSString*)id inManagedObjectContext:(NSManagedObjectContext*)context;
 
 
 @end

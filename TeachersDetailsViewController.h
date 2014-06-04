@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "Teacher.h"
+#import "HelpFunc.h"
 #import <MessageUI/MessageUI.h>
 
 

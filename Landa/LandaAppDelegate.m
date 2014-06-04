@@ -32,84 +32,7 @@ static NSString* notifcationsWebEnd = @"&json=1";
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 
-
--(NSString *)decodeString:(NSString*)string
-{
-    NSString * newString = [string stringByReplacingOccurrencesOfString:@"&#8216;" withString:@"'"];
-    newString = [newString stringByReplacingOccurrencesOfString:@"&#8221;" withString:@"\""];
-    //newString = [newString stringByReplacingOccurrencesOfString:@"&#038;" withString:@"\%"];
-    newString = [newString stringByReplacingOccurrencesOfString:@"&#8211;" withString:@"-"];
-    newString = [newString stringByReplacingOccurrencesOfString:@"&#038;" withString:@"&"];
-    
-//    NSString* smile = nil;
-//    
-//    if (!([newString rangeOfString:@"<img src=\""].location == NSNotFound))
-//    {
-//        // newString contains a smile
-//        
-//        NSRange range = [newString rangeOfString:@"alt="];
-//        if (!(range.location == NSNotFound))
-//        {
-//                //string alt= found
-//            NSUInteger location =range.location + 5;
-//            NSInteger length = (NSInteger)2;
-//            
-//            NSRange newRange = NSMakeRange(location, length);
-//            
-//            smile = [newString substringWithRange:newRange];
-//        }
-//
-//        NSCharacterSet * charSet = [NSCharacterSet characterSetWithCharactersInString:@"<>"];
-//        
-//        NSArray * arrayString = [newString componentsSeparatedByCharactersInSet:charSet];
-//        
-//    }
-
-    
-    
-    return newString;
-}
-
--(NSString*) makeJsonFromString:(NSString*)string
-{
-    NSInteger first = 0;
-    NSInteger last = 0;
-    // int length = 0;
-    int count = 0;
-    
-    
-    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
-    {
-        if([string characterAtIndex:charIdx] == '{')
-        {
-            first = charIdx;
-            break;
-        }
-    }
-    
-    
-    for (NSInteger charIdx = 0; charIdx < string.length ; charIdx++)
-    {
-        if([string characterAtIndex:charIdx] == '}')
-        {
-            count-- ;
-            if (count == 0)
-            {
-                last = charIdx;
-                break;
-            }
-        }
-        if([string characterAtIndex:charIdx] == '{')
-        {
-            count++;
-        }
-        
-    }
-    NSRange range = NSMakeRange(first, last - first + 1);
-    NSString * newString = [string substringWithRange:range];
-    return newString;
-}
-
+#pragma mark background fetch
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
@@ -130,6 +53,10 @@ static NSString* notifcationsWebEnd = @"&json=1";
      }];
 }
 
+
+#pragma mark - Core Data stack
+
+
 - (void)saveContext
 {
     NSError *error = nil;
@@ -144,7 +71,6 @@ static NSString* notifcationsWebEnd = @"&json=1";
     }
 }
 
-#pragma mark - Core Data stack
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
@@ -211,17 +137,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [currentInstallation saveInBackground];
 }
 
+
 - (void)application:(UIApplication *)application
   didReceiveRemoteNotification:(NSDictionary *)userInfo
         fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    
-//    [Update initWithContent:@"pushNOt" title:@"push" date:[NSDate date] postId:@"1" hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
-//    
-//    return;
-//    
-    
-    
     int badgeNum = (int)[[UIApplication sharedApplication] applicationIconBadgeNumber];
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeNum + 1];
@@ -242,7 +162,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         return;
     }
     NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-    NSString* jsonString = [self makeJsonFromString:webString];
+    NSString* jsonString = [HelpFunc makeJsonFromString:webString];
     
     NSError * error;
     NSDictionary *JSON =
@@ -259,12 +179,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     HTMLNode * node = parser.body;
     NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
     
-
-    
-    
     NSString * title = [post objectForKey:@"title"];
-    
-    title = [self decodeString:title];
 
     content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
     content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
@@ -275,7 +190,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
     [self.managedObjectContext save:&error];
-   // [PFPush handlePush:userInfo];
+    [PFPush handlePush:userInfo];
     
     completionHandler(UIBackgroundFetchResultNewData);
 }
@@ -298,17 +213,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
     [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
     
-
-    
-    
-    NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:self.managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:updateEntityDisc];
-    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
-    [request setPredicate:pred];
-    NSError *error;
-    NSArray *objects = [self.managedObjectContext executeFetchRequest:request
-                                              error:&error];
+    NSArray * objects = [Update getHasntBeenReadUpdatesInManagedObjectContext:self.managedObjectContext];
     
     if([objects count] > 0)
     {

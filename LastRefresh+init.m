@@ -12,7 +12,7 @@
 
 +(LastRefresh *) initWithDate:(NSDate*)date
                            id:(NSString*)id
-       inManagedObjectContext:(NSManagedObjectContext*)context
+inManagedObjectContext:(NSManagedObjectContext*)context
 {
     LastRefresh * lastReftesh = nil;
     
@@ -35,5 +35,20 @@
     }
     return lastReftesh;
 }
+
++(NSArray*) getTheLastRefreshInManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSError * error = nil;
+    NSEntityDescription *lastRefreshEntity = [NSEntityDescription entityForName:@"LastRefresh" inManagedObjectContext:context];
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    [request setEntity:lastRefreshEntity];
+    NSPredicate* pred =[NSPredicate predicateWithFormat:@"(id = %@)", @"12345"];
+    [request setPredicate:pred];
+    NSArray *lastRefreshArray = [context executeFetchRequest:request
+                                                       error:&error];
+    
+    return lastRefreshArray;
+}
+
 
 @end

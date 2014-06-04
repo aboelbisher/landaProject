@@ -45,5 +45,47 @@
     return update;
 }
 
++(NSArray *) getHasntBeenReadUpdatesInManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:updateEntityDisc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"(hasBeenRead = %@)", @"NO"];
+    [request setPredicate:pred];
+    NSError *error;
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    
+    return objects;
+    
+}
+
++(NSArray *) getAllUpdatesInManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSError * error = nil;
+    NSEntityDescription *updateEntityDisc = [NSEntityDescription entityForName:@"Update" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:updateEntityDisc];
+    NSPredicate *pred =nil;
+    [request setPredicate:pred];
+    NSArray *objects = [context executeFetchRequest:request
+                                              error:&error];
+    
+    return objects;
+}
+
++(NSArray *)getUpdatesWithContent:(NSString*)content inManagedObjecContext:(NSManagedObjectContext*)context
+{
+    NSError * error;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Update" inManagedObjectContext:context]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"content == %@" , content]];
+    NSArray* results = [context executeFetchRequest:fetchRequest error:&error];
+    
+    return results;
+}
+
+
+
+
 
 @end

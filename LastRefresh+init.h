@@ -13,4 +13,7 @@
 +(LastRefresh *) initWithDate:(NSDate*)date
                            id:(NSString*)id
 inManagedObjectContext:(NSManagedObjectContext*)context;
+
++(NSArray*) getTheLastRefreshInManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end

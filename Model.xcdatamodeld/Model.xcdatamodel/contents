@@ -35,6 +35,7 @@
     <entity name="Update" representedClassName="Update" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="flagged" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hasBeenRead" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,6 +45,6 @@
         <element name="LastRefresh" positionX="-180" positionY="72" width="128" height="75"/>
         <element name="Teacher" positionX="-117" positionY="-135" width="128" height="148"/>
         <element name="TeacherId" positionX="-396" positionY="-108" width="128" height="133"/>
-        <element name="Update" positionX="-74" positionY="36" width="128" height="120"/>
+        <element name="Update" positionX="-74" positionY="36" width="128" height="135"/>
     </elements>
 </model>

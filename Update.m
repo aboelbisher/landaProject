@@ -2,7 +2,7 @@
 //  Update.m
 //  Landa
 //
-//  Created by muhammad abed el razek on 6/1/14.
+//  Created by muhammad abed el razek on 6/5/14.
 //  Copyright (c) 2014 muhammad abed el razek. All rights reserved.
 //
 
@@ -13,14 +13,9 @@
 
 @dynamic content;
 @dynamic date;
+@dynamic hasBeenRead;
 @dynamic postId;
 @dynamic title;
-@dynamic hasBeenRead;
-
-
-- (NSComparisonResult)compare:(Update *)update
-{
-    return [self.date compare:update.date];
-}
+@dynamic flagged;
 
 @end

@@ -12,7 +12,11 @@
 static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=10";
 
 
-@interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate>
+@interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate>
+{
+    BOOL _thersTappedCell;
+    NSInteger _tappedCell;
+}
 
 @property(nonatomic ,strong) NSMutableArray * updates;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -36,7 +40,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
     
     [LastRefresh initWithDate:[NSDate date] id:@"12345" inManagedObjectContext:context];
 
@@ -72,6 +75,13 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     {
         [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
     }
+    
+    _thersTappedCell = NO;
+    _tappedCell = -1;
+    
+    //debugging simulator
+   // [Update initWithContent:@"aaaaaaaaaa" title:@"title" date:nil postId:@"41" hasBeenRead:@"NO" inManagedObjectContext:context];
+    
 
 }
 
@@ -111,6 +121,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
 
 
 #pragma mark UItableView
+
 
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -191,18 +202,33 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
         
         update.dateLabel.text = stringFromDate;
         
-        if([tmpUpdate.hasBeenRead isEqualToString:@"NO"])
+        if([tmpUpdate.flagged isEqualToString:@"YES"])
         {
             update.hasBeenReadImage.hidden = NO;
+            update.hasBeenReadImage.image = [UIImage imageNamed:@"flagged.png"];
         }
-        else
+        else //not flagged
         {
-            update.hasBeenReadImage.hidden = YES;
+            if([tmpUpdate.hasBeenRead isEqualToString:@"NO"])
+            {
+                update.hasBeenReadImage.image = [UIImage imageNamed:@"unreadMessge.png"];
+                update.hasBeenReadImage.hidden = NO;
+            }
+            else
+            {
+                update.hasBeenReadImage.hidden = YES;
+            }
         }
         
         [formatter setDateFormat:@"HH:mm"];
         NSString* stringFromTime = [formatter stringFromDate:date];
         update.timeLabel.text = stringFromTime;
+        
+        
+        UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(handleLongPress:)];
+        lpgr.minimumPressDuration = 1.0; //seconds
+        [cell addGestureRecognizer:lpgr];
     }
     return cell;
 }
@@ -395,6 +421,77 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     
 }
 
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+    NSLog(@"clicked button at index %lu" , buttonIndex);
+    NSLog(@"the tapped cell is %lu" , _tappedCell);
+    
+    Update * update = [self.updates objectAtIndex:_tappedCell];
+    Update * coreDataUpdate = nil;
+    
+    if(update)
+    {
+        NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
+        if([objects count] == 1)
+        {
+            coreDataUpdate = [objects firstObject];
+        }
+    }
+    if(buttonIndex == 0)//mark as flagged
+    {
+        coreDataUpdate.flagged = @"YES";
+    }
+    if(buttonIndex == 1) //mark as unflagged
+    {
+        coreDataUpdate.flagged = @"NO";
+    }
+    
+    self.updates = nil;
+    NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+    
+    NSArray *sortedArray;
+    sortedArray = [objects sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+   {
+       NSDate *first = [(Update*)a date];
+       NSDate *second = [(Update*)b date];
+       return [second compare:first];
+   }];
+
+    
+    self.updates = [NSMutableArray arrayWithArray:sortedArray];
+    
+    [self.tableView reloadData];
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    
+    if(_thersTappedCell == NO)
+    {
+        _thersTappedCell = YES;
+        //NSLog(@"tel7aso teze");
+        CGPoint p = [gestureRecognizer locationInView:self.tableView];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+        if (indexPath == nil)
+        {
+            NSLog(@"long press on table view but not on a row");
+            
+        }
+        else
+        {
+            _tappedCell = indexPath.row;
+            NSLog(@"long press on table view at row %ld", (long)indexPath.row);
+            // More button is pressed
+            UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"mark as flagged", @"mark as Unflagged", nil];
+            [shareActionSheet showInView:self.view];
+        }
+    }
+    _thersTappedCell = NO;
+}
 
 
 

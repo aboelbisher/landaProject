@@ -59,6 +59,8 @@
 		F932381C1929091B0066328A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381B1929091B0066328A /* StoreKit.framework */; };
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
 		F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E6A6193FAFF0004F0C00 /* HelpFunc.m */; };
+		F954E7101940B9D9004F0C00 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E70F1940B9D9004F0C00 /* Update.m */; };
+		F954E7121940BDB4004F0C00 /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = F954E7111940BDB4004F0C00 /* flagged.png */; };
 		F95ACAAE19394FC100E546FB /* courses.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAAD19394FC100E546FB /* courses.png */; };
 		F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB1193951E600E546FB /* grayColor.jpg */; };
 		F95ACAB5193952BF00E546FB /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB3193952BF00E546FB /* tabbar.png */; };
@@ -69,7 +71,6 @@
 		F95ACAE1193A714100E546FB /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAE0193A714100E546FB /* Teacher.m */; };
 		F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAEC193A8F2100E546FB /* LastRefresh+init.m */; };
 		F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF4193A99FD00E546FB /* LastRefresh.m */; };
-		F95ACAF8193A9A2F00E546FB /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF7193A9A2F00E546FB /* Update.m */; };
 		F95ACB10193BA6DC00E546FB /* unreadMessge.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACB0F193BA6DC00E546FB /* unreadMessge.png */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
@@ -174,6 +175,9 @@
 		F932381D192909230066328A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F954E6A5193FAFF0004F0C00 /* HelpFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFunc.h; sourceTree = "<group>"; };
 		F954E6A6193FAFF0004F0C00 /* HelpFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFunc.m; sourceTree = "<group>"; };
+		F954E70E1940B9D9004F0C00 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Update.h; path = ../Update.h; sourceTree = "<group>"; };
+		F954E70F1940B9D9004F0C00 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Update.m; path = ../Update.m; sourceTree = "<group>"; };
+		F954E7111940BDB4004F0C00 /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flagged.png; sourceTree = "<group>"; };
 		F95ACAAD19394FC100E546FB /* courses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = courses.png; sourceTree = "<group>"; };
 		F95ACAB1193951E600E546FB /* grayColor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grayColor.jpg; sourceTree = "<group>"; };
 		F95ACAB3193952BF00E546FB /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
@@ -188,8 +192,6 @@
 		F95ACAEC193A8F2100E546FB /* LastRefresh+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LastRefresh+init.m"; path = "../LastRefresh+init.m"; sourceTree = "<group>"; };
 		F95ACAF3193A99FD00E546FB /* LastRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastRefresh.h; sourceTree = "<group>"; };
 		F95ACAF4193A99FD00E546FB /* LastRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastRefresh.m; sourceTree = "<group>"; };
-		F95ACAF6193A9A2F00E546FB /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
-		F95ACAF7193A9A2F00E546FB /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		F95ACB0F193BA6DC00E546FB /* unreadMessge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadMessge.png; sourceTree = "<group>"; };
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
@@ -300,8 +302,8 @@
 		F91FBA3E18F4774200B7F8D7 /* Update */ = {
 			isa = PBXGroup;
 			children = (
-				F95ACAF6193A9A2F00E546FB /* Update.h */,
-				F95ACAF7193A9A2F00E546FB /* Update.m */,
+				F954E70E1940B9D9004F0C00 /* Update.h */,
+				F954E70F1940B9D9004F0C00 /* Update.m */,
 				F96916B319292E3E00A569FA /* Update+init.h */,
 				F96916B419292E3E00A569FA /* Update+init.m */,
 				F923C37718F0BCD80065C5EB /* UpdatesViewController.h */,
@@ -432,6 +434,7 @@
 		F930300118EE49CC0064E984 /* pic */ = {
 			isa = PBXGroup;
 			children = (
+				F954E7111940BDB4004F0C00 /* flagged.png */,
 				F99B83B2193E96C90028653D /* noContact.png */,
 				F9CA6566193BEE3400104DE2 /* coursesTabBar.png */,
 				F9CA6568193BEE6500104DE2 /* contactsTabBar.png */,
@@ -618,6 +621,7 @@
 				F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */,
 				F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */,
 				F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */,
+				F954E7121940BDB4004F0C00 /* flagged.png in Resources */,
 				F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */,
 				F9302FFD18EE49C00064E984 /* hasan.jpg in Resources */,
 				F930300918EE4E880064E984 /* thrwat.jpg in Resources */,
@@ -645,13 +649,13 @@
 				F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */,
 				F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */,
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
+				F954E7101940B9D9004F0C00 /* Update.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
 				F99B83C9193EB2F80028653D /* TFHppleElement.m in Sources */,
 				F97777421931A06400B15754 /* Reachability.m in Sources */,
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */,
-				F95ACAF8193A9A2F00E546FB /* Update.m in Sources */,
 				F95ACACC193A6E8100E546FB /* Model.xcdatamodeld in Sources */,
 				F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,

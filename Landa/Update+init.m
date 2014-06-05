@@ -38,6 +38,7 @@
         update.postId = postId;
         update.title = title;
         update.hasBeenRead = hasBeenRead;
+        update.flagged = @"NO";
         [context save:&error];
         
         

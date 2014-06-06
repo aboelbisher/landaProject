@@ -55,6 +55,7 @@
         
         // Present mail view controller on screen
         [self presentViewController:mc animated:YES completion:NULL];
+        
     }
 }
 

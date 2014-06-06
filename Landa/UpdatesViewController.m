@@ -9,10 +9,10 @@
 #import "UpdatesViewController.h"
 
 
-static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=10";
+static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=get_posts&count=30";
 
 
-@interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate>
+@interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate , SWTableViewCellDelegate>
 {
     BOOL _thersTappedCell;
     NSInteger _tappedCell;
@@ -134,43 +134,13 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        NSInteger index = indexPath.item;
-        Update * update = [self.updates objectAtIndex:index];
-        LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        NSError * error = nil;
-    
-        NSArray* results = [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
-        NSManagedObject* object = [results firstObject];
-        [context deleteObject:object];
-        [context save:&error];
-        
-        NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
-        [indexPaths addObject:indexPath];
-        
-        [self.updates removeObjectAtIndex:index];
-        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-        
-        NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
-        
-        if([unreadUpdates count] > 0)
-        {
-            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
-            [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
-        }
-        else
-        {
-            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-
-            [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
-        }
-
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"show update content" sender:[tableView cellForRowAtIndexPath:indexPath]];
 }
+
+
 
 
 
@@ -180,7 +150,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     
     UITableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:@"show update"];
     
-    if([cell isKindOfClass:[UpdatesTableViewCell class]])
+    if([cell isKindOfClass:[UpdatesUITableViewCell class]])
     {
         cell.backgroundColor = [UIColor clearColor];
         
@@ -191,47 +161,99 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
 
         Update * tmpUpdate = [self.updates objectAtIndex:indexPath.item];
         
-        UpdatesTableViewCell * update = (UpdatesTableViewCell*) cell;
-        update.update = tmpUpdate;
-        update.title.text = [NSString stringWithFormat:@"%@" , tmpUpdate.title];
+        UpdatesUITableViewCell * updateCell = (UpdatesUITableViewCell*) cell;
+        updateCell.update = tmpUpdate;
+        updateCell.title.text = [NSString stringWithFormat:@"%@" , tmpUpdate.title];
         NSDate * date = tmpUpdate.date;
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
         NSString *stringFromDate = [formatter stringFromDate:date];
         
-        update.dateLabel.text = stringFromDate;
+        updateCell.dateLabel.text = stringFromDate;
         
         if([tmpUpdate.flagged isEqualToString:@"YES"])
         {
-            update.hasBeenReadImage.hidden = NO;
-            update.hasBeenReadImage.image = [UIImage imageNamed:@"flagged.png"];
+            updateCell.hasBeenReadImage.hidden = NO;
+            updateCell.hasBeenReadImage.image = [UIImage imageNamed:@"flagged.png"];
         }
         else //not flagged
         {
             if([tmpUpdate.hasBeenRead isEqualToString:@"NO"])
             {
-                update.hasBeenReadImage.image = [UIImage imageNamed:@"unreadMessge.png"];
-                update.hasBeenReadImage.hidden = NO;
+                updateCell.hasBeenReadImage.image = [UIImage imageNamed:@"unreadMessge.png"];
+                updateCell.hasBeenReadImage.hidden = NO;
             }
             else
             {
-                update.hasBeenReadImage.hidden = YES;
+                updateCell.hasBeenReadImage.hidden = YES;
             }
         }
         
         [formatter setDateFormat:@"HH:mm"];
         NSString* stringFromTime = [formatter stringFromDate:date];
-        update.timeLabel.text = stringFromTime;
+        updateCell.timeLabel.text = stringFromTime;
         
+        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+//        NSMutableArray *leftUtilityButtons = [NSMutableArray new];
+
+
+        //swipeRight
+        [rightUtilityButtons sw_addUtilityButtonWithColor:
+         [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
+                                                    title:@"More"];
+        [rightUtilityButtons sw_addUtilityButtonWithColor:
+         [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+                                                    title:@"Delete"];
         
-        UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
-                                              initWithTarget:self action:@selector(handleLongPress:)];
-        lpgr.minimumPressDuration = 1.0; //seconds
-        [cell addGestureRecognizer:lpgr];
+//        [leftUtilityButtons sw_addUtilityButtonWithColor:
+//         [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+//                                                    title:@"Delete"];
+        
+//        updateCell.leftUtilityButtons = leftUtilityButtons;
+        updateCell.rightUtilityButtons = rightUtilityButtons;
+        updateCell.delegate = self;
+
+        
+//        
+//        UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+//                                              initWithTarget:self action:@selector(handleLongPress:)];
+//        lpgr.minimumPressDuration = 1.0; //seconds
+//        [cell addGestureRecognizer:lpgr];
     }
     return cell;
 }
+
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+    if(cellIndexPath)
+    {
+        _tappedCell = cellIndexPath.row;
+        
+        switch (index)
+        {
+            case 0:
+            {
+                // More button is pressed
+                UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"mark as flagged", @"mark as Unflagged", nil];
+                [shareActionSheet showInView:self.view];
+                break;
+            }
+            case 1:
+            {
+                // Delete button is pressed
+                [self deleteCellAtIndexPath:cellIndexPath];
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -239,9 +261,9 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     {
         if ([segue.destinationViewController isKindOfClass:[UpdatesContentViewController class]])
         {
-            if([sender isKindOfClass:[UpdatesTableViewCell class]])
+            if([sender isKindOfClass:[UpdatesUITableViewCell class]])
             {
-                UpdatesTableViewCell* sourceController = (UpdatesTableViewCell*) sender;
+                UpdatesUITableViewCell* sourceController = (UpdatesUITableViewCell*) sender;
                 
                 if([sourceController.update.hasBeenRead isEqualToString:@"NO"])
                 {
@@ -372,7 +394,19 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
                [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
                NSDate *date = [formatter dateFromString:postDate];
                
-               if ([date compare:lastRefresh.lastRefresh] == NSOrderedDescending)
+//               NSLog(@"lastRefresh = %@" , lastRefresh.lastRefresh);
+//               NSLog(@"updateDate = %@" , date);
+               
+
+               NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+               NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+               [offsetComponents setMinute:-3]; // note that I'm setting it to -1
+               NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
+               
+//               NSLog(@"lastRefesh = %@" , lastRefresh.lastRefresh);
+//               NSLog(@"compDate = %@" , compDate);
+               
+               if ([date compare:compDate] == NSOrderedDescending)
                {
                    NSLog(@"date is later than lastRefresh.lastRefresh");
                    [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
@@ -466,32 +500,67 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=1
     [self.tableView reloadData];
 }
 
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+-(void) deleteCellAtIndexPath:(NSIndexPath*)indexPath
 {
+    NSInteger index = indexPath.item;
+    Update * update = [self.updates objectAtIndex:index];
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError * error = nil;
     
-    if(_thersTappedCell == NO)
+    NSArray* results = [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
+    NSManagedObject* object = [results firstObject];
+    [context deleteObject:object];
+    [context save:&error];
+    
+    NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
+    [indexPaths addObject:indexPath];
+    
+    [self.updates removeObjectAtIndex:index];
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
+    NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
+    
+    if([unreadUpdates count] > 0)
     {
-        _thersTappedCell = YES;
-        //NSLog(@"tel7aso teze");
-        CGPoint p = [gestureRecognizer locationInView:self.tableView];
-        
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-        if (indexPath == nil)
-        {
-            NSLog(@"long press on table view but not on a row");
-            
-        }
-        else
-        {
-            _tappedCell = indexPath.row;
-            NSLog(@"long press on table view at row %ld", (long)indexPath.row);
-            // More button is pressed
-            UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"mark as flagged", @"mark as Unflagged", nil];
-            [shareActionSheet showInView:self.view];
-        }
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+        [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
     }
-    _thersTappedCell = NO;
+    else
+    {
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+        
+        [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+    }
+
 }
+
+//-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+//{
+//
+//    if(_thersTappedCell == NO)
+//    {
+//        _thersTappedCell = YES;
+//        //NSLog(@"tel7aso teze");
+//        CGPoint p = [gestureRecognizer locationInView:self.tableView];
+//        
+//        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+//        if (indexPath == nil)
+//        {
+//            NSLog(@"long press on table view but not on a row");
+//            
+//        }
+//        else
+//        {
+//            _tappedCell = indexPath.row;
+//            NSLog(@"long press on table view at row %ld", (long)indexPath.row);
+//            // More button is pressed
+//            UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"mark as flagged", @"mark as Unflagged", nil];
+//            [shareActionSheet showInView:self.view];
+//        }
+//    }
+//    _thersTappedCell = NO;
+//}
 
 
 

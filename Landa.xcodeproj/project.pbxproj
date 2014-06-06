@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F90F06EA18FF398500D7C5E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F90F06E918FF398500D7C5E8 /* Images.xcassets */; };
 		F91FB99818F3237C00B7F8D7 /* expandR.png in Resources */ = {isa = PBXBuildFile; fileRef = F91FB99718F3237C00B7F8D7 /* expandR.png */; };
 		F91FB99B18F33B9700B7F8D7 /* TeachersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FB99A18F33B9700B7F8D7 /* TeachersNavigationController.m */; };
 		F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F91FB99C18F33E4800B7F8D7 /* navigation.jpg */; };
@@ -23,7 +22,6 @@
 		F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F923C37118F0B59D0065C5EB /* calculus.jpg */; };
 		F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F923C37218F0B59D0065C5EB /* chimestry.jpg */; };
 		F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923C37818F0BCD80065C5EB /* UpdatesViewController.m */; };
-		F923C37F18F0BD3E0065C5EB /* UpdatesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F923C37E18F0BD3E0065C5EB /* UpdatesTableViewCell.m */; };
 		F923C38118F0C0690065C5EB /* updates.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C38018F0C0690065C5EB /* updates.png */; };
 		F923C38318F0DF320065C5EB /* expand.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C38218F0DF320065C5EB /* expand.png */; };
 		F9302FC118EE499B0064E984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC018EE499B0064E984 /* Foundation.framework */; };
@@ -61,6 +59,13 @@
 		F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E6A6193FAFF0004F0C00 /* HelpFunc.m */; };
 		F954E7101940B9D9004F0C00 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E70F1940B9D9004F0C00 /* Update.m */; };
 		F954E7121940BDB4004F0C00 /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = F954E7111940BDB4004F0C00 /* flagged.png */; };
+		F954E7201940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7151940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m */; };
+		F954E7211940D7CB004F0C00 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7171940D7CB004F0C00 /* SWCellScrollView.m */; };
+		F954E7221940D7CB004F0C00 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7191940D7CB004F0C00 /* SWLongPressGestureRecognizer.m */; };
+		F954E7231940D7CB004F0C00 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E71B1940D7CB004F0C00 /* SWTableViewCell.m */; };
+		F954E7241940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E71D1940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m */; };
+		F954E7251940D7CB004F0C00 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E71F1940D7CB004F0C00 /* SWUtilityButtonView.m */; };
+		F954E72B1940DA44004F0C00 /* UpdatesUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E72A1940DA44004F0C00 /* UpdatesUITableViewCell.m */; };
 		F95ACAAE19394FC100E546FB /* courses.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAAD19394FC100E546FB /* courses.png */; };
 		F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB1193951E600E546FB /* grayColor.jpg */; };
 		F95ACAB5193952BF00E546FB /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB3193952BF00E546FB /* tabbar.png */; };
@@ -73,6 +78,7 @@
 		F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF4193A99FD00E546FB /* LastRefresh.m */; };
 		F95ACB10193BA6DC00E546FB /* unreadMessge.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACB0F193BA6DC00E546FB /* unreadMessge.png */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
+		F973F2681942259700E6776C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F973F2671942259700E6776C /* Images.xcassets */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
 		F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */; };
@@ -107,7 +113,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F90F06E918FF398500D7C5E8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F91FB99718F3237C00B7F8D7 /* expandR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expandR.png; sourceTree = "<group>"; };
 		F91FB99918F33B9700B7F8D7 /* TeachersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeachersNavigationController.h; sourceTree = "<group>"; };
 		F91FB99A18F33B9700B7F8D7 /* TeachersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeachersNavigationController.m; sourceTree = "<group>"; };
@@ -130,8 +135,6 @@
 		F923C37218F0B59D0065C5EB /* chimestry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chimestry.jpg; sourceTree = "<group>"; };
 		F923C37718F0BCD80065C5EB /* UpdatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesViewController.h; sourceTree = "<group>"; };
 		F923C37818F0BCD80065C5EB /* UpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesViewController.m; sourceTree = "<group>"; };
-		F923C37D18F0BD3E0065C5EB /* UpdatesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdatesTableViewCell.h; path = ../UpdatesTableViewCell.h; sourceTree = "<group>"; };
-		F923C37E18F0BD3E0065C5EB /* UpdatesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdatesTableViewCell.m; path = ../UpdatesTableViewCell.m; sourceTree = "<group>"; };
 		F923C38018F0C0690065C5EB /* updates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updates.png; sourceTree = "<group>"; };
 		F923C38218F0DF320065C5EB /* expand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expand.png; sourceTree = "<group>"; };
 		F9302FBD18EE499B0064E984 /* Landa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Landa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +181,20 @@
 		F954E70E1940B9D9004F0C00 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Update.h; path = ../Update.h; sourceTree = "<group>"; };
 		F954E70F1940B9D9004F0C00 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Update.m; path = ../Update.m; sourceTree = "<group>"; };
 		F954E7111940BDB4004F0C00 /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flagged.png; sourceTree = "<group>"; };
+		F954E7141940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
+		F954E7151940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
+		F954E7161940D7CB004F0C00 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
+		F954E7171940D7CB004F0C00 /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCellScrollView.m; sourceTree = "<group>"; };
+		F954E7181940D7CB004F0C00 /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		F954E7191940D7CB004F0C00 /* SWLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWLongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		F954E71A1940D7CB004F0C00 /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewCell.h; sourceTree = "<group>"; };
+		F954E71B1940D7CB004F0C00 /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
+		F954E71C1940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonTapGestureRecognizer.h; sourceTree = "<group>"; };
+		F954E71D1940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
+		F954E71E1940D7CB004F0C00 /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
+		F954E71F1940D7CB004F0C00 /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
+		F954E7291940DA44004F0C00 /* UpdatesUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesUITableViewCell.h; sourceTree = "<group>"; };
+		F954E72A1940DA44004F0C00 /* UpdatesUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesUITableViewCell.m; sourceTree = "<group>"; };
 		F95ACAAD19394FC100E546FB /* courses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = courses.png; sourceTree = "<group>"; };
 		F95ACAB1193951E600E546FB /* grayColor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grayColor.jpg; sourceTree = "<group>"; };
 		F95ACAB3193952BF00E546FB /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
@@ -195,6 +212,7 @@
 		F95ACB0F193BA6DC00E546FB /* unreadMessge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadMessge.png; sourceTree = "<group>"; };
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
+		F973F2671942259700E6776C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F97777411931A06400B15754 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F99B00C4192EF24F006000AA /* TeacherId+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TeacherId+init.h"; sourceTree = "<group>"; };
@@ -308,8 +326,8 @@
 				F96916B419292E3E00A569FA /* Update+init.m */,
 				F923C37718F0BCD80065C5EB /* UpdatesViewController.h */,
 				F923C37818F0BCD80065C5EB /* UpdatesViewController.m */,
-				F923C37D18F0BD3E0065C5EB /* UpdatesTableViewCell.h */,
-				F923C37E18F0BD3E0065C5EB /* UpdatesTableViewCell.m */,
+				F954E7291940DA44004F0C00 /* UpdatesUITableViewCell.h */,
+				F954E72A1940DA44004F0C00 /* UpdatesUITableViewCell.m */,
 				F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */,
 				F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */,
 			);
@@ -383,13 +401,14 @@
 		F9302FC618EE499B0064E984 /* Landa */ = {
 			isa = PBXGroup;
 			children = (
+				F954E7131940D78F004F0C00 /* SwapCell */,
 				F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */,
 				F954E6A5193FAFF0004F0C00 /* HelpFunc.h */,
 				F954E6A6193FAFF0004F0C00 /* HelpFunc.m */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
-				F90F06E918FF398500D7C5E8 /* Images.xcassets */,
+				F973F2671942259700E6776C /* Images.xcassets */,
 				F99B83C1193EB2310028653D /* HTMLParsing */,
 				F977773F1931A04A00B15754 /* Reachability */,
 				F97776001931604800B15754 /* teacherId */,
@@ -467,6 +486,25 @@
 				F9302FFA18EE49C00064E984 /* ward.jpg */,
 			);
 			name = pic;
+			sourceTree = "<group>";
+		};
+		F954E7131940D78F004F0C00 /* SwapCell */ = {
+			isa = PBXGroup;
+			children = (
+				F954E7141940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.h */,
+				F954E7151940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m */,
+				F954E7161940D7CB004F0C00 /* SWCellScrollView.h */,
+				F954E7171940D7CB004F0C00 /* SWCellScrollView.m */,
+				F954E7181940D7CB004F0C00 /* SWLongPressGestureRecognizer.h */,
+				F954E7191940D7CB004F0C00 /* SWLongPressGestureRecognizer.m */,
+				F954E71A1940D7CB004F0C00 /* SWTableViewCell.h */,
+				F954E71B1940D7CB004F0C00 /* SWTableViewCell.m */,
+				F954E71C1940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.h */,
+				F954E71D1940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m */,
+				F954E71E1940D7CB004F0C00 /* SWUtilityButtonView.h */,
+				F954E71F1940D7CB004F0C00 /* SWUtilityButtonView.m */,
+			);
+			name = SwapCell;
 			sourceTree = "<group>";
 		};
 		F97776001931604800B15754 /* teacherId */ = {
@@ -610,7 +648,6 @@
 				F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */,
 				F930300018EE49C00064E984 /* ward.jpg in Resources */,
 				F9302FFE18EE49C00064E984 /* mothana.jpg in Resources */,
-				F90F06EA18FF398500D7C5E8 /* Images.xcassets in Resources */,
 				F9CA656B193BEE8200104DE2 /* updatesTabBar.png in Resources */,
 				F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */,
 				F9CA6565193BED4D00104DE2 /* coursesIcon.png in Resources */,
@@ -624,6 +661,7 @@
 				F954E7121940BDB4004F0C00 /* flagged.png in Resources */,
 				F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */,
 				F9302FFD18EE49C00064E984 /* hasan.jpg in Resources */,
+				F973F2681942259700E6776C /* Images.xcassets in Resources */,
 				F930300918EE4E880064E984 /* thrwat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,16 +685,19 @@
 				F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */,
 				F91FB99B18F33B9700B7F8D7 /* TeachersNavigationController.m in Sources */,
 				F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */,
+				F954E72B1940DA44004F0C00 /* UpdatesUITableViewCell.m in Sources */,
 				F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */,
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
 				F954E7101940B9D9004F0C00 /* Update.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
+				F954E7221940D7CB004F0C00 /* SWLongPressGestureRecognizer.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
 				F99B83C9193EB2F80028653D /* TFHppleElement.m in Sources */,
 				F97777421931A06400B15754 /* Reachability.m in Sources */,
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */,
 				F95ACACC193A6E8100E546FB /* Model.xcdatamodeld in Sources */,
+				F954E7201940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
 				F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */,
@@ -666,15 +707,18 @@
 				F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */,
 				F99B83D0193EB3DE0028653D /* HTMLNode.m in Sources */,
 				F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */,
-				F923C37F18F0BD3E0065C5EB /* UpdatesTableViewCell.m in Sources */,
 				F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */,
 				F99B83B1193E91420028653D /* Course.m in Sources */,
 				F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */,
+				F954E7231940D7CB004F0C00 /* SWTableViewCell.m in Sources */,
+				F954E7241940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				F99B83C8193EB2F80028653D /* TFHpple.m in Sources */,
 				F96916B519292E3E00A569FA /* Update+init.m in Sources */,
+				F954E7251940D7CB004F0C00 /* SWUtilityButtonView.m in Sources */,
 				F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */,
 				F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */,
 				F95ACADE193A714100E546FB /* TeacherId.m in Sources */,
+				F954E7211940D7CB004F0C00 /* SWCellScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,7 +843,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: muhammad abed el razek (UH6JC85963)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -823,7 +867,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: muhammad abed el razek (UH6JC85963)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -837,6 +881,7 @@
 				);
 				INFOPLIST_FILE = "Landa/Landa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

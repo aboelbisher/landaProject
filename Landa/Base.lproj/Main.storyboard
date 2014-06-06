@@ -231,7 +231,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="show update" rowHeight="78" id="rGP-ht-yvG" customClass="UpdatesTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="show update" rowHeight="78" id="rGP-ht-yvG" customClass="UpdatesUITableViewCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rGP-ht-yvG" id="qpS-0z-JPq">
@@ -270,7 +270,7 @@
                                             <outlet property="hasBeenReadImage" destination="NF4-66-vdd" id="UWM-an-mMt"/>
                                             <outlet property="timeLabel" destination="gMx-Wt-htu" id="3wx-qF-730"/>
                                             <outlet property="title" destination="VP9-Df-74J" id="QAD-Fr-ONR"/>
-                                            <segue destination="OsE-pT-bHs" kind="push" identifier="show update content" id="9lW-P0-23d"/>
+                                            <segue destination="OsE-pT-bHs" kind="push" identifier="show update content" id="FgP-ZC-Wga"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

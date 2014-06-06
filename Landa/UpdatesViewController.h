@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UpdatesTableViewCell.h"
 #import "TeachersDetailsViewController.h"
 #import "UpdatesContentViewController.h"
 #import "Update.h"
 #import "Update+init.h"
 #import "LandaAppDelegate.h"
 #import "LastRefresh+init.h"
+#import "UpdatesUITableViewCell.h"
 
 @interface UpdatesViewController : UIViewController
 

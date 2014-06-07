@@ -53,16 +53,18 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
 
     self.updates = [NSMutableArray arrayWithArray:objects];
-    NSArray *sortedArray;
-    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-    {
-        NSDate *first = [(Update*)a date];
-        NSDate *second = [(Update*)b date];
-        return [second compare:first];
-    }];
+//    NSArray *sortedArray;
+//    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+//    {
+//        NSDate *first = [(Update*)a date];
+//        NSDate *second = [(Update*)b date];
+//        return [second compare:first];
+//    }];
+//    
+//    self.updates = nil;
+//    self.updates = [NSMutableArray arrayWithArray:sortedArray];
     
-    self.updates = nil;
-    self.updates = [NSMutableArray arrayWithArray:sortedArray];    
+    [self sortTableViewArray];
     
     // for application badge and UITabBar Red colors
     NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
@@ -104,17 +106,19 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
     self.updates = [NSMutableArray arrayWithArray:objects];
     
-    NSArray *sortedArray;
-    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-    {
-        NSDate *first = [(Update*)a date];
-        NSDate *second = [(Update*)b date];
-        return [second compare:first];
-    }];
-    
-    self.updates = nil;
-    self.updates = [NSMutableArray arrayWithArray:sortedArray];
+//    NSArray *sortedArray;
+//    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+//    {
+//        NSDate *first = [(Update*)a date];
+//        NSDate *second = [(Update*)b date];
+//        return [second compare:first];
+//    }];
+//    
+//    self.updates = nil;
+//    self.updates = [NSMutableArray arrayWithArray:sortedArray];
 
+    [self sortTableViewArray];
+    
     [self.tableView reloadData];
 }
 
@@ -213,13 +217,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 //        updateCell.leftUtilityButtons = leftUtilityButtons;
         updateCell.rightUtilityButtons = rightUtilityButtons;
         updateCell.delegate = self;
-
-        
-//        
-//        UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
-//                                              initWithTarget:self action:@selector(handleLongPress:)];
-//        lpgr.minimumPressDuration = 1.0; //seconds
-//        [cell addGestureRecognizer:lpgr];
     }
     return cell;
 }
@@ -236,8 +233,25 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         {
             case 0:
             {
+                NSString* flagString = nil;
+                
+                Update* updateCell = [self.updates objectAtIndex:_tappedCell];
+                
+                if(updateCell)
+                {
+                    if([updateCell.flagged isEqualToString:@"YES"])
+                    {
+                        flagString =@"mark as unflagged";
+                    }
+                    else
+                    {
+                        flagString = @"mark as flagged";
+                    }
+                }
+                
+                
                 // More button is pressed
-                UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"mark as flagged", @"mark as Unflagged", nil];
+                UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: flagString , nil];
                 [shareActionSheet showInView:self.view];
                 break;
             }
@@ -457,47 +471,59 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    NSError * error = nil;
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
-    NSLog(@"clicked button at index %lu" , buttonIndex);
-    NSLog(@"the tapped cell is %lu" , _tappedCell);
-    
-    Update * update = [self.updates objectAtIndex:_tappedCell];
-    Update * coreDataUpdate = nil;
-    
-    if(update)
+//    NSLog(@"clicked button at index %lu" , buttonIndex);
+//    NSLog(@"the tapped cell is %lu" , _tappedCell);
+//    
+    if(buttonIndex == 0)
     {
-        NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
-        if([objects count] == 1)
+        Update * update = [self.updates objectAtIndex:_tappedCell];
+        Update * coreDataUpdate = nil;
+        
+        if(update)
         {
-            coreDataUpdate = [objects firstObject];
+            NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
+            if([objects count] == 1)
+            {
+                coreDataUpdate = [objects firstObject];
+            }
         }
-    }
-    if(buttonIndex == 0)//mark as flagged
-    {
-        coreDataUpdate.flagged = @"YES";
-    }
-    if(buttonIndex == 1) //mark as unflagged
-    {
-        coreDataUpdate.flagged = @"NO";
+        
+        
+        
+        
+        if([coreDataUpdate.flagged isEqualToString:@"NO"])//mark as flagged
+        {
+            coreDataUpdate.flagged = @"YES";
+        }
+        else
+        {
+            coreDataUpdate.flagged = @"NO";
+        }
+        
+        [context save:&error];
+        
+        self.updates = nil;
+        NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+        
+        NSArray *sortedArray;
+        sortedArray = [objects sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+                       {
+                           NSDate *first = [(Update*)a date];
+                           NSDate *second = [(Update*)b date];
+                           return [second compare:first];
+                       }];
+        
+        
+        self.updates = [NSMutableArray arrayWithArray:sortedArray];
+        
+        [self.tableView reloadData];
     }
     
-    self.updates = nil;
-    NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
-    
-    NSArray *sortedArray;
-    sortedArray = [objects sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-   {
-       NSDate *first = [(Update*)a date];
-       NSDate *second = [(Update*)b date];
-       return [second compare:first];
-   }];
 
-    
-    self.updates = [NSMutableArray arrayWithArray:sortedArray];
-    
-    [self.tableView reloadData];
 }
 
 -(void) deleteCellAtIndexPath:(NSIndexPath*)indexPath
@@ -561,6 +587,36 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 //    }
 //    _thersTappedCell = NO;
 //}
+
+-(void) sortTableViewArray
+{
+    NSArray *sortedArray;
+    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+   {
+       NSString* firstFlagged = [(Update*)a flagged];
+       NSString* secondFlagged = [(Update*)b flagged];
+       
+       if([firstFlagged isEqualToString:@"YES"] && [secondFlagged isEqualToString:@"NO"])
+       {
+            return (NSComparisonResult)NSOrderedAscending;
+       }
+       else if([firstFlagged isEqualToString:@"NO"] && [secondFlagged isEqualToString:@"YES"])
+       {
+            return (NSComparisonResult) NSOrderedDescending;
+       }
+       else
+       {
+           NSDate *first = [(Update*)a date];
+           NSDate *second = [(Update*)b date];
+           return [second compare:first];
+       }
+       
+
+   }];
+    
+    self.updates = nil;
+    self.updates = [NSMutableArray arrayWithArray:sortedArray];
+}
 
 
 

@@ -85,9 +85,6 @@
 		F99B00ED192FDEC1006000AA /* CoursesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00EC192FDEC1006000AA /* CoursesCollectionViewCell.m */; };
 		F99B83B1193E91420028653D /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83B0193E91420028653D /* Course.m */; };
 		F99B83B3193E96C90028653D /* noContact.png in Resources */ = {isa = PBXBuildFile; fileRef = F99B83B2193E96C90028653D /* noContact.png */; };
-		F99B83C8193EB2F80028653D /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83C3193EB2F80028653D /* TFHpple.m */; };
-		F99B83C9193EB2F80028653D /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83C5193EB2F80028653D /* TFHppleElement.m */; };
-		F99B83CA193EB2F80028653D /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83C7193EB2F80028653D /* XPathQuery.m */; };
 		F99B83CB193EB36A0028653D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F99B83BD193EB1690028653D /* libxml2.dylib */; };
 		F99B83D0193EB3DE0028653D /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83CD193EB3DE0028653D /* HTMLNode.m */; };
 		F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83CF193EB3DE0028653D /* HTMLParser.m */; };
@@ -98,7 +95,6 @@
 		F9CA6561193BECFF00104DE2 /* updatesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6560193BECFF00104DE2 /* updatesIcon.png */; };
 		F9CA6565193BED4D00104DE2 /* coursesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6564193BED4D00104DE2 /* coursesIcon.png */; };
 		F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6566193BEE3400104DE2 /* coursesTabBar.png */; };
-		F9CA6569193BEE6500104DE2 /* contactsTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6568193BEE6500104DE2 /* contactsTabBar.png */; };
 		F9CA656B193BEE8200104DE2 /* updatesTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA656A193BEE8200104DE2 /* updatesTabBar.png */; };
 /* End PBXBuildFile section */
 
@@ -244,7 +240,6 @@
 		F9CA6560193BECFF00104DE2 /* updatesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIcon.png; sourceTree = "<group>"; };
 		F9CA6564193BED4D00104DE2 /* coursesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursesIcon.png; sourceTree = "<group>"; };
 		F9CA6566193BEE3400104DE2 /* coursesTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursesTabBar.png; sourceTree = "<group>"; };
-		F9CA6568193BEE6500104DE2 /* contactsTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contactsTabBar.png; sourceTree = "<group>"; };
 		F9CA656A193BEE8200104DE2 /* updatesTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesTabBar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -456,7 +451,6 @@
 				F954E7111940BDB4004F0C00 /* flagged.png */,
 				F99B83B2193E96C90028653D /* noContact.png */,
 				F9CA6566193BEE3400104DE2 /* coursesTabBar.png */,
-				F9CA6568193BEE6500104DE2 /* contactsTabBar.png */,
 				F9CA655E193BECC900104DE2 /* teachersIcon.png */,
 				F9CA6564193BED4D00104DE2 /* coursesIcon.png */,
 				F95ACB0F193BA6DC00E546FB /* unreadMessge.png */,
@@ -636,7 +630,6 @@
 				F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */,
 				F9302FCB18EE499B0064E984 /* InfoPlist.strings in Resources */,
 				F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */,
-				F9CA6569193BEE6500104DE2 /* contactsTabBar.png in Resources */,
 				F95ACAAE19394FC100E546FB /* courses.png in Resources */,
 				F9302FFC18EE49C00064E984 /* aiman.jpg in Resources */,
 				F923C37418F0B59D0065C5EB /* c.png in Resources */,
@@ -692,7 +685,6 @@
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
 				F954E7221940D7CB004F0C00 /* SWLongPressGestureRecognizer.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
-				F99B83C9193EB2F80028653D /* TFHppleElement.m in Sources */,
 				F97777421931A06400B15754 /* Reachability.m in Sources */,
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */,
@@ -701,7 +693,6 @@
 				F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
 				F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */,
-				F99B83CA193EB2F80028653D /* XPathQuery.m in Sources */,
 				F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */,
 				F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */,
 				F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */,
@@ -712,7 +703,6 @@
 				F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */,
 				F954E7231940D7CB004F0C00 /* SWTableViewCell.m in Sources */,
 				F954E7241940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
-				F99B83C8193EB2F80028653D /* TFHpple.m in Sources */,
 				F96916B519292E3E00A569FA /* Update+init.m in Sources */,
 				F954E7251940D7CB004F0C00 /* SWUtilityButtonView.m in Sources */,
 				F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */,

@@ -528,7 +528,7 @@
         <scene sceneID="VtO-kz-mP7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RWY-zL-PK6" customClass="TeachersNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="teachers" image="contactsTabBar.png" id="D36-Oe-S37">
+                    <tabBarItem key="tabBarItem" title="teachers" image="contacts" id="D36-Oe-S37">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -545,11 +545,11 @@
             </objects>
             <point key="canvasLocation" x="-548" y="-910"/>
         </scene>
-        <!--Navigation Controller - Courses-->
+        <!--Navigation Controller-->
         <scene sceneID="n8k-ib-Oha">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IIS-tK-1q3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="coursesTabBar.png" id="Oyr-Yt-AF6">
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="Oyr-Yt-AF6">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -566,11 +566,11 @@
             </objects>
             <point key="canvasLocation" x="-534" y="-215"/>
         </scene>
-        <!--Navigation Controller - Updates-->
+        <!--Navigation Controller-->
         <scene sceneID="zm0-wA-Pam">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LZy-sf-e0t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Updates" image="updatesTabBar.png" id="X5V-c3-6l2">
+                    <tabBarItem key="tabBarItem" systemItem="downloads" id="X5V-c3-6l2">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -589,11 +589,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="contactsTabBar.png" width="32" height="32"/>
-        <image name="coursesTabBar.png" width="50" height="50"/>
+        <image name="contacts" width="22" height="22"/>
         <image name="mailIcon.png" width="65" height="56"/>
         <image name="unreadMessge.png" width="850" height="850"/>
-        <image name="updatesTabBar.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-1309" y="-199"/>
         </scene>
-        <!--Teachers View Controller-->
+        <!--Teachers View Controller - מסדנתים-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="TeachersViewController" sceneMemberID="viewController">
@@ -95,7 +95,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
-                    <navigationItem key="navigationItem" id="IkY-gF-voV"/>
+                    <navigationItem key="navigationItem" title="מסדנתים" id="IkY-gF-voV"/>
                     <connections>
                         <outlet property="searcBar" destination="R8V-RZ-zI6" id="O1U-zr-sbk"/>
                         <outlet property="searchDisplayController" destination="EeL-pd-WgM" id="GfJ-kK-duh"/>
@@ -189,9 +189,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQc-HB-XJJ">
-                                <rect key="frame" x="19" y="237" width="30" height="26"/>
+                                <rect key="frame" x="19" y="237" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="mailIcon.png">
+                                <state key="normal" title="Button" image="sendMail">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -214,7 +214,7 @@
             </objects>
             <point key="canvasLocation" x="448" y="-910"/>
         </scene>
-        <!--Updates View Controller - Updates-->
+        <!--Updates View Controller - עדכונים-->
         <scene sceneID="Z1l-5G-bmP">
             <objects>
                 <viewController id="h39-Cg-rv0" customClass="UpdatesViewController" sceneMemberID="viewController">
@@ -260,13 +260,18 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unreadMessge.png" translatesAutoresizingMaskIntoConstraints="NO" id="NF4-66-vdd">
-                                                    <rect key="frame" x="11" y="43" width="12" height="12"/>
+                                                    <rect key="frame" x="11" y="37" width="12" height="12"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flagged.png" translatesAutoresizingMaskIntoConstraints="NO" id="HR0-qP-bXa">
+                                                    <rect key="frame" x="7" y="53" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="LCe-P1-oKd" id="jyo-Xe-IUY"/>
+                                            <outlet property="flaggedImage" destination="HR0-qP-bXa" id="s6n-r4-DuX"/>
                                             <outlet property="hasBeenReadImage" destination="NF4-66-vdd" id="UWM-an-mMt"/>
                                             <outlet property="timeLabel" destination="gMx-Wt-htu" id="3wx-qF-730"/>
                                             <outlet property="title" destination="VP9-Df-74J" id="QAD-Fr-ONR"/>
@@ -288,7 +293,7 @@
                             <constraint firstAttribute="bottom" secondItem="USg-Sp-t34" secondAttribute="bottom" id="zRQ-9T-9qi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Updates" id="LcP-Mt-810"/>
+                    <navigationItem key="navigationItem" title="עדכונים" id="LcP-Mt-810"/>
                     <connections>
                         <outlet property="tableView" destination="USg-Sp-t34" id="0cL-6m-URo"/>
                     </connections>
@@ -344,7 +349,7 @@
             </objects>
             <point key="canvasLocation" x="448" y="480"/>
         </scene>
-        <!--Courses View Controller - Courses-->
+        <!--Courses View Controller - סדנאות-->
         <scene sceneID="fBa-U4-sco">
             <objects>
                 <viewController id="6kc-A3-GVc" customClass="CoursesViewController" sceneMemberID="viewController">
@@ -416,7 +421,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Courses" id="kLb-7p-QiG"/>
+                    <navigationItem key="navigationItem" title="סדנאות" id="kLb-7p-QiG"/>
                     <connections>
                         <outlet property="coursesCollectionView" destination="fJ7-XX-iM7" id="zDR-Bh-29f"/>
                         <outlet property="searchBar" destination="cMU-rh-boo" id="4Ho-29-ir9"/>
@@ -524,13 +529,11 @@
             </objects>
             <point key="canvasLocation" x="448" y="-199"/>
         </scene>
-        <!--Teachers Navigation Controller - teachers-->
+        <!--Teachers Navigation Controller - מסדנתים-->
         <scene sceneID="VtO-kz-mP7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RWY-zL-PK6" customClass="TeachersNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="teachers" image="contacts" id="D36-Oe-S37">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="מסדנתים" image="contacts" id="D36-Oe-S37"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vLI-5Z-pau">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -545,13 +548,11 @@
             </objects>
             <point key="canvasLocation" x="-548" y="-910"/>
         </scene>
-        <!--Navigation Controller - Courses-->
+        <!--Navigation Controller - סדנאות-->
         <scene sceneID="n8k-ib-Oha">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IIS-tK-1q3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="courses" id="Oyr-Yt-AF6">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="סדנאות" image="courses" id="Oyr-Yt-AF6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rEy-kL-Ldt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -566,13 +567,11 @@
             </objects>
             <point key="canvasLocation" x="-534" y="-215"/>
         </scene>
-        <!--Navigation Controller - Updates-->
+        <!--Navigation Controller - עדכונים-->
         <scene sceneID="zm0-wA-Pam">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LZy-sf-e0t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Updates" image="updates" id="X5V-c3-6l2">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="עדכונים" image="updates" id="X5V-c3-6l2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xcX-m2-pC4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -591,7 +590,8 @@
     <resources>
         <image name="contacts" width="30" height="30"/>
         <image name="courses" width="30" height="30"/>
-        <image name="mailIcon.png" width="65" height="56"/>
+        <image name="flagged.png" width="60" height="60"/>
+        <image name="sendMail" width="30" height="30"/>
         <image name="unreadMessge.png" width="850" height="850"/>
         <image name="updates" width="30" height="30"/>
     </resources>

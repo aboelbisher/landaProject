@@ -247,7 +247,23 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
                 NSString * firstName = [tut objectForKey:@"fname"];
                 NSString * lastName = [tut objectForKey:@"lname"];
                 NSString * email = [tut objectForKey:@"email"];
-                NSString * postion = @"חונך אכדמי";
+                NSInteger positionNum  = [[tut objectForKey:@"position"] integerValue];
+                NSString * position = nil;
+                
+                switch (positionNum)
+                {
+                    case 1:
+                        position = @"חונך אכדמי";
+                        break;
+                    case 3:
+                        position = @"רכז/ת פרויקט";
+                        break;
+                    case 4:
+                        position = @"רכז/ת חברתי/ת";
+                        break;
+                    default:
+                        break;
+                }
                 firstName = [firstName stringByReplacingOccurrencesOfString:@" " withString:@""];
                 lastName = [lastName stringByReplacingOccurrencesOfString:@" " withString:@""];
                 NSString * name = [firstName stringByAppendingString:@" "];
@@ -259,7 +275,7 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
                 NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
                 NSString * localFilePath = [HelpFunc writeImageToFileWithId:id data:data];
                 
-                [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.png" , id] id:id faculty:faculty localImageFilePath:localFilePath position:postion inManagedObjectContext:context];
+                [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.png" , id] id:id faculty:faculty localImageFilePath:localFilePath position:position inManagedObjectContext:context];
                 
             }
         }

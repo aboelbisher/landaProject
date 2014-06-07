@@ -9,7 +9,7 @@
 #import "UpdatesViewController.h"
 
 
-static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=get_posts&count=30";
+static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=get_posts&count=20";
 
 
 @interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate , SWTableViewCellDelegate>
@@ -53,18 +53,9 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
 
     self.updates = [NSMutableArray arrayWithArray:objects];
-//    NSArray *sortedArray;
-//    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-//    {
-//        NSDate *first = [(Update*)a date];
-//        NSDate *second = [(Update*)b date];
-//        return [second compare:first];
-//    }];
-//    
-//    self.updates = nil;
-//    self.updates = [NSMutableArray arrayWithArray:sortedArray];
     
-    [self sortTableViewArray];
+    [self sortTableViewArrayWithDates];
+    [self sortTableViewArrayWithPinned];
     
     // for application badge and UITabBar Red colors
     NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
@@ -80,11 +71,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     
     _thersTappedCell = NO;
     _tappedCell = -1;
-    
-    //debugging simulator
-   // [Update initWithContent:@"aaaaaaaaaa" title:@"title" date:nil postId:@"41" hasBeenRead:@"NO" inManagedObjectContext:context];
-    
-
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -105,19 +91,9 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     
     NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
     self.updates = [NSMutableArray arrayWithArray:objects];
-    
-//    NSArray *sortedArray;
-//    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-//    {
-//        NSDate *first = [(Update*)a date];
-//        NSDate *second = [(Update*)b date];
-//        return [second compare:first];
-//    }];
-//    
-//    self.updates = nil;
-//    self.updates = [NSMutableArray arrayWithArray:sortedArray];
 
-    [self sortTableViewArray];
+    [self sortTableViewArrayWithDates];
+    [self sortTableViewArrayWithPinned];
     
     [self.tableView reloadData];
 }
@@ -178,20 +154,20 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         
         if([tmpUpdate.flagged isEqualToString:@"YES"])
         {
-            updateCell.hasBeenReadImage.hidden = NO;
-            updateCell.hasBeenReadImage.image = [UIImage imageNamed:@"flagged.png"];
+            updateCell.flaggedImage.hidden = NO;
         }
-        else //not flagged
+        else
         {
-            if([tmpUpdate.hasBeenRead isEqualToString:@"NO"])
-            {
-                updateCell.hasBeenReadImage.image = [UIImage imageNamed:@"unreadMessge.png"];
-                updateCell.hasBeenReadImage.hidden = NO;
-            }
-            else
-            {
-                updateCell.hasBeenReadImage.hidden = YES;
-            }
+            updateCell.flaggedImage.hidden = YES;
+        }
+        
+        if([tmpUpdate.hasBeenRead isEqualToString:@"NO"])
+        {
+            updateCell.hasBeenReadImage.hidden = NO;
+        }
+        else
+        {
+            updateCell.hasBeenReadImage.hidden = YES;
         }
         
         [formatter setDateFormat:@"HH:mm"];
@@ -249,7 +225,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                     }
                 }
                 
-                
                 // More button is pressed
                 UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: flagString , nil];
                 [shareActionSheet showInView:self.view];
@@ -267,6 +242,43 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     }
 
 }
+
+
+-(void) deleteCellAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSInteger index = indexPath.item;
+    Update * update = [self.updates objectAtIndex:index];
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError * error = nil;
+    
+    NSArray* results = [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
+    NSManagedObject* object = [results firstObject];
+    [context deleteObject:object];
+    [context save:&error];
+    
+    NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
+    [indexPaths addObject:indexPath];
+    
+    [self.updates removeObjectAtIndex:index];
+    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
+    NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
+    
+    if([unreadUpdates count] > 0)
+    {
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+        [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+        
+        [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+    }
+    
+}
+
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -407,19 +419,12 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
                [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
                NSDate *date = [formatter dateFromString:postDate];
-               
-//               NSLog(@"lastRefresh = %@" , lastRefresh.lastRefresh);
-//               NSLog(@"updateDate = %@" , date);
-               
 
                NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
                NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
                [offsetComponents setMinute:-3]; // note that I'm setting it to -1
                NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
-               
-//               NSLog(@"lastRefesh = %@" , lastRefresh.lastRefresh);
-//               NSLog(@"compDate = %@" , compDate);
-               
+
                if ([date compare:compDate] == NSOrderedDescending)
                {
                    NSLog(@"date is later than lastRefresh.lastRefresh");
@@ -449,17 +454,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
            }
            [self.refreshControl endRefreshing];
 
-           NSArray *sortedArray;
-           sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-           {
-               NSDate *first = [(Update*)a date];
-               NSDate *second = [(Update*)b date];
-               return [second compare:first];
-           }];
-           
-           self.updates = nil;
-           self.updates = [NSMutableArray arrayWithArray:sortedArray];
-           
+           [self sortTableViewArrayWithDates];
+           [self sortTableViewArrayWithPinned];
            [self.tableView reloadData];
        });
  
@@ -469,15 +465,15 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     
 }
 
+
+#pragma mark UIActionSheet functions
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSError * error = nil;
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-
-//    NSLog(@"clicked button at index %lu" , buttonIndex);
-//    NSLog(@"the tapped cell is %lu" , _tappedCell);
-//    
+    
     if(buttonIndex == 0)
     {
         Update * update = [self.updates objectAtIndex:_tappedCell];
@@ -506,113 +502,47 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         
         [context save:&error];
         
-        self.updates = nil;
+        
         NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
         
-        NSArray *sortedArray;
-        sortedArray = [objects sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-                       {
-                           NSDate *first = [(Update*)a date];
-                           NSDate *second = [(Update*)b date];
-                           return [second compare:first];
-                       }];
-        
-        
-        self.updates = [NSMutableArray arrayWithArray:sortedArray];
-        
+
+        self.updates = [NSMutableArray arrayWithArray:objects];
+        [self sortTableViewArrayWithDates];
+        [self sortTableViewArrayWithPinned];
         [self.tableView reloadData];
     }
     
 
 }
 
--(void) deleteCellAtIndexPath:(NSIndexPath*)indexPath
-{
-    NSInteger index = indexPath.item;
-    Update * update = [self.updates objectAtIndex:index];
-    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError * error = nil;
-    
-    NSArray* results = [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
-    NSManagedObject* object = [results firstObject];
-    [context deleteObject:object];
-    [context save:&error];
-    
-    NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
-    [indexPaths addObject:indexPath];
-    
-    [self.updates removeObjectAtIndex:index];
-    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-    
-    NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
-    
-    if([unreadUpdates count] > 0)
-    {
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
-        [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
-    }
-    else
-    {
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-        
-        [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
-    }
 
-}
-
-//-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
-//{
-//
-//    if(_thersTappedCell == NO)
-//    {
-//        _thersTappedCell = YES;
-//        //NSLog(@"tel7aso teze");
-//        CGPoint p = [gestureRecognizer locationInView:self.tableView];
-//        
-//        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-//        if (indexPath == nil)
-//        {
-//            NSLog(@"long press on table view but not on a row");
-//            
-//        }
-//        else
-//        {
-//            _tappedCell = indexPath.row;
-//            NSLog(@"long press on table view at row %ld", (long)indexPath.row);
-//            // More button is pressed
-//            UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"mark as flagged", @"mark as Unflagged", nil];
-//            [shareActionSheet showInView:self.view];
-//        }
-//    }
-//    _thersTappedCell = NO;
-//}
-
--(void) sortTableViewArray
+-(void) sortTableViewArrayWithDates
 {
     NSArray *sortedArray;
     sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
    {
-       NSString* firstFlagged = [(Update*)a flagged];
-       NSString* secondFlagged = [(Update*)b flagged];
-       
-       if([firstFlagged isEqualToString:@"YES"] && [secondFlagged isEqualToString:@"NO"])
-       {
-            return (NSComparisonResult)NSOrderedAscending;
-       }
-       else if([firstFlagged isEqualToString:@"NO"] && [secondFlagged isEqualToString:@"YES"])
-       {
-            return (NSComparisonResult) NSOrderedDescending;
-       }
-       else
-       {
+
            NSDate *first = [(Update*)a date];
            NSDate *second = [(Update*)b date];
            return [second compare:first];
-       }
-       
 
    }];
+    
+    self.updates = nil;
+    self.updates = [NSMutableArray arrayWithArray:sortedArray];
+}
+
+-(void) sortTableViewArrayWithPinned
+{
+    NSArray * sortedArray;
+    sortedArray = [self.updates sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
+    {
+        NSString * obPinned1 = [(Update*)obj1 flagged];
+        NSString * obPinned2 = [(Update*)obj2 flagged];
+        
+        return [obPinned2 compare:obPinned1];
+    }];
+    
     
     self.updates = nil;
     self.updates = [NSMutableArray arrayWithArray:sortedArray];

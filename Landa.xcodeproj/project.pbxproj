@@ -58,7 +58,6 @@
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
 		F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E6A6193FAFF0004F0C00 /* HelpFunc.m */; };
 		F954E7101940B9D9004F0C00 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E70F1940B9D9004F0C00 /* Update.m */; };
-		F954E7121940BDB4004F0C00 /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = F954E7111940BDB4004F0C00 /* flagged.png */; };
 		F954E7201940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7151940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m */; };
 		F954E7211940D7CB004F0C00 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7171940D7CB004F0C00 /* SWCellScrollView.m */; };
 		F954E7221940D7CB004F0C00 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7191940D7CB004F0C00 /* SWLongPressGestureRecognizer.m */; };
@@ -70,7 +69,6 @@
 		F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB1193951E600E546FB /* grayColor.jpg */; };
 		F95ACAB5193952BF00E546FB /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB3193952BF00E546FB /* tabbar.png */; };
 		F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB4193952BF00E546FB /* tabbar@2x.png */; };
-		F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB7193A13A500E546FB /* mailIcon.png */; };
 		F95ACACC193A6E8100E546FB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */; };
 		F95ACADE193A714100E546FB /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACADD193A714100E546FB /* TeacherId.m */; };
 		F95ACAE1193A714100E546FB /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAE0193A714100E546FB /* Teacher.m */; };
@@ -79,6 +77,7 @@
 		F95ACB10193BA6DC00E546FB /* unreadMessge.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACB0F193BA6DC00E546FB /* unreadMessge.png */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F973F2681942259700E6776C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F973F2671942259700E6776C /* Images.xcassets */; };
+		F973F26A19438C8F00E6776C /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = F973F26919438C8F00E6776C /* flagged.png */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
 		F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */; };
@@ -174,7 +173,6 @@
 		F954E6A6193FAFF0004F0C00 /* HelpFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFunc.m; sourceTree = "<group>"; };
 		F954E70E1940B9D9004F0C00 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Update.h; path = ../Update.h; sourceTree = "<group>"; };
 		F954E70F1940B9D9004F0C00 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Update.m; path = ../Update.m; sourceTree = "<group>"; };
-		F954E7111940BDB4004F0C00 /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flagged.png; sourceTree = "<group>"; };
 		F954E7141940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
 		F954E7151940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
 		F954E7161940D7CB004F0C00 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 		F95ACAB1193951E600E546FB /* grayColor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grayColor.jpg; sourceTree = "<group>"; };
 		F95ACAB3193952BF00E546FB /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		F95ACAB4193952BF00E546FB /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
-		F95ACAB7193A13A500E546FB /* mailIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailIcon.png; sourceTree = "<group>"; };
 		F95ACACB193A6E8100E546FB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		F95ACADC193A714100E546FB /* TeacherId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeacherId.h; path = ../TeacherId.h; sourceTree = "<group>"; };
 		F95ACADD193A714100E546FB /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeacherId.m; path = ../TeacherId.m; sourceTree = "<group>"; };
@@ -207,6 +204,7 @@
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F973F2671942259700E6776C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F973F26919438C8F00E6776C /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flagged.png; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F97777411931A06400B15754 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F99B00C4192EF24F006000AA /* TeacherId+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TeacherId+init.h"; sourceTree = "<group>"; };
@@ -444,12 +442,11 @@
 		F930300118EE49CC0064E984 /* pic */ = {
 			isa = PBXGroup;
 			children = (
-				F954E7111940BDB4004F0C00 /* flagged.png */,
+				F973F26919438C8F00E6776C /* flagged.png */,
 				F99B83B2193E96C90028653D /* noContact.png */,
 				F9CA6566193BEE3400104DE2 /* coursesTabBar.png */,
 				F9CA655E193BECC900104DE2 /* teachersIcon.png */,
 				F95ACB0F193BA6DC00E546FB /* unreadMessge.png */,
-				F95ACAB7193A13A500E546FB /* mailIcon.png */,
 				F9CA6560193BECFF00104DE2 /* updatesIcon.png */,
 				F9CA655A193BE70300104DE2 /* landaIcon.png */,
 				F9C7AD89192D52000086B99D /* technion.jpg */,
@@ -632,18 +629,17 @@
 				F99B83B3193E96C90028653D /* noContact.png in Resources */,
 				F923C38318F0DF320065C5EB /* expand.png in Resources */,
 				F9C7AD8A192D52000086B99D /* technion.jpg in Resources */,
-				F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */,
 				F930300018EE49C00064E984 /* ward.jpg in Resources */,
 				F9302FFE18EE49C00064E984 /* mothana.jpg in Resources */,
 				F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */,
 				F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */,
+				F973F26A19438C8F00E6776C /* flagged.png in Resources */,
 				F9302FFF18EE49C00064E984 /* muhammad.jpg in Resources */,
 				F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */,
 				F9302FD418EE499B0064E984 /* Main.storyboard in Resources */,
 				F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */,
 				F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */,
 				F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */,
-				F954E7121940BDB4004F0C00 /* flagged.png in Resources */,
 				F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */,
 				F9302FFD18EE49C00064E984 /* hasan.jpg in Resources */,
 				F973F2681942259700E6776C /* Images.xcassets in Resources */,

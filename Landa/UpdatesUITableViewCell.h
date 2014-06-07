@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *hasBeenReadImage;
+@property (weak, nonatomic) IBOutlet UIImageView *flaggedImage;
 
 @end

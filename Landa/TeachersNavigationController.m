@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationBar.topItem.title = @"Teachers";
+    //self.navigationBar.topItem.title = @"Teachers";
     
     //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation.jpg"]];
     

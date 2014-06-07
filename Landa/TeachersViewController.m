@@ -173,9 +173,10 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
         teacher.teacherImage.layer.shadowOpacity = 1;
         teacher.teacherImage.layer.shadowRadius = 5.0;
         teacher.teacherImage.transform = CGAffineTransformMakeRotation(M_PI/rotate);
+        
         [teacher.teacherImage.layer setBounds:CGRectMake(15, 0, 100, 100)];
         [teacher.teacherImage.layer setBorderColor:[[UIColor groupTableViewBackgroundColor] CGColor]];
-        [teacher.teacherImage.layer setBorderWidth:2.0];
+        [teacher.teacherImage.layer setBorderWidth:0.5];
     
         teacher.teacherNameLabel.text = tmpTeacher.name;
         teacher.teacher = [self.searchResults objectAtIndex:indexPath.item];

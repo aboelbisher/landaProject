@@ -93,9 +93,7 @@
 		F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655A193BE70300104DE2 /* landaIcon.png */; };
 		F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655E193BECC900104DE2 /* teachersIcon.png */; };
 		F9CA6561193BECFF00104DE2 /* updatesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6560193BECFF00104DE2 /* updatesIcon.png */; };
-		F9CA6565193BED4D00104DE2 /* coursesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6564193BED4D00104DE2 /* coursesIcon.png */; };
 		F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6566193BEE3400104DE2 /* coursesTabBar.png */; };
-		F9CA656B193BEE8200104DE2 /* updatesTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA656A193BEE8200104DE2 /* updatesTabBar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,9 +236,7 @@
 		F9CA655A193BE70300104DE2 /* landaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaIcon.png; sourceTree = "<group>"; };
 		F9CA655E193BECC900104DE2 /* teachersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teachersIcon.png; sourceTree = "<group>"; };
 		F9CA6560193BECFF00104DE2 /* updatesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIcon.png; sourceTree = "<group>"; };
-		F9CA6564193BED4D00104DE2 /* coursesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursesIcon.png; sourceTree = "<group>"; };
 		F9CA6566193BEE3400104DE2 /* coursesTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursesTabBar.png; sourceTree = "<group>"; };
-		F9CA656A193BEE8200104DE2 /* updatesTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesTabBar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,9 +448,7 @@
 				F99B83B2193E96C90028653D /* noContact.png */,
 				F9CA6566193BEE3400104DE2 /* coursesTabBar.png */,
 				F9CA655E193BECC900104DE2 /* teachersIcon.png */,
-				F9CA6564193BED4D00104DE2 /* coursesIcon.png */,
 				F95ACB0F193BA6DC00E546FB /* unreadMessge.png */,
-				F9CA656A193BEE8200104DE2 /* updatesTabBar.png */,
 				F95ACAB7193A13A500E546FB /* mailIcon.png */,
 				F9CA6560193BECFF00104DE2 /* updatesIcon.png */,
 				F9CA655A193BE70300104DE2 /* landaIcon.png */,
@@ -641,9 +635,7 @@
 				F95ACAB8193A13A500E546FB /* mailIcon.png in Resources */,
 				F930300018EE49C00064E984 /* ward.jpg in Resources */,
 				F9302FFE18EE49C00064E984 /* mothana.jpg in Resources */,
-				F9CA656B193BEE8200104DE2 /* updatesTabBar.png in Resources */,
 				F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */,
-				F9CA6565193BED4D00104DE2 /* coursesIcon.png in Resources */,
 				F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */,
 				F9302FFF18EE49C00064E984 /* muhammad.jpg in Resources */,
 				F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */,

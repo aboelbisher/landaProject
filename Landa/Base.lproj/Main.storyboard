@@ -545,11 +545,11 @@
             </objects>
             <point key="canvasLocation" x="-548" y="-910"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Courses-->
         <scene sceneID="n8k-ib-Oha">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IIS-tK-1q3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="Oyr-Yt-AF6">
+                    <tabBarItem key="tabBarItem" title="Courses" image="courses" id="Oyr-Yt-AF6">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -566,11 +566,11 @@
             </objects>
             <point key="canvasLocation" x="-534" y="-215"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Updates-->
         <scene sceneID="zm0-wA-Pam">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LZy-sf-e0t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="downloads" id="X5V-c3-6l2">
+                    <tabBarItem key="tabBarItem" title="Updates" image="updates" id="X5V-c3-6l2">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -589,9 +589,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="contacts" width="22" height="22"/>
+        <image name="contacts" width="30" height="30"/>
+        <image name="courses" width="30" height="30"/>
         <image name="mailIcon.png" width="65" height="56"/>
         <image name="unreadMessge.png" width="850" height="850"/>
+        <image name="updates" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

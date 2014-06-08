@@ -296,4 +296,12 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
 
 
 
+- (IBAction)showInfo:(id)sender
+{
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"About"];
+    [self presentViewController:vc animated:YES completion:nil];
+    
+}
 @end

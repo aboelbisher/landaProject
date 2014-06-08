@@ -95,7 +95,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
-                    <navigationItem key="navigationItem" title="מסדנתים" id="IkY-gF-voV"/>
+                    <navigationItem key="navigationItem" title="מסדנתים" id="IkY-gF-voV">
+                        <barButtonItem key="leftBarButtonItem" image="info" id="vnt-FC-Dkz">
+                            <connections>
+                                <action selector="showInfo:" destination="vXZ-lx-hvc" id="XYv-my-TSO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searcBar" destination="R8V-RZ-zI6" id="O1U-zr-sbk"/>
                         <outlet property="searchDisplayController" destination="EeL-pd-WgM" id="GfJ-kK-duh"/>
@@ -263,7 +269,7 @@
                                                     <rect key="frame" x="11" y="37" width="12" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flagged.png" translatesAutoresizingMaskIntoConstraints="NO" id="HR0-qP-bXa">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flag" translatesAutoresizingMaskIntoConstraints="NO" id="HR0-qP-bXa">
                                                     <rect key="frame" x="7" y="53" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -315,12 +321,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WAx-rR-YyJ">
-                                <rect key="frame" x="9" y="170" width="302" height="334"/>
+                                <rect key="frame" x="9" y="151" width="302" height="151"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VkP-nw-Z55">
                                 <rect key="frame" x="20" y="70" width="280" height="30"/>
@@ -335,6 +342,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pep-iR-odw">
+                                <rect key="frame" x="20" y="310" width="280" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -567,6 +579,83 @@
             </objects>
             <point key="canvasLocation" x="-534" y="-215"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="UR6-Vl-UZe">
+            <objects>
+                <viewController storyboardIdentifier="About" id="ekz-rM-ACX" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3EN-a8-TQg"/>
+                        <viewControllerLayoutGuide type="bottom" id="aB2-AR-46G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x6O-Ul-34Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="landaAboutIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VA1-dS-9M8">
+                                <rect key="frame" x="25" y="28" width="240" height="240"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDg-UC-kKo">
+                                <rect key="frame" x="142" y="518" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="exit:" destination="ekz-rM-ACX" eventType="touchUpInside" id="FyP-UY-bLp"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6M9-Ay-U3l">
+                                <rect key="frame" x="25" y="276" width="270" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">היוזמה להקמת הפרויקט לקידום בני המיעוטים בטכניון הייתה על ידי משפחת פטסי ובני לנדא. 
+תודתנו העמוקה נתונה למשפחת לנדא על יוזמתם הברוכה להשקת הפרויקט ועל המעורבות, האחריות והנדיבות שהם מגלים בנושא צמצום פערים בחברה הישראלית.</string>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="http://nlanda.technion.ac.il" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TcL-1j-jDj">
+                                <rect key="frame" x="38" y="384" width="257" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="פיתוח: מוחמד עבד אלראזק" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GaR-FO-nFn">
+                                <rect key="frame" x="38" y="420" width="257" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsK-91-G2S">
+                                <rect key="frame" x="56" y="480" width="209" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="aboelbisher.176@gmail.com">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendMail:" destination="ekz-rM-ACX" eventType="touchUpInside" id="IPO-15-jtg"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="עיצוב: אלמותנא סרחאן" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-5k-3f4">
+                                <rect key="frame" x="46" y="449" width="240" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="u2c-qL-sMD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ciw-G2-3Re" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1200" y="-11"/>
+        </scene>
         <!--Navigation Controller - עדכונים-->
         <scene sceneID="zm0-wA-Pam">
             <objects>
@@ -590,7 +679,9 @@
     <resources>
         <image name="contacts" width="30" height="30"/>
         <image name="courses" width="30" height="30"/>
-        <image name="flagged.png" width="60" height="60"/>
+        <image name="flag" width="128" height="128"/>
+        <image name="info" width="30" height="30"/>
+        <image name="landaAboutIcon" width="256" height="256"/>
         <image name="sendMail" width="30" height="30"/>
         <image name="unreadMessge.png" width="850" height="850"/>
         <image name="updates" width="30" height="30"/>

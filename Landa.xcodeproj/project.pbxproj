@@ -78,6 +78,7 @@
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F973F2681942259700E6776C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F973F2671942259700E6776C /* Images.xcassets */; };
 		F973F26A19438C8F00E6776C /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = F973F26919438C8F00E6776C /* flagged.png */; };
+		F973F26D1943A27600E6776C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F973F26C1943A27600E6776C /* AboutViewController.m */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
 		F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */; };
@@ -205,6 +206,8 @@
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F973F2671942259700E6776C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F973F26919438C8F00E6776C /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flagged.png; sourceTree = "<group>"; };
+		F973F26B1943A27600E6776C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		F973F26C1943A27600E6776C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F97777411931A06400B15754 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F99B00C4192EF24F006000AA /* TeacherId+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TeacherId+init.h"; sourceTree = "<group>"; };
@@ -218,12 +221,6 @@
 		F99B83B2193E96C90028653D /* noContact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noContact.png; sourceTree = "<group>"; };
 		F99B83BD193EB1690028653D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F99B83BF193EB17E0028653D /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
-		F99B83C2193EB2F80028653D /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHpple.h; path = "../../../../Downloads/hpple-master/TFHpple.h"; sourceTree = "<group>"; };
-		F99B83C3193EB2F80028653D /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHpple.m; path = "../../../../Downloads/hpple-master/TFHpple.m"; sourceTree = "<group>"; };
-		F99B83C4193EB2F80028653D /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHppleElement.h; path = "../../../../Downloads/hpple-master/TFHppleElement.h"; sourceTree = "<group>"; };
-		F99B83C5193EB2F80028653D /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = "../../../../Downloads/hpple-master/TFHppleElement.m"; sourceTree = "<group>"; };
-		F99B83C6193EB2F80028653D /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = "../../../../Downloads/hpple-master/XPathQuery.h"; sourceTree = "<group>"; };
-		F99B83C7193EB2F80028653D /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = "../../../../Downloads/hpple-master/XPathQuery.m"; sourceTree = "<group>"; };
 		F99B83CC193EB3DE0028653D /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
 		F99B83CD193EB3DE0028653D /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
 		F99B83CE193EB3DE0028653D /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
@@ -397,6 +394,8 @@
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
+				F973F26B1943A27600E6776C /* AboutViewController.h */,
+				F973F26C1943A27600E6776C /* AboutViewController.m */,
 				F973F2671942259700E6776C /* Images.xcassets */,
 				F99B83C1193EB2310028653D /* HTMLParsing */,
 				F977773F1931A04A00B15754 /* Reachability */,
@@ -519,12 +518,6 @@
 				F99B83CD193EB3DE0028653D /* HTMLNode.m */,
 				F99B83CE193EB3DE0028653D /* HTMLParser.h */,
 				F99B83CF193EB3DE0028653D /* HTMLParser.m */,
-				F99B83C2193EB2F80028653D /* TFHpple.h */,
-				F99B83C3193EB2F80028653D /* TFHpple.m */,
-				F99B83C4193EB2F80028653D /* TFHppleElement.h */,
-				F99B83C5193EB2F80028653D /* TFHppleElement.m */,
-				F99B83C6193EB2F80028653D /* XPathQuery.h */,
-				F99B83C7193EB2F80028653D /* XPathQuery.m */,
 			);
 			name = HTMLParsing;
 			sourceTree = "<group>";
@@ -680,6 +673,7 @@
 				F954E7201940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
+				F973F26D1943A27600E6776C /* AboutViewController.m in Sources */,
 				F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */,
 				F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */,
 				F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */,

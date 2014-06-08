@@ -1,40 +1,59 @@
 //
-//  TeachersDetailsViewController.m
+//  AboutViewController.m
 //  Landa
 //
-//  Created by muhammad abed el razek on 4/8/14.
+//  Created by muhammad abed el razek on 6/7/14.
 //  Copyright (c) 2014 muhammad abed el razek. All rights reserved.
 //
 
-#import "TeachersDetailsViewController.h"
+#import "AboutViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface TeachersDetailsViewController ()<MFMailComposeViewControllerDelegate>
+
+@interface AboutViewController ()<MFMailComposeViewControllerDelegate>
 
 @end
 
-@implementation TeachersDetailsViewController
+static NSString* MY_MAIL = @"aboelbisher.176@gmail.com";
 
-#pragma mark init
+@implementation AboutViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIImage * image = [HelpFunc getImageFromFileWithId:self.teacher.id];
-    
-    //customize
-    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    self.teacherImage.image = image;
-    self.teacherImage.layer.cornerRadius = self.teacherImage.frame.size.width / 2;
-    self.teacherImage.clipsToBounds = YES;
-    
-    self.nameLabel.text = self.teacher.name;
-    self.mailLabel.text = self.teacher.mail;
-    self.facultyLabel.text = self.teacher.faculty;
-    self.roleLabel.text = self.teacher.position;
-    
-    [self.navigationItem setTitle:self.teacher.name];
-    
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+
+- (IBAction)exit:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)sendMail:(id)sender
@@ -44,7 +63,7 @@
     // Email Content
     NSString *messageBody = @"";
     // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:self.teacher.mail];
+    NSArray *toRecipents = [NSArray arrayWithObject:MY_MAIL];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail])
@@ -88,9 +107,4 @@
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
-
-
-
-
 @end

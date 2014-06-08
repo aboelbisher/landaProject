@@ -53,6 +53,9 @@
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
     [self initCoursesDEtailsWithManagedObjectContext:context];
+    
+    [self.navigationItem setTitle:self.course.name];
+
 }
 
 - (void)didReceiveMemoryWarning

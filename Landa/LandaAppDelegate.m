@@ -174,7 +174,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     NSString * dateString = [post valueForKey:@"date"];
     NSString * content = [post valueForKey:@"content"];
-    
+    NSString * postUrl = [post objectForKey:@"url"];
     HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
     HTMLNode * node = parser.body;
     NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
@@ -188,7 +188,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [formatter dateFromString:dateString];
     
-    [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:self.managedObjectContext];
+    [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:self.managedObjectContext ];
     [self.managedObjectContext save:&error];
     [PFPush handlePush:userInfo];
     

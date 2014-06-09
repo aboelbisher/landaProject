@@ -16,6 +16,8 @@
                        date:(NSDate*)date
                      postId:(NSString *)postId
                 hasBeenRead:(NSString *)hasBeenRead
+                htmlContent:(NSString *)htmlContent
+                        url:(NSString *)url
      inManagedObjectContext:(NSManagedObjectContext*)context;
 
 

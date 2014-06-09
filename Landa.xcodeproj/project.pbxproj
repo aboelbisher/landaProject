@@ -57,7 +57,6 @@
 		F932381C1929091B0066328A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381B1929091B0066328A /* StoreKit.framework */; };
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
 		F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E6A6193FAFF0004F0C00 /* HelpFunc.m */; };
-		F954E7101940B9D9004F0C00 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E70F1940B9D9004F0C00 /* Update.m */; };
 		F954E7201940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7151940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m */; };
 		F954E7211940D7CB004F0C00 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7171940D7CB004F0C00 /* SWCellScrollView.m */; };
 		F954E7221940D7CB004F0C00 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7191940D7CB004F0C00 /* SWLongPressGestureRecognizer.m */; };
@@ -79,6 +78,8 @@
 		F973F2681942259700E6776C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F973F2671942259700E6776C /* Images.xcassets */; };
 		F973F26A19438C8F00E6776C /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = F973F26919438C8F00E6776C /* flagged.png */; };
 		F973F26D1943A27600E6776C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F973F26C1943A27600E6776C /* AboutViewController.m */; };
+		F973F2E019466B4F00E6776C /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F973F2DF19466B4F00E6776C /* Update.m */; };
+		F973F2E61946744E00E6776C /* FullContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F973F2E51946744E00E6776C /* FullContentViewController.m */; };
 		F97777421931A06400B15754 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F97777411931A06400B15754 /* Reachability.m */; };
 		F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00C5192EF24F006000AA /* TeacherId+init.m */; };
 		F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B00E9192FD9D0006000AA /* CoursesTableViewCell.m */; };
@@ -172,8 +173,6 @@
 		F932381D192909230066328A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F954E6A5193FAFF0004F0C00 /* HelpFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFunc.h; sourceTree = "<group>"; };
 		F954E6A6193FAFF0004F0C00 /* HelpFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFunc.m; sourceTree = "<group>"; };
-		F954E70E1940B9D9004F0C00 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Update.h; path = ../Update.h; sourceTree = "<group>"; };
-		F954E70F1940B9D9004F0C00 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Update.m; path = ../Update.m; sourceTree = "<group>"; };
 		F954E7141940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
 		F954E7151940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
 		F954E7161940D7CB004F0C00 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
@@ -208,6 +207,10 @@
 		F973F26919438C8F00E6776C /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flagged.png; sourceTree = "<group>"; };
 		F973F26B1943A27600E6776C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		F973F26C1943A27600E6776C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		F973F2DE19466B4F00E6776C /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
+		F973F2DF19466B4F00E6776C /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
+		F973F2E41946744E00E6776C /* FullContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullContentViewController.h; path = ../FullContentViewController.h; sourceTree = "<group>"; };
+		F973F2E51946744E00E6776C /* FullContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullContentViewController.m; path = ../FullContentViewController.m; sourceTree = "<group>"; };
 		F97777401931A06400B15754 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F97777411931A06400B15754 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F99B00C4192EF24F006000AA /* TeacherId+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TeacherId+init.h"; sourceTree = "<group>"; };
@@ -306,8 +309,8 @@
 		F91FBA3E18F4774200B7F8D7 /* Update */ = {
 			isa = PBXGroup;
 			children = (
-				F954E70E1940B9D9004F0C00 /* Update.h */,
-				F954E70F1940B9D9004F0C00 /* Update.m */,
+				F973F2DE19466B4F00E6776C /* Update.h */,
+				F973F2DF19466B4F00E6776C /* Update.m */,
 				F96916B319292E3E00A569FA /* Update+init.h */,
 				F96916B419292E3E00A569FA /* Update+init.m */,
 				F923C37718F0BCD80065C5EB /* UpdatesViewController.h */,
@@ -316,6 +319,8 @@
 				F954E72A1940DA44004F0C00 /* UpdatesUITableViewCell.m */,
 				F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */,
 				F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */,
+				F973F2E41946744E00E6776C /* FullContentViewController.h */,
+				F973F2E51946744E00E6776C /* FullContentViewController.m */,
 			);
 			name = Update;
 			sourceTree = "<group>";
@@ -662,13 +667,13 @@
 				F954E72B1940DA44004F0C00 /* UpdatesUITableViewCell.m in Sources */,
 				F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */,
 				F91FBA6218FDAB6900B7F8D7 /* Teacher+init.m in Sources */,
-				F954E7101940B9D9004F0C00 /* Update.m in Sources */,
 				F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */,
 				F954E7221940D7CB004F0C00 /* SWLongPressGestureRecognizer.m in Sources */,
 				F9302FCD18EE499B0064E984 /* main.m in Sources */,
 				F97777421931A06400B15754 /* Reachability.m in Sources */,
 				F99B00C6192EF24F006000AA /* TeacherId+init.m in Sources */,
 				F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */,
+				F973F2E61946744E00E6776C /* FullContentViewController.m in Sources */,
 				F95ACACC193A6E8100E546FB /* Model.xcdatamodeld in Sources */,
 				F954E7201940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */,
@@ -682,6 +687,7 @@
 				F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */,
 				F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */,
 				F99B83B1193E91420028653D /* Course.m in Sources */,
+				F973F2E019466B4F00E6776C /* Update.m in Sources */,
 				F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */,
 				F954E7231940D7CB004F0C00 /* SWTableViewCell.m in Sources */,
 				F954E7241940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,

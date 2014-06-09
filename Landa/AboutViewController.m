@@ -30,7 +30,19 @@ static NSString* MY_MAIL = @"aboelbisher.176@gmail.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    
+    UITapGestureRecognizer *tapAnyWhere = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self.view addGestureRecognizer:tapAnyWhere];
+
+
     // Do any additional setup after loading the view.
+}
+
+- (void) handleTap: (UITapGestureRecognizer *)recognizer
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //Code to handle the gesture
 }
 
 - (void)didReceiveMemoryWarning

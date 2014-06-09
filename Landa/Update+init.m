@@ -15,6 +15,8 @@
                        date:(NSDate*)date
                      postId:(NSString *)postId
                 hasBeenRead:(NSString *)hasBeenRead
+                htmlContent:(NSString *)htmlContent
+                        url:(NSString *)url
      inManagedObjectContext:(NSManagedObjectContext*)context
 {
     
@@ -39,6 +41,8 @@
         update.title = title;
         update.hasBeenRead = hasBeenRead;
         update.flagged = @"NO";
+        update.htmlUpdate = htmlContent;
+        update.url = url;
         [context save:&error];
         
         

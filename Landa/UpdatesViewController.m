@@ -71,7 +71,63 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     
     _thersTappedCell = NO;
     _tappedCell = -1;
+    
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftDelegate:)];
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.view addGestureRecognizer:swipeLeft];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightDelegate:)];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:swipeRight];
+
 }
+
+
+- (IBAction)swipeRightDelegate:(id)sender
+{
+    NSInteger destIndex = 1;
+    // Get views. controllerIndex is passed in as the controller we want to go to.
+    UIView * fromView = self.view;
+    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:destIndex] view];
+    
+    // Transition using a page curl.
+    [UIView transitionFromView:fromView
+                        toView:toView
+                      duration:0.5
+                       options:(UIViewAnimationOptionTransitionFlipFromLeft)
+                    completion:^(BOOL finished)
+     {
+         if (finished)
+         {
+             self.tabBarController.selectedIndex = destIndex;
+         }
+     }];
+    
+}
+
+
+
+- (IBAction)swipeLeftDelegate:(id)sender
+{
+    NSInteger destIndex = 0;
+    // Get views. controllerIndex is passed in as the controller we want to go to.
+    UIView * fromView = self.view;
+    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:destIndex] view];
+    
+    // Transition using a page curl.
+    [UIView transitionFromView:fromView
+                        toView:toView
+                      duration:0.5
+                       options:(UIViewAnimationOptionTransitionFlipFromRight)
+                    completion:^(BOOL finished)
+     {
+         if (finished)
+         {
+             self.tabBarController.selectedIndex = destIndex;
+         }
+     }];
+}
+
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -184,18 +240,30 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
          [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
                                                     title:@"Delete"];
         
+        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
+
+
         if([tmpUpdate.flagged isEqualToString:@"NO"])
         {
 //            [leftUtilityButtons sw_addUtilityButtonWithColor:
 //             [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
 //                                                       title:@"mark as flagged"];
             
-            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+//            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+//            [leftUtilityButtons removeObjectAtIndex:1];
+//            leftUtilityButtons = nil;
+//            leftUtilityButtons = [[NSMutableArray alloc] init];
+//            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+
         }
         else
         {
-            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
-
+//            leftUtilityButtons = nil;
+//            leftUtilityButtons = [[NSMutableArray alloc] init];
+//            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+//            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
+//            [leftUtilityButtons removeObjectAtIndex:0];
 
         }
 
@@ -262,46 +330,39 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     if(cellIndexPath)
     {
         _tappedCell = cellIndexPath.row;
+        Update * update = [self.updates objectAtIndex:_tappedCell];
+        Update * coreDataUpdate = nil;
         
-        if( index == 0) // mark as un/flagged
+        if(update)
         {
-            Update * update = [self.updates objectAtIndex:_tappedCell];
-            Update * coreDataUpdate = nil;
-            
-            if(update)
+            NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
+            if([objects count] == 1)
             {
-                NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
-                if([objects count] == 1)
-                {
-                    coreDataUpdate = [objects firstObject];
-                }
+                coreDataUpdate = [objects firstObject];
             }
-            
-            
-            
-            
-            if([coreDataUpdate.flagged isEqualToString:@"NO"])//mark as flagged
-            {
-                coreDataUpdate.flagged = @"YES";
-            }
-            else
-            {
-                coreDataUpdate.flagged = @"NO";
-            }
-            
-            [context save:&error];
-            
-            
-            NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
-            
-            
-            self.updates = [NSMutableArray arrayWithArray:objects];
-            [self sortTableViewArrayWithDates];
-            [self sortTableViewArrayWithPinned];
-            [self.tableView reloadData];
+        }
+        
+        if( index == 0) // mark as flagged
+        {
+            coreDataUpdate.flagged = @"YES";
+        }
+        if( index == 1)
+        {
+            coreDataUpdate.flagged = @"NO";
 
         }
+        [context save:&error];
+        
+        NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+        
+        self.updates = [NSMutableArray arrayWithArray:objects];
+        [self sortTableViewArrayWithDates];
+        [self sortTableViewArrayWithPinned];
+        [self.tableView reloadData];
+
+
     }
+    
 }
 
 
@@ -408,6 +469,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     {
         NSString * title = [post objectForKey:@"title"];
         NSString * content = [post objectForKey:@"content"];
+        NSString * postUrl = [post objectForKey:@"url"];
         HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
         HTMLNode * node = parser.body;
         NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
@@ -423,7 +485,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         if ([date compare:lastRefresh.lastRefresh] == NSOrderedDescending)
         {
             NSLog(@"date is later than lastRefresh.lastRefresh");
-            [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
+            [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
         }
     }
 
@@ -470,6 +532,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
            {
                NSString * title = [post objectForKey:@"title"];
                NSString * content = [post objectForKey:@"content"];
+               NSString * postUrl = [post objectForKey:@"url"];
                
                HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
                HTMLNode * node = parser.body;
@@ -490,7 +553,7 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                if ([date compare:compDate] == NSOrderedDescending)
                {
                    NSLog(@"date is later than lastRefresh.lastRefresh");
-                   [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" inManagedObjectContext:context];
+                   [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
                }
            }
        }

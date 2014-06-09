@@ -108,34 +108,35 @@
         Teacher * teacher = [self.teachers objectAtIndex:indexPath.item];
         TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
         
-        CoursesTableViewCell * course = (CoursesTableViewCell*) cell;
+        CoursesTableViewCell * courseCell = (CoursesTableViewCell*) cell;
         
         if([teacherId.notify isEqualToString:@"YES"])
         {
-            course.switcherOutlet.on = YES;
+            courseCell.switcherOutlet.on = YES;
             cell.backgroundColor = [UIColor colorWithWhite:0.18f alpha:1.0f];
         }
         else
         {
-            course.switcherOutlet.on = NO;
+            courseCell.switcherOutlet.on = NO;
         }
         
-        course.teacherId = teacherId;
+        courseCell.teacherId = teacherId;
         
         NSString * teacherName = teacher.name;
         NSString * day = teacherId.day;
-        NSString * time = @" מ: ";
+        NSString * time = @"";
         time = [time stringByAppendingString:teacherId.beginTime];
-        time = [time stringByAppendingString:[NSString stringWithFormat:@" עד: %@", teacherId.endTime ] ];
+        time = [time stringByAppendingString:[NSString stringWithFormat:@" - %@", teacherId.endTime ] ];
         
         UIImage* image = [HelpFunc getImageFromFileWithId:teacherId.id];
        
-        course.teacherName = [NSString stringWithString:teacherName];
-        course.nameLabel.text = teacherName;
-        course.dayLabel.text = day;
-        course.timeLabel.text = time;
-        course.image.image = image;
-        course.courseName = self.course.name;
+        courseCell.teacherName = [NSString stringWithString:teacherName];
+        courseCell.nameLabel.text = teacherName;
+        courseCell.dayLabel.text = day;
+        courseCell.timeLabel.text = time;
+        courseCell.image.image = image;
+        courseCell.courseName = self.course.name;
+        courseCell.placeLabel.text = self.course.place;
     }
     return cell;
 }

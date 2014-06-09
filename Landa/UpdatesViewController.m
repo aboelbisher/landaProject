@@ -175,22 +175,32 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         updateCell.timeLabel.text = stringFromTime;
         
         NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-//        NSMutableArray *leftUtilityButtons = [NSMutableArray new];
+        NSMutableArray *leftUtilityButtons = [NSMutableArray new];
 
 
         //swipeRight
-        [rightUtilityButtons sw_addUtilityButtonWithColor:
-         [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                    title:@"More"];
+
         [rightUtilityButtons sw_addUtilityButtonWithColor:
          [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
                                                     title:@"Delete"];
         
-//        [leftUtilityButtons sw_addUtilityButtonWithColor:
-//         [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-//                                                    title:@"Delete"];
+        if([tmpUpdate.flagged isEqualToString:@"NO"])
+        {
+//            [leftUtilityButtons sw_addUtilityButtonWithColor:
+//             [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+//                                                       title:@"mark as flagged"];
+            
+            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+        }
+        else
+        {
+            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
+
+
+        }
+
         
-//        updateCell.leftUtilityButtons = leftUtilityButtons;
+        updateCell.leftUtilityButtons = leftUtilityButtons;
         updateCell.rightUtilityButtons = rightUtilityButtons;
         updateCell.delegate = self;
     }
@@ -242,6 +252,58 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     }
 
 }
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
+{
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError* error = nil;
+    NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
+    if(cellIndexPath)
+    {
+        _tappedCell = cellIndexPath.row;
+        
+        if( index == 0) // mark as un/flagged
+        {
+            Update * update = [self.updates objectAtIndex:_tappedCell];
+            Update * coreDataUpdate = nil;
+            
+            if(update)
+            {
+                NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
+                if([objects count] == 1)
+                {
+                    coreDataUpdate = [objects firstObject];
+                }
+            }
+            
+            
+            
+            
+            if([coreDataUpdate.flagged isEqualToString:@"NO"])//mark as flagged
+            {
+                coreDataUpdate.flagged = @"YES";
+            }
+            else
+            {
+                coreDataUpdate.flagged = @"NO";
+            }
+            
+            [context save:&error];
+            
+            
+            NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+            
+            
+            self.updates = [NSMutableArray arrayWithArray:objects];
+            [self sortTableViewArrayWithDates];
+            [self sortTableViewArrayWithPinned];
+            [self.tableView reloadData];
+
+        }
+    }
+}
+
 
 
 -(void) deleteCellAtIndexPath:(NSIndexPath*)indexPath
@@ -548,6 +610,14 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     self.updates = [NSMutableArray arrayWithArray:sortedArray];
 }
 
+- (IBAction)showInfo:(id)sender
+{
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"About"];
+    [self presentViewController:vc animated:YES completion:nil];
+
+}
 
 
 @end

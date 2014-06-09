@@ -18,6 +18,7 @@
 #import "LastRefresh.h"
 #import "LastRefresh+init.h"
 #import "AboutViewController.h"
+#import "CoursesViewController.h"
 
 @interface TeachersViewController : UIViewController
 - (IBAction)showInfo:(id)sender;

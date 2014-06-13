@@ -172,12 +172,13 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
                
                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
                NSString * localFilePath = [HelpFunc writeImageToFileWithId:id data:data];
-               
-//               [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.png" , id] id:id faculty:faculty localImageFilePath:localFilePath position:position inManagedObjectContext:context];
+
                TeacherLocal * localTeacher = [[TeacherLocal alloc] initTeacherWithName:name faculty:faculty id:id
- imageName:[NSString stringWithFormat:@"%@.png" , id]  localImageFilePath:localFilePath mail:email position:position];
+                                                                            imageName:[NSString stringWithFormat:@"%@.png" , id]
+                                                                    localImageFilePath:localFilePath
+                                                                                  mail:email
+                                                                              position:position];
                
-//               Teacher * newTeacher = [[Teacher alloc] initTeacherWithName:name id:id imageName:[NSString stringWithFormat:@"%@.png" , id] localImageFilePath:localFilePath mail:email faculty:faculty position:position];
                
                [newIds addObject:id];
                [newTeachers addObject:localTeacher];

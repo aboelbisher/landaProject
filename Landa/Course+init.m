@@ -72,4 +72,17 @@ inManagedObjectContext:context
     return courses;
 }
 
+
++(void) deleteAllCoursesInManagedOvjectContext:(NSManagedObjectContext*)context
+{
+    NSError * error = nil;
+    NSArray * allCourses = [Course getAllCoursesInManagedObjectContext:context];
+    
+    for(Course * course in allCourses)
+    {
+        [context deleteObject:course];
+        [context save:&error];
+    }
+}
+
 @end

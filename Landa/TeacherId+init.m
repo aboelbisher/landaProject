@@ -54,6 +54,36 @@ inManagedObjectContext:(NSManagedObjectContext*)context
     return teachersArray;
 }
 
++(NSArray*)getAllTeachersIdInManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSError * error = nil;
+    NSEntityDescription *teacherIdEntity = [NSEntityDescription entityForName:@"TeacherId" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:teacherIdEntity];
+    NSPredicate *pred =nil;
+    [request setPredicate:pred];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+
+    return objects;
+}
+
+
++(void) deleteAllTeachersIdInManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSError * error = nil;
+    NSArray * allTeachersId = [TeacherId getAllTeachersIdInManagedObjectContext:context];
+    
+    for(TeacherId * teacherId in allTeachersId)
+    {
+        [context deleteObject:teacherId];
+        [context save:&error];
+    }
+}
+
+
+
+
+
 
 
 @end

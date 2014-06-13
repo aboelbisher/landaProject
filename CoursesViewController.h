@@ -16,6 +16,8 @@
 #import "TeacherId.h"
 #import "Reachability.h"
 #import "HelpFunc.h"
+#import "CourseLocal.h"
+#import "TeacherIdLocal.h"
 
 @interface CoursesViewController : UIViewController
 

@@ -21,4 +21,5 @@
 
 -(instancetype)initTeacherWithName:(NSString*) name faculty:(NSString*)faculty id:(NSString*)id imageName:(NSString*)imageName localImageFilePath:(NSString*)localImageFilePath mail:(NSString*)mail position:(NSString*)position;
 
+
 @end

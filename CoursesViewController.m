@@ -98,8 +98,136 @@ static NSString* dontNotifyMe = @"NO";
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightDelegate:)];
     [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:swipeRight];
+    
+    [self checkForUpdates];
 
 }
+
+-(CourseLocal*)checkIfCourse:(CourseLocal*)course inArray:(NSArray*)coursesArray
+{
+    for(CourseLocal * tmpCourse in coursesArray)
+    {
+        if([course.name isEqual:tmpCourse.name])
+        {
+            return tmpCourse;
+        }
+    }
+    
+    return nil;
+}
+
+-(void)checkForUpdates
+{
+//    self.spinner.hidden = NO;
+//    [self.spinner startAnimating];
+    
+    NSURL *url = [NSURL URLWithString:COURSES_URL];
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
+   {
+       if(!error)
+       {
+           
+           dispatch_async(dispatch_get_main_queue(), ^
+          {
+              [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+              
+          });
+           
+           NSData *urlData = [NSData dataWithContentsOfURL:url];
+           NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+           NSString* jsonString = [HelpFunc makeJsonFromString:webString];
+           
+           NSError * error;
+           NSDictionary *JSON =
+           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                           options: NSJSONReadingMutableContainers
+                                             error: &error];
+           
+           NSArray * array = [JSON objectForKey:@"courses"];
+           
+//           NSMutableArray * newIds = [[NSMutableArray alloc] init];
+           NSMutableArray *newCourses = [[NSMutableArray alloc] init];
+//           NSMutableArray * newTeacherId = [[NSMutableArray alloc] init];
+           
+           for(id course in array)
+           {
+               NSString * place = [course objectForKey:@"place"];
+               NSString * tutorId = [course objectForKey:@"tutor_id"];
+               NSString * beginTime = [course objectForKey:@"time_from"];
+               NSString * endTime = [course objectForKey:@"time_to"];
+               NSString * day = [course objectForKey:@"day"];
+               NSString * name = [course objectForKey:@"subject_name"];
+               NSString * id = [course objectForKey:@"id"];
+               NSString * subjectid = [course objectForKey:@"subject_id"];
+               
+               
+               NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
+               urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.png" , subjectid]];
+               
+               NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+               [HelpFunc writeImageToFileWithId:subjectid data:data];
+               
+               CourseLocal * tmpCourse = [[CourseLocal alloc] initCorseLocalWithBeginTime:beginTime endTime:endTime id:id imageName:[NSString stringWithFormat:@"%@.png" , subjectid] name:name place:place subjectId:subjectid];
+               
+               CourseLocal * course = [self checkIfCourse:tmpCourse inArray:newCourses];
+               
+               if(!course)
+               {
+                   [newCourses addObject:tmpCourse];
+                   course = [newCourses lastObject];
+               }
+
+               
+               
+               TeacherIdLocal * teacherId = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:beginTime day:day endTime:endTime id:tutorId notify:dontNotifyMe];
+               [course addTeachersObject:teacherId];
+           }
+           
+           NSArray * oldCourses = [Course getAllCoursesInManagedObjectContext:context];
+           
+           if (![oldCourses isEqualToArray:newCourses])
+           {
+               [Course deleteAllCoursesInManagedOvjectContext:context];
+               [TeacherId deleteAllTeachersIdInManagedObjectContext:context];
+               
+               for(CourseLocal * course in newCourses)
+               {
+                   Course * newCourse = [Course initWithName:course.name id:course.id subjectId:course.subjectId imageName:course.imageName place:course.place beginTime:course.beginTime endTime:course.endTime inManagedObjectContext:context];
+                   [context save:&error];
+                   
+                   for(TeacherIdLocal * teacherId in course.teachers)
+                   {
+                       TeacherId * newTeacherId = [TeacherId initWithId:teacherId.id beginTime:teacherId.beginTime endTime:teacherId.endTime day:teacherId.day notify:teacherId.notify inManagedObjectContext:context];
+                       [newCourse addTeachersObject:newTeacherId];
+                       [context save:&error];
+                   }
+               }
+           }
+           
+       }
+       NSArray* objects = [Course getAllCoursesInManagedObjectContext:context];
+       self.courses = nil;
+       self.searchResults = nil;
+       
+       self.courses = [NSMutableArray arrayWithArray:objects];
+       self.searchResults = [NSMutableArray arrayWithArray:self.courses];
+       
+       dispatch_async(dispatch_get_main_queue(), ^{
+           [self.coursesCollectionView reloadData];});
+       
+   }];
+    [task resume];
+
+}
+
 
 - (IBAction)swipeRightDelegate:(id)sender
 {

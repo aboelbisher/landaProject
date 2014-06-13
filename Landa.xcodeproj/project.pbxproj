@@ -91,6 +91,8 @@
 		F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83CF193EB3DE0028653D /* HTMLParser.m */; };
 		F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */; };
 		F9A55964194B4D9100C25967 /* TeacherLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55963194B4D9100C25967 /* TeacherLocal.m */; };
+		F9A55967194B5C2900C25967 /* TeacherIdLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55966194B5C2900C25967 /* TeacherIdLocal.m */; };
+		F9A5596A194B5C4B00C25967 /* CourseLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55969194B5C4B00C25967 /* CourseLocal.m */; };
 		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
 		F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655A193BE70300104DE2 /* landaIcon.png */; };
 		F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655E193BECC900104DE2 /* teachersIcon.png */; };
@@ -233,6 +235,10 @@
 		F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesContentViewController.m; sourceTree = "<group>"; };
 		F9A55962194B4D9100C25967 /* TeacherLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherLocal.h; sourceTree = "<group>"; };
 		F9A55963194B4D9100C25967 /* TeacherLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherLocal.m; sourceTree = "<group>"; };
+		F9A55965194B5C2900C25967 /* TeacherIdLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherIdLocal.h; sourceTree = "<group>"; };
+		F9A55966194B5C2900C25967 /* TeacherIdLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherIdLocal.m; sourceTree = "<group>"; };
+		F9A55968194B5C4B00C25967 /* CourseLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseLocal.h; sourceTree = "<group>"; };
+		F9A55969194B5C4B00C25967 /* CourseLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseLocal.m; sourceTree = "<group>"; };
 		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
 		F9CA655A193BE70300104DE2 /* landaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaIcon.png; sourceTree = "<group>"; };
 		F9CA655E193BECC900104DE2 /* teachersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teachersIcon.png; sourceTree = "<group>"; };
@@ -333,6 +339,8 @@
 		F91FBA3F18F4774F00B7F8D7 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				F9A55968194B5C4B00C25967 /* CourseLocal.h */,
+				F9A55969194B5C4B00C25967 /* CourseLocal.m */,
 				F99B83AF193E91420028653D /* Course.h */,
 				F99B83B0193E91420028653D /* Course.m */,
 				F91FBA6318FDAE9F00B7F8D7 /* Course+init.h */,
@@ -505,6 +513,8 @@
 				F95ACADD193A714100E546FB /* TeacherId.m */,
 				F99B00C4192EF24F006000AA /* TeacherId+init.h */,
 				F99B00C5192EF24F006000AA /* TeacherId+init.m */,
+				F9A55965194B5C2900C25967 /* TeacherIdLocal.h */,
+				F9A55966194B5C2900C25967 /* TeacherIdLocal.m */,
 			);
 			name = teacherId;
 			sourceTree = "<group>";
@@ -701,6 +711,8 @@
 				F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */,
 				F99B83B1193E91420028653D /* Course.m in Sources */,
 				F973F2E019466B4F00E6776C /* Update.m in Sources */,
+				F9A5596A194B5C4B00C25967 /* CourseLocal.m in Sources */,
+				F9A55967194B5C2900C25967 /* TeacherIdLocal.m in Sources */,
 				F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */,
 				F954E7231940D7CB004F0C00 /* SWTableViewCell.m in Sources */,
 				F954E7241940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,

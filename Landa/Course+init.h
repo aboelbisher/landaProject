@@ -24,4 +24,7 @@ inManagedObjectContext:context;
 
 +(NSArray*)getCoursesWithName:(NSString*)name inManagedObjectContext:(NSManagedObjectContext*)context;
 
++(void) deleteAllCoursesInManagedOvjectContext:(NSManagedObjectContext*)context;
+
+
 @end

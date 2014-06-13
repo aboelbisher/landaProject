@@ -88,19 +88,19 @@ inManagedObjectContext:(NSManagedObjectContext*)context
     }
 }
 
--(instancetype) initTeacherWithName:(NSString *)name id:(NSString*)id imageName:(NSString*)imageName localImageFilePath:(NSString*)localImageFilePath mail:(NSString*)mail faculty:(NSString*)faculty position:(NSString*)position
-{
-    Teacher * newTeacher  = nil;
-    newTeacher.name = name;
-    newTeacher.id = id;
-    newTeacher.imageName = imageName;
-    newTeacher.localImageFilePath = localImageFilePath;
-    newTeacher.mail = mail;
-    newTeacher.faculty= faculty;
-    newTeacher.position = position;
-    
-    return newTeacher;
-}
+//-(instancetype) initTeacherWithName:(NSString *)name id:(NSString*)id imageName:(NSString*)imageName localImageFilePath:(NSString*)localImageFilePath mail:(NSString*)mail faculty:(NSString*)faculty position:(NSString*)position
+//{
+//    Teacher * newTeacher  = nil;
+//    newTeacher.name = name;
+//    newTeacher.id = id;
+//    newTeacher.imageName = imageName;
+//    newTeacher.localImageFilePath = localImageFilePath;
+//    newTeacher.mail = mail;
+//    newTeacher.faculty= faculty;
+//    newTeacher.position = position;
+//    
+//    return newTeacher;
+//}
 
 
 

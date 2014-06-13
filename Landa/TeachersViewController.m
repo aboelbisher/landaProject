@@ -88,6 +88,134 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightDelegate:)];
     [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:swipeRight];
+    
+    [self checkForNewUpdates];
+    
+}
+
+-(void)checkForNewUpdates
+{
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+//    self.spinner.hidden = NO;
+//    [self.spinner startAnimating];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    NSURL *url = [NSURL URLWithString:TEACHERS_URL];
+    
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
+   {
+       if(!error)
+       {
+           dispatch_async(dispatch_get_main_queue(), ^
+            {
+                  [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            });
+           NSData *urlData = [NSData dataWithContentsOfURL:url];
+           NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+           NSString* jsonString = [HelpFunc makeJsonFromString:webString];
+           
+           NSError * error;
+           NSDictionary *JSON =
+           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                           options: NSJSONReadingMutableContainers
+                                             error: &error];
+           NSArray* allTeachers = [Teacher getAllTeachersInManagedObjectContext:context];
+           NSMutableArray * oldIds = [[NSMutableArray alloc] init];
+           for(Teacher *teacher in allTeachers)
+           {
+               [oldIds addObject:teacher.id];
+           }
+           NSMutableArray * newIds = [[NSMutableArray alloc] init];
+           NSMutableArray * newTeachers = [[NSMutableArray alloc] init];
+           
+           NSArray * array = [JSON objectForKey:@"users"];
+        //   BOOL theresAChange = NO;
+
+           
+           for(id tut in array)
+           {
+               NSString * id = [tut objectForKey:@"id"];
+               NSString * faculty = [tut objectForKey:@"faculty"];
+               NSString * firstName = [tut objectForKey:@"fname"];
+               NSString * lastName = [tut objectForKey:@"lname"];
+               NSString * email = [tut objectForKey:@"email"];
+               NSInteger positionNum  = [[tut objectForKey:@"position"] integerValue];
+               NSString * position = nil;
+               
+               switch (positionNum)
+               {
+                   case 1:
+                       position = @"חונך אכדמי";
+                       break;
+                   case 3:
+                       position = @"רכז/ת פרויקט";
+                       break;
+                   case 4:
+                       position = @"רכז/ת חברתי/ת";
+                       break;
+                   default:
+                       break;
+               }
+               firstName = [firstName stringByReplacingOccurrencesOfString:@" " withString:@""];
+               lastName = [lastName stringByReplacingOccurrencesOfString:@" " withString:@""];
+               NSString * name = [firstName stringByAppendingString:@" "];
+               name = [name stringByAppendingString:lastName];
+               
+               NSString * urlString = PIC_URL;
+               urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.png" , id]];
+               
+               NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+               NSString * localFilePath = [HelpFunc writeImageToFileWithId:id data:data];
+               
+//               [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.png" , id] id:id faculty:faculty localImageFilePath:localFilePath position:position inManagedObjectContext:context];
+               TeacherLocal * localTeacher = [[TeacherLocal alloc] initTeacherWithName:name faculty:faculty id:id
+ imageName:[NSString stringWithFormat:@"%@.png" , id]  localImageFilePath:localFilePath mail:email position:position];
+               
+//               Teacher * newTeacher = [[Teacher alloc] initTeacherWithName:name id:id imageName:[NSString stringWithFormat:@"%@.png" , id] localImageFilePath:localFilePath mail:email faculty:faculty position:position];
+               
+               [newIds addObject:id];
+               [newTeachers addObject:localTeacher];
+               
+//               Teacher * tmpTeacher = [oldIds firstObjectCommonWithArray:newIds];
+//               if(!tmpTeacher)
+//               {
+//                   theresAChange = YES;
+//               }               
+           }
+           if(![newIds isEqualToArray:oldIds])
+           {
+               [Teacher deleteAllTeachersInManagedObjectoContext:context];
+               for(TeacherLocal * teacher in newTeachers)
+               {
+                   [Teacher initWithName:teacher.name mail:teacher.mail imageName:teacher.imageName id:teacher.id faculty:teacher.faculty localImageFilePath:teacher.localImageFilePath position:teacher.position inManagedObjectContext:context];
+               }
+               NSArray * newTeachers = [Teacher getAllTeachersInManagedObjectContext:context];
+               
+               dispatch_async(dispatch_get_main_queue(), ^
+               {
+                   self.teachers = nil;
+                   self.searchResults = nil;
+                   self.teachers = [NSMutableArray arrayWithArray:newTeachers];
+                   self.searchResults = [NSMutableArray arrayWithArray:self.teachers];
+                   
+                   [self.teachersCollectionView reloadData];
+               });
+           }
+          // newIds = nil;
+       }
+       dispatch_async(dispatch_get_main_queue(), ^{
+//           [self.spinner stopAnimating];
+//           self.spinner.hidden = YES;
+       });
+   }];
+    [task resume];
+
 }
 
 - (IBAction)swipeRightDelegate:(id)sender
@@ -259,6 +387,13 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
 }
 
 
+-(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [self refreshData];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
 
 -(void)initTeachersWithContext:(NSManagedObjectContext*)context
 {
@@ -276,11 +411,10 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
     {
         if(!error)
         {
-            dispatch_async(dispatch_get_main_queue(), ^
-           {
-               [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-               
-           });
+//            dispatch_async(dispatch_get_main_queue(), ^
+//           {
+//               
+//           });
             NSData *urlData = [NSData dataWithContentsOfURL:url];
             NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
             NSString* jsonString = [HelpFunc makeJsonFromString:webString];
@@ -340,10 +474,76 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.spinner stopAnimating];
             self.spinner.hidden = YES;
-            [self.teachersCollectionView reloadData];});
+            [self.teachersCollectionView reloadData];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
+        });
     }];
     [task resume];
     
+
+}
+
+-(void)refreshData
+{
+    
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError * error = nil;
+    
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    NSURL *url = [NSURL URLWithString:TEACHERS_URL];
+    NSData * data = [NSData dataWithContentsOfURL:url];
+    
+    
+    NSString *jsonString =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *JSON =
+    [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                    options: NSJSONReadingMutableContainers
+                                      error: &error];
+    NSArray * array = [JSON objectForKey:@"users"];
+    
+    for(id tut in array)
+    {
+        NSString * id = [tut objectForKey:@"id"];
+        NSString * faculty = [tut objectForKey:@"faculty"];
+        NSString * firstName = [tut objectForKey:@"fname"];
+        NSString * lastName = [tut objectForKey:@"lname"];
+        NSString * email = [tut objectForKey:@"email"];
+        NSInteger positionNum  = [[tut objectForKey:@"position"] integerValue];
+        NSString * position = nil;
+        
+        switch (positionNum)
+        {
+            case 1:
+                position = @"חונך אכדמי";
+                break;
+            case 3:
+                position = @"רכז/ת פרויקט";
+                break;
+            case 4:
+                position = @"רכז/ת חברתי/ת";
+                break;
+            default:
+                break;
+        }
+        firstName = [firstName stringByReplacingOccurrencesOfString:@" " withString:@""];
+        lastName = [lastName stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString * name = [firstName stringByAppendingString:@" "];
+        name = [name stringByAppendingString:lastName];
+        
+        NSString * urlString = PIC_URL;
+        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.png" , id]];
+        
+        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+        NSString * localFilePath = [HelpFunc writeImageToFileWithId:id data:data];
+        
+        [Teacher initWithName:name mail:email imageName:[NSString stringWithFormat:@"%@.png" , id] id:id faculty:faculty localImageFilePath:localFilePath position:position inManagedObjectContext:context];
+        
+    }
 
 }
 

@@ -90,6 +90,7 @@
 		F99B83D0193EB3DE0028653D /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83CD193EB3DE0028653D /* HTMLNode.m */; };
 		F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B83CF193EB3DE0028653D /* HTMLParser.m */; };
 		F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */; };
+		F9A55964194B4D9100C25967 /* TeacherLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55963194B4D9100C25967 /* TeacherLocal.m */; };
 		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
 		F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655A193BE70300104DE2 /* landaIcon.png */; };
 		F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655E193BECC900104DE2 /* teachersIcon.png */; };
@@ -230,6 +231,8 @@
 		F99B83CF193EB3DE0028653D /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		F9A47075191EEBAF00420260 /* UpdatesContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesContentViewController.h; sourceTree = "<group>"; };
 		F9A47076191EEBAF00420260 /* UpdatesContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesContentViewController.m; sourceTree = "<group>"; };
+		F9A55962194B4D9100C25967 /* TeacherLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherLocal.h; sourceTree = "<group>"; };
+		F9A55963194B4D9100C25967 /* TeacherLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherLocal.m; sourceTree = "<group>"; };
 		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
 		F9CA655A193BE70300104DE2 /* landaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaIcon.png; sourceTree = "<group>"; };
 		F9CA655E193BECC900104DE2 /* teachersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teachersIcon.png; sourceTree = "<group>"; };
@@ -288,6 +291,8 @@
 		F91FBA3D18F4772D00B7F8D7 /* Teachers */ = {
 			isa = PBXGroup;
 			children = (
+				F9A55962194B4D9100C25967 /* TeacherLocal.h */,
+				F9A55963194B4D9100C25967 /* TeacherLocal.m */,
 				F95ACAF3193A99FD00E546FB /* LastRefresh.h */,
 				F95ACAF4193A99FD00E546FB /* LastRefresh.m */,
 				F95ACAEB193A8F2100E546FB /* LastRefresh+init.h */,
@@ -392,16 +397,13 @@
 		F9302FC618EE499B0064E984 /* Landa */ = {
 			isa = PBXGroup;
 			children = (
-				F954E7131940D78F004F0C00 /* SwapCell */,
 				F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */,
-				F954E6A5193FAFF0004F0C00 /* HelpFunc.h */,
-				F954E6A6193FAFF0004F0C00 /* HelpFunc.m */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
-				F973F26B1943A27600E6776C /* AboutViewController.h */,
-				F973F26C1943A27600E6776C /* AboutViewController.m */,
 				F973F2671942259700E6776C /* Images.xcassets */,
+				F954E7131940D78F004F0C00 /* SwapCell */,
+				F9A8C11219490DC30026CDDD /* other */,
 				F99B83C1193EB2310028653D /* HTMLParsing */,
 				F977773F1931A04A00B15754 /* Reachability */,
 				F97776001931604800B15754 /* teacherId */,
@@ -525,6 +527,17 @@
 				F99B83CF193EB3DE0028653D /* HTMLParser.m */,
 			);
 			name = HTMLParsing;
+			sourceTree = "<group>";
+		};
+		F9A8C11219490DC30026CDDD /* other */ = {
+			isa = PBXGroup;
+			children = (
+				F954E6A5193FAFF0004F0C00 /* HelpFunc.h */,
+				F954E6A6193FAFF0004F0C00 /* HelpFunc.m */,
+				F973F26B1943A27600E6776C /* AboutViewController.h */,
+				F973F26C1943A27600E6776C /* AboutViewController.m */,
+			);
+			name = other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -696,6 +709,7 @@
 				F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */,
 				F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */,
 				F95ACADE193A714100E546FB /* TeacherId.m in Sources */,
+				F9A55964194B4D9100C25967 /* TeacherLocal.m in Sources */,
 				F954E7211940D7CB004F0C00 /* SWCellScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

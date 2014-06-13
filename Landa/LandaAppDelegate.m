@@ -40,17 +40,28 @@ static NSString* notifcationsWebEnd = @"&json=1";
     NSDate *fetchStart = [NSDate date];
     
     //UpdatesViewController *viewController = (UpdatesViewController *)self.window.rootViewController;
-    UpdatesViewController * viewController = [[UpdatesViewController alloc] init];
+    UpdatesViewController * updatesViewController = [[UpdatesViewController alloc] init];
     
-    [viewController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result)
+    [updatesViewController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result)
     {
          completionHandler(result);
-         
-         NSDate *fetchEnd = [NSDate date];
-         NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
-         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
+     }];
+    
+    TeachersViewController * teachersViewController = [[TeachersViewController alloc] init];
+    
+    [teachersViewController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result)
+     {
+         completionHandler(result);
+
          
      }];
+    
+    
+    NSDate *fetchEnd = [NSDate date];
+    NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
+    NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
+    
+    
 }
 
 
@@ -193,6 +204,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [PFPush handlePush:userInfo];
     
     completionHandler(UIBackgroundFetchResultNewData);
+    
+    UpdatesViewController * updatesViewController = [[UpdatesViewController alloc] init];
+    
+    [updatesViewController refreshTableView];
 }
 
 
@@ -251,6 +266,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    UpdatesViewController * updatesViewController = [[UpdatesViewController alloc] init];
+    
+    [updatesViewController refreshTableView];
+
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

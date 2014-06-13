@@ -287,32 +287,33 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         {
             case 0:
             {
-                NSString* flagString = nil;
-                
-                Update* updateCell = [self.updates objectAtIndex:_tappedCell];
-                
-                if(updateCell)
-                {
-                    if([updateCell.flagged isEqualToString:@"YES"])
-                    {
-                        flagString =@"mark as unflagged";
-                    }
-                    else
-                    {
-                        flagString = @"mark as flagged";
-                    }
-                }
-                
-                // More button is pressed
-                UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: flagString , nil];
-                [shareActionSheet showInView:self.view];
+//                NSString* flagString = nil;
+//                
+//                Update* updateCell = [self.updates objectAtIndex:_tappedCell];
+//                
+//                if(updateCell)
+//                {
+//                    if([updateCell.flagged isEqualToString:@"YES"])
+//                    {
+//                        flagString =@"mark as unflagged";
+//                    }
+//                    else
+//                    {
+//                        flagString = @"mark as flagged";
+//                    }
+//                }
+//                
+//                // More button is pressed
+//                UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: flagString , nil];
+//                [shareActionSheet showInView:self.view];
+//                break;
+                // Delete button is pressed
+                [self deleteCellAtIndexPath:cellIndexPath];
                 break;
             }
             case 1:
             {
-                // Delete button is pressed
-                [self deleteCellAtIndexPath:cellIndexPath];
-                break;
+
             }
             default:
                 break;

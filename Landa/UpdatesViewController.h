@@ -19,6 +19,8 @@
 
 -(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 
+-(void) refreshTableView;
+
 
 @end
 

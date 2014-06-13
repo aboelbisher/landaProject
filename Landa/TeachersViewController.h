@@ -19,8 +19,10 @@
 #import "LastRefresh+init.h"
 #import "AboutViewController.h"
 #import "CoursesViewController.h"
+#import "TeacherLocal.h"
 
 @interface TeachersViewController : UIViewController
 - (IBAction)showInfo:(id)sender;
+-(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 
 @end

@@ -16,6 +16,7 @@
 #import "HTMLNode.h"
 #import "HTMLParser.h"
 #import "HelpFunc.h"
+#import "TeachersViewController.h"
 
 
 @interface LandaAppDelegate : UIResponder <UIApplicationDelegate>

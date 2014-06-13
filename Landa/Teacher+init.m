@@ -45,8 +45,7 @@ inManagedObjectContext:(NSManagedObjectContext*)context
         [context save:&error];
         
         
-    }
-    
+    }    
     return teacher;
 }
 
@@ -76,6 +75,33 @@ inManagedObjectContext:(NSManagedObjectContext*)context
     
     return teachersArray;
 }
+
++(void) deleteAllTeachersInManagedObjectoContext:(NSManagedObjectContext*)context
+{
+    NSError * error = nil;
+    NSArray * allTeachers = [Teacher getAllTeachersInManagedObjectContext:context];
+    
+    for(Teacher * teacher in allTeachers)
+    {
+        [context deleteObject:teacher];
+        [context save:&error];
+    }
+}
+
+-(instancetype) initTeacherWithName:(NSString *)name id:(NSString*)id imageName:(NSString*)imageName localImageFilePath:(NSString*)localImageFilePath mail:(NSString*)mail faculty:(NSString*)faculty position:(NSString*)position
+{
+    Teacher * newTeacher  = nil;
+    newTeacher.name = name;
+    newTeacher.id = id;
+    newTeacher.imageName = imageName;
+    newTeacher.localImageFilePath = localImageFilePath;
+    newTeacher.mail = mail;
+    newTeacher.faculty= faculty;
+    newTeacher.position = position;
+    
+    return newTeacher;
+}
+
 
 
 @end

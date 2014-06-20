@@ -238,35 +238,39 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 
         [rightUtilityButtons sw_addUtilityButtonWithColor:
          [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-                                                    title:@"Delete"];
+                                                    title:@"מחק"];
+        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
+                                                   title:@"עוד"];
+
+
         
-        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
-        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
+//        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+//        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
 
 
-        if([tmpUpdate.flagged isEqualToString:@"NO"])
-        {
-//            [leftUtilityButtons sw_addUtilityButtonWithColor:
-//             [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-//                                                       title:@"mark as flagged"];
-            
+//        if([tmpUpdate.flagged isEqualToString:@"NO"])
+//        {
+////            [leftUtilityButtons sw_addUtilityButtonWithColor:
+////             [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
+//        //                                               title:@"mark as flagged"];
+//            
 //            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
-//            [leftUtilityButtons removeObjectAtIndex:1];
-//            leftUtilityButtons = nil;
-//            leftUtilityButtons = [[NSMutableArray alloc] init];
-//            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
-
-        }
-        else
-        {
-//            leftUtilityButtons = nil;
-//            leftUtilityButtons = [[NSMutableArray alloc] init];
-//            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
-//            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
-//            [leftUtilityButtons removeObjectAtIndex:0];
-
-        }
-
+////            [leftUtilityButtons removeObjectAtIndex:1];
+////            leftUtilityButtons = nil;
+////            leftUtilityButtons = [[NSMutableArray alloc] init];
+////            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+//
+//        }
+//        else
+//        {
+////            leftUtilityButtons = nil;
+////            leftUtilityButtons = [[NSMutableArray alloc] init];
+////            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
+//            //[leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
+////            [leftUtilityButtons removeObjectAtIndex:0];
+//
+//        }
+//
         
         updateCell.leftUtilityButtons = leftUtilityButtons;
         updateCell.rightUtilityButtons = rightUtilityButtons;
@@ -311,10 +315,10 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                 [self deleteCellAtIndexPath:cellIndexPath];
                 break;
             }
-            case 1:
-            {
-
-            }
+//            case 1:
+//            {
+//
+//            }
             default:
                 break;
         }
@@ -324,47 +328,152 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
 {
-    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError* error = nil;
+//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//    NSError* error = nil;
     NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
     if(cellIndexPath)
     {
         _tappedCell = cellIndexPath.row;
         Update * update = [self.updates objectAtIndex:_tappedCell];
-        Update * coreDataUpdate = nil;
+        NSString * flagOrUnflag = nil;
+        NSString * readOrUnread = nil;
         
-        if(update)
+        if([update.flagged isEqualToString:@"YES"])
         {
-            NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
-            if([objects count] == 1)
-            {
-                coreDataUpdate = [objects firstObject];
-            }
+            flagOrUnflag = @"בטל סימון בדגל";
         }
+        else
+        {
+            flagOrUnflag = @"סמן בדגל";
+        }
+        if([update.hasBeenRead isEqualToString:@"YES"])
+        {
+            readOrUnread = @"סמן כלא נקרא";
+        }
+        else
+        {
+            readOrUnread = @"סמן כנקרא";
+        }
+
         
-        if( index == 0) // mark as flagged
+        if( index == 0)
         {
-            coreDataUpdate.flagged = @"YES";
-        }
-        if( index == 1)
-        {
-            coreDataUpdate.flagged = @"NO";
+            UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"ביטול" destructiveButtonTitle:nil otherButtonTitles:
+                                    flagOrUnflag,
+                                    readOrUnread,
+                                    nil];
+            popup.tag = 1;
+            [popup showInView:[UIApplication sharedApplication].keyWindow];
 
         }
-        [context save:&error];
         
-        NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
-        
-        self.updates = [NSMutableArray arrayWithArray:objects];
-        [self sortTableViewArrayWithDates];
-        [self sortTableViewArrayWithPinned];
-        [self.tableView reloadData];
+//        Update * update = [self.updates objectAtIndex:_tappedCell];
+
+//        Update * coreDataUpdate = nil;
+//        
+//        if(update)
+//        {
+//            NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
+//            if([objects count] == 1)
+//            {
+//                coreDataUpdate = [objects firstObject];
+//            }
+//        }
+//        
+//        if( index == 0) // mark as flagged
+//        {
+//            coreDataUpdate.flagged = @"YES";
+//        }
+//        if( index == 1)
+//        {
+//            coreDataUpdate.flagged = @"NO";
+//
+//        }
+//        [context save:&error];
+//        
+//        NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+//        
+//        self.updates = [NSMutableArray arrayWithArray:objects];
+//        [self sortTableViewArrayWithDates];
+//        [self sortTableViewArrayWithPinned];
+//        [self.tableView reloadData];
 
 
     }
     
 }
+
+#pragma mark UIActionSheet functions
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSError * error = nil;
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    Update * update = [self.updates objectAtIndex:_tappedCell];
+    Update * coreDataUpdate = nil;
+    NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
+    if([objects count] == 1)
+    {
+        coreDataUpdate = [objects firstObject];
+    }
+    
+    if( update)
+    {
+        if(buttonIndex == 0) // flag or not Flagged
+        {
+            if([coreDataUpdate.flagged isEqualToString:@"NO"])//mark as flagged
+            {
+                coreDataUpdate.flagged = @"YES";
+            }
+            else
+            {
+                coreDataUpdate.flagged = @"NO";
+            }
+            
+            [context save:&error];
+            
+        }
+        
+        if (buttonIndex == 1) // read or Unread
+        {
+            if([coreDataUpdate.hasBeenRead isEqualToString:@"YES"])
+            {
+                coreDataUpdate.hasBeenRead = @"NO";
+            }
+            else
+            {
+                coreDataUpdate.hasBeenRead = @"YES";
+            }
+        }
+        
+        
+        NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+        
+        
+        self.updates = [NSMutableArray arrayWithArray:objects];
+        [self sortTableViewArrayWithDates];
+        [self sortTableViewArrayWithPinned];
+        [self.tableView reloadData];
+        NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
+        
+        if([unreadUpdates count] > 0)
+        {
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+            [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+            
+            [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+        }
+
+    }
+}
+
 
 
 
@@ -592,54 +701,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 }
 
 
-#pragma mark UIActionSheet functions
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSError * error = nil;
-    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
-    if(buttonIndex == 0)
-    {
-        Update * update = [self.updates objectAtIndex:_tappedCell];
-        Update * coreDataUpdate = nil;
-        
-        if(update)
-        {
-            NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
-            if([objects count] == 1)
-            {
-                coreDataUpdate = [objects firstObject];
-            }
-        }
-        
-        
-        
-        
-        if([coreDataUpdate.flagged isEqualToString:@"NO"])//mark as flagged
-        {
-            coreDataUpdate.flagged = @"YES";
-        }
-        else
-        {
-            coreDataUpdate.flagged = @"NO";
-        }
-        
-        [context save:&error];
-        
-        
-        NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
-        
-
-        self.updates = [NSMutableArray arrayWithArray:objects];
-        [self sortTableViewArrayWithDates];
-        [self sortTableViewArrayWithPinned];
-        [self.tableView reloadData];
-    }
-    
-
-}
 
 
 -(void) sortTableViewArrayWithDates
@@ -651,7 +712,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
            NSDate *first = [(Update*)a date];
            NSDate *second = [(Update*)b date];
            return [second compare:first];
-
    }];
     
     self.updates = nil;

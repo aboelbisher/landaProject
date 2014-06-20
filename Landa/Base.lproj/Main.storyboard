@@ -560,20 +560,23 @@
                                                         <action selector="switcher:" destination="HVE-38-O1I" eventType="valueChanged" id="YTG-8d-0cq"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="place" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zc-Fv-X2E">
-                                                    <rect key="frame" x="106" y="43" width="129" height="21"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYm-lo-mW4">
+                                                    <rect key="frame" x="85" y="42" width="150" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <state key="normal" title="Place">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="ge1-Ul-En3" kind="push" identifier="navigate" id="sdD-xy-KhR"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dayLabel" destination="3OP-gR-wSg" id="GNU-8F-Dm6"/>
                                             <outlet property="image" destination="pgp-gd-ubu" id="Eow-Um-F68"/>
                                             <outlet property="nameLabel" destination="adS-NU-321" id="6cm-fS-dmy"/>
-                                            <outlet property="placeLabel" destination="7zc-Fv-X2E" id="sKr-z1-Hph"/>
+                                            <outlet property="placeButton" destination="kYm-lo-mW4" id="gKv-3P-ew8"/>
                                             <outlet property="switcherOutlet" destination="WM6-7F-VBh" id="Afw-r1-fAy"/>
                                             <outlet property="timeLabel" destination="g9R-0x-jdL" id="POg-WR-fga"/>
                                         </connections>
@@ -704,6 +707,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ciw-G2-3Re" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="872" y="-215"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="HwQ-ec-Qh7">
+            <objects>
+                <viewController id="ge1-Ul-En3" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="41j-Hx-3QX"/>
+                        <viewControllerLayoutGuide type="bottom" id="2f9-m2-Xq6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jvp-B8-atF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FoK-N5-f6U">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BTD-JN-K7O"/>
+                    <connections>
+                        <outlet property="mapView" destination="FoK-N5-f6U" id="ofj-vV-Qng"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NUD-Rn-KCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1265" y="-215"/>
         </scene>
         <!--Navigation Controller - עדכונים-->
         <scene sceneID="zm0-wA-Pam">

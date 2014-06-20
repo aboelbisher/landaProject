@@ -25,6 +25,8 @@ static NSString* dontNotifyMe = @"NO";
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
+
+
 @end
 
 @implementation CoursesViewController
@@ -192,8 +194,21 @@ static NSString* dontNotifyMe = @"NO";
            }
            
            NSArray * oldCourses = [Course getAllCoursesInManagedObjectContext:context];
+           NSMutableArray * oldCoursesLocal = [[NSMutableArray alloc] init];
+           for(Course * course in oldCourses)
+           {
+               CourseLocal * courseLocal = [[CourseLocal alloc] initCorseLocalWithBeginTime:course.beginTime endTime:course.endTime id:course.id imageName:course.imageName name:course.name place:course.place subjectId:course.subjectId];
+               for(TeacherId * teacherId in course.teachers)
+               {
+                   TeacherIdLocal * teacherIdLocal = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:teacherId.beginTime day:teacherId.day endTime:teacherId.endTime id:teacherId.id notify:teacherId.notify];
+                   [courseLocal addTeachersObject:teacherIdLocal];
+               }
+               [oldCoursesLocal addObject:courseLocal];
+           }
            
-           if (![oldCourses isEqualToArray:newCourses])
+           //newCourses CourseLocal
+           
+           if (![oldCoursesLocal isEqualToArray:newCourses])
            {
                [Course deleteAllCoursesInManagedOvjectContext:context];
                [TeacherId deleteAllTeachersIdInManagedObjectContext:context];

@@ -80,7 +80,7 @@
         
         [self weekEndNotificationOnWeekday:day hour:hour minute:minute message:message teacherId:self.teacherId startDate:now];
     }
-    
+   // [NSThread exit];
     [context save:&error];
     
 }

@@ -13,6 +13,7 @@
 #import "LandaAppDelegate.h"
 #import "TeacherId.h"
 #import "CoursesTableViewCell.h"
+#import "MapViewController.h"
 
 @interface CoursesDetailsCollectionView () <UITableViewDataSource , UITableViewDelegate>
 
@@ -136,26 +137,31 @@
         courseCell.timeLabel.text = time;
         courseCell.image.image = image;
         courseCell.courseName = self.course.name;
-        courseCell.placeLabel.text = self.course.place;
+        //courseCell..text = self.course.place;
+        //courseCell.placeButton.titleLabel.text = self.course.place;
+        [courseCell.placeButton setTitle:self.course.place forState:UIControlStateNormal]; // To set the title
+
     }
     return cell;
 }
 
 
+
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"show teacher details"])
+    if ([segue.identifier isEqualToString:@"navigate"])
     {
-        if ([segue.destinationViewController isKindOfClass:[TeachersDetailsViewController class]])
+        if ([segue.destinationViewController isKindOfClass:[MapViewController class]])
         {
-            if([sender isKindOfClass:[TeacherCollectionViewCell class]])
-            {
-                TeacherCollectionViewCell* sourceController = (TeacherCollectionViewCell*) sender;
+            //NSLog(@"Mystery object is a %@", NSStringFromClass([sender class]));
+
+                UIButton* sourceController = (UIButton*) sender;
                 
-                TeachersDetailsViewController *tsvc = (TeachersDetailsViewController *)segue.destinationViewController;
-                tsvc.localFilePath = sourceController.teacher.localImageFilePath;
-                tsvc.teacher = sourceController.teacher;
-            }
+                MapViewController *tsvc = (MapViewController *)segue.destinationViewController;
+                tsvc.place = sourceController.titleLabel.text;
+                //tsvc.teacher = sourceController.teacher;
         }
     }
 }

@@ -24,6 +24,8 @@
 		F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923C37818F0BCD80065C5EB /* UpdatesViewController.m */; };
 		F923C38118F0C0690065C5EB /* updates.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C38018F0C0690065C5EB /* updates.png */; };
 		F923C38318F0DF320065C5EB /* expand.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C38218F0DF320065C5EB /* expand.png */; };
+		F92C19A419539826009594F5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92C19A319539826009594F5 /* MapViewController.m */; };
+		F92C19A619539832009594F5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F92C19A519539832009594F5 /* MapKit.framework */; };
 		F9302FC118EE499B0064E984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC018EE499B0064E984 /* Foundation.framework */; };
 		F9302FC318EE499B0064E984 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC218EE499B0064E984 /* CoreGraphics.framework */; };
 		F9302FC518EE499B0064E984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC418EE499B0064E984 /* UIKit.framework */; };
@@ -135,6 +137,9 @@
 		F923C37818F0BCD80065C5EB /* UpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesViewController.m; sourceTree = "<group>"; };
 		F923C38018F0C0690065C5EB /* updates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updates.png; sourceTree = "<group>"; };
 		F923C38218F0DF320065C5EB /* expand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expand.png; sourceTree = "<group>"; };
+		F92C19A219539826009594F5 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		F92C19A319539826009594F5 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		F92C19A519539832009594F5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F9302FBD18EE499B0064E984 /* Landa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Landa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9302FC018EE499B0064E984 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F9302FC218EE499B0064E984 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -251,6 +256,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F92C19A619539832009594F5 /* MapKit.framework in Frameworks */,
 				F99B83CB193EB36A0028653D /* libxml2.dylib in Frameworks */,
 				F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */,
 				F932381C1929091B0066328A /* StoreKit.framework in Frameworks */,
@@ -380,6 +386,7 @@
 		F9302FBF18EE499B0064E984 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F92C19A519539832009594F5 /* MapKit.framework */,
 				F99B83BF193EB17E0028653D /* libxml2.2.dylib */,
 				F99B83BD193EB1690028653D /* libxml2.dylib */,
 				F932381D192909230066328A /* SystemConfiguration.framework */,
@@ -408,6 +415,8 @@
 				F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
+				F92C19A219539826009594F5 /* MapViewController.h */,
+				F92C19A319539826009594F5 /* MapViewController.m */,
 				F9302FD218EE499B0064E984 /* Main.storyboard */,
 				F973F2671942259700E6776C /* Images.xcassets */,
 				F954E7131940D78F004F0C00 /* SwapCell */,
@@ -710,6 +719,7 @@
 				F9302FD118EE499B0064E984 /* LandaAppDelegate.m in Sources */,
 				F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */,
 				F99B83B1193E91420028653D /* Course.m in Sources */,
+				F92C19A419539826009594F5 /* MapViewController.m in Sources */,
 				F973F2E019466B4F00E6776C /* Update.m in Sources */,
 				F9A5596A194B5C4B00C25967 /* CourseLocal.m in Sources */,
 				F9A55967194B5C2900C25967 /* TeacherIdLocal.m in Sources */,

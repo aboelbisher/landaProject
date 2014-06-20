@@ -19,7 +19,8 @@
 @property (weak ,nonatomic) TeacherId * teacherId;
 @property (weak , nonatomic) NSString * courseName;
 @property (weak, nonatomic) IBOutlet UISwitch *switcherOutlet;
-@property (weak, nonatomic) IBOutlet UILabel *placeLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *placeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *placeButton;
 
 - (IBAction)switcher:(id)sender;
 

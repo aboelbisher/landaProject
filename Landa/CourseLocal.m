@@ -24,7 +24,14 @@
 {
     if([_id isEqual:[object id]])
     {
-        return [_teachers isEqual:[object teachers]];
+        if([_teachers isEqual:[object teachers]])
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
     }
     return NO;
 }

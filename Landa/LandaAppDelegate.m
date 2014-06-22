@@ -149,6 +149,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 
+
 - (void)application:(UIApplication *)application
   didReceiveRemoteNotification:(NSDictionary *)userInfo
         fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -235,8 +236,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [[UITabBar appearance] setTintColor:[UIColor redColor]];
     }
     
-    [Parse setApplicationId:@"QvTjoTQQlUogaFSd0OlbuRwQyPlmTO3khZpgPsm5"
-                  clientKey:@"cGJsdBYRRCy9GVxS9rvyyQVNyYf2h4pUI86D9iUb"];
+//    [Parse setApplicationId:@"QvTjoTQQlUogaFSd0OlbuRwQyPlmTO3khZpgPsm5"
+//                  clientKey:@"cGJsdBYRRCy9GVxS9rvyyQVNyYf2h4pUI86D9iUb"];
+//    [Parse setApplicationId:@"lyULxHfJJVm7xq7Q9PBAKzEzUAbrRHFWxGjnPDjW"
+//                  clientKey:@"OtBV7Pi2miRuYBKHri3eYEfeOZeqYVOPLFBXqfp9"];
+    [Parse setApplicationId:@"lyULxHfJJVm7xq7Q9PBAKzEzUAbrRHFWxGjnPDjW"
+                  clientKey:@"OtBV7Pi2miRuYBKHri3eYEfeOZeqYVOPLFBXqfp9"];
     
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
      UIRemoteNotificationTypeAlert|

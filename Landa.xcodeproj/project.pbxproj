@@ -38,15 +38,8 @@
 		F9302FE218EE499B0064E984 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC418EE499B0064E984 /* UIKit.framework */; };
 		F9302FEA18EE499B0064E984 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9302FE818EE499B0064E984 /* InfoPlist.strings */; };
 		F9302FEC18EE499B0064E984 /* LandaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9302FEB18EE499B0064E984 /* LandaTests.m */; };
-		F9302FFB18EE49C00064E984 /* 7amed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9302FF518EE49C00064E984 /* 7amed.jpg */; };
-		F9302FFC18EE49C00064E984 /* aiman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9302FF618EE49C00064E984 /* aiman.jpg */; };
-		F9302FFD18EE49C00064E984 /* hasan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9302FF718EE49C00064E984 /* hasan.jpg */; };
-		F9302FFE18EE49C00064E984 /* mothana.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9302FF818EE49C00064E984 /* mothana.jpg */; };
-		F9302FFF18EE49C00064E984 /* muhammad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9302FF918EE49C00064E984 /* muhammad.jpg */; };
-		F930300018EE49C00064E984 /* ward.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9302FFA18EE49C00064E984 /* ward.jpg */; };
 		F930300418EE4A5C0064E984 /* TeachersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F930300318EE4A5C0064E984 /* TeachersViewController.m */; };
 		F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F930300618EE4B9D0064E984 /* TeacherCollectionViewCell.m */; };
-		F930300918EE4E880064E984 /* thrwat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F930300818EE4E880064E984 /* thrwat.jpg */; };
 		F930300C18EE51C00064E984 /* TabBarSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F930300B18EE51C00064E984 /* TabBarSettingsViewController.m */; };
 		F932380C192908C70066328A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932380B192908C70066328A /* Parse.framework */; };
 		F932380E192908D60066328A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932380D192908D60066328A /* AudioToolbox.framework */; };
@@ -156,17 +149,10 @@
 		F9302FE718EE499B0064E984 /* LandaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LandaTests-Info.plist"; sourceTree = "<group>"; };
 		F9302FE918EE499B0064E984 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F9302FEB18EE499B0064E984 /* LandaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandaTests.m; sourceTree = "<group>"; };
-		F9302FF518EE49C00064E984 /* 7amed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7amed.jpg; sourceTree = "<group>"; };
-		F9302FF618EE49C00064E984 /* aiman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aiman.jpg; sourceTree = "<group>"; };
-		F9302FF718EE49C00064E984 /* hasan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hasan.jpg; sourceTree = "<group>"; };
-		F9302FF818EE49C00064E984 /* mothana.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mothana.jpg; sourceTree = "<group>"; };
-		F9302FF918EE49C00064E984 /* muhammad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = muhammad.jpg; sourceTree = "<group>"; };
-		F9302FFA18EE49C00064E984 /* ward.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ward.jpg; sourceTree = "<group>"; };
 		F930300218EE4A5C0064E984 /* TeachersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeachersViewController.h; sourceTree = "<group>"; };
 		F930300318EE4A5C0064E984 /* TeachersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeachersViewController.m; sourceTree = "<group>"; };
 		F930300518EE4B9D0064E984 /* TeacherCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherCollectionViewCell.h; sourceTree = "<group>"; };
 		F930300618EE4B9D0064E984 /* TeacherCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherCollectionViewCell.m; sourceTree = "<group>"; };
-		F930300818EE4E880064E984 /* thrwat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thrwat.jpg; sourceTree = "<group>"; };
 		F930300A18EE51C00064E984 /* TabBarSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarSettingsViewController.h; sourceTree = "<group>"; };
 		F930300B18EE51C00064E984 /* TabBarSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarSettingsViewController.m; sourceTree = "<group>"; };
 		F932380B192908C70066328A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -485,13 +471,6 @@
 				F923C37118F0B59D0065C5EB /* calculus.jpg */,
 				F923C37218F0B59D0065C5EB /* chimestry.jpg */,
 				F923C38018F0C0690065C5EB /* updates.png */,
-				F9302FF518EE49C00064E984 /* 7amed.jpg */,
-				F9302FF618EE49C00064E984 /* aiman.jpg */,
-				F9302FF718EE49C00064E984 /* hasan.jpg */,
-				F930300818EE4E880064E984 /* thrwat.jpg */,
-				F9302FF818EE49C00064E984 /* mothana.jpg */,
-				F9302FF918EE49C00064E984 /* muhammad.jpg */,
-				F9302FFA18EE49C00064E984 /* ward.jpg */,
 			);
 			name = pic;
 			sourceTree = "<group>";
@@ -652,28 +631,21 @@
 				F9302FCB18EE499B0064E984 /* InfoPlist.strings in Resources */,
 				F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */,
 				F95ACAAE19394FC100E546FB /* courses.png in Resources */,
-				F9302FFC18EE49C00064E984 /* aiman.jpg in Resources */,
 				F923C37418F0B59D0065C5EB /* c.png in Resources */,
-				F9302FFB18EE49C00064E984 /* 7amed.jpg in Resources */,
 				F923C38118F0C0690065C5EB /* updates.png in Resources */,
 				F99B83B3193E96C90028653D /* noContact.png in Resources */,
 				F923C38318F0DF320065C5EB /* expand.png in Resources */,
 				F9C7AD8A192D52000086B99D /* technion.jpg in Resources */,
-				F930300018EE49C00064E984 /* ward.jpg in Resources */,
-				F9302FFE18EE49C00064E984 /* mothana.jpg in Resources */,
 				F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */,
 				F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */,
 				F973F26A19438C8F00E6776C /* flagged.png in Resources */,
-				F9302FFF18EE49C00064E984 /* muhammad.jpg in Resources */,
 				F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */,
 				F9302FD418EE499B0064E984 /* Main.storyboard in Resources */,
 				F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */,
 				F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */,
 				F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */,
 				F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */,
-				F9302FFD18EE49C00064E984 /* hasan.jpg in Resources */,
 				F973F2681942259700E6776C /* Images.xcassets in Resources */,
-				F930300918EE4E880064E984 /* thrwat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,7 +770,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -836,7 +809,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -857,7 +831,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: muhammad abed el razek (UH6JC85963)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -872,6 +847,7 @@
 				INFOPLIST_FILE = "Landa/Landa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -881,7 +857,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: muhammad abed el razek (UH6JC85963)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -897,6 +874,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -941,6 +919,84 @@
 			};
 			name = Release;
 		};
+		F9D77A5E1956649B0025BD5E /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		F9D77A5F1956649B0025BD5E /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Landa/Landa-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "Landa/Landa-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
+		F9D77A601956649B0025BD5E /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Landa.app/Landa";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Landa/Landa-Prefix.pch";
+				INFOPLIST_FILE = "LandaTests/LandaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -949,6 +1005,7 @@
 			buildConfigurations = (
 				F9302FED18EE499B0064E984 /* Debug */,
 				F9302FEE18EE499B0064E984 /* Release */,
+				F9D77A5E1956649B0025BD5E /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -958,6 +1015,7 @@
 			buildConfigurations = (
 				F9302FF018EE499B0064E984 /* Debug */,
 				F9302FF118EE499B0064E984 /* Release */,
+				F9D77A5F1956649B0025BD5E /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -967,6 +1025,7 @@
 			buildConfigurations = (
 				F9302FF318EE499B0064E984 /* Debug */,
 				F9302FF418EE499B0064E984 /* Release */,
+				F9D77A601956649B0025BD5E /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

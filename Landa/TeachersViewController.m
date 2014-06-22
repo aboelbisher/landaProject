@@ -67,8 +67,8 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
         else
         {
             NSLog(@"There IS internet connection");
+            [self initTeachersWithContext:context];
         }
-        [self initTeachersWithContext:context];
     }
     else
     {

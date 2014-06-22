@@ -8,7 +8,7 @@
 
 #import "FullContentViewController.h"
 
-@interface FullContentViewController ()
+@interface FullContentViewController ()<UIWebViewDelegate>
 
 @end
 
@@ -27,8 +27,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //self.view.backgroundColor =
     
-    NSString * html = @"<html> <body style=\"background:#ffffff; color:#000000;\"> ";
+    NSString * html = @"<html> <body style=\"background:#454545; color:#e0e0e0;\"> ";
     
     html = [html stringByAppendingString:self.update.htmlUpdate];
     
@@ -36,17 +37,19 @@
     
     [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:self.update.url]];
     
-    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.backgroundColor = [UIColor greenColor];
+    [self.webView setBackgroundColor:[UIColor greenColor]];
+    self.webView.delegate = self;
     
 //    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
 
 
 }
 
-- (void)didReceiveMemoryWarning
+-(void) webViewDidFinishLoad:(UIWebView *)webView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSString * NewHtml = @"javascript:(function() { document.getElementsByTagName('body')[0].style.color = '#e0e0e0';var ps= document.getElementsByTagName('p'); for(var i=0;i<ps.length;i++){ps[i].style.color = '#e0e0e0';}var spans=document.getElementsByTagName('span');for(var i=0;i<spans.length;i++){spans[i].style.color = '#e0e0e0';}document.getElementsByTagName('table')[0].style.color = '#e0e0e0';})();";
+    [self.webView stringByEvaluatingJavaScriptFromString:NewHtml];
 }
 
 /*

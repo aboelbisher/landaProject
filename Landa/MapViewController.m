@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view.
     if(!([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied))
     {
-        [[[UIAlertView alloc] initWithTitle:@"שגיאה" message:@"תפעיל את ה גי פי אס יא מניאק !!!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"שגיאה" message:@"נא להפעיל שירות מיקום לקבך מידע עדכני" delegate:nil cancelButtonTitle:@"אישור" otherButtonTitles: nil] show];
         // show the map
     }
     

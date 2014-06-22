@@ -9,7 +9,7 @@
 #import "UpdatesViewController.h"
 
 
-static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=get_posts&count=20";
+static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=get_posts&count=20";
 
 
 @interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate , SWTableViewCellDelegate>
@@ -241,37 +241,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                                                     title:@"מחק"];
         [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
                                                    title:@"עוד"];
-
-
-        
-//        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
-//        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
-
-
-//        if([tmpUpdate.flagged isEqualToString:@"NO"])
-//        {
-////            [leftUtilityButtons sw_addUtilityButtonWithColor:
-////             [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
-//        //                                               title:@"mark as flagged"];
-//            
-//            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
-////            [leftUtilityButtons removeObjectAtIndex:1];
-////            leftUtilityButtons = nil;
-////            leftUtilityButtons = [[NSMutableArray alloc] init];
-////            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
-//
-//        }
-//        else
-//        {
-////            leftUtilityButtons = nil;
-////            leftUtilityButtons = [[NSMutableArray alloc] init];
-////            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"flagCell"]];
-//            //[leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor clearColor] icon:[UIImage imageNamed:@"unflagCell"]];
-////            [leftUtilityButtons removeObjectAtIndex:0];
-//
-//        }
-//
-        
         updateCell.leftUtilityButtons = leftUtilityButtons;
         updateCell.rightUtilityButtons = rightUtilityButtons;
         updateCell.delegate = self;
@@ -291,34 +260,10 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         {
             case 0:
             {
-//                NSString* flagString = nil;
-//                
-//                Update* updateCell = [self.updates objectAtIndex:_tappedCell];
-//                
-//                if(updateCell)
-//                {
-//                    if([updateCell.flagged isEqualToString:@"YES"])
-//                    {
-//                        flagString =@"mark as unflagged";
-//                    }
-//                    else
-//                    {
-//                        flagString = @"mark as flagged";
-//                    }
-//                }
-//                
-//                // More button is pressed
-//                UIActionSheet *shareActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: flagString , nil];
-//                [shareActionSheet showInView:self.view];
-//                break;
-                // Delete button is pressed
+
                 [self deleteCellAtIndexPath:cellIndexPath];
                 break;
             }
-//            case 1:
-//            {
-//
-//            }
             default:
                 break;
         }
@@ -328,9 +273,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
 {
-//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-//    NSError* error = nil;
     NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
     if(cellIndexPath)
     {
@@ -367,38 +309,6 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
             [popup showInView:[UIApplication sharedApplication].keyWindow];
 
         }
-        
-//        Update * update = [self.updates objectAtIndex:_tappedCell];
-
-//        Update * coreDataUpdate = nil;
-//        
-//        if(update)
-//        {
-//            NSArray* objects =  [Update getUpdatesWithContent:update.content inManagedObjecContext:context];
-//            if([objects count] == 1)
-//            {
-//                coreDataUpdate = [objects firstObject];
-//            }
-//        }
-//        
-//        if( index == 0) // mark as flagged
-//        {
-//            coreDataUpdate.flagged = @"YES";
-//        }
-//        if( index == 1)
-//        {
-//            coreDataUpdate.flagged = @"NO";
-//
-//        }
-//        [context save:&error];
-//        
-//        NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
-//        
-//        self.updates = [NSMutableArray arrayWithArray:objects];
-//        [self sortTableViewArrayWithDates];
-//        [self sortTableViewArrayWithPinned];
-//        [self.tableView reloadData];
-
 
     }
     
@@ -557,8 +467,8 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError * error = nil;
     
-    NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
-    LastRefresh * lastRefresh = [lastRefreshArray firstObject];
+    //NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
+    //LastRefresh * lastRefresh = [lastRefreshArray firstObject];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
@@ -592,11 +502,11 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSDate *date = [formatter dateFromString:postDate];
         
-        if ([date compare:lastRefresh.lastRefresh] == NSOrderedDescending)
-        {
+       // if ([date compare:lastRefresh.lastRefresh] == NSOrderedDescending)
+        //{
             NSLog(@"date is later than lastRefresh.lastRefresh");
             [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
-        }
+      //  }
     }
 
 
@@ -655,16 +565,16 @@ static NSString * urlDownload = @"http://wabbass.byethost9.com/wordpress/?json=g
                [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
                NSDate *date = [formatter dateFromString:postDate];
 
-               NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+               //NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
                NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
                [offsetComponents setMinute:-3]; // note that I'm setting it to -1
-               NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
+               //NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
 
-               if ([date compare:compDate] == NSOrderedDescending)
-               {
+              // if ([date compare:compDate] == NSOrderedDescending)
+              // {
                    NSLog(@"date is later than lastRefresh.lastRefresh");
                    [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
-               }
+             //  }
            }
        }
        NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];

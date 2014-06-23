@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F91FB99818F3237C00B7F8D7 /* expandR.png in Resources */ = {isa = PBXBuildFile; fileRef = F91FB99718F3237C00B7F8D7 /* expandR.png */; };
 		F91FB99B18F33B9700B7F8D7 /* TeachersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FB99A18F33B9700B7F8D7 /* TeachersNavigationController.m */; };
-		F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F91FB99C18F33E4800B7F8D7 /* navigation.jpg */; };
 		F91FB9F018F4254F00B7F8D7 /* TeachersDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FB9EF18F4254F00B7F8D7 /* TeachersDetailsViewController.m */; };
 		F91FBA4818F6011000B7F8D7 /* CoursesDetailsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FBA4718F6011000B7F8D7 /* CoursesDetailsCollectionView.m */; };
 		F91FBA5018F622D300B7F8D7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91FBA4F18F622D300B7F8D7 /* MessageUI.framework */; };
@@ -17,13 +15,7 @@
 		F91FBA6518FDAE9F00B7F8D7 /* Course+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F91FBA6418FDAE9F00B7F8D7 /* Course+init.m */; };
 		F91FBA7618FDD10000B7F8D7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91FBA7518FDD10000B7F8D7 /* CoreData.framework */; };
 		F923C36E18F0B2D80065C5EB /* CoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923C36D18F0B2D80065C5EB /* CoursesViewController.m */; };
-		F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F923C36F18F0B59D0065C5EB /* algebra.jpg */; };
-		F923C37418F0B59D0065C5EB /* c.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C37018F0B59D0065C5EB /* c.png */; };
-		F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F923C37118F0B59D0065C5EB /* calculus.jpg */; };
-		F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F923C37218F0B59D0065C5EB /* chimestry.jpg */; };
 		F923C37918F0BCD80065C5EB /* UpdatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923C37818F0BCD80065C5EB /* UpdatesViewController.m */; };
-		F923C38118F0C0690065C5EB /* updates.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C38018F0C0690065C5EB /* updates.png */; };
-		F923C38318F0DF320065C5EB /* expand.png in Resources */ = {isa = PBXBuildFile; fileRef = F923C38218F0DF320065C5EB /* expand.png */; };
 		F92C19A419539826009594F5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92C19A319539826009594F5 /* MapViewController.m */; };
 		F92C19A619539832009594F5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F92C19A519539832009594F5 /* MapKit.framework */; };
 		F9302FC118EE499B0064E984 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9302FC018EE499B0064E984 /* Foundation.framework */; };
@@ -71,7 +63,6 @@
 		F95ACB10193BA6DC00E546FB /* unreadMessge.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACB0F193BA6DC00E546FB /* unreadMessge.png */; };
 		F96916B519292E3E00A569FA /* Update+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F96916B419292E3E00A569FA /* Update+init.m */; };
 		F973F2681942259700E6776C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F973F2671942259700E6776C /* Images.xcassets */; };
-		F973F26A19438C8F00E6776C /* flagged.png in Resources */ = {isa = PBXBuildFile; fileRef = F973F26919438C8F00E6776C /* flagged.png */; };
 		F973F26D1943A27600E6776C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F973F26C1943A27600E6776C /* AboutViewController.m */; };
 		F973F2E019466B4F00E6776C /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = F973F2DF19466B4F00E6776C /* Update.m */; };
 		F973F2E61946744E00E6776C /* FullContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F973F2E51946744E00E6776C /* FullContentViewController.m */; };
@@ -89,10 +80,11 @@
 		F9A55967194B5C2900C25967 /* TeacherIdLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55966194B5C2900C25967 /* TeacherIdLocal.m */; };
 		F9A5596A194B5C4B00C25967 /* CourseLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55969194B5C4B00C25967 /* CourseLocal.m */; };
 		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
-		F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655A193BE70300104DE2 /* landaIcon.png */; };
 		F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655E193BECC900104DE2 /* teachersIcon.png */; };
 		F9CA6561193BECFF00104DE2 /* updatesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6560193BECFF00104DE2 /* updatesIcon.png */; };
 		F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6566193BEE3400104DE2 /* coursesTabBar.png */; };
+		F9D77A62195787730025BD5E /* landaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9D77A61195787730025BD5E /* landaIcon.png */; };
+		F9D77A64195787B80025BD5E /* landaAbout.png in Resources */ = {isa = PBXBuildFile; fileRef = F9D77A63195787B80025BD5E /* landaAbout.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,10 +98,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F91FB99718F3237C00B7F8D7 /* expandR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expandR.png; sourceTree = "<group>"; };
 		F91FB99918F33B9700B7F8D7 /* TeachersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeachersNavigationController.h; sourceTree = "<group>"; };
 		F91FB99A18F33B9700B7F8D7 /* TeachersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeachersNavigationController.m; sourceTree = "<group>"; };
-		F91FB99C18F33E4800B7F8D7 /* navigation.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = navigation.jpg; sourceTree = "<group>"; };
 		F91FB9EE18F4254F00B7F8D7 /* TeachersDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeachersDetailsViewController.h; path = ../TeachersDetailsViewController.h; sourceTree = "<group>"; };
 		F91FB9EF18F4254F00B7F8D7 /* TeachersDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeachersDetailsViewController.m; path = ../TeachersDetailsViewController.m; sourceTree = "<group>"; };
 		F91FBA4618F6011000B7F8D7 /* CoursesDetailsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesDetailsCollectionView.h; sourceTree = "<group>"; };
@@ -122,14 +112,8 @@
 		F91FBA7518FDD10000B7F8D7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F923C36C18F0B2D80065C5EB /* CoursesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoursesViewController.h; path = ../CoursesViewController.h; sourceTree = "<group>"; };
 		F923C36D18F0B2D80065C5EB /* CoursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoursesViewController.m; path = ../CoursesViewController.m; sourceTree = "<group>"; };
-		F923C36F18F0B59D0065C5EB /* algebra.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = algebra.jpg; sourceTree = "<group>"; };
-		F923C37018F0B59D0065C5EB /* c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c.png; sourceTree = "<group>"; };
-		F923C37118F0B59D0065C5EB /* calculus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = calculus.jpg; sourceTree = "<group>"; };
-		F923C37218F0B59D0065C5EB /* chimestry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chimestry.jpg; sourceTree = "<group>"; };
 		F923C37718F0BCD80065C5EB /* UpdatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesViewController.h; sourceTree = "<group>"; };
 		F923C37818F0BCD80065C5EB /* UpdatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesViewController.m; sourceTree = "<group>"; };
-		F923C38018F0C0690065C5EB /* updates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updates.png; sourceTree = "<group>"; };
-		F923C38218F0DF320065C5EB /* expand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expand.png; sourceTree = "<group>"; };
 		F92C19A219539826009594F5 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		F92C19A319539826009594F5 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		F92C19A519539832009594F5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -198,7 +182,6 @@
 		F96916B319292E3E00A569FA /* Update+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Update+init.h"; sourceTree = "<group>"; };
 		F96916B419292E3E00A569FA /* Update+init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Update+init.m"; sourceTree = "<group>"; };
 		F973F2671942259700E6776C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F973F26919438C8F00E6776C /* flagged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flagged.png; sourceTree = "<group>"; };
 		F973F26B1943A27600E6776C /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		F973F26C1943A27600E6776C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		F973F2DE19466B4F00E6776C /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
@@ -231,10 +214,11 @@
 		F9A55968194B5C4B00C25967 /* CourseLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseLocal.h; sourceTree = "<group>"; };
 		F9A55969194B5C4B00C25967 /* CourseLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseLocal.m; sourceTree = "<group>"; };
 		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
-		F9CA655A193BE70300104DE2 /* landaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaIcon.png; sourceTree = "<group>"; };
 		F9CA655E193BECC900104DE2 /* teachersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teachersIcon.png; sourceTree = "<group>"; };
 		F9CA6560193BECFF00104DE2 /* updatesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIcon.png; sourceTree = "<group>"; };
 		F9CA6566193BEE3400104DE2 /* coursesTabBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursesTabBar.png; sourceTree = "<group>"; };
+		F9D77A61195787730025BD5E /* landaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaIcon.png; sourceTree = "<group>"; };
+		F9D77A63195787B80025BD5E /* landaAbout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landaAbout.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,26 +435,18 @@
 		F930300118EE49CC0064E984 /* pic */ = {
 			isa = PBXGroup;
 			children = (
-				F973F26919438C8F00E6776C /* flagged.png */,
 				F99B83B2193E96C90028653D /* noContact.png */,
 				F9CA6566193BEE3400104DE2 /* coursesTabBar.png */,
 				F9CA655E193BECC900104DE2 /* teachersIcon.png */,
 				F95ACB0F193BA6DC00E546FB /* unreadMessge.png */,
 				F9CA6560193BECFF00104DE2 /* updatesIcon.png */,
-				F9CA655A193BE70300104DE2 /* landaIcon.png */,
 				F9C7AD89192D52000086B99D /* technion.jpg */,
 				F95ACAB3193952BF00E546FB /* tabbar.png */,
 				F95ACAB4193952BF00E546FB /* tabbar@2x.png */,
 				F95ACAAD19394FC100E546FB /* courses.png */,
 				F95ACAB1193951E600E546FB /* grayColor.jpg */,
-				F923C36F18F0B59D0065C5EB /* algebra.jpg */,
-				F923C37018F0B59D0065C5EB /* c.png */,
-				F91FB99718F3237C00B7F8D7 /* expandR.png */,
-				F923C38218F0DF320065C5EB /* expand.png */,
-				F91FB99C18F33E4800B7F8D7 /* navigation.jpg */,
-				F923C37118F0B59D0065C5EB /* calculus.jpg */,
-				F923C37218F0B59D0065C5EB /* chimestry.jpg */,
-				F923C38018F0C0690065C5EB /* updates.png */,
+				F9D77A61195787730025BD5E /* landaIcon.png */,
+				F9D77A63195787B80025BD5E /* landaAbout.png */,
 			);
 			name = pic;
 			sourceTree = "<group>";
@@ -624,27 +600,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F95ACB10193BA6DC00E546FB /* unreadMessge.png in Resources */,
-				F91FB99818F3237C00B7F8D7 /* expandR.png in Resources */,
 				F9CA6561193BECFF00104DE2 /* updatesIcon.png in Resources */,
 				F95ACAB5193952BF00E546FB /* tabbar.png in Resources */,
-				F9CA655B193BE70300104DE2 /* landaIcon.png in Resources */,
 				F9302FCB18EE499B0064E984 /* InfoPlist.strings in Resources */,
 				F95ACAB2193951E600E546FB /* grayColor.jpg in Resources */,
 				F95ACAAE19394FC100E546FB /* courses.png in Resources */,
-				F923C37418F0B59D0065C5EB /* c.png in Resources */,
-				F923C38118F0C0690065C5EB /* updates.png in Resources */,
+				F9D77A62195787730025BD5E /* landaIcon.png in Resources */,
 				F99B83B3193E96C90028653D /* noContact.png in Resources */,
-				F923C38318F0DF320065C5EB /* expand.png in Resources */,
 				F9C7AD8A192D52000086B99D /* technion.jpg in Resources */,
 				F9CA6567193BEE3400104DE2 /* coursesTabBar.png in Resources */,
-				F923C37318F0B59D0065C5EB /* algebra.jpg in Resources */,
-				F973F26A19438C8F00E6776C /* flagged.png in Resources */,
+				F9D77A64195787B80025BD5E /* landaAbout.png in Resources */,
 				F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */,
 				F9302FD418EE499B0064E984 /* Main.storyboard in Resources */,
-				F923C37618F0B59D0065C5EB /* chimestry.jpg in Resources */,
-				F923C37518F0B59D0065C5EB /* calculus.jpg in Resources */,
 				F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */,
-				F91FB99D18F33E4800B7F8D7 /* navigation.jpg in Resources */,
 				F973F2681942259700E6776C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -831,8 +799,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -847,7 +815,7 @@
 				INFOPLIST_FILE = "Landa/Landa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "62E1E7B2-911F-4CFE-851D-5A47DFF9A651";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -857,8 +825,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -874,7 +842,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "62E1E7B2-911F-4CFE-851D-5A47DFF9A651";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -957,8 +925,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: muhammad abed el razek (Q26RY2JMVX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -974,7 +942,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "62E1E7B2-911F-4CFE-851D-5A47DFF9A651";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;

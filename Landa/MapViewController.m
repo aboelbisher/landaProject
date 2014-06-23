@@ -66,6 +66,9 @@
         zoomLocation.latitude = CHEMX;
         zoomLocation.longitude= CHEMY;
     }
+    
+    //CLLocationCoordinate2D locationToZoom = zoomLocation;
+
     // 1
     MKPlacemark *mPlacemark = [[MKPlacemark alloc] initWithCoordinate:zoomLocation addressDictionary:nil];
 

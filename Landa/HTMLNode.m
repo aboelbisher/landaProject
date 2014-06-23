@@ -42,6 +42,8 @@ void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value)
 			break;
 		}
 	}
+    
+    free(newVal);
 	
 	
 }

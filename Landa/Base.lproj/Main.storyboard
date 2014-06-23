@@ -636,39 +636,39 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pgp-gd-ubu">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pgp-gd-ubu">
                                                     <rect key="frame" x="20" y="25" width="57" height="57"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adS-NU-321">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adS-NU-321">
                                                     <rect key="frame" x="85" y="77" width="170" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OP-gR-wSg">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OP-gR-wSg">
                                                     <rect key="frame" x="243" y="0.0" width="74" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9R-0x-jdL">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9R-0x-jdL">
                                                     <rect key="frame" x="85" y="0.0" width="150" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WM6-7F-VBh">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WM6-7F-VBh">
                                                     <rect key="frame" x="251" y="38" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="switcher:" destination="HVE-38-O1I" eventType="valueChanged" id="YTG-8d-0cq"/>
                                                     </connections>
                                                 </switch>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYm-lo-mW4">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYm-lo-mW4">
                                                     <rect key="frame" x="85" y="42" width="150" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Place">
@@ -679,29 +679,6 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="adS-NU-321" firstAttribute="top" secondItem="WM6-7F-VBh" secondAttribute="bottom" constant="8" symbolic="YES" id="1Js-m1-7pG"/>
-                                                <constraint firstItem="WM6-7F-VBh" firstAttribute="centerY" secondItem="Ao1-7Q-j4I" secondAttribute="centerY" id="2jr-4V-FOd"/>
-                                                <constraint firstItem="WM6-7F-VBh" firstAttribute="leading" secondItem="kYm-lo-mW4" secondAttribute="trailing" constant="16" id="AXw-rp-u67"/>
-                                                <constraint firstItem="g9R-0x-jdL" firstAttribute="leading" secondItem="pgp-gd-ubu" secondAttribute="trailing" constant="8" symbolic="YES" id="C8j-lx-x08"/>
-                                                <constraint firstItem="kYm-lo-mW4" firstAttribute="top" secondItem="g9R-0x-jdL" secondAttribute="bottom" constant="8" symbolic="YES" id="EjR-a8-ffq"/>
-                                                <constraint firstItem="g9R-0x-jdL" firstAttribute="top" secondItem="3OP-gR-wSg" secondAttribute="top" id="GQh-Gh-f6I"/>
-                                                <constraint firstItem="g9R-0x-jdL" firstAttribute="top" secondItem="Ao1-7Q-j4I" secondAttribute="top" id="LSz-Fu-hHG"/>
-                                                <constraint firstItem="kYm-lo-mW4" firstAttribute="trailing" secondItem="g9R-0x-jdL" secondAttribute="trailing" id="QbE-Np-PXN"/>
-                                                <constraint firstItem="pgp-gd-ubu" firstAttribute="leading" secondItem="Ao1-7Q-j4I" secondAttribute="leading" constant="20" symbolic="YES" id="XZz-Kg-EQa"/>
-                                                <constraint firstItem="kYm-lo-mW4" firstAttribute="leading" secondItem="pgp-gd-ubu" secondAttribute="trailing" constant="8" symbolic="YES" id="ZYv-2q-9zW"/>
-                                                <constraint firstItem="pgp-gd-ubu" firstAttribute="top" secondItem="Ao1-7Q-j4I" secondAttribute="top" constant="25" id="aJD-HN-qk6"/>
-                                                <constraint firstItem="g9R-0x-jdL" firstAttribute="centerX" secondItem="Ao1-7Q-j4I" secondAttribute="centerX" id="aNO-KL-YSD"/>
-                                                <constraint firstAttribute="trailing" secondItem="adS-NU-321" secondAttribute="trailing" constant="65" id="dLt-su-rKW"/>
-                                                <constraint firstItem="3OP-gR-wSg" firstAttribute="leading" secondItem="g9R-0x-jdL" secondAttribute="trailing" constant="8" symbolic="YES" id="fSs-De-p4p"/>
-                                                <constraint firstAttribute="trailing" secondItem="3OP-gR-wSg" secondAttribute="trailing" constant="3" id="gPG-vf-3dA"/>
-                                                <constraint firstItem="WM6-7F-VBh" firstAttribute="top" secondItem="3OP-gR-wSg" secondAttribute="bottom" constant="4" id="ime-tX-NML"/>
-                                                <constraint firstItem="pgp-gd-ubu" firstAttribute="centerY" secondItem="WM6-7F-VBh" secondAttribute="centerY" id="jhA-AM-amy"/>
-                                                <constraint firstItem="3OP-gR-wSg" firstAttribute="baseline" secondItem="g9R-0x-jdL" secondAttribute="baseline" id="oOo-Ob-phA"/>
-                                                <constraint firstItem="adS-NU-321" firstAttribute="leading" secondItem="pgp-gd-ubu" secondAttribute="trailing" constant="8" symbolic="YES" id="pBY-M6-fil"/>
-                                                <constraint firstAttribute="trailing" secondItem="WM6-7F-VBh" secondAttribute="trailing" constant="20" symbolic="YES" id="rUm-L3-HgA"/>
-                                                <constraint firstAttribute="bottom" secondItem="adS-NU-321" secondAttribute="bottom" constant="4" id="wtl-QN-4Yt"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dayLabel" destination="3OP-gR-wSg" id="GNU-8F-Dm6"/>

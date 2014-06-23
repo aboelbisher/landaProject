@@ -10,6 +10,6 @@
 #import <MapKit/MapKit.h>
 @interface MapViewController : UIViewController
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong , nonatomic) NSString* place;
+@property (weak , nonatomic) NSString* place;
 
 @end

@@ -240,6 +240,7 @@ static NSString* dontNotifyMe = @"NO";
        
    }];
     [task resume];
+    [session finishTasksAndInvalidate];
 
 }
 
@@ -492,6 +493,7 @@ static NSString* dontNotifyMe = @"NO";
 
     }];
     [task resume];
+    [session finishTasksAndInvalidate];
 }
 
 

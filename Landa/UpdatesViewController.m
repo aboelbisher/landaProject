@@ -607,7 +607,7 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
        lastRefresh.lastRefresh = [NSDate date];
    }];
     [task resume];
-    
+    [session finishTasksAndInvalidate];
 }
 
 

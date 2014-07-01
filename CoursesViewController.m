@@ -91,6 +91,8 @@ static NSString* dontNotifyMe = @"NO";
         {
             [self.coursesCollectionView reloadData];
         });
+        [self checkForUpdates];
+
     }
     
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftDelegate:)];
@@ -101,7 +103,6 @@ static NSString* dontNotifyMe = @"NO";
     [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:swipeRight];
     
-    [self checkForUpdates];
 
 }
 

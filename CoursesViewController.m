@@ -91,7 +91,11 @@ static NSString* dontNotifyMe = @"NO";
         {
             [self.coursesCollectionView reloadData];
         });
-        [self checkForUpdates];
+        
+        if([HelpFunc checkForInternet])
+        {
+            [self checkForUpdates];
+        }
 
     }
     

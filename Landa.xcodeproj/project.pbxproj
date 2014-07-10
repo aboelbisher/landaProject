@@ -79,6 +79,7 @@
 		F9A55964194B4D9100C25967 /* TeacherLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55963194B4D9100C25967 /* TeacherLocal.m */; };
 		F9A55967194B5C2900C25967 /* TeacherIdLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55966194B5C2900C25967 /* TeacherIdLocal.m */; };
 		F9A5596A194B5C4B00C25967 /* CourseLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A55969194B5C4B00C25967 /* CourseLocal.m */; };
+		F9A9BEA4196DA8300068604E /* AlertComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A9BEA3196DA8300068604E /* AlertComponent.m */; };
 		F9C7AD8A192D52000086B99D /* technion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9C7AD89192D52000086B99D /* technion.jpg */; };
 		F9CA655F193BECC900104DE2 /* teachersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA655E193BECC900104DE2 /* teachersIcon.png */; };
 		F9CA6561193BECFF00104DE2 /* updatesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9CA6560193BECFF00104DE2 /* updatesIcon.png */; };
@@ -213,6 +214,8 @@
 		F9A55966194B5C2900C25967 /* TeacherIdLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherIdLocal.m; sourceTree = "<group>"; };
 		F9A55968194B5C4B00C25967 /* CourseLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseLocal.h; sourceTree = "<group>"; };
 		F9A55969194B5C4B00C25967 /* CourseLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseLocal.m; sourceTree = "<group>"; };
+		F9A9BEA2196DA8300068604E /* AlertComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertComponent.h; sourceTree = "<group>"; };
+		F9A9BEA3196DA8300068604E /* AlertComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertComponent.m; sourceTree = "<group>"; };
 		F9C7AD89192D52000086B99D /* technion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = technion.jpg; sourceTree = "<group>"; };
 		F9CA655E193BECC900104DE2 /* teachersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = teachersIcon.png; sourceTree = "<group>"; };
 		F9CA6560193BECFF00104DE2 /* updatesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updatesIcon.png; sourceTree = "<group>"; };
@@ -383,6 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */,
+				F9A9BEA2196DA8300068604E /* AlertComponent.h */,
+				F9A9BEA3196DA8300068604E /* AlertComponent.m */,
 				F9302FCF18EE499B0064E984 /* LandaAppDelegate.h */,
 				F9302FD018EE499B0064E984 /* LandaAppDelegate.m */,
 				F92C19A219539826009594F5 /* MapViewController.h */,
@@ -666,6 +671,7 @@
 				F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */,
 				F954E7231940D7CB004F0C00 /* SWTableViewCell.m in Sources */,
 				F954E7241940D7CB004F0C00 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
+				F9A9BEA4196DA8300068604E /* AlertComponent.m in Sources */,
 				F96916B519292E3E00A569FA /* Update+init.m in Sources */,
 				F954E7251940D7CB004F0C00 /* SWUtilityButtonView.m in Sources */,
 				F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */,

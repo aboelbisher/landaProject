@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Reachability.h"
+
 
 @interface HelpFunc : NSObject
 
@@ -15,5 +17,7 @@
 +(UIImage *)getImageFromFileWithId:(NSString*)id;
 
 +(NSString*) writeImageToFileWithId:(NSString*)id data:(NSData*)data;
+
++(BOOL)checkForInternet;
 
 @end

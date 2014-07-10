@@ -12,7 +12,7 @@
 static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=get_posts&count=20";
 
 
-@interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate , SWTableViewCellDelegate>
+@interface UpdatesViewController () <NSURLSessionDelegate, NSURLSessionDownloadDelegate , UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate , SWTableViewCellDelegate >
 {
     BOOL _thersTappedCell;
     NSInteger _tappedCell;
@@ -21,6 +21,9 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 @property(nonatomic ,strong) NSMutableArray * updates;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
+@property (weak , nonatomic) NSURLSession * session;
+
 
 @end
 
@@ -31,7 +34,7 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
@@ -42,6 +45,22 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
     [LastRefresh initWithDate:[NSDate date] id:@"12345" inManagedObjectContext:context];
+    
+    
+//    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+//    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+//    if (networkStatus == NotReachable)
+//    {
+//        NSLog(@"There IS NO internet connection");
+//        [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"there's no internet connection!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+//        return;
+//    }
+//    else
+//    {
+//        NSLog(@"There IS internet connection");
+//    }
+    
+
 
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -72,61 +91,63 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     _thersTappedCell = NO;
     _tappedCell = -1;
     
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftDelegate:)];
-    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [self.view addGestureRecognizer:swipeLeft];
+//    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftDelegate:)];
+//    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+//    [self.view addGestureRecognizer:swipeLeft];
+//    
+//    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightDelegate:)];
+//    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+//    [self.view addGestureRecognizer:swipeRight];
     
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightDelegate:)];
-    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.view addGestureRecognizer:swipeRight];
+    [HelpFunc checkForInternet];
 
 }
 
 
-- (IBAction)swipeRightDelegate:(id)sender
-{
-    NSInteger destIndex = 1;
-    // Get views. controllerIndex is passed in as the controller we want to go to.
-    UIView * fromView = self.view;
-    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:destIndex] view];
-    
-    // Transition using a page curl.
-    [UIView transitionFromView:fromView
-                        toView:toView
-                      duration:0.5
-                       options:(UIViewAnimationOptionTransitionFlipFromLeft)
-                    completion:^(BOOL finished)
-     {
-         if (finished)
-         {
-             self.tabBarController.selectedIndex = destIndex;
-         }
-     }];
-    
-}
-
-
-
-- (IBAction)swipeLeftDelegate:(id)sender
-{
-    NSInteger destIndex = 0;
-    // Get views. controllerIndex is passed in as the controller we want to go to.
-    UIView * fromView = self.view;
-    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:destIndex] view];
-    
-    // Transition using a page curl.
-    [UIView transitionFromView:fromView
-                        toView:toView
-                      duration:0.5
-                       options:(UIViewAnimationOptionTransitionFlipFromRight)
-                    completion:^(BOOL finished)
-     {
-         if (finished)
-         {
-             self.tabBarController.selectedIndex = destIndex;
-         }
-     }];
-}
+//- (IBAction)swipeRightDelegate:(id)sender
+//{
+//    NSInteger destIndex = 1;
+//    // Get views. controllerIndex is passed in as the controller we want to go to.
+//    UIView * fromView = self.view;
+//    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:destIndex] view];
+//    
+//    // Transition using a page curl.
+//    [UIView transitionFromView:fromView
+//                        toView:toView
+//                      duration:0.5
+//                       options:(UIViewAnimationOptionTransitionFlipFromLeft)
+//                    completion:^(BOOL finished)
+//     {
+//         if (finished)
+//         {
+//             self.tabBarController.selectedIndex = destIndex;
+//         }
+//     }];
+//    
+//}
+//
+//
+//
+//- (IBAction)swipeLeftDelegate:(id)sender
+//{
+//    NSInteger destIndex = 0;
+//    // Get views. controllerIndex is passed in as the controller we want to go to.
+//    UIView * fromView = self.view;
+//    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:destIndex] view];
+//    
+//    // Transition using a page curl.
+//    [UIView transitionFromView:fromView
+//                        toView:toView
+//                      duration:0.5
+//                       options:(UIViewAnimationOptionTransitionFlipFromRight)
+//                    completion:^(BOOL finished)
+//     {
+//         if (finished)
+//         {
+//             self.tabBarController.selectedIndex = destIndex;
+//         }
+//     }];
+//}
 
 
 -(void) viewDidAppear:(BOOL)animated
@@ -512,102 +533,142 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 
 }
 
+//- (NSURLSession *)backgroundSession
+//{
+//    /**
+//     * Using dispatch_once here ensures that multiple background sessions with the same identifier are not
+//     * created in this instance of the application. If you want to support multiple background sessions
+//     * within a single process, you should create each session with its own identifier.
+//     */
+//    static NSURLSession *session = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfiguration:@"ch.icoretech.BackgroundTransferSession"];
+//        [configuration set...];
+//        session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+//    });
+//    return session;
+//}
+
 -(void) refreshTableView
 {
-    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    [self.downloadTask cancel];
     
-    NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
+
+    if(![HelpFunc checkForInternet])
+    {
+        return;
+        
+    }
     
-    LastRefresh * lastRefresh = [lastRefreshArray firstObject];
- 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
- 
-    NSURL *url = [NSURL URLWithString:urlDownload];
     
+    self.downloadTask = Nil;
+    self.session = nil;
+    
+    
+    NSURL *url = [NSURL URLWithString:urlDownload];
     NSURLRequest * downloadRequest = [NSURLRequest requestWithURL:url];
-    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:downloadRequest completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
-   {
-       dispatch_async(dispatch_get_main_queue(), ^
-      {
-          [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-          
-      });
-       if(!error)
-       {
-           NSData *urlData = [NSData dataWithContentsOfURL:url];
-           NSString *jsonString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-           
-           NSError * error;
-           NSDictionary *JSON =
-           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                           options: NSJSONReadingMutableContainers
-                                             error: &error];
-           
-           NSArray * posts = [JSON objectForKey:@"posts"];
-           
-           for(id post in posts)
-           {
-               NSString * title = [post objectForKey:@"title"];
-               NSString * content = [post objectForKey:@"content"];
-               NSString * postUrl = [post objectForKey:@"url"];
-               
-               HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
-               HTMLNode * node = parser.body;
-               NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
-               
-               NSString * postDate = [post objectForKey:@"date"];
-               NSString * postId = [[post objectForKey:@"id"] stringValue];
-               
-               NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-               [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-               NSDate *date = [formatter dateFromString:postDate];
+    self.downloadTask = [self.session downloadTaskWithRequest:downloadRequest];
+    [self.downloadTask resume];
+    
 
-               //NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-               NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
-               [offsetComponents setMinute:-3]; // note that I'm setting it to -1
-               //NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
-
-              // if ([date compare:compDate] == NSOrderedDescending)
-              // {
-                   NSLog(@"date is later than lastRefresh.lastRefresh");
-                   [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
-             //  }
-           }
-       }
-       NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
-       
-       self.updates = nil;
-       self.updates = [NSMutableArray arrayWithArray:objects];
-       
-       dispatch_async(dispatch_get_main_queue(), ^
-       {
-           NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
-
-           if([unreadUpdates count] > 0)
-           {
-               [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
-               [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
-           }
-           else
-           {
-               [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
-               [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-               
-           }
-           [self.refreshControl endRefreshing];
-
-           [self sortTableViewArrayWithDates];
-           [self sortTableViewArrayWithPinned];
-           [self.tableView reloadData];
-       });
+//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+//    NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
+//    
+//    LastRefresh * lastRefresh = [lastRefreshArray firstObject];
  
-       lastRefresh.lastRefresh = [NSDate date];
-   }];
-    [task resume];
-    [session finishTasksAndInvalidate];
+ 
+//    NSURL *url = [NSURL URLWithString:urlDownload];
+//    
+//    NSURLRequest * downloadRequest = [NSURLRequest requestWithURL:url];
+//    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+//    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
+//    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:downloadRequest completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
+//   {
+//       dispatch_async(dispatch_get_main_queue(), ^
+//      {
+//          [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//          
+//      });
+//       if(!error)
+//       {
+//           NSData *urlData = [NSData dataWithContentsOfURL:url];
+//           NSString *jsonString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+//           
+//           NSError * error;
+//           NSDictionary *JSON =
+//           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+//                                           options: NSJSONReadingMutableContainers
+//                                             error: &error];
+//           
+//           NSArray * posts = [JSON objectForKey:@"posts"];
+//           
+//           for(id post in posts)
+//           {
+//               NSString * title = [post objectForKey:@"title"];
+//               NSString * content = [post objectForKey:@"content"];
+//               NSString * postUrl = [post objectForKey:@"url"];
+//               
+//               HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
+//               HTMLNode * node = parser.body;
+//               NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
+//               
+//               NSString * postDate = [post objectForKey:@"date"];
+//               NSString * postId = [[post objectForKey:@"id"] stringValue];
+//               
+//               NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//               [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//               NSDate *date = [formatter dateFromString:postDate];
+//
+//               //NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//               NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+//               [offsetComponents setMinute:-3]; // note that I'm setting it to -1
+//               //NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
+//
+//              // if ([date compare:compDate] == NSOrderedDescending)
+//              // {
+//                   NSLog(@"date is later than lastRefresh.lastRefresh1");
+//                   [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
+//             //  }
+//           }
+//       }
+//       NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+//       
+//       self.updates = nil;
+//       self.updates = [NSMutableArray arrayWithArray:objects];
+       
+//       dispatch_async(dispatch_get_main_queue(), ^
+//       {
+//           NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
+//
+//           if([unreadUpdates count] > 0)
+//           {
+//               [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+//               [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+//           }
+//           else
+//           {
+//               [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+//               [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+//               
+//           }
+//           NSLog(@"Got here 2");
+//           [self.refreshControl endRefreshing];
+//
+//           [self sortTableViewArrayWithDates];
+//           [self sortTableViewArrayWithPinned];
+//           [self.tableView reloadData];
+//       });
+       
+//       NSLog(@"got Here!1");
+// 
+//       lastRefresh.lastRefresh = [NSDate date];
+//   }];
+//    [task resume];
+//    [session finishTasksAndInvalidate];
 }
 
 
@@ -643,6 +704,120 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     self.updates = nil;
     self.updates = [NSMutableArray arrayWithArray:sortedArray];
 }
+
+#pragma mark NSURLSession functions
+
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
+    dispatch_async(dispatch_get_main_queue(), ^
+   {
+       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
+           NSLog(@"finished");
+           LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+           NSManagedObjectContext *context = [appDelegate managedObjectContext];
+           NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
+           
+           LastRefresh * lastRefresh = [lastRefreshArray firstObject];
+
+           NSData *urlData = [NSData dataWithContentsOfURL:location];
+           NSString *jsonString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+           
+           NSError * error;
+           NSDictionary *JSON =
+           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                           options: NSJSONReadingMutableContainers
+                                             error: &error];
+           
+           NSArray * posts = [JSON objectForKey:@"posts"];
+           
+           for(id post in posts)
+           {
+               NSString * title = [post objectForKey:@"title"];
+               NSString * content = [post objectForKey:@"content"];
+               NSString * postUrl = [post objectForKey:@"url"];
+               
+               HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
+               HTMLNode * node = parser.body;
+               NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
+               
+               NSString * postDate = [post objectForKey:@"date"];
+               NSString * postId = [[post objectForKey:@"id"] stringValue];
+               
+               NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+               [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+               NSDate *date = [formatter dateFromString:postDate];
+               
+               //NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+               NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+               [offsetComponents setMinute:-3]; // note that I'm setting it to -1
+               //NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
+               
+               // if ([date compare:compDate] == NSOrderedDescending)
+               // {
+               NSLog(@"date is later than lastRefresh.lastRefresh1");
+               [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
+               //  }
+           }
+       
+       NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+       
+       self.updates = nil;
+       self.updates = [NSMutableArray arrayWithArray:objects];
+       
+       NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
+       
+       if([unreadUpdates count] > 0)
+       {
+           [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+           [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+       }
+       else
+       {
+           [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+           [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+           
+       }
+       NSLog(@"Got here 2");
+       [self.refreshControl endRefreshing];
+       
+       [self sortTableViewArrayWithDates];
+       [self sortTableViewArrayWithPinned];
+       [self.tableView reloadData];
+       lastRefresh.lastRefresh = [NSDate date];
+   });
+    // Invalidate Session
+    [session finishTasksAndInvalidate];
+}
+
+- (NSURLSession *)session
+{
+    if (!_session)
+    {
+        // Create Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        
+        // Create Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
+    }
+    return _session;
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    
+}
+
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    float progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+    NSLog(@"progressssssss ==   %f" , progress);
+}
+
+
+
 
 - (IBAction)showInfo:(id)sender
 {

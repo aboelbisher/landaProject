@@ -8,6 +8,7 @@
 
 #import "HelpFunc.h"
 
+
 @implementation HelpFunc
 
 
@@ -71,6 +72,25 @@
     NSRange range = NSMakeRange(first, last - first + 1);
     NSString * newString = [string substringWithRange:range];
     return newString;
+}
+
++(BOOL)checkForInternet
+{
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable)
+    {
+        NSLog(@"There IS NO internet connection");
+        [[[UIAlertView alloc] initWithTitle:@"שגיאה!" message:@"נא להתקשר לאינטרנט לקבל מידע עדנכני" delegate:nil cancelButtonTitle:@"אישור" otherButtonTitles:nil] show];
+        return NO;
+    }
+    else
+    {
+        NSLog(@"There IS internet connection");
+    }
+    
+    return YES;
+
 }
 
 @end

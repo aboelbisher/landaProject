@@ -38,6 +38,8 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
     self.spinner.color = [UIColor whiteColor];
     self.spinner.hidden = YES;
     
+    
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
     [self.searcBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
@@ -59,6 +61,7 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
     [self.view setBackgroundColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
 
     
+
 
     if (!([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]))
     {
@@ -90,8 +93,11 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
         }
         self.teachers = [NSMutableArray arrayWithArray:objects];
         self.searchResults = [NSMutableArray arrayWithArray:self.teachers];
-        [self checkForNewUpdates];
-
+        
+        if([HelpFunc checkForInternet])
+        {
+            [self checkForNewUpdates];
+        }
     }
     
     

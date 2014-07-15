@@ -198,7 +198,33 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 }
 
 
-
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    
+//    //1. Setup the CATransform3D structure
+//    CATransform3D rotation;
+//    rotation = CATransform3DMakeRotation( (90.0*M_PI)/180, 0.0, 0.7, 0.4);
+//    rotation.m34 = 1.0/ -600;
+//    
+//    
+//    //2. Define the initial state (Before the animation)
+//    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+//    cell.layer.shadowOffset = CGSizeMake(10, 10);
+//    cell.alpha = 0;
+//    
+//    cell.layer.transform = rotation;
+//    cell.layer.anchorPoint = CGPointMake(0, 0.5);
+//    
+//    
+//    //3. Define the final state (After the animation) and commit the animation
+//    [UIView beginAnimations:@"rotation" context:NULL];
+//    [UIView setAnimationDuration:0.8];
+//    cell.layer.transform = CATransform3DIdentity;
+//    cell.alpha = 1;
+//    cell.layer.shadowOffset = CGSizeMake(0, 0);
+//    [UIView commitAnimations];
+//    
+//}
 
 
 
@@ -567,7 +593,7 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     self.session = nil;
     
     
-    NSURL *url = [NSURL URLWithString:urlDownload];
+    NSURL *url = [NSURL URLWithString:@"http://glanda.technion.ac.il/wordpress/?json=get_posts&count=20"];
     NSURLRequest * downloadRequest = [NSURLRequest requestWithURL:url];
     self.downloadTask = [self.session downloadTaskWithRequest:downloadRequest];
     [self.downloadTask resume];
@@ -710,10 +736,16 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
 {
+    
+    NSData *urlData = [NSData dataWithContentsOfURL:location];
+
     dispatch_async(dispatch_get_main_queue(), ^
    {
        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-
+       if(![HelpFunc checkForInternet])
+       {
+           return ;
+       }
            NSLog(@"finished");
            LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
            NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -721,7 +753,6 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
            
            LastRefresh * lastRefresh = [lastRefreshArray firstObject];
 
-           NSData *urlData = [NSData dataWithContentsOfURL:location];
            NSString *jsonString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
            
            NSError * error;

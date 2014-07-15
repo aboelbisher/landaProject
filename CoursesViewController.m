@@ -359,6 +359,8 @@ static NSString* dontNotifyMe = @"NO";
 #pragma mark UICollectionView functions
 
 
+
+
 -(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell* cell = [self.coursesCollectionView dequeueReusableCellWithReuseIdentifier:@"Course Picture" forIndexPath:indexPath];

@@ -37,8 +37,8 @@
     
     [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:self.update.url]];
     
-    self.webView.backgroundColor = [UIColor greenColor];
-    [self.webView setBackgroundColor:[UIColor greenColor]];
+    //self.webView.backgroundColor = [UIColor greenColor];
+    [self.webView setBackgroundColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
     self.webView.delegate = self;
     
 //    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];

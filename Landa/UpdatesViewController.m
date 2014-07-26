@@ -555,7 +555,24 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
             [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
       //  }
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
+        
+        if([unreadUpdates count] > 0)
+        {
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+            [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+        }
+        else
+        {
+            [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+            
+        }
 
+    });
+    
 
 }
 

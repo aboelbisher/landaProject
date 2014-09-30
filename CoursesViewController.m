@@ -215,6 +215,7 @@ static NSString* dontNotifyMe = @"NO";
            
            if (![oldCoursesLocal isEqualToArray:newCourses])
            {
+               [[UIApplication sharedApplication] cancelAllLocalNotifications];
                [Course deleteAllCoursesInManagedOvjectContext:context];
                [TeacherId deleteAllTeachersIdInManagedObjectContext:context];
                

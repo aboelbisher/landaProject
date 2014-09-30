@@ -225,6 +225,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+    
 
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
     [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
@@ -235,12 +241,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     {
         [[UITabBar appearance] setTintColor:[UIColor redColor]];
     }
-    
-//    [Parse setApplicationId:@"QvTjoTQQlUogaFSd0OlbuRwQyPlmTO3khZpgPsm5"
-//                  clientKey:@"cGJsdBYRRCy9GVxS9rvyyQVNyYf2h4pUI86D9iUb"];
-//    [Parse setApplicationId:@"lyULxHfJJVm7xq7Q9PBAKzEzUAbrRHFWxGjnPDjW"
-//                  clientKey:@"OtBV7Pi2miRuYBKHri3eYEfeOZeqYVOPLFBXqfp9"];
-    [Parse setApplicationId:@"lyULxHfJJVm7xq7Q9PBAKzEzUAbrRHFWxGjnPDjW"
+        [Parse setApplicationId:@"lyULxHfJJVm7xq7Q9PBAKzEzUAbrRHFWxGjnPDjW"
                   clientKey:@"OtBV7Pi2miRuYBKHri3eYEfeOZeqYVOPLFBXqfp9"];
     
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|

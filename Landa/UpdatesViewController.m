@@ -21,8 +21,8 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 @property(nonatomic ,strong) NSMutableArray * updates;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
-@property (weak , nonatomic) NSURLSession * session;
+//@property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
+//@property (weak , nonatomic) NSURLSession * session;
 
 
 @end
@@ -85,8 +85,31 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 //    [self.view addGestureRecognizer:swipeRight];
     
     [HelpFunc checkForInternet];
+    
+//    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
+    
+    NSString * firstRun;
+    
+    firstRun = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstRun"];
+    
+    
+    if(firstRun == nil)
+    {
+        [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"firstRun"];
+        //[self refreshData:YES];
+        NSLog(@"firstRun");
+    }
+    
+    
+    
 }
+
+//void uncaughtExceptionHandler(NSException *exception)
+//{
+//    NSLog(@"Errrorrrrr!!!!");
+//    NSLog([exception description]);
+//}
 
 
 //- (IBAction)swipeRightDelegate:(id)sender
@@ -539,10 +562,6 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
             NSLog(@"date is later than lastRefresh.lastRefresh");
             [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
         }
-        else
-        {
-            NSLog(@"NOOOOOOOOOOOO");
-        }
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -582,9 +601,9 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 //    return session;
 //}
 
--(void) refreshTableView
+-(void) refreshTableView 
 {
-    [self.downloadTask cancel];
+   // [self.downloadTask cancel];
     
 
     if(![HelpFunc checkForInternet])
@@ -828,18 +847,18 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     [session finishTasksAndInvalidate];
 }
 
-- (NSURLSession *)session
-{
-    if (!_session)
-    {
-        // Create Session Configuration
-        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-        
-        // Create Session
-        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
-    }
-    return _session;
-}
+//- (NSURLSession *)session
+//{
+//    if (!_session)
+//    {
+//        // Create Session Configuration
+//        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+//        
+//        // Create Session
+//        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
+//    }
+//    return _session;
+//}
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
 {

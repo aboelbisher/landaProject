@@ -10,6 +10,7 @@
 
 
 static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=get_posts&count=20";
+static NSString * FIRSTRUN = @"UpdatesfirstRun";
 
 
 @interface UpdatesViewController () <NSURLSessionDelegate, NSURLSessionDownloadDelegate , UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate , SWTableViewCellDelegate >
@@ -21,6 +22,7 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 @property(nonatomic ,strong) NSMutableArray * updates;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic) BOOL ifFirstRun;
 //@property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
 //@property (weak , nonatomic) NSURLSession * session;
 
@@ -45,6 +47,10 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
     [LastRefresh initWithDate:[NSDate date] id:@"12345" inManagedObjectContext:context];
+    
+    
+
+    
 
 
     
@@ -52,6 +58,8 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     [self.refreshControl addTarget:self
                             action:@selector(refreshTableView)
                   forControlEvents:UIControlEventValueChanged];
+    
+    
     [self.tableView addSubview:self.refreshControl];
     
     NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
@@ -86,20 +94,32 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     
     [HelpFunc checkForInternet];
     
+    self.ifFirstRun = NO;
+    
+    NSString *  ifFirstRunString = [[NSUserDefaults standardUserDefaults] stringForKey:FIRSTRUN];
+    if(ifFirstRunString == nil )//download the updates for the first time (FIRRRRST RUN!!!)
+    {
+        [[NSUserDefaults standardUserDefaults]setValue:@"first run of the application" forKey:FIRSTRUN];
+        self.ifFirstRun = YES;
+    }
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self refreshTableView];
+    
 //    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
     
-    NSString * firstRun;
-    
-    firstRun = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstRun"];
-    
-    
-    if(firstRun == nil)
-    {
-        [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"firstRun"];
-        //[self refreshData:YES];
-        NSLog(@"firstRun");
-    }
+//    NSString * firstRun;
+//    
+//    firstRun = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstRun"];
+//    
+//    
+//    if(firstRun == nil)
+//    {
+//        [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"firstRun"];
+//        //[self refreshData:YES];
+//        NSLog(@"firstRun");
+//    }
     
     
     
@@ -518,6 +538,7 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 -(void)refreshData
 {
 
+    
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError * error = nil;
@@ -601,7 +622,7 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 //    return session;
 //}
 
--(void) refreshTableView 
+-(void) refreshTableView //refreshController delegate
 {
    // [self.downloadTask cancel];
     
@@ -613,15 +634,6 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
     }
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-//    self.downloadTask = Nil;
-//    self.session = nil;
-//    
-//    
-//    NSURL *url = [NSURL URLWithString:@"http://glanda.technion.ac.il/wordpress/?json=get_posts&count=20"];
-//    NSURLRequest * downloadRequest = [NSURLRequest requestWithURL:url];
-//    self.downloadTask = [self.session downloadTaskWithRequest:downloadRequest];
-//    [self.downloadTask resume];
     
 
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -679,7 +691,7 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
                [offsetComponents setMinute:-3]; // note that I'm setting it to -1
                NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
 
-               if ([date compare:compDate] == NSOrderedDescending)
+               if ([date compare:compDate] == NSOrderedDescending || self.ifFirstRun)
                {
                    NSLog(@"date is later than lastRefresh.lastRefresh1");
                    [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];

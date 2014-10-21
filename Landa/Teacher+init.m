@@ -88,6 +88,18 @@ inManagedObjectContext:(NSManagedObjectContext*)context
     }
 }
 
++(NSArray*)getTeachersWithPosition:(NSString*)position inManagedObjectContext:(NSManagedObjectContext*)context
+{
+    NSError* error;
+    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:teacherEntityDisc];
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"position = %@" , position];
+    [request setPredicate:pred];
+    NSArray *teachersArray = [context executeFetchRequest:request error:&error];
+
+    return teachersArray;
+}
 //-(instancetype) initTeacherWithName:(NSString *)name id:(NSString*)id imageName:(NSString*)imageName localImageFilePath:(NSString*)localImageFilePath mail:(NSString*)mail faculty:(NSString*)faculty position:(NSString*)position
 //{
 //    Teacher * newTeacher  = nil;

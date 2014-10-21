@@ -11,6 +11,9 @@
 
 static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
+static NSString* HONE5 = @"חונך אכדמי";
+static NSString* RAKAZ = @"רכז/ת חברתי/ת";
+static NSString* RAKAZMAIN = @"רכז/ת פרויקט";
 
 
 @interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
@@ -22,6 +25,8 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
 @property (weak, nonatomic) IBOutlet UISearchBar *searcBar;
 @property (weak, nonatomic) NSURLSessionDownloadTask *downloadTask;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property(strong , nonatomic) NSArray* jobsTitles; // for index list
+@property(strong , nonatomic) NSDictionary* teachersSectionsDic;
 
 @end
 
@@ -100,8 +105,24 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
         }
     }
     
+
     
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
     
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    self.jobsTitles = @[HONE5 , RAKAZ , RAKAZMAIN];
+    NSArray * tmpHone5Array = [Teacher getTeachersWithPosition:HONE5 inManagedObjectContext:context];
+    NSArray * tmpRakazMainArray = [Teacher getTeachersWithPosition:RAKAZMAIN inManagedObjectContext:context];
+    NSArray * tmpRkazArray = [Teacher getTeachersWithPosition:RAKAZ inManagedObjectContext:context];
+    
+    self.teachersSectionsDic = @{ HONE5 : tmpHone5Array ,
+                                  RAKAZ : tmpRkazArray ,
+                                  RAKAZMAIN : tmpRakazMainArray};
 }
 
 -(void)checkForNewUpdates
@@ -312,9 +333,21 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
 
 
 
+#pragma mark UICollectionView Sections
+
+//-(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+//{
+//    return [self.jobsTitles count];
+//}
+////
+//-(NSString*)
+
 
 
 #pragma mark UICollectionView
+
+
+
 
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -453,13 +486,13 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
                 switch (positionNum)
                 {
                     case 1:
-                        position = @"חונך אכדמי";
+                        position = HONE5;
                         break;
                     case 3:
-                        position = @"רכז/ת פרויקט";
+                        position = RAKAZMAIN;
                         break;
                     case 4:
-                        position = @"רכז/ת חברתי/ת";
+                        position = RAKAZ;
                         break;
                     default:
                         break;
@@ -533,13 +566,13 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
         switch (positionNum)
         {
             case 1:
-                position = @"חונך אכדמי";
+                position = HONE5;
                 break;
             case 3:
-                position = @"רכז/ת פרויקט";
+                position = RAKAZMAIN;
                 break;
             case 4:
-                position = @"רכז/ת חברתי/ת";
+                position = RAKAZ;
                 break;
             default:
                 break;

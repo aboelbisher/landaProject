@@ -93,4 +93,10 @@
 
 }
 
++(void) createWelcomeViewAndPutItInView :(UIView*) view
+{
+    
+}
+
+
 @end

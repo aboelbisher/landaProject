@@ -90,6 +90,7 @@ inManagedObjectContext:(NSManagedObjectContext*)context
 
 +(NSArray*)getTeachersWithPosition:(NSString*)position inManagedObjectContext:(NSManagedObjectContext*)context
 {
+    
     NSError* error;
     NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];

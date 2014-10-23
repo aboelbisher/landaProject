@@ -14,9 +14,15 @@ static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
 static NSString* HONE5 = @"חונך אכדמי";
 static NSString* RAKAZ = @"רכז/ת חברתי/ת";
 static NSString* RAKAZMAIN = @"רכז/ת פרויקט";
+static NSString* EVERYONE = @"הכל";
+
+//static CGRect FRAME = {{100 , 0} , {50 ,100}};
+static int PICKERWIDTH = 200;
+static int PICKERHEIGHT = 200;
 
 
-@interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
+
+@interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate , UIPickerViewDataSource, UIPickerViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *teachersCollectionView;
@@ -25,8 +31,13 @@ static NSString* RAKAZMAIN = @"רכז/ת פרויקט";
 @property (weak, nonatomic) IBOutlet UISearchBar *searcBar;
 @property (weak, nonatomic) NSURLSessionDownloadTask *downloadTask;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-@property(strong , nonatomic) NSArray* jobsTitles; // for index list
-@property(strong , nonatomic) NSDictionary* teachersSectionsDic;
+@property (strong , nonatomic) NSArray* dataSource;
+@property(strong , nonatomic) UIPickerView* pickerView;
+
+//@property(strong , nonatomic) NSArray* jobsTitles; // for index list
+//@property(strong , nonatomic) NSDictionary* teachersSectionsDic;
+//
+//@property(strong , nonatomic) NSArray* tmpTestArray;
 
 @end
 
@@ -105,25 +116,31 @@ static NSString* RAKAZMAIN = @"רכז/ת פרויקט";
         }
     }
     
+    
+    [self initUIPickerView];
+
+    
 
     
 }
 
--(void) viewWillAppear:(BOOL)animated
-{
-    
-    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
-    self.jobsTitles = @[HONE5 , RAKAZ , RAKAZMAIN];
-    NSArray * tmpHone5Array = [Teacher getTeachersWithPosition:HONE5 inManagedObjectContext:context];
-    NSArray * tmpRakazMainArray = [Teacher getTeachersWithPosition:RAKAZMAIN inManagedObjectContext:context];
-    NSArray * tmpRkazArray = [Teacher getTeachersWithPosition:RAKAZ inManagedObjectContext:context];
-    
-    self.teachersSectionsDic = @{ HONE5 : tmpHone5Array ,
-                                  RAKAZ : tmpRkazArray ,
-                                  RAKAZMAIN : tmpRakazMainArray};
-}
+//-(void) viewWillAppear:(BOOL)animated
+//{
+//    
+//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//    
+//    self.jobsTitles = @[HONE5 , RAKAZ , RAKAZMAIN];
+//    NSArray * tmpHone5Array = [Teacher getTeachersWithPosition:HONE5 inManagedObjectContext:context];
+//    NSArray * tmpRakazMainArray = [Teacher getTeachersWithPosition:RAKAZMAIN inManagedObjectContext:context];
+//    NSArray * tmpRkazArray = [Teacher getTeachersWithPosition:RAKAZ inManagedObjectContext:context];
+//    
+//    self.teachersSectionsDic = @{ HONE5 : tmpHone5Array ,
+//                                  RAKAZ : tmpRkazArray ,
+//                                  RAKAZMAIN : tmpRakazMainArray};
+//    
+//    self.tmpTestArray = @[tmpHone5Array , tmpRakazMainArray , tmpRkazArray];
+//}
 
 -(void)checkForNewUpdates
 {
@@ -333,11 +350,16 @@ static NSString* RAKAZMAIN = @"רכז/ת פרויקט";
 
 
 
-#pragma mark UICollectionView Sections
-
+//#pragma mark UICollectionView Sections
+//
 //-(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 //{
 //    return [self.jobsTitles count];
+//}
+//
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+//{
+//    return  [[self.tmpTestArray objectAtIndex:section] count];
 //}
 ////
 //-(NSString*)
@@ -604,5 +626,99 @@ static NSString* RAKAZMAIN = @"רכז/ת פרויקט";
     [self presentViewController:vc animated:YES completion:nil];
     
 }
+
+
+#pragma mark UIPicker functions
+
+-(void) initUIPickerView
+{
+    int xCord = self.view.bounds.size.width/2 - PICKERWIDTH/2;
+    int yCord = self.view.bounds.size.height/2 - PICKERHEIGHT/2;
+    //for UIPickerView
+    
+    CGRect pickerFrame = {{xCord , yCord} , {PICKERWIDTH ,PICKERHEIGHT}};
+
+    
+    self.dataSource = @[EVERYONE , RAKAZMAIN , RAKAZ , HONE5];
+    self.pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+   // self.pickerView.backgroundColor = [UIColor whiteColor];
+
+    self.pickerView.dataSource = self;
+    self.pickerView.delegate = self;
+    self.pickerView.layer.shadowColor = [UIColor purpleColor].CGColor;
+    self.pickerView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.pickerView.layer.shadowOpacity = 1;
+    self.pickerView.layer.shadowRadius = 1.0;
+    self.pickerView.clipsToBounds = NO;    //self.pickerView.backgroundColor = [UIColor whiteColor];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [self.dataSource count];
+}
+
+//- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    
+//    
+//}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title = [self.dataSource objectAtIndex:row];
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor yellowColor]}];
+    
+    return attString;
+
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    
+    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    
+    // This method is triggered whenever the user makes a change to the picker selection.
+    // The parameter named row and component represents what was selected.
+//    NSLog(@"row number %@ is selected" , [self.dataSource objectAtIndex:row]);
+    [self.searchResults removeAllObjects];
+    NSString* wantedPosition = [self.dataSource objectAtIndex:row];
+    
+    NSArray* tmpTeachersArray;
+    
+    if([wantedPosition isEqualToString:EVERYONE])
+    {
+        tmpTeachersArray = [Teacher getAllTeachersInManagedObjectContext:context];
+    }
+    else
+    {
+        tmpTeachersArray = [Teacher getTeachersWithPosition:wantedPosition inManagedObjectContext:context];
+
+    }
+    
+//
+    self.searchResults = [NSMutableArray arrayWithArray:tmpTeachersArray];
+//
+    [self.teachersCollectionView reloadData];
+    [NSThread sleepForTimeInterval:0.5f];
+
+    
+    [self.pickerView removeFromSuperview];
+   // [self.pickerView removeFromSuperview];
+}
+- (IBAction)filter:(id)sender
+{
+    [self.view addSubview:self.pickerView];
+
+}
+
+
 
 @end

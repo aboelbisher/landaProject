@@ -194,6 +194,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
     
     NSString * title = [post objectForKey:@"title"];
+    
+    HTMLParser * titleParser = [[HTMLParser alloc] initWithString:title error:&error];
+    HTMLNode * titleNode = titleParser.body;
+    NSString * tmpTitle = [NSString stringWithFormat:@"%@" , titleNode.allContents];
 
     content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
     content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
@@ -202,7 +206,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [formatter dateFromString:dateString];
     
-    [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:self.managedObjectContext ];
+    [Update initWithContent:tmpContent title:tmpTitle date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:self.managedObjectContext ];
     [self.managedObjectContext save:&error];
     [PFPush handlePush:userInfo];
     

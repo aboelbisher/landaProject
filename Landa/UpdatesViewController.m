@@ -156,35 +156,6 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
 }
 
 
-//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    
-//    //1. Setup the CATransform3D structure
-//    CATransform3D rotation;
-//    rotation = CATransform3DMakeRotation( (90.0*M_PI)/180, 0.0, 0.7, 0.4);
-//    rotation.m34 = 1.0/ -600;
-//    
-//    
-//    //2. Define the initial state (Before the animation)
-//    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
-//    cell.layer.shadowOffset = CGSizeMake(10, 10);
-//    cell.alpha = 0;
-//    
-//    cell.layer.transform = rotation;
-//    cell.layer.anchorPoint = CGPointMake(0, 0.5);
-//    
-//    
-//    //3. Define the final state (After the animation) and commit the animation
-//    [UIView beginAnimations:@"rotation" context:NULL];
-//    [UIView setAnimationDuration:0.8];
-//    cell.layer.transform = CATransform3DIdentity;
-//    cell.alpha = 1;
-//    cell.layer.shadowOffset = CGSizeMake(0, 0);
-//    [UIView commitAnimations];
-//    
-//}
-
-
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -614,6 +585,10 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
                HTMLNode * node = parser.body;
                NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
                
+               HTMLParser * titleParser = [[HTMLParser alloc] initWithString:title error:&error];
+               HTMLNode * titleNode = titleParser.body;
+               NSString * tmpTitle = [NSString stringWithFormat:@"%@" , titleNode.allContents];
+               
                NSString * postDate = [post objectForKey:@"date"];
                NSString * postId = [[post objectForKey:@"id"] stringValue];
                
@@ -629,7 +604,7 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
                if ([date compare:compDate] == NSOrderedDescending || self.ifFirstRun)
                {
                    NSLog(@"date is later than lastRefresh.lastRefresh1");
-                   [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
+                   [Update initWithContent:tmpContent title:tmpTitle date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
                }
            }
        }
@@ -705,119 +680,119 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
 
 #pragma mark NSURLSession functions
 
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
-{
-    
-    NSData *urlData = [NSData dataWithContentsOfURL:location];
-
-    dispatch_async(dispatch_get_main_queue(), ^
-   {
-       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-       if(![HelpFunc checkForInternet])
-       {
-           return ;
-       }
-           NSLog(@"finished");
-           LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-           NSManagedObjectContext *context = [appDelegate managedObjectContext];
-           NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
-           
-           LastRefresh * lastRefresh = [lastRefreshArray firstObject];
-
-           NSString *jsonString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-           
-           NSError * error;
-           NSDictionary *JSON =
-           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                           options: NSJSONReadingMutableContainers
-                                             error: &error];
-           
-           NSArray * posts = [JSON objectForKey:@"posts"];
-           
-           for(id post in posts)
-           {
-               NSString * title = [post objectForKey:@"title"];
-               NSString * content = [post objectForKey:@"content"];
-               NSString * postUrl = [post objectForKey:@"url"];
-               
-               HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
-               HTMLNode * node = parser.body;
-               NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
-               
-               NSString * postDate = [post objectForKey:@"date"];
-               NSString * postId = [[post objectForKey:@"id"] stringValue];
-               
-               NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-               [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-               NSDate *date = [formatter dateFromString:postDate];
-               
-               //NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-               NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
-               [offsetComponents setMinute:-3]; // note that I'm setting it to -1
-               //NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
-               
-               // if ([date compare:compDate] == NSOrderedDescending)
-               // {
-               NSLog(@"date is later than lastRefresh.lastRefresh1");
-               [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
-               //  }
-           }
-       
-       NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
-       
-       self.updates = nil;
-       self.updates = [NSMutableArray arrayWithArray:objects];
-       
-       NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
-       
-       if([unreadUpdates count] > 0)
-       {
-           [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
-           [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
-       }
-       else
-       {
-           [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
-           [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-           
-       }
-       NSLog(@"Got here 2");
-       [self.refreshControl endRefreshing];
-       
-       [self sortTableViewArrayWithDates];
-       [self sortTableViewArrayWithPinned];
-       [self.tableView reloadData];
-       lastRefresh.lastRefresh = [NSDate date];
-   });
-    // Invalidate Session
-    [session finishTasksAndInvalidate];
-}
-
-//- (NSURLSession *)session
+//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+//
 //{
-//    if (!_session)
-//    {
-//        // Create Session Configuration
-//        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-//        
-//        // Create Session
-//        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
-//    }
-//    return _session;
+//    
+//    NSData *urlData = [NSData dataWithContentsOfURL:location];
+//
+//    dispatch_async(dispatch_get_main_queue(), ^
+//   {
+//       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//       if(![HelpFunc checkForInternet])
+//       {
+//           return ;
+//       }
+//           NSLog(@"finished");
+//           LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//           NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//           NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
+//           
+//           LastRefresh * lastRefresh = [lastRefreshArray firstObject];
+//
+//           NSString *jsonString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+//           
+//           NSError * error;
+//           NSDictionary *JSON =
+//           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+//                                           options: NSJSONReadingMutableContainers
+//                                             error: &error];
+//           
+//           NSArray * posts = [JSON objectForKey:@"posts"];
+//           
+//           for(id post in posts)
+//           {
+//               NSString * title = [post objectForKey:@"title"];
+//               NSString * content = [post objectForKey:@"content"];
+//               NSString * postUrl = [post objectForKey:@"url"];
+//               
+//               HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
+//               HTMLNode * node = parser.body;
+//               NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
+//               
+//               NSString * postDate = [post objectForKey:@"date"];
+//               NSString * postId = [[post objectForKey:@"id"] stringValue];
+//               
+//               NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//               [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//               NSDate *date = [formatter dateFromString:postDate];
+//               
+//               //NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//               NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+//               [offsetComponents setMinute:-3]; // note that I'm setting it to -1
+//               //NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
+//               
+//               // if ([date compare:compDate] == NSOrderedDescending)
+//               // {
+//               NSLog(@"date is later than lastRefresh.lastRefresh1");
+//               [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
+//               //  }
+//           }
+//       
+//       NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
+//       
+//       self.updates = nil;
+//       self.updates = [NSMutableArray arrayWithArray:objects];
+//       
+//       NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
+//       
+//       if([unreadUpdates count] > 0)
+//       {
+//           [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
+//           [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
+//       }
+//       else
+//       {
+//           [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+//           [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+//           
+//       }
+//       NSLog(@"Got here 2");
+//       [self.refreshControl endRefreshing];
+//       
+//       [self sortTableViewArrayWithDates];
+//       [self sortTableViewArrayWithPinned];
+//       [self.tableView reloadData];
+//       lastRefresh.lastRefresh = [NSDate date];
+//   });
+//    // Invalidate Session
+//    [session finishTasksAndInvalidate];
 //}
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
-{
-    
-}
-
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
-{
-    float progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
-    NSLog(@"progressssssss ==   %f" , progress);
-}
+//
+////- (NSURLSession *)session
+////{
+////    if (!_session)
+////    {
+////        // Create Session Configuration
+////        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+////        
+////        // Create Session
+////        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
+////    }
+////    return _session;
+////}
+//
+//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+//{
+//    
+//}
+//
+//
+//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+//{
+//    float progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+//    NSLog(@"progressssssss ==   %f" , progress);
+//}
 
 
 

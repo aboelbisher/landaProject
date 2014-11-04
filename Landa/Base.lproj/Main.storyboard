@@ -372,7 +372,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unreadMessge.png" translatesAutoresizingMaskIntoConstraints="NO" id="NF4-66-vdd">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unread" translatesAutoresizingMaskIntoConstraints="NO" id="NF4-66-vdd">
                                                     <rect key="frame" x="7" y="45" width="12" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="12" id="4MU-ay-kKJ"/>
@@ -922,11 +922,11 @@
         <image name="contacts" width="25" height="25"/>
         <image name="courses" width="25" height="25"/>
         <image name="filter" width="25" height="25"/>
-        <image name="flag" width="128" height="128"/>
+        <image name="flag" width="25" height="25"/>
         <image name="info" width="25" height="25"/>
         <image name="landaAbout.png" width="512" height="512"/>
         <image name="sendMail" width="30" height="30"/>
-        <image name="unreadMessge.png" width="850" height="850"/>
+        <image name="unread" width="25" height="25"/>
         <image name="updates" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

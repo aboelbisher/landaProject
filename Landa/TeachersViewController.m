@@ -9,6 +9,7 @@
 #import "TeachersViewController.h"
 
 
+
 static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
 static NSString* HONE5 = @"חונך אכדמי";
@@ -25,6 +26,7 @@ static int PICKERHEIGHT = 200;
 @interface TeachersViewController () <UICollectionViewDataSource , UICollectionViewDelegate , UIPickerViewDataSource, UIPickerViewDelegate>
 
 
+@property (weak, nonatomic) IBOutlet UIButton *filterButtonOutlet;
 @property (weak, nonatomic) IBOutlet UICollectionView *teachersCollectionView;
 @property(nonatomic , strong) NSMutableArray * teachers; // of Teacher(s)
 @property (nonatomic , strong) NSMutableArray * searchResults;
@@ -50,15 +52,16 @@ static int PICKERHEIGHT = 200;
     [super viewDidLoad];
     
     //customize
-    self.teachersCollectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    self.teachersCollectionView.backgroundColor = [UIColor whiteColor];
     self.spinner.color = [UIColor whiteColor];
     self.spinner.hidden = YES;
     
+    self.filterButtonOutlet.tintColor = [UIColor whiteColor];
     
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
-    [self.searcBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor GREENCOLOR]];
+    [self.searcBar setBarTintColor:[UIColor GREENCOLOR]];
     
     self.teachers = [[NSMutableArray alloc] init];
     self.searchResults = [[NSMutableArray alloc] init];
@@ -428,6 +431,7 @@ static int PICKERHEIGHT = 200;
         [teacher.teacherImage.layer setBorderWidth:0.5];
     
         teacher.teacherNameLabel.text = tmpTeacher.name;
+        teacher.teacherNameLabel.textColor = [UIColor GREENCOLOR];
         teacher.teacher = [self.searchResults objectAtIndex:indexPath.item];
     }
     
@@ -645,7 +649,7 @@ static int PICKERHEIGHT = 200;
 
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
-    self.pickerView.layer.shadowColor = [UIColor purpleColor].CGColor;
+    self.pickerView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.pickerView.layer.shadowOffset = CGSizeMake(0, 1);
     self.pickerView.layer.shadowOpacity = 1;
     self.pickerView.layer.shadowRadius = 1.0;

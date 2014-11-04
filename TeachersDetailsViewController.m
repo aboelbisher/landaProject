@@ -23,7 +23,8 @@
     UIImage * image = [HelpFunc getImageFromFileWithId:self.teacher.id];
     
     //customize
-    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    //self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    
     self.teacherImage.image = image;
     self.teacherImage.layer.cornerRadius = self.teacherImage.frame.size.width / 2;
     self.teacherImage.clipsToBounds = YES;

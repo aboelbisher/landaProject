@@ -12,6 +12,8 @@
 
 
 
+
+
 #import <Parse/Parse.h>
 
 
@@ -232,8 +234,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     }
     
 
-    [[UITabBar appearance] setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
+    [[UITabBar appearance] setTintColor:[UIColor GREENCOLOR]];
     
     NSArray * objects = [Update getHasntBeenReadUpdatesInManagedObjectContext:self.managedObjectContext];
     

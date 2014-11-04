@@ -21,6 +21,13 @@
 #import "CoursesViewController.h"
 #import "TeacherLocal.h"
 
+@implementation UIColor (MyProject)
+
++(UIColor *) GREENCOLOR { return [UIColor colorWithRed:0 green:0.702 blue:0.494 alpha:1]; }
+
+@end
+
+
 @interface TeachersViewController : UIViewController
 - (IBAction)showInfo:(id)sender;
 -(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;

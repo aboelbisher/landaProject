@@ -8,6 +8,13 @@
 
 #import "UpdatesViewController.h"
 
+//@implementation UIColor (MyProject)
+//
+//+(UIColor *) GREENCOLOR { return [UIColor colorWithRed:0 green:0.702 blue:0.494 alpha:1]; }
+//
+//@end
+
+
 
 static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=get_posts&count=20";
 static NSString * FIRSTRUN = @"UpdatesfirstRun";
@@ -78,19 +85,11 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     }
     else
     {
-        [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+        [self.tabBarController.tabBar setTintColor:[UIColor GREENCOLOR]];
     }
     
     _thersTappedCell = NO;
     _tappedCell = -1;
-    
-//    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftDelegate:)];
-//    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-//    [self.view addGestureRecognizer:swipeLeft];
-//    
-//    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightDelegate:)];
-//    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-//    [self.view addGestureRecognizer:swipeRight];
     
     [HelpFunc checkForInternet];
     
@@ -105,78 +104,7 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self refreshTableView];
-    
-//    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
-    
-//    NSString * firstRun;
-//    
-//    firstRun = [[NSUserDefaults standardUserDefaults] objectForKey:@"firstRun"];
-//    
-//    
-//    if(firstRun == nil)
-//    {
-//        [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"firstRun"];
-//        //[self refreshData:YES];
-//        NSLog(@"firstRun");
-//    }
-    
-    
-    
 }
-
-//void uncaughtExceptionHandler(NSException *exception)
-//{
-//    NSLog(@"Errrorrrrr!!!!");
-//    NSLog([exception description]);
-//}
-
-
-//- (IBAction)swipeRightDelegate:(id)sender
-//{
-//    NSInteger destIndex = 1;
-//    // Get views. controllerIndex is passed in as the controller we want to go to.
-//    UIView * fromView = self.view;
-//    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:destIndex] view];
-//    
-//    // Transition using a page curl.
-//    [UIView transitionFromView:fromView
-//                        toView:toView
-//                      duration:0.5
-//                       options:(UIViewAnimationOptionTransitionFlipFromLeft)
-//                    completion:^(BOOL finished)
-//     {
-//         if (finished)
-//         {
-//             self.tabBarController.selectedIndex = destIndex;
-//         }
-//     }];
-//    
-//}
-//
-//
-//
-//- (IBAction)swipeLeftDelegate:(id)sender
-//{
-//    NSInteger destIndex = 0;
-//    // Get views. controllerIndex is passed in as the controller we want to go to.
-//    UIView * fromView = self.view;
-//    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:destIndex] view];
-//    
-//    // Transition using a page curl.
-//    [UIView transitionFromView:fromView
-//                        toView:toView
-//                      duration:0.5
-//                       options:(UIViewAnimationOptionTransitionFlipFromRight)
-//                    completion:^(BOOL finished)
-//     {
-//         if (finished)
-//         {
-//             self.tabBarController.selectedIndex = destIndex;
-//         }
-//     }];
-//}
-
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -191,7 +119,7 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     }
     else
     {
-        [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
+        [self.tabBarController.tabBar setTintColor:[UIColor GREENCOLOR]];
     }
     
     NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];

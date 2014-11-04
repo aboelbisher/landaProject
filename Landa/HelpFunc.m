@@ -12,6 +12,7 @@
 @implementation HelpFunc
 
 
+
 +(NSString*) writeImageToFileWithId:(NSString*)id data:(NSData*)data
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

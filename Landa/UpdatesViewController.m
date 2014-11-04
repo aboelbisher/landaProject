@@ -45,10 +45,12 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     [super viewDidLoad];
 
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    self.tableView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    //self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    //self.tableView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor GREENCOLOR]];
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -247,6 +249,11 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
         updateCell.leftUtilityButtons = leftUtilityButtons;
         updateCell.rightUtilityButtons = rightUtilityButtons;
         updateCell.delegate = self;
+        
+        updateCell.timeLabel.textColor = [UIColor GREENCOLOR];
+        updateCell.title.textColor = [UIColor GREENCOLOR];
+        updateCell.dateLabel.textColor = [UIColor GREENCOLOR];
+        
     }
     return cell;
 }

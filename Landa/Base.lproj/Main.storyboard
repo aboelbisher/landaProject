@@ -738,11 +738,11 @@
             </objects>
             <point key="canvasLocation" x="448" y="-199"/>
         </scene>
-        <!--מסדנתים-->
+        <!--צוות הפרויקט-->
         <scene sceneID="VtO-kz-mP7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RWY-zL-PK6" customClass="TeachersNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="מסדנתים" image="contacts" id="D36-Oe-S37"/>
+                    <tabBarItem key="tabBarItem" title="צוות הפרויקט" image="contacts" id="D36-Oe-S37"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vLI-5Z-pau">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

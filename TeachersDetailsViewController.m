@@ -7,6 +7,7 @@
 //
 
 #import "TeachersDetailsViewController.h"
+#import "HelpFunc.h"
 
 @interface TeachersDetailsViewController ()<MFMailComposeViewControllerDelegate>
 
@@ -24,7 +25,7 @@
     
     //customize
     //self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.teacherImage.image = image;
     self.teacherImage.layer.cornerRadius = self.teacherImage.frame.size.width / 2;
     self.teacherImage.clipsToBounds = YES;
@@ -33,6 +34,11 @@
     self.mailLabel.text = self.teacher.mail;
     self.facultyLabel.text = self.teacher.faculty;
     self.roleLabel.text = self.teacher.position;
+    
+    self.nameLabel.textColor = [UIColor GREENCOLOR];
+    self.mailLabel.textColor = [UIColor GREENCOLOR];
+    self.facultyLabel.textColor = [UIColor GREENCOLOR];
+    self.roleLabel.textColor = [UIColor GREENCOLOR];
     
     [self.navigationItem setTitle:self.teacher.name];
     

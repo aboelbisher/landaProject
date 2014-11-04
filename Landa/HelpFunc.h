@@ -10,7 +10,20 @@
 #import "Reachability.h"
 
 
+static NSString* HONE5 = @"חונך אכדמי";
+static NSString* RAKAZ = @"רכז/ת חברתי/ת";
+static NSString* RAKAZMAIN = @"רכז/ת פרויקט";
+static NSString* EVERYONE = @"הכל";
+
+@implementation UIColor (MyProject)
+
++(UIColor *) GREENCOLOR { return [UIColor colorWithRed:0 green:0.702 blue:0.494 alpha:1]; }
+
+@end
+
+
 @interface HelpFunc : NSObject
+
 
 +(NSString*) makeJsonFromString:(NSString*)string;
 

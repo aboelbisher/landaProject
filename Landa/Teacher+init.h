@@ -7,6 +7,7 @@
 //
 
 #import "Teacher.h"
+#import "HelpFunc.h"
 
 @interface Teacher (init)
 

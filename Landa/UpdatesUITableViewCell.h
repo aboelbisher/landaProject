@@ -8,6 +8,7 @@
 
 #import "SWTableViewCell.h"
 #import "Update.h"
+#import "HelpFunc.h"
 
 @interface UpdatesUITableViewCell : SWTableViewCell
 

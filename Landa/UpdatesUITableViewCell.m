@@ -14,10 +14,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.title.textColor = [UIColor GREENCOLOR];
+        self.timeLabel.textColor = [UIColor GREENCOLOR];
         // Initialization code
     }
     return self;
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

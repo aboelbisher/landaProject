@@ -12,10 +12,7 @@
 
 static NSString* TEACHERS_URL = @"http://nlanda.technion.ac.il/LandaSystem/tutors.aspx";
 static NSString* PIC_URL = @"http://nlanda.technion.ac.il/LandaSystem/pics/";
-static NSString* HONE5 = @"חונך אכדמי";
-static NSString* RAKAZ = @"רכז/ת חברתי/ת";
-static NSString* RAKAZMAIN = @"רכז/ת פרויקט";
-static NSString* EVERYONE = @"הכל";
+
 
 //static CGRect FRAME = {{100 , 0} , {50 ,100}};
 static int PICKERWIDTH = 200;

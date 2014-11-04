@@ -52,15 +52,25 @@ inManagedObjectContext:(NSManagedObjectContext*)context
 
 +(NSArray*)getAllTeachersInManagedObjectContext:(NSManagedObjectContext*)context
 {
-    NSError * error = nil;
+//    NSError * error = nil;
+//    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:teacherEntityDisc];
+//    NSPredicate *pred =nil;
+//    [request setPredicate:pred];
+//    NSArray *objects = [context executeFetchRequest:request error:&error];
+//    
+//    return objects;
+    NSError* error;
     NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:teacherEntityDisc];
-    NSPredicate *pred =nil;
+    NSPredicate *pred =[NSPredicate predicateWithFormat:@"position = %@ OR position = %@" , RAKAZ , RAKAZMAIN];
     [request setPredicate:pred];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
+    NSArray *teachersArray = [context executeFetchRequest:request error:&error];
     
-    return objects;
+    return teachersArray;
+
 }
 
 +(NSArray*)getTeacherWithId:(NSString*)id inManagedObjectContext:(NSManagedObjectContext*)context

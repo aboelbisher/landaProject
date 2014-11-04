@@ -43,12 +43,12 @@
     }
     
     
-    self.teachersTableView.backgroundColor = [UIColor clearColor];
+    self.teachersTableView.backgroundColor = [UIColor whiteColor];
     self.courseName.text = self.course.name;
     self.teachers = [[NSMutableArray alloc] init];
     self.teacherIdArray = [[NSMutableArray alloc] init];
     [self.teachersTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -137,6 +137,10 @@
         courseCell.timeLabel.text = time;
         courseCell.image.image = image;
         courseCell.courseName = self.course.name;
+        
+        courseCell.nameLabel.textColor = [UIColor GREENCOLOR];
+        courseCell.dayLabel.textColor = [UIColor GREENCOLOR];
+        courseCell.timeLabel.textColor = [UIColor GREENCOLOR];
         //courseCell..text = self.course.place;
         //courseCell.placeButton.titleLabel.text = self.course.place;
         [courseCell.placeButton setTitle:self.course.place forState:UIControlStateNormal]; // To set the title

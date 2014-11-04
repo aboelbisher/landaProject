@@ -37,11 +37,11 @@ static NSString* dontNotifyMe = @"NO";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.coursesCollectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    self.searchBar.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    self.coursesCollectionView.backgroundColor = [UIColor whiteColor];
+    self.searchBar.backgroundColor = [UIColor GREENCOLOR];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
-    [self.searchBar setBarTintColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor GREENCOLOR]];
+    [self.searchBar setBarTintColor:[UIColor GREENCOLOR]];
     
     
     self.spinner.color = [UIColor whiteColor];

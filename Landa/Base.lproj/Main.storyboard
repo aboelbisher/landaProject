@@ -121,21 +121,8 @@
                                 <action selector="showInfo:" destination="vXZ-lx-hvc" id="XYv-my-TSO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="dOw-ai-PUp">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6c9-li-4Fw">
-                                <rect key="frame" x="274" y="7" width="47" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="filter">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="filter:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vbk-Gy-cuG"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="filterButtonOutlet" destination="6c9-li-4Fw" id="rE9-hw-6KK"/>
                         <outlet property="searcBar" destination="Vm5-4c-dnv" id="VuK-w6-EkH"/>
                         <outlet property="searchDisplayController" destination="EeL-pd-WgM" id="GfJ-kK-duh"/>
                         <outlet property="spinner" destination="qnm-pM-civ" id="B2x-wZ-vAU"/>
@@ -921,7 +908,6 @@
     <resources>
         <image name="contacts" width="25" height="25"/>
         <image name="courses" width="25" height="25"/>
-        <image name="filter" width="25" height="25"/>
         <image name="flag" width="25" height="25"/>
         <image name="info" width="25" height="25"/>
         <image name="landaAbout.png" width="512" height="512"/>

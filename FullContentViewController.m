@@ -29,7 +29,7 @@
     // Do any additional setup after loading the view.
     //self.view.backgroundColor =
     
-    NSString * html = @"<html> <body style=\"background:#454545; color:#e0e0e0;\"> ";
+    NSString * html = @"<html> <body style=\"background:#FFFFFF; color:#000000;\"> ";
     
     html = [html stringByAppendingString:self.update.htmlUpdate];
     
@@ -38,7 +38,7 @@
     [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:self.update.url]];
     
     //self.webView.backgroundColor = [UIColor greenColor];
-    [self.webView setBackgroundColor:[UIColor colorWithWhite:0.25f alpha:1.0f]];
+    [self.webView setBackgroundColor:[UIColor whiteColor]];
     self.webView.delegate = self;
     
 //    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];

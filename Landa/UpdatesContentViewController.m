@@ -21,6 +21,7 @@
     self.textView.contentInset = UIEdgeInsetsMake(-50,0.0,0,0.0);
     self.textView.text = self.updateContentText;
     self.titleLabel.text = self.update.title;
+    self.titleLabel.textColor = [UIColor GREENCOLOR];
     
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -35,9 +36,9 @@
     [context save:&error];
     
     //customize
-    self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    self.textView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    [self.textView setTextColor:[UIColor whiteColor]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.textView.backgroundColor = [UIColor whiteColor];
+    [self.textView setTextColor:[UIColor GREENCOLOR]];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];

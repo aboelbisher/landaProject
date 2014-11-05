@@ -385,7 +385,7 @@ static NSString* dontNotifyMe = @"NO";
         }
         
         course.courseName.text = [NSString stringWithFormat:@"%@" , tmpCourse.name];
-        course.courseName.textColor = [UIColor whiteColor];
+        course.courseName.textColor = [UIColor GREENCOLOR];
         course.course = tmpCourse;
         
         course.courseImage.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -411,6 +411,13 @@ static NSString* dontNotifyMe = @"NO";
             {
                 CoursesCollectionViewCell* sourceController = (CoursesCollectionViewCell*) sender;
                 CoursesDetailsCollectionView *destinationViewController = (CoursesDetailsCollectionView *)segue.destinationViewController;
+                
+                
+                for(TeacherId *teacher in sourceController.course.teachers)
+                {
+                    NSLog(@"%@ %@" , teacher.beginTime , teacher.id);
+                }
+                
                 destinationViewController.course = sourceController.course;
             }
         }

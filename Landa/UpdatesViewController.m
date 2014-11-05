@@ -20,7 +20,7 @@ static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=g
 static NSString * FIRSTRUN = @"UpdatesfirstRun";
 
 
-@interface UpdatesViewController () <NSURLSessionDelegate, NSURLSessionDownloadDelegate , UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate , SWTableViewCellDelegate >
+@interface UpdatesViewController () <UITableViewDataSource , UITableViewDelegate , UIGestureRecognizerDelegate , UIActionSheetDelegate , SWTableViewCellDelegate >
 {
     BOOL _thersTappedCell;
     NSInteger _tappedCell;

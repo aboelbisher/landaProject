@@ -49,6 +49,19 @@ inManagedObjectContext:(NSManagedObjectContext*)context
     return teacher;
 }
 
++(NSArray*)getAllInManagedObjectContext:(NSManagedObjectContext*)context
+{
+        NSError * error = nil;
+        NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:teacherEntityDisc];
+        NSPredicate *pred =nil;
+        [request setPredicate:pred];
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+    
+        return objects;
+
+}
 
 +(NSArray*)getAllTeachersInManagedObjectContext:(NSManagedObjectContext*)context
 {

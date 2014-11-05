@@ -17,7 +17,7 @@
 
 @interface CoursesDetailsCollectionView () <UITableViewDataSource , UITableViewDelegate>
 
-@property (strong , nonatomic) NSMutableArray * teachers; // of Teacher
+//@property (strong , nonatomic) NSMutableArray * teachers; // of Teacher
 @property (strong , nonatomic) NSMutableArray * teacherIdArray; // of TeacherId
 @property (weak, nonatomic) IBOutlet UITableView *teachersTableView;
 
@@ -45,10 +45,13 @@
     
     self.teachersTableView.backgroundColor = [UIColor whiteColor];
     self.courseName.text = self.course.name;
-    self.teachers = [[NSMutableArray alloc] init];
+    //self.teachers = [[NSMutableArray alloc] init];
     self.teacherIdArray = [[NSMutableArray alloc] init];
     [self.teachersTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.courseName.textColor = [UIColor GREENCOLOR];
+    
+  //  self.courseName.textColor = [UIColor GREENCOLOR];
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -69,14 +72,25 @@
 {
     for(TeacherId * teacherId in self.course.teachers)
     {
-        NSArray *teachersArray = [Teacher getTeacherWithId:teacherId.id inManagedObjectContext:context];
+       // NSArray *teachersArray = [Teacher getTeacherWithId:teacherId.id inManagedObjectContext:context];
         
-        Teacher * teacher = [teachersArray firstObject];
-        if(teacher)
-        {
-            [self.teachers addObject:teacher];
-            [self.teacherIdArray addObject:teacherId];
-        }
+//        NSArray * stamTeachersArray = [Teacher getAllInManagedObjectContext:context];
+//        
+//        for(Teacher * teacher in stamTeachersArray)
+//        {
+//            NSLog(@"%@" , teacher.id);
+//        }
+        
+//        Teacher * teacher = [teachersArray firstObject];
+//        if(teacher)
+//        {
+ //           [self.teachers addObject:teacher];
+        NSArray * tmpTeacherIdArray = [TeacherId getTeacherIdWithId:teacherId.id beginTime:teacherId.beginTime day:teacherId.day inManagedObjecContext:context];
+        
+        TeacherId * tmpTeacherId = [tmpTeacherIdArray firstObject];
+        
+            [self.teacherIdArray addObject:tmpTeacherId];
+ //       }
         
     }
 }
@@ -87,7 +101,7 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.teachers count];
+    return [self.teacherIdArray count];
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,7 +120,7 @@
         separatorLineView.backgroundColor = [UIColor colorWithWhite:0.4f alpha:1.0f];// you can also put image here !!!!!
         [cell.contentView addSubview:separatorLineView];
         
-        Teacher * teacher = [self.teachers objectAtIndex:indexPath.item];
+        //Teacher * teacher = [self.teachers objectAtIndex:indexPath.item];
         TeacherId * teacherId = [self.teacherIdArray objectAtIndex:indexPath.item];
         
         CoursesTableViewCell * courseCell = (CoursesTableViewCell*) cell;
@@ -123,22 +137,22 @@
         
         courseCell.teacherId = teacherId;
         
-        NSString * teacherName = teacher.name;
+     //   NSString * teacherName = teacher.name;
         NSString * day = teacherId.day;
         NSString * time = @"";
         time = [time stringByAppendingString:teacherId.beginTime];
         time = [time stringByAppendingString:[NSString stringWithFormat:@" - %@", teacherId.endTime ] ];
         
-        UIImage* image = [HelpFunc getImageFromFileWithId:teacherId.id];
+        //UIImage* image = [HelpFunc getImageFromFileWithId:teacherId.id];
        
-        courseCell.teacherName = [NSString stringWithString:teacherName];
-        courseCell.nameLabel.text = teacherName;
+   //     courseCell.teacherName = [NSString stringWithString:teacherName];
+   //     courseCell.nameLabel.text = teacherName;
         courseCell.dayLabel.text = day;
         courseCell.timeLabel.text = time;
-        courseCell.image.image = image;
+        //courseCell.image.image = image;
         courseCell.courseName = self.course.name;
         
-        courseCell.nameLabel.textColor = [UIColor GREENCOLOR];
+        //courseCell.nameLabel.textColor = [UIColor GREENCOLOR];
         courseCell.dayLabel.textColor = [UIColor GREENCOLOR];
         courseCell.timeLabel.textColor = [UIColor GREENCOLOR];
         //courseCell..text = self.course.place;

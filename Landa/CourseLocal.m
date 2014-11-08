@@ -10,11 +10,11 @@
 
 @implementation CourseLocal
 
--(NSMutableArray*)teachers
+-(NSMutableSet*)teachers
 {
     if(!_teachers)
     {
-        _teachers = [[NSMutableArray alloc] init];
+        _teachers = [[NSMutableSet alloc] init];
     }
     
     return _teachers;

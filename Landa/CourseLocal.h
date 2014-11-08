@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * place;
 @property (nonatomic, strong) NSString * subjectId;
-@property (nonatomic, strong) NSMutableArray *teachers;
+@property (nonatomic, strong) NSMutableSet *teachers;
 
 -(instancetype)initCorseLocalWithBeginTime:(NSString*)beginTime  endTime:(NSString*)endTime id:(NSString*)id imageName:(NSString*)imageName name:(NSString*)name place:(NSString*)place subjectId:(NSString*)subjectId;
 

@@ -13,6 +13,9 @@ static NSString* COURSES_URL = @"http://nlanda.technion.ac.il/LandaSystem/course
 
 static NSString* notifyMe = @"YES";
 static NSString* dontNotifyMe = @"NO";
+static NSString* CoursesCounter = @"CoursesCounter";
+static NSString* COURSES_COUNTER_URL = @"http://nlanda.technion.ac.il/LandaSystem/lastChanges.aspx";
+static NSString* coursesCounterJsonKey = @"last_change";
 
 @interface CoursesViewController () <UICollectionViewDataSource , UICollectionViewDelegate>
 
@@ -125,128 +128,180 @@ static NSString* dontNotifyMe = @"NO";
 
 -(void)checkForUpdates
 {
-//    self.spinner.hidden = NO;
-//    [self.spinner startAnimating];
     
-    NSURL *url = [NSURL URLWithString:COURSES_URL];
-    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    NSString* currentChangesCounter = [[NSUserDefaults standardUserDefaults] valueForKey:CoursesCounter];
+    if(currentChangesCounter == nil) // if first lunch
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:CoursesCounter];
+    }
     
-    NSURLRequest * request = [NSURLRequest requestWithURL:url];
-    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
-   {
-       if(!error)
+        NSURL *url = [NSURL URLWithString:COURSES_COUNTER_URL];
+        LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+        NSURLRequest * request = [NSURLRequest requestWithURL:url];
+        NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
+        NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
        {
-           
-           dispatch_async(dispatch_get_main_queue(), ^
-          {
-              [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-              
-          });
-           
-           NSData *urlData = [NSData dataWithContentsOfURL:url];
-           NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-           NSString* jsonString = [HelpFunc makeJsonFromString:webString];
-           
-           NSError * error;
-           NSDictionary *JSON =
-           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                           options: NSJSONReadingMutableContainers
-                                             error: &error];
-           
-           NSArray * array = [JSON objectForKey:@"courses"];
-           
-//           NSMutableArray * newIds = [[NSMutableArray alloc] init];
-           NSMutableArray *newCourses = [[NSMutableArray alloc] init];
-//           NSMutableArray * newTeacherId = [[NSMutableArray alloc] init];
-           
-           for(id course in array)
+           if(!error)
            {
-               NSString * place = [course objectForKey:@"place"];
-               NSString * tutorId = [course objectForKey:@"tutor_id"];
-               NSString * beginTime = [course objectForKey:@"time_from"];
-               NSString * endTime = [course objectForKey:@"time_to"];
-               NSString * day = [course objectForKey:@"day"];
-               NSString * name = [course objectForKey:@"subject_name"];
-               NSString * id = [course objectForKey:@"id"];
-               NSString * subjectid = [course objectForKey:@"subject_id"];
+                  dispatch_async(dispatch_get_main_queue(), ^
+                 {
+                     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                 });
                
+                  NSData *urlData = [NSData dataWithContentsOfURL:url];
+                  NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+                  NSString* jsonString = [HelpFunc makeJsonFromString:webString];
+       
+                  NSError * error;
+                  NSDictionary *JSON =
+                  [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                                  options: NSJSONReadingMutableContainers
+                                                    error: &error];
                
-               NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
-               urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.png" , subjectid]];
+               NSString * newCounterString = [JSON objectForKey:coursesCounterJsonKey];
+               int newCounter = newCounterString.intValue;
                
-               NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-               [HelpFunc writeImageToFileWithId:subjectid data:data];
+               NSString * oldCounterString = [[NSUserDefaults standardUserDefaults]objectForKey:CoursesCounter];
+               int oldCounter = oldCounterString.intValue;
                
-               CourseLocal * tmpCourse = [[CourseLocal alloc] initCorseLocalWithBeginTime:beginTime endTime:endTime id:id imageName:[NSString stringWithFormat:@"%@.png" , subjectid] name:name place:place subjectId:subjectid];
-               
-               CourseLocal * course = [self checkIfCourse:tmpCourse inArray:newCourses];
-               
-               if(!course)
+               if(oldCounter != newCounter)//new Chnages
                {
-                   [newCourses addObject:tmpCourse];
-                   course = [newCourses lastObject];
-               }
-
-               
-               
-               TeacherIdLocal * teacherId = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:beginTime day:day endTime:endTime id:tutorId notify:dontNotifyMe];
-               [course addTeachersObject:teacherId];
-           }
-           
-           NSArray * oldCourses = [Course getAllCoursesInManagedObjectContext:context];
-           NSMutableArray * oldCoursesLocal = [[NSMutableArray alloc] init];
-           for(Course * course in oldCourses)
-           {
-               CourseLocal * courseLocal = [[CourseLocal alloc] initCorseLocalWithBeginTime:course.beginTime endTime:course.endTime id:course.id imageName:course.imageName name:course.name place:course.place subjectId:course.subjectId];
-               for(TeacherId * teacherId in course.teachers)
-               {
-                   TeacherIdLocal * teacherIdLocal = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:teacherId.beginTime day:teacherId.day endTime:teacherId.endTime id:teacherId.id notify:teacherId.notify];
-                   [courseLocal addTeachersObject:teacherIdLocal];
-               }
-               [oldCoursesLocal addObject:courseLocal];
-           }
-           
-           //newCourses CourseLocal
-           
-           if (![oldCoursesLocal isEqualToArray:newCourses])
-           {
-               [[UIApplication sharedApplication] cancelAllLocalNotifications];
-               [Course deleteAllCoursesInManagedOvjectContext:context];
-               [TeacherId deleteAllTeachersIdInManagedObjectContext:context];
-               
-               for(CourseLocal * course in newCourses)
-               {
-                   Course * newCourse = [Course initWithName:course.name id:course.id subjectId:course.subjectId imageName:course.imageName place:course.place beginTime:course.beginTime endTime:course.endTime inManagedObjectContext:context];
-                   [context save:&error];
-                   
-                   for(TeacherIdLocal * teacherId in course.teachers)
-                   {
-                       TeacherId * newTeacherId = [TeacherId initWithId:teacherId.id beginTime:teacherId.beginTime endTime:teacherId.endTime day:teacherId.day notify:teacherId.notify inManagedObjectContext:context];
-                       [newCourse addTeachersObject:newTeacherId];
-                       [context save:&error];
-                   }
+                   [self getNewUpdates];
                }
            }
-           
-       }
-       NSArray* objects = [Course getAllCoursesInManagedObjectContext:context];
-       self.courses = nil;
-       self.searchResults = nil;
-       
-       self.courses = [NSMutableArray arrayWithArray:objects];
-       self.searchResults = [NSMutableArray arrayWithArray:self.courses];
-       
-       dispatch_async(dispatch_get_main_queue(), ^{
-           [self.coursesCollectionView reloadData];});
-       
-   }];
+       }];
     [task resume];
     [session finishTasksAndInvalidate];
+}
+
+-(void)getNewUpdates()
+{
+        NSURL *url = [NSURL URLWithString:COURSES_URL];
+        LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+        NSURLRequest * request = [NSURLRequest requestWithURL:url];
+        NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
+        NSURLSessionDownloadTask * task = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
+       {
+           if(!error)
+           {
+    
+               dispatch_async(dispatch_get_main_queue(), ^
+              {
+                  [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+              });
+    
+               NSData *urlData = [NSData dataWithContentsOfURL:url];
+               NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+               NSString* jsonString = [HelpFunc makeJsonFromString:webString];
+    
+               NSError * error;
+               NSDictionary *JSON =
+               [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                               options: NSJSONReadingMutableContainers
+                                                 error: &error];
+    
+               NSArray * array = [JSON objectForKey:@"courses"];
+               NSMutableArray *newCourses = [[NSMutableArray alloc] init];
+               for(id course in array)
+               {
+                   NSString * place = [course objectForKey:@"place"];
+                   NSString * tutorId = [course objectForKey:@"tutor_id"];
+                   NSString * beginTime = [course objectForKey:@"time_from"];
+                   NSString * endTime = [course objectForKey:@"time_to"];
+                   NSString * day = [course objectForKey:@"day"];
+                   NSString * name = [course objectForKey:@"subject_name"];
+                   NSString * id = [course objectForKey:@"id"];
+                   NSString * subjectid = [course objectForKey:@"subject_id"];
+    
+    
+                   NSString * urlString = [NSString stringWithFormat:@"http://nlanda.technion.ac.il/LandaSystem/pics/"];
+                   urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@.png" , subjectid]];
+    
+                   NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+                   [HelpFunc writeImageToFileWithId:subjectid data:data];
+    
+                   CourseLocal * tmpCourse = [[CourseLocal alloc] initCorseLocalWithBeginTime:beginTime endTime:endTime id:id imageName:[NSString stringWithFormat:@"%@.png" , subjectid] name:name place:place subjectId:subjectid];
+    
+                   CourseLocal * course = [self checkIfCourse:tmpCourse inArray:newCourses];
+    
+                   if(!course)
+                   {
+                       [newCourses addObject:tmpCourse];
+                       course = [newCourses lastObject];
+                   }
+    
+    
+    
+                   TeacherIdLocal * teacherId = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:beginTime day:day endTime:endTime id:tutorId notify:dontNotifyMe];
+                   [course addTeachersObject:teacherId];
+               }
+    
+//               NSArray * oldCourses = [Course getAllCoursesInManagedObjectContext:context];
+//               NSMutableArray * oldCoursesLocal = [[NSMutableArray alloc] init];
+//               for(Course * course in oldCourses)
+//               {
+//                   CourseLocal * courseLocal = [[CourseLocal alloc] initCorseLocalWithBeginTime:course.beginTime endTime:course.endTime id:course.id imageName:course.imageName name:course.name place:course.place subjectId:course.subjectId];
+//                   for(TeacherId * teacherId in course.teachers)
+//                   {
+//                       TeacherIdLocal * teacherIdLocal = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:teacherId.beginTime day:teacherId.day endTime:teacherId.endTime id:teacherId.id notify:teacherId.notify];
+//                       [courseLocal addTeachersObject:teacherIdLocal];
+//                   }
+//                   [oldCoursesLocal addObject:courseLocal];
+//               }
+    
+               //newCourses CourseLocal
+//    
+//               NSSet * oldCoursesSet = [NSSet setWithArray:oldCoursesLocal];
+//               NSSet * newCoursesSet = [NSSet setWithArray:newCourses];
+    
+               //[self ifArray:oldCoursesLocal isEqualToArray:newCourses];
+    //           if (![oldCoursesLocal isEqualToArray:newCourses])
+//               if(![oldCoursesSet isEqualToSet:newCoursesSet])
+//               {
+                   [[UIApplication sharedApplication] cancelAllLocalNotifications];
+                   [Course deleteAllCoursesInManagedOvjectContext:context];
+                   [TeacherId deleteAllTeachersIdInManagedObjectContext:context];
+    
+                   for(CourseLocal * course in newCourses)
+                   {
+                       Course * newCourse = [Course initWithName:course.name id:course.id subjectId:course.subjectId imageName:course.imageName place:course.place beginTime:course.beginTime endTime:course.endTime inManagedObjectContext:context];
+                       [context save:&error];
+    
+                       for(TeacherIdLocal * teacherId in course.teachers)
+                       {
+                           TeacherId * newTeacherId = [TeacherId initWithId:teacherId.id beginTime:teacherId.beginTime endTime:teacherId.endTime day:teacherId.day notify:teacherId.notify inManagedObjectContext:context];
+                           [newCourse addTeachersObject:newTeacherId];
+                           [context save:&error];
+                       }
+                   }
+               //}
+    
+           }
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+           NSArray* objects = [Course getAllCoursesInManagedObjectContext:context];
+           self.courses = nil;
+           self.searchResults = nil;
+           
+           self.courses = [NSMutableArray arrayWithArray:objects];
+           self.searchResults = [NSMutableArray arrayWithArray:self.courses];
+           
+           dispatch_async(dispatch_get_main_queue(), ^{
+               [self.coursesCollectionView reloadData];});
+           
+       }];
+        [task resume];
+        [session finishTasksAndInvalidate];
 
 }
 
@@ -520,6 +575,40 @@ static NSString* dontNotifyMe = @"NO";
     [self presentViewController:vc animated:YES completion:nil];
 
 }
+
+//-(BOOL)ifSet:(NSSet*)set1 isEqualToSet:(NSSet*)set2
+//{
+//    for (CourseLocal* course in set1)
+//    {
+//        if(![set2 containsObject:course])
+//        {
+//            return NO;
+//        }
+//    }
+//    return YES;
+//}
+//
+//-(BOOL)ifArray:(NSMutableArray*)arr1 isEqualToArray:(NSMutableArray*)arr2
+//{
+//    for (CourseLocal * course1 in arr1)
+//    {
+//        BOOL flag = NO;
+//        for(CourseLocal * course2 in arr2)
+//        {
+//            if([course1 isEqual:course2])
+//            {
+//                flag = YES;
+//                break;
+//            }
+//        }
+//        if(flag == NO)
+//        {
+//            return NO;
+//        }
+//        // arr2 contains course1
+//    }
+//    return YES;
+//}
 
     
 

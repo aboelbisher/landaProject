@@ -110,6 +110,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
     [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:swipeRight];
     
+    
 
 }
 
@@ -134,11 +135,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
     {
         [[NSUserDefaults standardUserDefaults] setValue:@"0" forKey:CoursesCounter];
     }
-    
         NSURL *url = [NSURL URLWithString:COURSES_COUNTER_URL];
-        LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
@@ -171,6 +168,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
                
                if(oldCounter != newCounter)//new Chnages
                {
+                   [[NSUserDefaults standardUserDefaults] setValue:newCounterString forKey:CoursesCounter];
                    [self getNewUpdates];
                }
            }
@@ -179,7 +177,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
     [session finishTasksAndInvalidate];
 }
 
--(void)getNewUpdates()
+-(void)getNewUpdates
 {
         NSURL *url = [NSURL URLWithString:COURSES_URL];
         LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -246,49 +244,24 @@ static NSString* coursesCounterJsonKey = @"last_change";
                    TeacherIdLocal * teacherId = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:beginTime day:day endTime:endTime id:tutorId notify:dontNotifyMe];
                    [course addTeachersObject:teacherId];
                }
-    
-//               NSArray * oldCourses = [Course getAllCoursesInManagedObjectContext:context];
-//               NSMutableArray * oldCoursesLocal = [[NSMutableArray alloc] init];
-//               for(Course * course in oldCourses)
-//               {
-//                   CourseLocal * courseLocal = [[CourseLocal alloc] initCorseLocalWithBeginTime:course.beginTime endTime:course.endTime id:course.id imageName:course.imageName name:course.name place:course.place subjectId:course.subjectId];
-//                   for(TeacherId * teacherId in course.teachers)
-//                   {
-//                       TeacherIdLocal * teacherIdLocal = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:teacherId.beginTime day:teacherId.day endTime:teacherId.endTime id:teacherId.id notify:teacherId.notify];
-//                       [courseLocal addTeachersObject:teacherIdLocal];
-//                   }
-//                   [oldCoursesLocal addObject:courseLocal];
-//               }
-    
-               //newCourses CourseLocal
-//    
-//               NSSet * oldCoursesSet = [NSSet setWithArray:oldCoursesLocal];
-//               NSSet * newCoursesSet = [NSSet setWithArray:newCourses];
-    
-               //[self ifArray:oldCoursesLocal isEqualToArray:newCourses];
-    //           if (![oldCoursesLocal isEqualToArray:newCourses])
-//               if(![oldCoursesSet isEqualToSet:newCoursesSet])
-//               {
-                   [[UIApplication sharedApplication] cancelAllLocalNotifications];
-                   [Course deleteAllCoursesInManagedOvjectContext:context];
-                   [TeacherId deleteAllTeachersIdInManagedObjectContext:context];
-    
-                   for(CourseLocal * course in newCourses)
+               
+               [[UIApplication sharedApplication] cancelAllLocalNotifications];
+               [Course deleteAllCoursesInManagedOvjectContext:context];
+               [TeacherId deleteAllTeachersIdInManagedObjectContext:context];
+
+               for(CourseLocal * course in newCourses)
+               {
+                   Course * newCourse = [Course initWithName:course.name id:course.id subjectId:course.subjectId imageName:course.imageName place:course.place beginTime:course.beginTime endTime:course.endTime inManagedObjectContext:context];
+                   [context save:&error];
+
+                   for(TeacherIdLocal * teacherId in course.teachers)
                    {
-                       Course * newCourse = [Course initWithName:course.name id:course.id subjectId:course.subjectId imageName:course.imageName place:course.place beginTime:course.beginTime endTime:course.endTime inManagedObjectContext:context];
+                       TeacherId * newTeacherId = [TeacherId initWithId:teacherId.id beginTime:teacherId.beginTime endTime:teacherId.endTime day:teacherId.day notify:teacherId.notify inManagedObjectContext:context];
+                       [newCourse addTeachersObject:newTeacherId];
                        [context save:&error];
-    
-                       for(TeacherIdLocal * teacherId in course.teachers)
-                       {
-                           TeacherId * newTeacherId = [TeacherId initWithId:teacherId.id beginTime:teacherId.beginTime endTime:teacherId.endTime day:teacherId.day notify:teacherId.notify inManagedObjectContext:context];
-                           [newCourse addTeachersObject:newTeacherId];
-                           [context save:&error];
-                       }
                    }
-               //}
-    
+               }
            }
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
            NSArray* objects = [Course getAllCoursesInManagedObjectContext:context];
            self.courses = nil;
            self.searchResults = nil;
@@ -297,6 +270,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
            self.searchResults = [NSMutableArray arrayWithArray:self.courses];
            
            dispatch_async(dispatch_get_main_queue(), ^{
+               [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                [self.coursesCollectionView reloadData];});
            
        }];
@@ -576,39 +550,6 @@ static NSString* coursesCounterJsonKey = @"last_change";
 
 }
 
-//-(BOOL)ifSet:(NSSet*)set1 isEqualToSet:(NSSet*)set2
-//{
-//    for (CourseLocal* course in set1)
-//    {
-//        if(![set2 containsObject:course])
-//        {
-//            return NO;
-//        }
-//    }
-//    return YES;
-//}
-//
-//-(BOOL)ifArray:(NSMutableArray*)arr1 isEqualToArray:(NSMutableArray*)arr2
-//{
-//    for (CourseLocal * course1 in arr1)
-//    {
-//        BOOL flag = NO;
-//        for(CourseLocal * course2 in arr2)
-//        {
-//            if([course1 isEqual:course2])
-//            {
-//                flag = YES;
-//                break;
-//            }
-//        }
-//        if(flag == NO)
-//        {
-//            return NO;
-//        }
-//        // arr2 contains course1
-//    }
-//    return YES;
-//}
 
     
 

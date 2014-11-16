@@ -14,8 +14,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.title.textColor = [UIColor GREENCOLOR];
-        self.timeLabel.textColor = [UIColor GREENCOLOR];
+        self.title.textColor = [UIColor myGreenColor];
+        self.timeLabel.textColor = [UIColor myGreenColor];
         // Initialization code
     }
     return self;

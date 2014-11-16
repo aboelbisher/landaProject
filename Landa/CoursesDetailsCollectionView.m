@@ -49,7 +49,7 @@
     self.teacherIdArray = [[NSMutableArray alloc] init];
     [self.teachersTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.courseName.textColor = [UIColor GREENCOLOR];
+    self.courseName.textColor = [UIColor myGreenColor];
     
   //  self.courseName.textColor = [UIColor GREENCOLOR];
     
@@ -128,7 +128,7 @@
         if([teacherId.notify isEqualToString:@"YES"])
         {
             courseCell.switcherOutlet.on = YES;
-            cell.backgroundColor = [UIColor colorWithWhite:0.18f alpha:1.0f];
+            cell.backgroundColor = [UIColor blackColor];
         }
         else
         {
@@ -153,8 +153,8 @@
         courseCell.courseName = self.course.name;
         
         //courseCell.nameLabel.textColor = [UIColor GREENCOLOR];
-        courseCell.dayLabel.textColor = [UIColor GREENCOLOR];
-        courseCell.timeLabel.textColor = [UIColor GREENCOLOR];
+        courseCell.dayLabel.textColor = [UIColor myGreenColor];
+        courseCell.timeLabel.textColor = [UIColor myGreenColor];
         //courseCell..text = self.course.place;
         //courseCell.placeButton.titleLabel.text = self.course.place;
         [courseCell.placeButton setTitle:self.course.place forState:UIControlStateNormal]; // To set the title

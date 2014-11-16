@@ -48,7 +48,7 @@
 
 -(void) webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSString * NewHtml = @"javascript:(function() { document.getElementsByTagName('body')[0].style.color = '#e0e0e0';var ps= document.getElementsByTagName('p'); for(var i=0;i<ps.length;i++){ps[i].style.color = '#e0e0e0';}var spans=document.getElementsByTagName('span');for(var i=0;i<spans.length;i++){spans[i].style.color = '#e0e0e0';}document.getElementsByTagName('table')[0].style.color = '#e0e0e0';})();";
+    NSString * NewHtml = @"javascript:(function() { document.getElementsByTagName('body')[0].style.color = '#000000';var ps= document.getElementsByTagName('p'); for(var i=0;i<ps.length;i++){ps[i].style.color = '#e0e0e0';}var spans=document.getElementsByTagName('span');for(var i=0;i<spans.length;i++){spans[i].style.color = '#000000';}document.getElementsByTagName('table')[0].style.color = '#000000';})();";
     [self.webView stringByEvaluatingJavaScriptFromString:NewHtml];
 }
 

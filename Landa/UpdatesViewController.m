@@ -50,7 +50,7 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     self.tableView.backgroundColor = [UIColor whiteColor];
     //self.tableView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor GREENCOLOR]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor myGreenColor]];
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -87,7 +87,7 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     }
     else
     {
-        [self.tabBarController.tabBar setTintColor:[UIColor GREENCOLOR]];
+        [self.tabBarController.tabBar setTintColor:[UIColor myGreenColor]];
     }
     
     _thersTappedCell = NO;
@@ -105,7 +105,7 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     }
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [self refreshTableView];
+    //[self refreshTableView];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -121,7 +121,7 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     }
     else
     {
-        [self.tabBarController.tabBar setTintColor:[UIColor GREENCOLOR]];
+        [self.tabBarController.tabBar setTintColor:[UIColor myGreenColor]];
     }
     
     NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
@@ -221,9 +221,9 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
         updateCell.rightUtilityButtons = rightUtilityButtons;
         updateCell.delegate = self;
         
-        updateCell.timeLabel.textColor = [UIColor GREENCOLOR];
-        updateCell.title.textColor = [UIColor GREENCOLOR];
-        updateCell.dateLabel.textColor = [UIColor GREENCOLOR];
+        updateCell.timeLabel.textColor = [UIColor myGreenColor];
+        updateCell.title.textColor = [UIColor myGreenColor];
+        updateCell.dateLabel.textColor = [UIColor myGreenColor];
         
     }
     return cell;
@@ -680,122 +680,6 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
 
 #pragma mark NSURLSession functions
 
-//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
-//
-//{
-//    
-//    NSData *urlData = [NSData dataWithContentsOfURL:location];
-//
-//    dispatch_async(dispatch_get_main_queue(), ^
-//   {
-//       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//       if(![HelpFunc checkForInternet])
-//       {
-//           return ;
-//       }
-//           NSLog(@"finished");
-//           LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//           NSManagedObjectContext *context = [appDelegate managedObjectContext];
-//           NSArray* lastRefreshArray = [LastRefresh getTheLastRefreshInManagedObjectContext:context];
-//           
-//           LastRefresh * lastRefresh = [lastRefreshArray firstObject];
-//
-//           NSString *jsonString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-//           
-//           NSError * error;
-//           NSDictionary *JSON =
-//           [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-//                                           options: NSJSONReadingMutableContainers
-//                                             error: &error];
-//           
-//           NSArray * posts = [JSON objectForKey:@"posts"];
-//           
-//           for(id post in posts)
-//           {
-//               NSString * title = [post objectForKey:@"title"];
-//               NSString * content = [post objectForKey:@"content"];
-//               NSString * postUrl = [post objectForKey:@"url"];
-//               
-//               HTMLParser * parser = [[HTMLParser alloc] initWithString:content error:&error];
-//               HTMLNode * node = parser.body;
-//               NSString * tmpContent = [NSString stringWithFormat:@"%@" , node.allContents];
-//               
-//               NSString * postDate = [post objectForKey:@"date"];
-//               NSString * postId = [[post objectForKey:@"id"] stringValue];
-//               
-//               NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//               [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//               NSDate *date = [formatter dateFromString:postDate];
-//               
-//               //NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//               NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
-//               [offsetComponents setMinute:-3]; // note that I'm setting it to -1
-//               //NSDate *compDate = [gregorian dateByAddingComponents:offsetComponents toDate:lastRefresh.lastRefresh options:0];
-//               
-//               // if ([date compare:compDate] == NSOrderedDescending)
-//               // {
-//               NSLog(@"date is later than lastRefresh.lastRefresh1");
-//               [Update initWithContent:tmpContent title:title date:date postId:postId hasBeenRead:@"NO" htmlContent:content url:postUrl inManagedObjectContext:context];
-//               //  }
-//           }
-//       
-//       NSArray* objects = [Update getAllUpdatesInManagedObjectContext:context];
-//       
-//       self.updates = nil;
-//       self.updates = [NSMutableArray arrayWithArray:objects];
-//       
-//       NSArray* unreadUpdates = [Update getHasntBeenReadUpdatesInManagedObjectContext:context];
-//       
-//       if([unreadUpdates count] > 0)
-//       {
-//           [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[unreadUpdates count]];
-//           [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
-//       }
-//       else
-//       {
-//           [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]];
-//           [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-//           
-//       }
-//       NSLog(@"Got here 2");
-//       [self.refreshControl endRefreshing];
-//       
-//       [self sortTableViewArrayWithDates];
-//       [self sortTableViewArrayWithPinned];
-//       [self.tableView reloadData];
-//       lastRefresh.lastRefresh = [NSDate date];
-//   });
-//    // Invalidate Session
-//    [session finishTasksAndInvalidate];
-//}
-//
-////- (NSURLSession *)session
-////{
-////    if (!_session)
-////    {
-////        // Create Session Configuration
-////        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-////        
-////        // Create Session
-////        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:nil];
-////    }
-////    return _session;
-////}
-//
-//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
-//{
-//    
-//}
-//
-//
-//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
-//{
-//    float progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
-//    NSLog(@"progressssssss ==   %f" , progress);
-//}
-
-
-
 
 - (IBAction)showInfo:(id)sender
 {
@@ -803,8 +687,9 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"About"];
     [self presentViewController:vc animated:YES completion:nil];
-
+    
 }
+
 
 
 @end

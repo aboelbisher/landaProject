@@ -67,7 +67,7 @@
     }
     else
     {
-        self.backgroundColor = [UIColor colorWithWhite:0.18f alpha:1.0f];
+        self.backgroundColor = [UIColor colorWithRed:0.8 green:0.949 blue:0.91 alpha:1];
 
         self.teacherId.notify = @"YES";
         teacherIdCoreData.notify = @"YES";

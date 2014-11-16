@@ -41,10 +41,10 @@ static NSString* coursesCounterJsonKey = @"last_change";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.coursesCollectionView.backgroundColor = [UIColor whiteColor];
-    self.searchBar.backgroundColor = [UIColor GREENCOLOR];
+    self.searchBar.backgroundColor = [UIColor myGreenColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor GREENCOLOR]];
-    [self.searchBar setBarTintColor:[UIColor GREENCOLOR]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor myGreenColor]];
+    [self.searchBar setBarTintColor:[UIColor myGreenColor]];
     
     
     self.spinner.color = [UIColor whiteColor];
@@ -270,6 +270,8 @@ static NSString* coursesCounterJsonKey = @"last_change";
            self.searchResults = [NSMutableArray arrayWithArray:self.courses];
            
            dispatch_async(dispatch_get_main_queue(), ^{
+              [[[UIAlertView alloc] initWithTitle:@"עדכונים חדשים" message:@"נמצאו עדכונים חדשים לסדנאות , אנא תסמן את הסדנאות שאתה הולך אליהם מחדש" delegate:nil cancelButtonTitle:@"אישרו" otherButtonTitles:nil] show];
+               
                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                [self.coursesCollectionView reloadData];});
            
@@ -414,7 +416,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
         }
         
         course.courseName.text = [NSString stringWithFormat:@"%@" , tmpCourse.name];
-        course.courseName.textColor = [UIColor GREENCOLOR];
+        course.courseName.textColor = [UIColor myGreenColor];
         course.course = tmpCourse;
         
         course.courseImage.layer.shadowColor = [UIColor blackColor].CGColor;

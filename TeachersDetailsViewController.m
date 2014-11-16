@@ -35,10 +35,10 @@
     self.facultyLabel.text = self.teacher.faculty;
     self.roleLabel.text = self.teacher.position;
     
-    self.nameLabel.textColor = [UIColor GREENCOLOR];
-    self.mailLabel.textColor = [UIColor GREENCOLOR];
-    self.facultyLabel.textColor = [UIColor GREENCOLOR];
-    self.roleLabel.textColor = [UIColor GREENCOLOR];
+    self.nameLabel.textColor = [UIColor myGreenColor];
+    self.mailLabel.textColor = [UIColor myGreenColor];
+    self.facultyLabel.textColor = [UIColor myGreenColor];
+    self.roleLabel.textColor = [UIColor myGreenColor];
     
     [self.navigationItem setTitle:self.teacher.name];
     
@@ -51,6 +51,7 @@
     // Email Content
     NSString *messageBody = @"";
     // To address
+    NSLog(@"mail == %@" , self.teacher.mail);
     NSArray *toRecipents = [NSArray arrayWithObject:self.teacher.mail];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];

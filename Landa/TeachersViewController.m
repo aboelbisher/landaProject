@@ -57,8 +57,8 @@ static int PICKERHEIGHT = 200;
     
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor GREENCOLOR]];
-    [self.searcBar setBarTintColor:[UIColor GREENCOLOR]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor myGreenColor]];
+    [self.searcBar setBarTintColor:[UIColor myGreenColor]];
     
     self.teachers = [[NSMutableArray alloc] init];
     self.searchResults = [[NSMutableArray alloc] init];
@@ -428,7 +428,7 @@ static int PICKERHEIGHT = 200;
         [teacher.teacherImage.layer setBorderWidth:0.5];
     
         teacher.teacherNameLabel.text = tmpTeacher.name;
-        teacher.teacherNameLabel.textColor = [UIColor GREENCOLOR];
+        teacher.teacherNameLabel.textColor = [UIColor myGreenColor];
         teacher.teacher = [self.searchResults objectAtIndex:indexPath.item];
     }
     
@@ -436,7 +436,8 @@ static int PICKERHEIGHT = 200;
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     [self.searcBar resignFirstResponder];
     if ([segue.identifier isEqualToString:@"show teacher details"])

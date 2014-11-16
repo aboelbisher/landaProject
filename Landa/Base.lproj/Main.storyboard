@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SrW-P3-61Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SrW-P3-61Z">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6246"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -56,6 +56,7 @@
                                 <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="qnm-pM-civ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Teacher Pic" id="6Ad-Hg-Oa5" customClass="TeacherCollectionViewCell">
@@ -636,7 +637,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="108" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yuK-aX-htg">
-                                <rect key="frame" x="0.0" y="174" width="320" height="394"/>
+                                <rect key="frame" x="0.0" y="174" width="320" height="374"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="teacher details" rowHeight="108" id="HVE-38-O1I" customClass="CoursesTableViewCell">
@@ -694,7 +695,7 @@
                             <constraint firstAttribute="trailing" secondItem="bMm-Np-XlK" secondAttribute="trailing" id="3ph-o6-BJy"/>
                             <constraint firstItem="bMm-Np-XlK" firstAttribute="leading" secondItem="LHH-Rh-yee" secondAttribute="trailing" constant="8" symbolic="YES" id="D3w-JU-VPZ"/>
                             <constraint firstItem="LHH-Rh-yee" firstAttribute="leading" secondItem="axI-Jb-GNj" secondAttribute="leading" constant="20" symbolic="YES" id="DTq-Xt-sJ2"/>
-                            <constraint firstAttribute="bottom" secondItem="yuK-aX-htg" secondAttribute="bottom" id="Dum-gg-YbZ"/>
+                            <constraint firstAttribute="bottom" secondItem="yuK-aX-htg" secondAttribute="bottom" constant="20" id="Dum-gg-YbZ"/>
                             <constraint firstItem="yuK-aX-htg" firstAttribute="trailing" secondItem="bMm-Np-XlK" secondAttribute="trailing" id="SzH-9c-kdX"/>
                             <constraint firstItem="LHH-Rh-yee" firstAttribute="top" secondItem="jYS-9u-qnI" secondAttribute="bottom" constant="36" id="eii-7Y-GDZ"/>
                             <constraint firstItem="bMm-Np-XlK" firstAttribute="top" secondItem="jYS-9u-qnI" secondAttribute="bottom" constant="2" id="p1Y-7O-Rg2"/>
@@ -729,7 +730,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yan-E6-Lsv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-548" y="-910"/>
+            <point key="canvasLocation" x="-484" y="-894"/>
         </scene>
         <!--סדנאות-->
         <scene sceneID="n8k-ib-Oha">

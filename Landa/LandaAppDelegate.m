@@ -240,7 +240,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
-    [[UITabBar appearance] setTintColor:[UIColor GREENCOLOR]];
+    [[UITabBar appearance] setTintColor:[UIColor myGreenColor]];
     
     NSArray * objects = [Update getHasntBeenReadUpdatesInManagedObjectContext:self.managedObjectContext];
     

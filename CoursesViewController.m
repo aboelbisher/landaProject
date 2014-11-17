@@ -47,7 +47,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
     [self.searchBar setBarTintColor:[UIColor myGreenColor]];
     
     
-    self.spinner.color = [UIColor whiteColor];
+    self.spinner.color = [UIColor blackColor];
     self.spinner.hidden = YES;
     
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];

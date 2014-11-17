@@ -50,7 +50,7 @@ static int PICKERHEIGHT = 200;
     
     //customize
     self.teachersCollectionView.backgroundColor = [UIColor whiteColor];
-    self.spinner.color = [UIColor whiteColor];
+    self.spinner.color = [UIColor blackColor];
     self.spinner.hidden = YES;
     
     self.filterButtonOutlet.tintColor = [UIColor whiteColor];
@@ -147,8 +147,8 @@ static int PICKERHEIGHT = 200;
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
-//    self.spinner.hidden = NO;
-//    [self.spinner startAnimating];
+    //self.spinner.hidden = NO;
+    //[self.spinner startAnimating];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
@@ -260,8 +260,8 @@ static int PICKERHEIGHT = 200;
           // newIds = nil;
        }
        dispatch_async(dispatch_get_main_queue(), ^{
-//           [self.spinner stopAnimating];
-//           self.spinner.hidden = YES;
+           //[self.spinner stopAnimating];
+           //self.spinner.hidden = YES;
        });
    }];
     [task resume];

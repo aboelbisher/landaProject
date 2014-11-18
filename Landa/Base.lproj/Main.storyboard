@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SrW-P3-61Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SrW-P3-61Z">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6246"/>
@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-1309" y="-199"/>
         </scene>
-        <!--מסדנתים-->
+        <!--צוות פרויקט-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="TeachersViewController" sceneMemberID="viewController">
@@ -115,7 +115,7 @@
                             <constraint firstItem="Vm5-4c-dnv" firstAttribute="trailing" secondItem="bVs-PK-Ry5" secondAttribute="trailing" id="py0-RF-MgI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="מסדנתים" id="IkY-gF-voV">
+                    <navigationItem key="navigationItem" title="צוות פרויקט" id="IkY-gF-voV">
                         <barButtonItem key="leftBarButtonItem" image="info" id="vnt-FC-Dkz">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -763,22 +763,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="landaAbout.png" translatesAutoresizingMaskIntoConstraints="NO" id="VA1-dS-9M8">
-                                <rect key="frame" x="-96" y="20" width="512" height="512"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6M9-Ay-U3l">
-                                <rect key="frame" x="16" y="166" width="279" height="230"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <string key="text">היוזמה להקמת הפרויקט לקידום בני המיעוטים בטכניון הייתה על ידי משפחת פטסי ובני לנדא. 
-תודתנו העמוקה נתונה למשפחת לנדא על יוזמתם הברוכה להשקת הפרויקט ועל המעורבות, האחריות והנדיבות שהם מגלים בנושא צמצום פערים בחברה הישראלית.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="פיתוח: מוחמד עבד אלראזק" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GaR-FO-nFn">
                                 <rect key="frame" x="38" y="471" width="257" height="23"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="PCr-d5-k1c"/>
+                                    <constraint firstAttribute="height" constant="23" id="S25-1c-tpr"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -804,34 +793,40 @@
                                 <rect key="frame" x="38" y="435" width="257" height="28"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="zgi-pI-jS5"/>
+                                    <constraint firstAttribute="height" constant="28" id="q3Z-e2-lQk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6M9-Ay-U3l">
+                                <rect key="frame" x="16" y="106" width="279" height="293"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <mutableString key="text">הפרויקט לשוויון הזדמנויות הינו פרויקט לקידום בני המיעוטים , הפרויקט מיועד לצמצם את קשיי ההסתגלות של סטודנטים בני המיעוטים ולהקל על המעבר הרגשי והלימודי למוסד בעל דרישות לימודיות גבוהות ביותר.
+הפרויקט מנוהל על ידי סטודנטים ערבים ותקים ומודרך על ידי צוות היחידה לקדום סטודנטים</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="TsK-91-G2S" secondAttribute="bottom" constant="20" symbolic="YES" id="5xV-m7-3us"/>
-                            <constraint firstItem="ZFD-5k-3f4" firstAttribute="top" secondItem="TcL-1j-jDj" secondAttribute="bottom" constant="21" id="DSg-J2-Vko"/>
-                            <constraint firstItem="TsK-91-G2S" firstAttribute="top" secondItem="GaR-FO-nFn" secondAttribute="bottom" constant="24" id="EW7-dC-XVF"/>
-                            <constraint firstItem="TsK-91-G2S" firstAttribute="centerX" secondItem="VA1-dS-9M8" secondAttribute="centerX" id="HCC-zu-7C3"/>
-                            <constraint firstItem="TcL-1j-jDj" firstAttribute="leading" secondItem="x6O-Ul-34Y" secondAttribute="leadingMargin" constant="22" id="Hvx-jf-Wuh"/>
-                            <constraint firstItem="ZFD-5k-3f4" firstAttribute="leading" secondItem="x6O-Ul-34Y" secondAttribute="leadingMargin" constant="30" id="IgZ-YM-Ml1"/>
-                            <constraint firstItem="VA1-dS-9M8" firstAttribute="top" secondItem="3EN-a8-TQg" secondAttribute="bottom" id="J9e-JA-E4o"/>
-                            <constraint firstItem="6M9-Ay-U3l" firstAttribute="leading" secondItem="x6O-Ul-34Y" secondAttribute="leadingMargin" id="KKd-BA-G7x"/>
-                            <constraint firstItem="6M9-Ay-U3l" firstAttribute="trailing" secondItem="TcL-1j-jDj" secondAttribute="trailing" id="RP5-ku-qCJ"/>
-                            <constraint firstItem="TsK-91-G2S" firstAttribute="top" secondItem="ZFD-5k-3f4" secondAttribute="bottom" constant="8" symbolic="YES" id="Tpa-nc-02o"/>
-                            <constraint firstItem="TcL-1j-jDj" firstAttribute="trailing" secondItem="GaR-FO-nFn" secondAttribute="trailing" id="a32-35-bLY"/>
-                            <constraint firstItem="6M9-Ay-U3l" firstAttribute="top" secondItem="3EN-a8-TQg" secondAttribute="bottom" constant="146" id="c01-3k-Z1L"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6M9-Ay-U3l" secondAttribute="trailing" constant="9" id="em3-W8-HCY"/>
-                            <constraint firstItem="TsK-91-G2S" firstAttribute="leading" secondItem="x6O-Ul-34Y" secondAttribute="leadingMargin" constant="40" id="g5u-Ce-NaY"/>
-                            <constraint firstItem="GaR-FO-nFn" firstAttribute="top" secondItem="TcL-1j-jDj" secondAttribute="bottom" constant="8" symbolic="YES" id="hdd-2t-gn2"/>
-                            <constraint firstItem="VA1-dS-9M8" firstAttribute="centerX" secondItem="x6O-Ul-34Y" secondAttribute="centerX" id="oC1-qr-l40"/>
-                            <constraint firstItem="GaR-FO-nFn" firstAttribute="centerX" secondItem="ZFD-5k-3f4" secondAttribute="centerX" id="sjl-Ml-Mmt"/>
-                            <constraint firstItem="GaR-FO-nFn" firstAttribute="leading" secondItem="TcL-1j-jDj" secondAttribute="leading" id="ulT-H0-gft"/>
-                            <constraint firstItem="TcL-1j-jDj" firstAttribute="top" secondItem="6M9-Ay-U3l" secondAttribute="bottom" constant="39" id="vOO-ZD-6td"/>
+                            <constraint firstItem="TsK-91-G2S" firstAttribute="top" secondItem="ZFD-5k-3f4" secondAttribute="bottom" constant="8" symbolic="YES" id="06V-bF-L09"/>
+                            <constraint firstItem="TcL-1j-jDj" firstAttribute="trailing" secondItem="GaR-FO-nFn" secondAttribute="trailing" id="3Hj-UP-yXj"/>
+                            <constraint firstItem="6M9-Ay-U3l" firstAttribute="leading" secondItem="x6O-Ul-34Y" secondAttribute="leadingMargin" id="E1h-OX-KIF"/>
+                            <constraint firstItem="6M9-Ay-U3l" firstAttribute="top" secondItem="3EN-a8-TQg" secondAttribute="bottom" constant="86" id="Hkq-th-BWg"/>
+                            <constraint firstAttribute="bottom" secondItem="TsK-91-G2S" secondAttribute="bottom" constant="20" symbolic="YES" id="J24-Ru-fto"/>
+                            <constraint firstItem="ZFD-5k-3f4" firstAttribute="top" secondItem="TcL-1j-jDj" secondAttribute="bottom" constant="21" id="MEp-M4-GNT"/>
+                            <constraint firstItem="ZFD-5k-3f4" firstAttribute="leading" secondItem="x6O-Ul-34Y" secondAttribute="leadingMargin" constant="30" id="Nqd-zj-YYw"/>
+                            <constraint firstItem="TcL-1j-jDj" firstAttribute="top" secondItem="6M9-Ay-U3l" secondAttribute="bottom" constant="36" id="R6h-yU-CMW"/>
+                            <constraint firstItem="TcL-1j-jDj" firstAttribute="leading" secondItem="GaR-FO-nFn" secondAttribute="leading" id="V0Q-re-JwO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6M9-Ay-U3l" secondAttribute="trailing" constant="9" id="a1p-3r-5eC"/>
+                            <constraint firstItem="ZFD-5k-3f4" firstAttribute="centerX" secondItem="GaR-FO-nFn" secondAttribute="centerX" id="eod-Vg-9CI"/>
+                            <constraint firstItem="TsK-91-G2S" firstAttribute="centerX" secondItem="x6O-Ul-34Y" secondAttribute="centerX" id="gdf-h3-6IF"/>
+                            <constraint firstItem="TcL-1j-jDj" firstAttribute="trailing" secondItem="6M9-Ay-U3l" secondAttribute="trailing" id="kgT-ch-wFx"/>
+                            <constraint firstItem="TsK-91-G2S" firstAttribute="leading" secondItem="x6O-Ul-34Y" secondAttribute="leadingMargin" constant="40" id="moT-HS-tLj"/>
+                            <constraint firstItem="GaR-FO-nFn" firstAttribute="top" secondItem="TcL-1j-jDj" secondAttribute="bottom" constant="8" symbolic="YES" id="pod-NR-zfk"/>
+                            <constraint firstItem="TcL-1j-jDj" firstAttribute="leading" secondItem="x6O-Ul-34Y" secondAttribute="leadingMargin" constant="22" id="qDT-KW-rfJ"/>
+                            <constraint firstItem="TsK-91-G2S" firstAttribute="top" secondItem="GaR-FO-nFn" secondAttribute="bottom" constant="24" id="z0W-7K-MZW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u2c-qL-sMD"/>
@@ -898,7 +893,6 @@
         <image name="courses" width="25" height="25"/>
         <image name="flag" width="25" height="25"/>
         <image name="info" width="25" height="25"/>
-        <image name="landaAbout.png" width="512" height="512"/>
         <image name="sendMail" width="30" height="30"/>
         <image name="unread" width="25" height="25"/>
         <image name="updates" width="25" height="25"/>

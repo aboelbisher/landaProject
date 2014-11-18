@@ -241,7 +241,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
     
     
     
-                   TeacherIdLocal * teacherId = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:beginTime day:day endTime:endTime id:tutorId notify:dontNotifyMe];
+                   TeacherIdLocal * teacherId = [[TeacherIdLocal alloc] initTeacherIdLocalWithBeginTime:beginTime day:day endTime:endTime id:tutorId place:place notify:dontNotifyMe];
                    [course addTeachersObject:teacherId];
                }
                
@@ -256,7 +256,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
 
                    for(TeacherIdLocal * teacherId in course.teachers)
                    {
-                       TeacherId * newTeacherId = [TeacherId initWithId:teacherId.id beginTime:teacherId.beginTime endTime:teacherId.endTime day:teacherId.day notify:teacherId.notify inManagedObjectContext:context];
+                       TeacherId * newTeacherId = [TeacherId initWithId:teacherId.id beginTime:teacherId.beginTime endTime:teacherId.endTime day:teacherId.day place:teacherId.place notify:teacherId.notify inManagedObjectContext:context];
                        [newCourse addTeachersObject:newTeacherId];
                        [context save:&error];
                    }
@@ -510,7 +510,7 @@ static NSString* coursesCounterJsonKey = @"last_change";
 
                 Course * course = [Course initWithName:name id:id subjectId:subjectid imageName:[NSString stringWithFormat:@"%@.png" , subjectid] place:place beginTime:beginTime endTime:endTime inManagedObjectContext:context];
                 [context save:&error];
-                TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day notify:dontNotifyMe inManagedObjectContext:context];
+                TeacherId * teacherId = [TeacherId initWithId:tutorId beginTime:beginTime endTime:endTime day:day place:place notify:dontNotifyMe  inManagedObjectContext:context];
                 [context save:&error];
                 
                 if(!course)

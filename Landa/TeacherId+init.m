@@ -14,6 +14,7 @@
 beginTime:(NSString*)beginTime
 endTime:(NSString*)endTime
 day:(NSString*)day
+place:(NSString*)place
 notify:(NSString*)notify
 inManagedObjectContext:(NSManagedObjectContext*)context
 {
@@ -35,6 +36,7 @@ inManagedObjectContext:(NSManagedObjectContext*)context
     teacher.endTime = endTime;
     teacher.day = day;
     teacher.notify = notify;
+    teacher.place = place;
     [context save:&error];
     
     //}

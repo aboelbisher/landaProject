@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Course" representedClassName="Course" syncable="YES">
         <attribute name="beginTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -30,6 +30,7 @@
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notify" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="place" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="teachers" inverseEntity="Course" syncable="YES"/>
     </entity>
     <entity name="Update" representedClassName="Update" syncable="YES">
@@ -46,7 +47,7 @@
         <element name="Course" positionX="-234" positionY="90" width="128" height="180"/>
         <element name="LastRefresh" positionX="-180" positionY="72" width="128" height="75"/>
         <element name="Teacher" positionX="-117" positionY="-135" width="128" height="148"/>
-        <element name="TeacherId" positionX="-396" positionY="-108" width="128" height="133"/>
+        <element name="TeacherId" positionX="-396" positionY="-108" width="128" height="148"/>
         <element name="Update" positionX="-74" positionY="36" width="128" height="165"/>
     </elements>
 </model>

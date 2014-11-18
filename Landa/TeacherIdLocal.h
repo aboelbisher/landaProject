@@ -16,9 +16,10 @@
 @property (nonatomic, strong) NSString * endTime;
 @property (nonatomic, strong) NSString * id;
 @property (nonatomic, strong) NSString * notify;
+@property (nonatomic , strong) NSString * place;
 //@property (nonatomic, strong) CourseLocal *course;
 
--(instancetype)initTeacherIdLocalWithBeginTime:(NSString*)beginTime day:(NSString*)day endTime:(NSString*)endTime id:(NSString*)id notify:(NSString*)notify;
+-(instancetype)initTeacherIdLocalWithBeginTime:(NSString*)beginTime day:(NSString*)day endTime:(NSString*)endTime id:(NSString*)id place:(NSString*)place notify:(NSString*)notify;
 
 -(BOOL)isEqual:(id)object;
 

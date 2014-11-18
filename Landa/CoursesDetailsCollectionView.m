@@ -157,7 +157,7 @@
         courseCell.timeLabel.textColor = [UIColor myGreenColor];
         //courseCell..text = self.course.place;
         //courseCell.placeButton.titleLabel.text = self.course.place;
-        [courseCell.placeButton setTitle:self.course.place forState:UIControlStateNormal]; // To set the title
+        [courseCell.placeButton setTitle:teacherId.place forState:UIControlStateNormal]; // To set the title
 
     }
     return cell;

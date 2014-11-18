@@ -12,7 +12,7 @@
 
 
 
--(instancetype)initTeacherIdLocalWithBeginTime:(NSString*)beginTime day:(NSString*)day endTime:(NSString*)endTime id:(NSString*)id notify:(NSString*)notify
+-(instancetype)initTeacherIdLocalWithBeginTime:(NSString*)beginTime day:(NSString*)day endTime:(NSString*)endTime id:(NSString*)id place:(NSString*)place notify:(NSString*)notify
 {
     TeacherIdLocal * teacherId = [[TeacherIdLocal alloc] init];
     
@@ -21,6 +21,7 @@
     teacherId.endTime = endTime;
     teacherId.id = id;
     teacherId.notify = notify;
+    teacherId.place = place;
     
     return teacherId;
 }

@@ -43,6 +43,7 @@
 		F932381A192909140066328A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9323819192909140066328A /* Security.framework */; };
 		F932381C1929091B0066328A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381B1929091B0066328A /* StoreKit.framework */; };
 		F932381E192909230066328A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F932381D192909230066328A /* SystemConfiguration.framework */; };
+		F94CC3B41A1BE6A800B82803 /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F94CC3B31A1BE6A800B82803 /* TeacherId.m */; };
 		F954E6A7193FAFF0004F0C00 /* HelpFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E6A6193FAFF0004F0C00 /* HelpFunc.m */; };
 		F954E7201940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7151940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m */; };
 		F954E7211940D7CB004F0C00 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F954E7171940D7CB004F0C00 /* SWCellScrollView.m */; };
@@ -56,7 +57,6 @@
 		F95ACAB5193952BF00E546FB /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB3193952BF00E546FB /* tabbar.png */; };
 		F95ACAB6193952BF00E546FB /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F95ACAB4193952BF00E546FB /* tabbar@2x.png */; };
 		F95ACACC193A6E8100E546FB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F95ACACA193A6E8100E546FB /* Model.xcdatamodeld */; };
-		F95ACADE193A714100E546FB /* TeacherId.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACADD193A714100E546FB /* TeacherId.m */; };
 		F95ACAE1193A714100E546FB /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAE0193A714100E546FB /* Teacher.m */; };
 		F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAEC193A8F2100E546FB /* LastRefresh+init.m */; };
 		F95ACAF5193A99FD00E546FB /* LastRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F95ACAF4193A99FD00E546FB /* LastRefresh.m */; };
@@ -150,6 +150,8 @@
 		F9323819192909140066328A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F932381B1929091B0066328A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F932381D192909230066328A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F94CC3B21A1BE6A800B82803 /* TeacherId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeacherId.h; path = ../TeacherId.h; sourceTree = "<group>"; };
+		F94CC3B31A1BE6A800B82803 /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeacherId.m; path = ../TeacherId.m; sourceTree = "<group>"; };
 		F954E6A5193FAFF0004F0C00 /* HelpFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpFunc.h; sourceTree = "<group>"; };
 		F954E6A6193FAFF0004F0C00 /* HelpFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpFunc.m; sourceTree = "<group>"; };
 		F954E7141940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
@@ -171,8 +173,6 @@
 		F95ACAB3193952BF00E546FB /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		F95ACAB4193952BF00E546FB /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
 		F95ACACB193A6E8100E546FB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		F95ACADC193A714100E546FB /* TeacherId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeacherId.h; path = ../TeacherId.h; sourceTree = "<group>"; };
-		F95ACADD193A714100E546FB /* TeacherId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeacherId.m; path = ../TeacherId.m; sourceTree = "<group>"; };
 		F95ACADF193A714100E546FB /* Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Teacher.h; path = ../Teacher.h; sourceTree = "<group>"; };
 		F95ACAE0193A714100E546FB /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Teacher.m; path = ../Teacher.m; sourceTree = "<group>"; };
 		F95ACAEB193A8F2100E546FB /* LastRefresh+init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LastRefresh+init.h"; path = "../LastRefresh+init.h"; sourceTree = "<group>"; };
@@ -478,8 +478,8 @@
 		F97776001931604800B15754 /* teacherId */ = {
 			isa = PBXGroup;
 			children = (
-				F95ACADC193A714100E546FB /* TeacherId.h */,
-				F95ACADD193A714100E546FB /* TeacherId.m */,
+				F94CC3B21A1BE6A800B82803 /* TeacherId.h */,
+				F94CC3B31A1BE6A800B82803 /* TeacherId.m */,
 				F99B00C4192EF24F006000AA /* TeacherId+init.h */,
 				F99B00C5192EF24F006000AA /* TeacherId+init.m */,
 				F9A55965194B5C2900C25967 /* TeacherIdLocal.h */,
@@ -654,6 +654,7 @@
 				F95ACACC193A6E8100E546FB /* Model.xcdatamodeld in Sources */,
 				F954E7201940D7CB004F0C00 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				F99B83D1193EB3DE0028653D /* HTMLParser.m in Sources */,
+				F94CC3B41A1BE6A800B82803 /* TeacherId.m in Sources */,
 				F930300718EE4B9D0064E984 /* TeacherCollectionViewCell.m in Sources */,
 				F973F26D1943A27600E6776C /* AboutViewController.m in Sources */,
 				F99B00EA192FD9D0006000AA /* CoursesTableViewCell.m in Sources */,
@@ -676,7 +677,6 @@
 				F954E7251940D7CB004F0C00 /* SWUtilityButtonView.m in Sources */,
 				F95ACAED193A8F2100E546FB /* LastRefresh+init.m in Sources */,
 				F9A47077191EEBAF00420260 /* UpdatesContentViewController.m in Sources */,
-				F95ACADE193A714100E546FB /* TeacherId.m in Sources */,
 				F9A55964194B4D9100C25967 /* TeacherLocal.m in Sources */,
 				F954E7211940D7CB004F0C00 /* SWCellScrollView.m in Sources */,
 			);

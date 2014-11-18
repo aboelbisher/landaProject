@@ -124,31 +124,11 @@ static int PICKERHEIGHT = 200;
     
 }
 
-//-(void) viewWillAppear:(BOOL)animated
-//{
-//    
-//    LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-//    
-//    self.jobsTitles = @[HONE5 , RAKAZ , RAKAZMAIN];
-//    NSArray * tmpHone5Array = [Teacher getTeachersWithPosition:HONE5 inManagedObjectContext:context];
-//    NSArray * tmpRakazMainArray = [Teacher getTeachersWithPosition:RAKAZMAIN inManagedObjectContext:context];
-//    NSArray * tmpRkazArray = [Teacher getTeachersWithPosition:RAKAZ inManagedObjectContext:context];
-//    
-//    self.teachersSectionsDic = @{ HONE5 : tmpHone5Array ,
-//                                  RAKAZ : tmpRkazArray ,
-//                                  RAKAZMAIN : tmpRakazMainArray};
-//    
-//    self.tmpTestArray = @[tmpHone5Array , tmpRakazMainArray , tmpRkazArray];
-//}
-
 -(void)checkForNewUpdates
 {
     LandaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
-    //self.spinner.hidden = NO;
-    //[self.spinner startAnimating];
+
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
@@ -228,15 +208,9 @@ static int PICKERHEIGHT = 200;
                                                                                   mail:email
                                                                               position:position];
                
-               
                [newIds addObject:id];
                [newTeachers addObject:localTeacher];
                
-//               Teacher * tmpTeacher = [oldIds firstObjectCommonWithArray:newIds];
-//               if(!tmpTeacher)
-//               {
-//                   theresAChange = YES;
-//               }               
            }
            if(![newIds isEqualToArray:oldIds])
            {
@@ -257,12 +231,7 @@ static int PICKERHEIGHT = 200;
                    [self.teachersCollectionView reloadData];
                });
            }
-          // newIds = nil;
        }
-       dispatch_async(dispatch_get_main_queue(), ^{
-           //[self.spinner stopAnimating];
-           //self.spinner.hidden = YES;
-       });
    }];
     [task resume];
     [session finishTasksAndInvalidate];
@@ -347,23 +316,6 @@ static int PICKERHEIGHT = 200;
 {
     [searchBar resignFirstResponder];
 }
-
-
-
-//#pragma mark UICollectionView Sections
-//
-//-(NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-//{
-//    return [self.jobsTitles count];
-//}
-//
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-//{
-//    return  [[self.tmpTestArray objectAtIndex:section] count];
-//}
-////
-//-(NSString*)
-
 
 
 #pragma mark UICollectionView
@@ -481,10 +433,6 @@ static int PICKERHEIGHT = 200;
     {
         if(!error)
         {
-//            dispatch_async(dispatch_get_main_queue(), ^
-//           {
-//               
-//           });
             NSData *urlData = [NSData dataWithContentsOfURL:url];
             NSString *webString =[[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
             NSString* jsonString = [HelpFunc makeJsonFromString:webString];
@@ -665,11 +613,7 @@ static int PICKERHEIGHT = 200;
     return [self.dataSource count];
 }
 
-//- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-//{
-//    
-//    
-//}
+
 
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
@@ -689,7 +633,6 @@ static int PICKERHEIGHT = 200;
     
     // This method is triggered whenever the user makes a change to the picker selection.
     // The parameter named row and component represents what was selected.
-//    NSLog(@"row number %@ is selected" , [self.dataSource objectAtIndex:row]);
     [self.searchResults removeAllObjects];
     NSString* wantedPosition = [self.dataSource objectAtIndex:row];
     
@@ -705,15 +648,12 @@ static int PICKERHEIGHT = 200;
 
     }
     
-//
     self.searchResults = [NSMutableArray arrayWithArray:tmpTeachersArray];
-//
     [self.teachersCollectionView reloadData];
     [NSThread sleepForTimeInterval:0.5f];
 
     
     [self.pickerView removeFromSuperview];
-   // [self.pickerView removeFromSuperview];
 }
 - (IBAction)filter:(id)sender
 {

@@ -17,6 +17,5 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak , nonatomic) Update * update;
-//@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property(strong , nonatomic) NSString* updateContentText;
 @end

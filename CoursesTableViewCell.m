@@ -19,10 +19,6 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
 
 
 - (IBAction)switcher:(id)sender
@@ -80,7 +76,6 @@
         
         [self weekEndNotificationOnWeekday:day hour:hour minute:minute message:message teacherId:self.teacherId startDate:now];
     }
-   // [NSThread exit];
     [context save:&error];
     
 }

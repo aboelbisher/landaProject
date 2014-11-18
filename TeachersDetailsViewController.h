@@ -16,7 +16,6 @@
 @interface TeachersDetailsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *teacherImage;
-//@property (weak , nonatomic) NSString* teacherImageName;
 @property (weak , nonatomic) NSString* localFilePath;
 @property (weak , nonatomic) Teacher * teacher;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

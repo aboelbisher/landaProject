@@ -8,13 +8,6 @@
 
 #import "UpdatesViewController.h"
 
-//@implementation UIColor (MyProject)
-//
-//+(UIColor *) GREENCOLOR { return [UIColor colorWithRed:0 green:0.702 blue:0.494 alpha:1]; }
-//
-//@end
-
-
 
 static NSString * urlDownload = @"http://glanda.technion.ac.il/wordpress/?json=get_posts&count=20";
 static NSString * FIRSTRUN = @"UpdatesfirstRun";
@@ -30,8 +23,7 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic) BOOL ifFirstRun;
-//@property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
-//@property (weak , nonatomic) NSURLSession * session;
+
 
 
 @end
@@ -45,10 +37,8 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
     [super viewDidLoad];
 
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    //self.view.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.backgroundColor = [UIColor whiteColor];
-    //self.tableView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self.navigationController.navigationBar setBarTintColor:[UIColor myGreenColor]];
     
@@ -511,22 +501,6 @@ static NSString * FIRSTRUN = @"UpdatesfirstRun";
 
 }
 
-//- (NSURLSession *)backgroundSession
-//{
-//    /**
-//     * Using dispatch_once here ensures that multiple background sessions with the same identifier are not
-//     * created in this instance of the application. If you want to support multiple background sessions
-//     * within a single process, you should create each session with its own identifier.
-//     */
-//    static NSURLSession *session = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfiguration:@"ch.icoretech.BackgroundTransferSession"];
-//        [configuration set...];
-//        session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-//    });
-//    return session;
-//}
 
 -(void) refreshTableView //refreshController delegate
 {

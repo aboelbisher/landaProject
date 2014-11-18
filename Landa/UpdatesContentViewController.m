@@ -45,15 +45,6 @@
     NSString *stringFromDate = [dateFormatter stringFromDate:self.update.date];
     self.dateText.text = [NSString stringWithFormat:@"%@" , stringFromDate];
 
-//    NSString * html = @"<html> <body style=\"background:#454545; color:#e0e0e0;\"> ";
-//    
-//    html = [html stringByAppendingString:self.update.htmlUpdate];
-//    
-//    html = [html stringByAppendingString:@" </body> </html>"];
-    
-//    [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:self.update.url]];
-//    
-//    self.webView.backgroundColor = [UIColor clearColor];
     
 }
 
@@ -63,16 +54,8 @@
     {
         if ([segue.destinationViewController isKindOfClass:[FullContentViewController class]])
         {
-//            id stam = sender;
-//            if([sender isKindOfClass:[UpdatesContentViewController class]])
-//            {
-//                UpdatesContentViewController* sourceController = (UpdatesContentViewController*) sender;
                 FullContentViewController *distViewController = (FullContentViewController *)segue.destinationViewController;
-                
                 distViewController.update = self.update;
-
-//            }
-            
         }
     }
 }

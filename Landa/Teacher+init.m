@@ -65,15 +65,6 @@ inManagedObjectContext:(NSManagedObjectContext*)context
 
 +(NSArray*)getAllTeachersInManagedObjectContext:(NSManagedObjectContext*)context
 {
-//    NSError * error = nil;
-//    NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    [request setEntity:teacherEntityDisc];
-//    NSPredicate *pred =nil;
-//    [request setPredicate:pred];
-//    NSArray *objects = [context executeFetchRequest:request error:&error];
-//    
-//    return objects;
     NSError* error;
     NSEntityDescription *teacherEntityDisc = [NSEntityDescription entityForName:@"Teacher" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -124,19 +115,7 @@ inManagedObjectContext:(NSManagedObjectContext*)context
 
     return teachersArray;
 }
-//-(instancetype) initTeacherWithName:(NSString *)name id:(NSString*)id imageName:(NSString*)imageName localImageFilePath:(NSString*)localImageFilePath mail:(NSString*)mail faculty:(NSString*)faculty position:(NSString*)position
-//{
-//    Teacher * newTeacher  = nil;
-//    newTeacher.name = name;
-//    newTeacher.id = id;
-//    newTeacher.imageName = imageName;
-//    newTeacher.localImageFilePath = localImageFilePath;
-//    newTeacher.mail = mail;
-//    newTeacher.faculty= faculty;
-//    newTeacher.position = position;
-//    
-//    return newTeacher;
-//}
+
 
 
 
